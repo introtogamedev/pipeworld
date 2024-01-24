@@ -1,6 +1,9 @@
 {
   "FolderOrderSettings": [
     {"name":"Level","order":10,"path":"folders/Level.yy",},
+    {"name":"Plumber","order":11,"path":"folders/Plumber.yy",},
   ],
-  "ResourceOrderSettings": [],
+  "ResourceOrderSettings": [
+    {"name":"Config","order":12,"path":"scripts/Config/Config.yy",},
+  ],
 }
