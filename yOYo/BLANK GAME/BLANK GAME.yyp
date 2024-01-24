@@ -21,7 +21,8 @@
   },
   "resources": [
     {"id":{"name":"config","path":"scripts/config/config.yy",},},
-    {"id":{"name":"mario","path":"sprites/mario/mario.yy",},},
+    {"id":{"name":"Mairo_Object","path":"objects/Mairo_Object/Mairo_Object.yy",},},
+    {"id":{"name":"mario_sprirt","path":"sprites/mario_sprirt/mario_sprirt.yy",},},
     {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
   ],
   "RoomOrderNodes": [
