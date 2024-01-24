@@ -29,8 +29,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "Sprite4",
-    "path": "sprites/Sprite4/Sprite4.yy",
+    "name": "spr_runningMario",
+    "path": "sprites/spr_runningMario/spr_runningMario.yy",
   },
   "spriteMaskId": null,
   "visible": true,

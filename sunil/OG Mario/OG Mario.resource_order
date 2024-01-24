@@ -1,11 +1,11 @@
 {
   "FolderOrderSettings": [
-    {"name":"Levels","order":10,"path":"folders/Levels.yy",},
-    {"name":"Mario","order":1,"path":"folders/Mario.yy",},
-    {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
+    {"name":"Levels","order":2,"path":"folders/Levels.yy",},
+    {"name":"Tile Sets","order":1,"path":"folders/Tile Sets.yy",},
   ],
   "ResourceOrderSettings": [
-    {"name":"Sprite4","order":4,"path":"sprites/Sprite4/Sprite4.yy",},
+    {"name":"spr_idleMario","order":4,"path":"sprites/spr_idleMario/spr_idleMario.yy",},
+    {"name":"spr_runningMario","order":5,"path":"sprites/spr_runningMario/spr_runningMario.yy",},
     {"name":"obj_Mario","order":2,"path":"objects/obj_Mario/obj_Mario.yy",},
     {"name":"Super_Mario_Bros_Tileset","order":1,"path":"sprites/Super_Mario_Bros_Tileset/Super_Mario_Bros_Tileset.yy",},
     {"name":"Sprite3","order":3,"path":"sprites/Sprite3/Sprite3.yy",},

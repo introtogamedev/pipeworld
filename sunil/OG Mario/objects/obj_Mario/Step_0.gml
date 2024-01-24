@@ -9,7 +9,7 @@
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
 
-/// -- step --
+/// -- movement --
 
 var _input_dir = 0;
 if (keyboard_check(INPUT_LEFT)) {
@@ -27,4 +27,16 @@ var _dt = delta_time / MS;
 
 vx += _ax * _dt;
 
+if (abs(vx) > max_vx) {
+	vx = sign(vx) * max_vx;
+}
+
 x += vx;
+
+/// -- keep on screen --
+
+if (x < 0) {
+	x = 0;
+} else if (x > room_width - sprite_width) {
+	x = room_width - sprite_width;
+}

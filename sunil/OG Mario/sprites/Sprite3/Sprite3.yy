@@ -25,8 +25,8 @@
   "nineSlice": null,
   "origin": 0,
   "parent": {
-    "name": "Mario",
-    "path": "folders/Mario.yy",
+    "name": "OG Mario",
+    "path": "OG Mario.yyp",
   },
   "preMultiplyAlpha": false,
   "sequence": {
