@@ -1,0 +1,10 @@
+{
+  "FolderOrderSettings": [
+    {"name":"Plumber","order":11,"path":"folders/Plumber.yy",},
+    {"name":"Rooms","order":10,"path":"folders/Rooms.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"Config","order":12,"path":"scripts/Config/Config.yy",},
+    {"name":"mario","order":1,"path":"objects/mario/mario.yy",},
+  ],
+}
