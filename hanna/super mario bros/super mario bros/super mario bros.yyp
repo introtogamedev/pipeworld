@@ -21,7 +21,11 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
-    {"id":{"name":"plumber_sprite","path":"sprites/plumber_sprite/plumber_sprite.yy",},},
+    {"id":{"name":"spr_plumber_jumping","path":"sprites/spr_plumber_jumping/spr_plumber_jumping.yy",},},
+    {"id":{"name":"obj_plumber","path":"objects/obj_plumber/obj_plumber.yy",},},
+    {"id":{"name":"spr_plumber_idle","path":"sprites/spr_plumber_idle/spr_plumber_idle.yy",},},
+    {"id":{"name":"spr_plumber_running","path":"sprites/spr_plumber_running/spr_plumber_running.yy",},},
+    {"id":{"name":"spr_plumber_turning","path":"sprites/spr_plumber_turning/spr_plumber_turning.yy",},},
     {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
   ],
   "RoomOrderNodes": [

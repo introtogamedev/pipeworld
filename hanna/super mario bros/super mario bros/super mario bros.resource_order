@@ -3,5 +3,10 @@
     {"name":"Level","order":10,"path":"folders/Level.yy",},
     {"name":"Plumber","order":11,"path":"folders/Plumber.yy",},
   ],
-  "ResourceOrderSettings": [],
+  "ResourceOrderSettings": [
+    {"name":"spr_plumber_jumping","order":3,"path":"sprites/spr_plumber_jumping/spr_plumber_jumping.yy",},
+    {"name":"obj_plumber","order":1,"path":"objects/obj_plumber/obj_plumber.yy",},
+    {"name":"spr_plumber_running","order":2,"path":"sprites/spr_plumber_running/spr_plumber_running.yy",},
+    {"name":"spr_plumber_turning","order":4,"path":"sprites/spr_plumber_turning/spr_plumber_turning.yy",},
+  ],
 }
