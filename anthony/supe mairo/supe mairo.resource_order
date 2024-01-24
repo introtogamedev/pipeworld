@@ -11,13 +11,15 @@
     {"name":"Scripts","order":5,"path":"folders/Scripts.yy",},
     {"name":"Sequences","order":11,"path":"folders/Sequences.yy",},
     {"name":"Shaders","order":6,"path":"folders/Shaders.yy",},
-    {"name":"Plumber","order":3,"path":"folders/Plumber.yy",},
     {"name":"Sprites","order":1,"path":"folders/Sprites.yy",},
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
     {"name":"group1","order":16,"path":"folders/group1.yy",},
+    {"name":"Tiles","order":1,"path":"folders/Sprites/Tiles.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"spr_placeholder","order":1,"path":"sprites/spr_placeholder/spr_placeholder.yy",},
+    {"name":"spr_jump","order":3,"path":"sprites/spr_jump/spr_jump.yy",},
+    {"name":"spr_test","order":2,"path":"sprites/spr_test/spr_test.yy",},
   ],
 }
