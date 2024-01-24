@@ -34,8 +34,12 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"spr_floor","path":"sprites/spr_floor/spr_floor.yy",},},
+    {"id":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},},
     {"id":{"name":"spr_bg","path":"sprites/spr_bg/spr_bg.yy",},},
     {"id":{"name":"obj_plumber","path":"objects/obj_plumber/obj_plumber.yy",},},
+    {"id":{"name":"spr_plumber_jump","path":"sprites/spr_plumber_jump/spr_plumber_jump.yy",},},
+    {"id":{"name":"spr_plumber_turn","path":"sprites/spr_plumber_turn/spr_plumber_turn.yy",},},
     {"id":{"name":"spr_plumber","path":"sprites/spr_plumber/spr_plumber.yy",},},
     {"id":{"name":"config","path":"scripts/config/config.yy",},},
     {"id":{"name":"rm_level","path":"rooms/rm_level/rm_level.yy",},},

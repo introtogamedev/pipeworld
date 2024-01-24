@@ -6,12 +6,32 @@
 //the number of milliseconds in a second
 #macro MS 100000
 
+//Horizontal
 #macro MOVE_ACCELERATION 6
 #macro MOVE_BOOST 9
 #macro MAX_VELOCITY 12
 #macro MAX_BOOST 18
+#macro MOVE_DRAG 0.7
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
+#macro INPUT_DOWN ord("S")
+
+//Vertical
+#macro JUMP_INITIAL_IMPULSE 40
+#macro JUMP_ACCELERATION 25
+#macro JUMP_MAX 100
+#macro JUMP_DURATION 40
+#macro INPUT_UP ord ("W")
+
+#macro FALLING_GRAVITY 5
+#macro FALLING_MAX_VELOCITY 10
+
+#macro FLOOR_DURATION 2
+
+
+///////////////////////////////////////////////////////////
+//Horizontal Motion
+///////////////////////////////////////////////////////////
 
 //Step
 var _input_dir = 0;
@@ -26,6 +46,7 @@ if(keyboard_check(INPUT_LEFT))
 	
 	if(keyboard_check(vk_lshift))
 	{
+		image_speed = 4;
 		if(vx < -MAX_BOOST)
 		{
 			vx = -MAX_BOOST;
@@ -39,6 +60,7 @@ if(keyboard_check(INPUT_LEFT))
 		}
 	}
 }
+
 if(keyboard_check(INPUT_RIGHT))
 {
 	image_xscale = 1;
@@ -47,19 +69,40 @@ if(keyboard_check(INPUT_RIGHT))
 
 if(keyboard_check(vk_lshift))
 {
+	image_speed = 4;
 	if(vx > MAX_BOOST)
 	{
 		vx = MAX_BOOST;
 	}
 }
-else if (!keyboard_check_pressed(vk_lshift) || keyboard_check_released(vk_lshift))
+else if (!keyboard_check_pressed(vk_lshift))
 {
 	if(vx > MAX_VELOCITY)
 	{
 		vx = MAX_VELOCITY;
 	}
 }
+}
 
+if(_input_dir == 0 && vx > 0)
+{
+	vx -= MOVE_DRAG;
+	if(vx < 0.1)
+	{
+		vx = 0;
+	}
+}
+if(_input_dir == 0 && vx < 0)
+{
+	vx += MOVE_DRAG;
+	if(vx > 0.1)
+	{
+		vx = 0;
+	}
+}
+if(_input_dir == 0)
+{
+	image_index = 0;
 }
 
 //get the move acceleration
@@ -81,18 +124,106 @@ else if (!keyboard_check(vk_lshift))
 	vx += _ax * _dt;
 }
 
+if(keyboard_check(INPUT_LEFT) && vx > 0 || keyboard_check(INPUT_RIGHT) && vx < 0)
+{
+	sprite_index = spr_plumber_turn;
+}
+else
+{
+	sprite_index = spr_plumber;
+}
+
+//collisions
+if(keyboard_check(INPUT_LEFT) && x < 10)
+{
+	vx = 0;
+}
+if(keyboard_check(INPUT_RIGHT) && x > 246)
+{
+	vx = 0;
+}
 
 //updates x position + moves character
-var _dx = vx * _dt;
 x += vx * _dt;
 
+//////////////////////////////////////////////////////////////////
+//Vertical Motion
+//////////////////////////////////////////////////////////////////
+
+//Player falling
+if(!jumping && !place_meeting(x, y + 5, obj_floor))
+{
+	falling = true;	
+}
+
+if(falling)
+{
+	vy += FALLING_GRAVITY;
+	jumping = false;
+	
+	if(vy > FALLING_MAX_VELOCITY)
+	{
+		vy = FALLING_MAX_VELOCITY;
+	}
+	
+	if(place_meeting(x, y, obj_floor)) //Player makes contact with floor
+	{
+		vy = 0;
+		
+		falling = false;
+		on_floor = true;
+	}
+}
+
+if(on_floor)
+{
+	floor_timer++;
+	if(keyboard_check(INPUT_UP) 
+	&& floor_timer > FLOOR_DURATION) //Can Jump
+	{
+		on_floor = false;
+		jumping = true;
+		floor_timer = 0;
+		
+		vy -= JUMP_INITIAL_IMPULSE;
+	}
+}
+
+if(jumping)
+{
+	if(keyboard_check(INPUT_UP) && !place_meeting(x, y, obj_floor))
+	{
+		vy -= JUMP_ACCELERATION;
+	}
+	else
+	{
+		jumping = false;
+	}
+	
+	if(vy < -JUMP_MAX)
+	{
+		vy = -JUMP_MAX;	
+	}
+	
+	jump_timer++;
+	if(jump_timer > JUMP_DURATION)
+	{
+		jumping = false;
+		jump_timer = 0;
+	}
+}
+
+//Sprite animation
+if(!on_floor)
+{
+	if(falling || jumping)
+	{
+		sprite_index = spr_plumber_jump;
+	}
+}
 
 
-
-
-
-
-
+y += vy * _dt;
 
 
 

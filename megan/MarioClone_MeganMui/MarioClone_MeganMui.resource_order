@@ -17,6 +17,10 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
-    {"name":"spr_bg","order":1,"path":"sprites/spr_bg/spr_bg.yy",},
+    {"name":"spr_floor","order":1,"path":"sprites/spr_floor/spr_floor.yy",},
+    {"name":"obj_floor","order":1,"path":"objects/obj_floor/obj_floor.yy",},
+    {"name":"spr_bg","order":4,"path":"sprites/spr_bg/spr_bg.yy",},
+    {"name":"spr_plumber_jump","order":3,"path":"sprites/spr_plumber_jump/spr_plumber_jump.yy",},
+    {"name":"spr_plumber_turn","order":2,"path":"sprites/spr_plumber_turn/spr_plumber_turn.yy",},
   ],
 }
