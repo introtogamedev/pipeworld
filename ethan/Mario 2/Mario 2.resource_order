@@ -17,6 +17,9 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"spr_plumberts","order":2,"path":"sprites/spr_plumberts/spr_plumberts.yy",},
+    {"name":"obj_mario","order":1,"path":"objects/obj_mario/obj_mario.yy",},
     {"name":"spr_mariots","order":1,"path":"sprites/spr_mariots/spr_mariots.yy",},
+    {"name":"spr_mario","order":3,"path":"sprites/spr_mario/spr_mario.yy",},
   ],
 }
