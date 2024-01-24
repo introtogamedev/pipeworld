@@ -1,0 +1,34 @@
+{
+  "resourceType": "GMProject",
+  "resourceVersion": "1.7",
+  "name": "super mario bros",
+  "AudioGroups": [
+    {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
+  ],
+  "configs": {
+    "children": [],
+    "name": "Default",
+  },
+  "defaultScriptType": 1,
+  "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Level","folderPath":"folders/Level.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Plumber","folderPath":"folders/Plumber.yy",},
+  ],
+  "IncludedFiles": [],
+  "isEcma": false,
+  "LibraryEmitters": [],
+  "MetaData": {
+    "IDEVersion": "2023.11.1.129",
+  },
+  "resources": [
+    {"id":{"name":"plumber_sprite","path":"sprites/plumber_sprite/plumber_sprite.yy",},},
+    {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
+  ],
+  "RoomOrderNodes": [
+    {"roomId":{"name":"Level","path":"rooms/Level/Level.yy",},},
+  ],
+  "templateType": "game",
+  "TextureGroups": [
+    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
+  ],
+}
