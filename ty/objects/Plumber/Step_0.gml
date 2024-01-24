@@ -30,4 +30,4 @@ var _dt = delta_time / MS;
 vx += _ax * _dt;
 
 // integrate velocity into position
-x += vx;
+x += vx * _dt;
