@@ -28,7 +28,10 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_plumber",
+    "path": "sprites/spr_plumber/spr_plumber.yy",
+  },
   "spriteMaskId": null,
   "visible": true,
 }
