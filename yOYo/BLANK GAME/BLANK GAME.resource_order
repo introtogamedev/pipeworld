@@ -1,6 +1,9 @@
 {
-  "FolderOrderSettings": [],
+  "FolderOrderSettings": [
+    {"name":"Mario","order":4,"path":"folders/Mario.yy",},
+  ],
   "ResourceOrderSettings": [
+    {"name":"config","order":5,"path":"scripts/config/config.yy",},
     {"name":"Level","order":1,"path":"rooms/Level/Level.yy",},
   ],
 }

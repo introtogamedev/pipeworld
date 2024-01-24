@@ -9,8 +9,10 @@
     "children": [],
     "name": "Default",
   },
-  "defaultScriptType": 0,
-  "Folders": [],
+  "defaultScriptType": 1,
+  "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Mario","folderPath":"folders/Mario.yy",},
+  ],
   "IncludedFiles": [],
   "isEcma": false,
   "LibraryEmitters": [],
@@ -18,6 +20,8 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"config","path":"scripts/config/config.yy",},},
+    {"id":{"name":"mario","path":"sprites/mario/mario.yy",},},
     {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
   ],
   "RoomOrderNodes": [
