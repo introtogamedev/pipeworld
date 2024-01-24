@@ -31,6 +31,14 @@ if (abs(vx) > max_vx) {
 	vx = sign(vx) * max_vx;
 }
 
+dir_x = sign(vx);
+
+vx -= sign(vx) * 0.05
+
+if (dir_x != sign(vx)) {
+	vx = 0;
+}
+
 x += vx;
 
 /// -- keep on screen --
