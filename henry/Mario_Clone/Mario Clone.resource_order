@@ -1,0 +1,8 @@
+{
+  "FolderOrderSettings": [
+    {"name":"Mario","order":1,"path":"folders/Mario.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"Plumber_Object","order":1,"path":"objects/Plumber_Object/Plumber_Object.yy",},
+  ],
+}
