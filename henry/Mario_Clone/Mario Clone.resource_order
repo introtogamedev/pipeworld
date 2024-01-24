@@ -3,6 +3,7 @@
     {"name":"Mario","order":1,"path":"folders/Mario.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"config","order":2,"path":"scripts/config/config.yy",},
     {"name":"Plumber_Object","order":1,"path":"objects/Plumber_Object/Plumber_Object.yy",},
   ],
 }
