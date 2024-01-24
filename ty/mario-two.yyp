@@ -23,6 +23,7 @@
   "resources": [
     {"id":{"name":"Plumber_Sprite","path":"sprites/Plumber_Sprite/Plumber_Sprite.yy",},},
     {"id":{"name":"Config","path":"scripts/Config/Config.yy",},},
+    {"id":{"name":"Plumber","path":"objects/Plumber/Plumber.yy",},},
     {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
   ],
   "RoomOrderNodes": [
