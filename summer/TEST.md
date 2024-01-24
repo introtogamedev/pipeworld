@@ -1,3 +1,0 @@
-# pipeworld
-
-welcome to pipeworld
