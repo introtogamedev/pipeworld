@@ -33,6 +33,25 @@ var dt = delta_time / MS;
 //Integrate acceleration into velocity
 vx += ax * dt;
 
+//If hitting side of room, vx = 0
+if (x-vx < 0)
+{
+	vx = 0;
+	
+	if (ax > 0)
+	{
+		vx += ax * dt;
+	}
+}
+if (x+vx > room_width - sprite_width)
+{
+	vx = 0;
+	
+	if (ax < 0)
+	{
+		vx += ax * dt;
+	}
+}
+
 //Integrate velocity into position
-var dx = vx * dt;
 x += vx;
