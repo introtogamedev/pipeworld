@@ -2,9 +2,9 @@
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
   "name": "spr_plumber",
-  "bbox_bottom": 0,
+  "bbox_bottom": 435,
   "bbox_left": 0,
-  "bbox_right": 0,
+  "bbox_right": 583,
   "bbox_top": 0,
   "bboxMode": 0,
   "collisionKind": 1,
@@ -13,14 +13,14 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"57099add-2a7a-4dfe-a1b0-913436d49b39",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"be59ea55-c0b2-46f2-901d-3197f4ed8843",},
   ],
   "gridX": 0,
   "gridY": 0,
-  "height": 64,
+  "height": 436,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"67958a73-2347-4431-8891-57d7f7d269ed","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"ce94bf26-975f-454e-96a9-d5ee578a0392","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 0,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"57099add-2a7a-4dfe-a1b0-913436d49b39","path":"sprites/spr_plumber/spr_plumber.yy",},},},"Disabled":false,"id":"cfbd2f38-ba5b-4931-9e4c-07a6460066a1","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"be59ea55-c0b2-46f2-901d-3197f4ed8843","path":"sprites/spr_plumber/spr_plumber.yy",},},},"Disabled":false,"id":"6e3f8dbf-a9cb-45f6-899a-92a0ce3835ba","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,
@@ -70,5 +70,5 @@
   },
   "type": 0,
   "VTile": false,
-  "width": 64,
+  "width": 584,
 }
