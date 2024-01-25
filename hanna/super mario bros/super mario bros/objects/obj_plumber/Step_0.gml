@@ -6,7 +6,6 @@
 #macro LEFT ord("A")
 #macro RIGHT ord("D")
 #macro SPRINT (vk_shift)
-#macro JUMP (vk_space)
 
 //imagex scale = 1/imagex scale = -1;
 
@@ -34,16 +33,11 @@ if (keyboard_check(RIGHT)){
 	}
 
 }
-if (keyboard_check_pressed(JUMP)){
-	_input_dir += 4;
-	sprite_index = spr_plumber_jumping;
 
-}
-
+//IDLE
 if (_input_dir = 0){
 	sprite_index = spr_plumber_idle;
 }
-
 
 
 
@@ -63,7 +57,7 @@ if (xVel < 0 && _input_dir = 0){
 }
 
 if(yVel > 0){
-	yVel -
+	 
 	
 }
 
