@@ -29,8 +29,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_plumber",
-    "path": "sprites/spr_plumber/spr_plumber.yy",
+    "name": "spr_mario_idle",
+    "path": "sprites/spr_mario_idle/spr_mario_idle.yy",
   },
   "spriteMaskId": null,
   "visible": true,

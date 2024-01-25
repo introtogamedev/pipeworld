@@ -34,7 +34,9 @@
     "IDEVersion": "2023.8.1.102",
   },
   "resources": [
-    {"id":{"name":"spr_plumber","path":"sprites/spr_plumber/spr_plumber.yy",},},
+    {"id":{"name":"spr_mario_idle","path":"sprites/spr_mario_idle/spr_mario_idle.yy",},},
+    {"id":{"name":"spr_mario_walking","path":"sprites/spr_mario_walking/spr_mario_walking.yy",},},
+    {"id":{"name":"spr_mario_turning","path":"sprites/spr_mario_turning/spr_mario_turning.yy",},},
     {"id":{"name":"obj_plumber","path":"objects/obj_plumber/obj_plumber.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],

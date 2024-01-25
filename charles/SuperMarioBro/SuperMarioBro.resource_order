@@ -16,5 +16,8 @@
     {"name":"Tile Sets","order":2,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
-  "ResourceOrderSettings": [],
+  "ResourceOrderSettings": [
+    {"name":"spr_mario_walking","order":1,"path":"sprites/spr_mario_walking/spr_mario_walking.yy",},
+    {"name":"spr_mario_turning","order":2,"path":"sprites/spr_mario_turning/spr_mario_turning.yy",},
+  ],
 }
