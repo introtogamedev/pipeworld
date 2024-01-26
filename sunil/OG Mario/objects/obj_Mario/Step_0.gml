@@ -8,6 +8,7 @@
 #macro MOVE_ACCELERATION 0.1 / DT
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
+#macro INPUT_RUN vk_shift
 
 /// -- movement --
 
@@ -25,10 +26,12 @@ var _ax = MOVE_ACCELERATION * _input_dir;
 
 var _dt = delta_time / MS;
 
-vx += _ax * _dt;
+//Check if running or not
 
-if (abs(vx) > max_vx) {
-	vx = sign(vx) * max_vx;
+if (keyboard_check(INPUT_RUN)) {
+	vx += 2 * _ax * _dt;
+} else {
+	vx += _ax * _dt;
 }
 
 dir_x = sign(vx);
@@ -39,12 +42,24 @@ if (dir_x != sign(vx)) {
 	vx = 0;
 }
 
+
+
+if (keyboard_check(INPUT_RUN)) {
+	if (abs(vx) > max_vx * 2) {
+		vx = sign(vx) * max_vx * 2;
+	}
+} else if (abs(vx) > max_vx) {
+	vx = sign(vx) * max_vx;
+}
+
+
+
 x += vx;
 
 /// -- keep on screen --
 
-if (x < 0) {
-	x = 0;
-} else if (x > room_width - sprite_width) {
-	x = room_width - sprite_width;
+if (x < 0 - sprite_width / 2) {
+	x = - sprite_width / 2;
+} else if (x > room_width - sprite_width / 2) {
+	x = room_width - sprite_width / 2;
 }

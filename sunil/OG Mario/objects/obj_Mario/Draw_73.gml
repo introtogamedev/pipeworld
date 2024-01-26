@@ -5,3 +5,10 @@ if (abs(vx) > 0) {
 } else {
 	sprite_index = spr_idleMario;
 }
+
+
+if (vx > 0) {
+	image_xscale = 1;
+} else if (vx < 0) {
+	image_xscale = -1;
+}

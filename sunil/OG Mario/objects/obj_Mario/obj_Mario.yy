@@ -30,8 +30,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_runningMario",
-    "path": "sprites/spr_runningMario/spr_runningMario.yy",
+    "name": "spr_idleMario",
+    "path": "sprites/spr_idleMario/spr_idleMario.yy",
   },
   "spriteMaskId": null,
   "visible": true,
