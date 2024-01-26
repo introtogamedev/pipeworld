@@ -2,9 +2,11 @@
   "FolderOrderSettings": [
     {"name":"Level","order":10,"path":"folders/Level.yy",},
     {"name":"Plumber","order":11,"path":"folders/Plumber.yy",},
+    {"name":"Core","order":13,"path":"folders/Core.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"Config","order":12,"path":"scripts/Config/Config.yy",},
+    {"name":"JsonExt","order":1,"path":"scripts/JsonExt/JsonExt.yy",},
     {"name":"Plumber","order":1,"path":"objects/Plumber/Plumber.yy",},
   ],
 }
