@@ -4,6 +4,9 @@
     {"name":"Rooms","order":10,"path":"folders/Rooms.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"mario_running","order":4,"path":"sprites/mario_running/mario_running.yy",},
+    {"name":"off_screen_wall","order":3,"path":"objects/off_screen_wall/off_screen_wall.yy",},
+    {"name":"off_screen_wall_spr","order":2,"path":"sprites/off_screen_wall_spr/off_screen_wall_spr.yy",},
     {"name":"Config","order":12,"path":"scripts/Config/Config.yy",},
     {"name":"mario","order":1,"path":"objects/mario/mario.yy",},
   ],
