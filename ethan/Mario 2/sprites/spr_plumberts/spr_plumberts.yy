@@ -2,9 +2,9 @@
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
   "name": "spr_plumberts",
-  "bbox_bottom": 134,
+  "bbox_bottom": 187,
   "bbox_left": 0,
-  "bbox_right": 330,
+  "bbox_right": 404,
   "bbox_top": 0,
   "bboxMode": 0,
   "collisionKind": 1,
@@ -13,14 +13,14 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"5764ee1b-bc15-4296-8716-c4eafa20c383",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"88076eeb-1361-4696-abdb-5c36f3e3fabc",},
   ],
   "gridX": 0,
   "gridY": 0,
-  "height": 135,
+  "height": 188,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"ed7f6dd8-5746-415f-b8ad-30ded8381564","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"dabd775a-ddf2-43e6-b972-28271f5a4ad9","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 0,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"5764ee1b-bc15-4296-8716-c4eafa20c383","path":"sprites/spr_plumberts/spr_plumberts.yy",},},},"Disabled":false,"id":"2aee17f5-fe61-49a0-aa8b-f00cff200b4d","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"88076eeb-1361-4696-abdb-5c36f3e3fabc","path":"sprites/spr_plumberts/spr_plumberts.yy",},},},"Disabled":false,"id":"2f2f4faa-60b1-4063-9fd0-b1271c3bbd75","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,
@@ -70,5 +70,5 @@
   },
   "type": 0,
   "VTile": false,
-  "width": 331,
+  "width": 405,
 }

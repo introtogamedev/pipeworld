@@ -17,12 +17,13 @@ var input_dir = 0;
 if (keyboard_check(INPUT_LEFT))
 {
 	input_dir -= 1;
+	sprite_index = spr_marioleft;
 }
 if (keyboard_check(INPUT_RIGHT))
 {
 	input_dir += 1;
+	sprite_index = spr_marioright;
 }
-
 
 //Get the move acceleration
 var ax = MOVE_ACCELERATION * input_dir;
@@ -33,25 +34,50 @@ var dt = delta_time / MS;
 //Integrate acceleration into velocity
 vx += ax * dt;
 
+//Max speed
+if (vx < -5) vx = -5;
+if (vx > 5) vx = 5;
+
 //If hitting side of room, vx = 0
-if (x-vx < 0)
+if (x < 0)
 {
+	x = 0;
 	vx = 0;
-	
-	if (ax > 0)
-	{
-		vx += ax * dt;
-	}
 }
-if (x+vx > room_width - sprite_width)
+if (x > room_width - sprite_width)
 {
+	x = room_width-sprite_width;
 	vx = 0;
+}
+
+//Deceleration
+if (vx < 0 && !keyboard_check(INPUT_LEFT))
+{
+	vx += 0.1;
 	
-	if (ax < 0)
-	{
-		vx += ax * dt;
-	}
+	if (vx > 0) vx = 0;
+}
+if (vx > 0 && !keyboard_check(INPUT_RIGHT))
+{
+	vx -= 0.1;
+	
+	if (vx < 0) vx = 0;
 }
 
 //Integrate velocity into position
 x += vx;
+
+//Image Speed
+if (vx < 0)
+{
+	image_speed = 1;
+}
+if (vx > 0)
+{
+	image_speed = 1;
+}
+if (vx = 0)
+{
+	image_speed = 0;
+	image_index = 0;
+}
