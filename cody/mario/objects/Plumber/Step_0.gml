@@ -44,11 +44,24 @@ x += round(vx * _dt);
 // Prevent the plumber from leaving the room
 x = clamp(x, 0, room_width - sprite_width);
 
+
+
 // Update sprite facing direction
 if (vx > 0) {
     // face right
-	sprite_index = Plumber_Sprite_Right;
+	spr_direction = 1;
+    sprite_index = spr_running_right;
+    
 } else if (vx < 0) {
     // face left
-    sprite_index = Plumber_Sprite_Left;
+	spr_direction = 2;
+    sprite_index = spr_running_left;
+    
+} else if (vx == 0) {
+    // idle state
+    if (spr_direction == 1) {
+        sprite_index = spr_idle_right;
+    } else if (spr_direction == 2) {
+        sprite_index = spr_idle_left;
+    }
 }

@@ -37,9 +37,12 @@
     {"id":{"name":"Plumber_Sprite","path":"sprites/Plumber_Sprite/Plumber_Sprite.yy",},},
     {"id":{"name":"Plumber","path":"objects/Plumber/Plumber.yy",},},
     {"id":{"name":"Plumber_Sprite_Right","path":"sprites/Plumber_Sprite_Right/Plumber_Sprite_Right.yy",},},
-    {"id":{"name":"spr_running","path":"sprites/spr_running/spr_running.yy",},},
+    {"id":{"name":"spr_idle_left","path":"sprites/spr_idle_left/spr_idle_left.yy",},},
+    {"id":{"name":"spr_running_right","path":"sprites/spr_running_right/spr_running_right.yy",},},
+    {"id":{"name":"spr_running_left","path":"sprites/spr_running_left/spr_running_left.yy",},},
     {"id":{"name":"obj_test","path":"objects/obj_test/obj_test.yy",},},
     {"id":{"name":"Plumber_Sprite_Left","path":"sprites/Plumber_Sprite_Left/Plumber_Sprite_Left.yy",},},
+    {"id":{"name":"spr_idle_right","path":"sprites/spr_idle_right/spr_idle_right.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [

@@ -18,8 +18,11 @@
   ],
   "ResourceOrderSettings": [
     {"name":"Plumber_Sprite_Right","order":1,"path":"sprites/Plumber_Sprite_Right/Plumber_Sprite_Right.yy",},
-    {"name":"spr_running","order":3,"path":"sprites/spr_running/spr_running.yy",},
+    {"name":"spr_idle_left","order":5,"path":"sprites/spr_idle_left/spr_idle_left.yy",},
+    {"name":"spr_running_right","order":3,"path":"sprites/spr_running_right/spr_running_right.yy",},
+    {"name":"spr_running_left","order":4,"path":"sprites/spr_running_left/spr_running_left.yy",},
     {"name":"obj_test","order":1,"path":"objects/obj_test/obj_test.yy",},
     {"name":"Plumber_Sprite_Left","order":2,"path":"sprites/Plumber_Sprite_Left/Plumber_Sprite_Left.yy",},
+    {"name":"spr_idle_right","order":6,"path":"sprites/spr_idle_right/spr_idle_right.yy",},
   ],
 }

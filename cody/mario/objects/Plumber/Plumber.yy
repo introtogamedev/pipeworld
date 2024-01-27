@@ -29,8 +29,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "Plumber_Sprite",
-    "path": "sprites/Plumber_Sprite/Plumber_Sprite.yy",
+    "name": "spr_idle_right",
+    "path": "sprites/spr_idle_right/spr_idle_right.yy",
   },
   "spriteMaskId": null,
   "visible": true,

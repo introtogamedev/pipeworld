@@ -26,8 +26,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_running",
-    "path": "sprites/spr_running/spr_running.yy",
+    "name": "spr_running_right",
+    "path": "sprites/spr_running_right/spr_running_right.yy",
   },
   "spriteMaskId": null,
   "visible": true,
