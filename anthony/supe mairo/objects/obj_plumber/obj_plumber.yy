@@ -29,8 +29,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_jump",
-    "path": "sprites/spr_jump/spr_jump.yy",
+    "name": "spr_stand_right",
+    "path": "sprites/spr_stand_right/spr_stand_right.yy",
   },
   "spriteMaskId": null,
   "visible": true,
