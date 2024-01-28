@@ -1,17 +1,15 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "Plumber_Object",
+  "name": "Wall_Obj",
   "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"Wall_Obj","path":"objects/Wall_Obj/Wall_Obj.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":{"name":"Plumber_Object","path":"objects/Plumber_Object/Plumber_Object.yy",},"eventNum":0,"eventType":4,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Mario",
-    "path": "folders/Mario.yy",
+    "name": "Walls",
+    "path": "folders/Walls.yy",
   },
   "parentObjectId": null,
   "persistent": false,
@@ -30,8 +28,8 @@
   "properties": [],
   "solid": true,
   "spriteId": {
-    "name": "Plumber_Sprite",
-    "path": "sprites/Plumber_Sprite/Plumber_Sprite.yy",
+    "name": "Sprite2",
+    "path": "sprites/Sprite2/Sprite2.yy",
   },
   "spriteMaskId": null,
   "visible": true,

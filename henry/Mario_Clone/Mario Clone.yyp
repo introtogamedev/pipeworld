@@ -13,17 +13,20 @@
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Level","folderPath":"folders/Level.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Mario","folderPath":"folders/Mario.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Walls","folderPath":"folders/Walls.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.8.0.98",
+    "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"Wall_Obj","path":"objects/Wall_Obj/Wall_Obj.yy",},},
     {"id":{"name":"Plumber_Sprite","path":"sprites/Plumber_Sprite/Plumber_Sprite.yy",},},
     {"id":{"name":"config","path":"scripts/config/config.yy",},},
     {"id":{"name":"Plumber_Object","path":"objects/Plumber_Object/Plumber_Object.yy",},},
+    {"id":{"name":"Sprite2","path":"sprites/Sprite2/Sprite2.yy",},},
     {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
   ],
   "RoomOrderNodes": [

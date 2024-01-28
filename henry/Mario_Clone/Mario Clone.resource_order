@@ -1,9 +1,11 @@
 {
   "FolderOrderSettings": [
     {"name":"Mario","order":1,"path":"folders/Mario.yy",},
+    {"name":"Walls","order":3,"path":"folders/Walls.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"config","order":2,"path":"scripts/config/config.yy",},
     {"name":"Plumber_Object","order":1,"path":"objects/Plumber_Object/Plumber_Object.yy",},
+    {"name":"Sprite2","order":1,"path":"sprites/Sprite2/Sprite2.yy",},
   ],
 }
