@@ -43,6 +43,7 @@
     {"id":{"name":"levelCollision","path":"scripts/levelCollision/levelCollision.yy",},},
     {"id":{"name":"Config","path":"scripts/Config/Config.yy",},},
     {"id":{"name":"obj_mario","path":"objects/obj_mario/obj_mario.yy",},},
+    {"id":{"name":"spr_mario_jump","path":"sprites/spr_mario_jump/spr_mario_jump.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [

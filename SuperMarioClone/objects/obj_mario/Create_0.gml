@@ -1,11 +1,18 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+//movement
 normSpeed=80;
 sprintSpeed=160;
 maxSpeed=normSpeed;
 
 g=800;
+
+//jump
+jump_height=2.5*16
+jump_acceleration=sqrt((g*jump_height)<<1);
+can_jump=true;
+
 
 velocityx=0
 velocityy=0;

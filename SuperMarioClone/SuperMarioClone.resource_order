@@ -22,5 +22,6 @@
     {"name":"levelCollision","order":2,"path":"scripts/levelCollision/levelCollision.yy",},
     {"name":"Config","order":1,"path":"scripts/Config/Config.yy",},
     {"name":"obj_mario","order":1,"path":"objects/obj_mario/obj_mario.yy",},
+    {"name":"spr_mario_jump","order":3,"path":"sprites/spr_mario_jump/spr_mario_jump.yy",},
   ],
 }

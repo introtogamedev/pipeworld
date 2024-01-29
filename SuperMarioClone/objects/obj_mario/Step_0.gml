@@ -4,7 +4,10 @@
 
 dt=delta_time/1000000;
 
-//movement
+//----------------
+//----movement----
+//----------------
+
 //	horizontal
 if(keyboard_check(ord("A")) and velocityx>-maxSpeed){
 	velocityx-=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION)*dt;
@@ -26,13 +29,22 @@ if(keyboard_check_pressed(vk_shift)){
 else if(keyboard_check_released(vk_shift)){
 	maxSpeed=normSpeed;
 }
-//	vertical
-if(keyboard_check(vk_space)){
-	velocityy=-180;
+//-------------
+//----jump-----
+//-------------
+if(can_jump and keyboard_check_pressed(ord("W"))){
+	velocityy=-jump_acceleration;
+	sprite_index=spr_mario_jump;
+	can_jump=false;
 }
 velocityy+=g*dt;
 
-//velocity update
+//-----------------
+//-velocity update-
+//-----------------
+//----collision----
+//-----------------
+
 x+=velocityx*dt;
 if(CheckTileCollisionX()){
 	x&=~15;
@@ -43,16 +55,24 @@ y+=velocityy*dt;
 if(CheckTileCollisionY()){
 y&=~15;
 y+=(abs(sprite_height)>>1);
+if(velocityy>0){ /////////-------------on landing (from jump)---------------
+	can_jump=true;
+	sprite_index=velocityx==0?spr_mario_idle:spr_mario_walk;
+}
 velocityy=0;
 }
 
 
-//scale
+//-----------------
+//-----scaling-----
+//-----------------
 image_xscale=velocityx>0?1:-1;
 
-//check collision
+//------------------------------
+//-cannot move outside the room-
+//------------------------------
+
 left=viewport[1]+abs(sprite_width)>>1;
-//left=viewport[1];
 right=left+room_width-abs(sprite_width);
 up=viewport[2]+abs(sprite_height)>>1;
 down=up+room_height-abs(sprite_height);
@@ -88,10 +108,12 @@ else if(offset<1){
 }*/
 
 //animation
+if(can_jump){
 if(velocityx==0)
 	sprite_index=spr_mario_idle;
 else{
 	sprite_index=spr_mario_walk;
+}
 }
 
 //x=floor(x);
