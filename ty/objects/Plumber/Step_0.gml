@@ -9,7 +9,8 @@
 #macro MS 1000000
 
 // -- move tuning --
-#macro MOVE_WALK_ACCELERATION 1.2 * FPS
+#macro MOVE_WALK_ACCELERATION 1.8 * FPS
+#macro MOVE_DECELERATION 0.6 * FPS
 
 // -- input --
 #macro INPUT_LEFT  ord("A")
@@ -60,6 +61,18 @@ var _dt = delta_time / MS;
 // integrate acceleration into velocity
 // v1 = v0 + a * t
 vx += _ax * _dt;
+
+// break down velocity into speed and direction
+var _vx_mag = abs(vx);
+var _vx_dir = sign(vx);
+
+// apply deceleration if there is no player input
+if (_input_move == 0) {
+	_vx_mag -= MOVE_DECELERATION * _dt;
+	_vx_mag = max(_vx_mag, 0);
+}
+
+vx = _vx_mag * _vx_dir;
 
 // integrate velocity into position
 // p1 = p0 + v * t

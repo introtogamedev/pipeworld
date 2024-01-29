@@ -11,9 +11,9 @@
   },
   "defaultScriptType": 1,
   "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Core","folderPath":"folders/Core.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Level","folderPath":"folders/Level.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Plumber","folderPath":"folders/Plumber.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Core","folderPath":"folders/Core.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
