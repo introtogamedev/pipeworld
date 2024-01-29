@@ -10,11 +10,13 @@
 
 // -- move tuning --
 #macro MOVE_WALK_ACCELERATION 1.8 * FPS
-#macro MOVE_DECELERATION 0.6 * FPS
+#macro MOVE_RUN_ACCELERATION  4.2 * FPS
+#macro MOVE_DECELERATION      1.2 * FPS
 
 // -- input --
 #macro INPUT_LEFT  ord("A")
 #macro INPUT_RIGHT ord("D")
+#macro INPUT_RUN   vk_shift
 
 // ---------------
 // -- get input --
@@ -34,6 +36,8 @@ if (keyboard_check(INPUT_RIGHT)) {
 	_input_move += 1;
 }
 
+var _input_run = keyboard_check(INPUT_RUN);
+
 // ------------------
 // -- add "forces" --
 // ------------------
@@ -45,7 +49,12 @@ if (keyboard_check(INPUT_RIGHT)) {
 var _ax = 0;
 
 // add move acceleration
-_ax += MOVE_WALK_ACCELERATION * _input_move;
+var _move_acceleration = MOVE_WALK_ACCELERATION;
+if (_input_run) {
+	_move_acceleration = MOVE_RUN_ACCELERATION;
+}
+
+_ax += _move_acceleration * _input_move;
 
 // ---------------
 // -- integrate --
