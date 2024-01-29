@@ -35,7 +35,7 @@ if(horizontal_input)
 	
 	if(_run)
 	{
-		state = "is_run";
+		state = "is_running";
 	}
 	else
 	{
@@ -100,7 +100,7 @@ switch(state)
 		sprite_index = spr_mario_walking;
 		vx_max = walking_spd;
 	break;
-	case "is_run":
+	case "is_running":
 		image_speed = 2;
 		sprite_index = spr_mario_walking;
 		vx_max = running_spd;
