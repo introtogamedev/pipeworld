@@ -1,3 +1,8 @@
+/// create a copy of the struct
+function struct_copy(_src, _depth = 1) {
+	return variable_clone(_src, _depth);
+}
+
 /// update the struct `dst` with values from another struct `src`
 function struct_update(_dst, _src) {
 	var _names = variable_struct_get_names(_dst);
