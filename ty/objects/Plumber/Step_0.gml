@@ -78,6 +78,20 @@ vx = _vx_mag * _vx_dir;
 // p1 = p0 + v * t
 px += vx * _dt;
 
+// ---------------
+// -- collision --
+// ---------------
+
+// stop the character from moving through objects that it shouldn't,
+// such as the level boundary
+
+// if we collide with the level boundary, stop the character
+var _px_collision = clamp(px, 0, room_width - sprite_width);
+if (px != _px_collision) {
+	px = _px_collision;
+	vx = 0;
+}
+
 // --------------------
 // -- update outputs --
 // --------------------
