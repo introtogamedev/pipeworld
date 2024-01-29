@@ -108,6 +108,9 @@ if (px != _px_collision) {
 // update any plumber state that may have changed and that wasn't set
 // during integration
 
+// capture the move state
+input_move = _input_move;
+
 // if there is any move input, face that direction
 if (_input_move != 0) {
 	look_dir = _input_move;
