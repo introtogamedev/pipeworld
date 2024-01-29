@@ -11,7 +11,9 @@
 #macro MOVE_DECCELERATION 0.1 / DT
 
 //jump constants
-#macro GRAVITY 0.2 / DT
+#macro GRAVITY 0.25 / DT
+#macro JUMP_STRENGTH 0.5 / DT
+#macro MAX_JUMP_FRAMES 15
 
 //input keys
 #macro INPUT_LEFT ord("A")
@@ -75,11 +77,25 @@ if (keyboard_check(INPUT_RUN)) {
 x += vx;
 
 
-//Apply Gravity
+//Jump logic
 
-if (keyboard_check_pressed(INPUT_JUMP)) {
-	vy -= 7;
+
+if (keyboard_check_pressed(INPUT_JUMP) && on_floor) {
+	vy -= JUMP_STRENGTH * _dt;
+	jump_frames = MAX_JUMP_FRAMES;
+	on_floor = false;
 }
+
+if (jump_frames > 0) {
+	jump_frames--;
+	if (keyboard_check(INPUT_JUMP)) {
+		vy -= JUMP_STRENGTH * _dt;
+	} else {
+		jump_frames = 0;
+	}
+}
+
+//Apply Gravity
 
 vy += GRAVITY * _dt;
 
@@ -94,6 +110,7 @@ y += vy
 if (!Level_Collision(floor(x),floor(y + sprite_height / 2))) {
 	y = y - y % 16 + sprite_height / 2;
 	vy = 0;
+	on_floor = true;
 }
 
 
