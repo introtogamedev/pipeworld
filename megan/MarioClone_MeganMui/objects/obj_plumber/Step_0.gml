@@ -17,14 +17,14 @@
 #macro INPUT_DOWN ord("S")
 
 //Vertical
-#macro JUMP_INITIAL_IMPULSE 40
-#macro JUMP_ACCELERATION 25
-#macro JUMP_MAX 100
-#macro JUMP_DURATION 40
+#macro JUMP_INITIAL_IMPULSE 20
+#macro JUMP_ACCELERATION 15
+#macro JUMP_MAX 40
+#macro JUMP_DURATION 10
 #macro INPUT_UP ord ("W")
 
-#macro FALLING_GRAVITY 5
-#macro FALLING_MAX_VELOCITY 10
+#macro FALLING_GRAVITY 10
+#macro FALLING_MAX_VELOCITY 15
 
 #macro FLOOR_DURATION 2
 
@@ -44,6 +44,7 @@ if(keyboard_check(INPUT_LEFT))
 	image_speed = 2;
 	_input_dir -= 1;
 	
+	//Boost
 	if(keyboard_check(vk_lshift))
 	{
 		image_speed = 4;
@@ -67,21 +68,22 @@ if(keyboard_check(INPUT_RIGHT))
 	image_speed = 2;
 	_input_dir += 1;
 
-if(keyboard_check(vk_lshift))
-{
-	image_speed = 4;
-	if(vx > MAX_BOOST)
+	//boost
+	if(keyboard_check(vk_lshift))
 	{
-		vx = MAX_BOOST;
+		image_speed = 4;
+		if(vx > MAX_BOOST)
+		{
+			vx = MAX_BOOST;
+		}
 	}
-}
-else if (!keyboard_check_pressed(vk_lshift))
-{
-	if(vx > MAX_VELOCITY)
+	else if (!keyboard_check_pressed(vk_lshift))
 	{
-		vx = MAX_VELOCITY;
+		if(vx > MAX_VELOCITY)
+		{
+			vx = MAX_VELOCITY;
+		}
 	}
-}
 }
 
 if(_input_dir == 0 && vx > 0)
@@ -151,7 +153,7 @@ x += vx * _dt;
 //////////////////////////////////////////////////////////////////
 
 //Player falling
-if(!jumping && !place_meeting(x, y + 5, obj_floor))
+if(!jumping && !on_floor && !place_meeting(x, y + 5, obj_floor))
 {
 	falling = true;	
 }
@@ -159,7 +161,6 @@ if(!jumping && !place_meeting(x, y + 5, obj_floor))
 if(falling)
 {
 	vy += FALLING_GRAVITY;
-	jumping = false;
 	
 	if(vy > FALLING_MAX_VELOCITY)
 	{
@@ -197,8 +198,9 @@ if(jumping)
 	}
 	else
 	{
-		jumping = false;
+		falling = true;
 	}
+
 	
 	if(vy < -JUMP_MAX)
 	{
@@ -226,8 +228,8 @@ if(!on_floor)
 y += vy * _dt;
 
 
-
-
+show_debug_message("Falling: " + string(falling) + " " + "Jumping: " + string(jumping));
+show_debug_message(jump_timer);
 
 
 

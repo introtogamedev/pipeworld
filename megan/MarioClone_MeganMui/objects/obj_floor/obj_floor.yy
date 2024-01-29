@@ -25,10 +25,10 @@
   "physicsStartAwake": true,
   "properties": [],
   "solid": false,
-  "spriteId": {
+  "spriteId": null,
+  "spriteMaskId": {
     "name": "spr_floor",
     "path": "sprites/spr_floor/spr_floor.yy",
   },
-  "spriteMaskId": null,
   "visible": true,
 }
