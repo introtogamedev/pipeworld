@@ -32,6 +32,7 @@ else {
 
 // make sure the position is always pixel-aligned
 var _x = floor(px);
+var _y = floor(py);
 
 // face in the move direction
 var _xscale = 1;
@@ -47,7 +48,7 @@ draw_sprite_ext(
 	sprite_index, 
 	image_idx, 
 	_x,
-	y,
+	_y,
 	_xscale, 
 	image_yscale, 
 	image_angle, 

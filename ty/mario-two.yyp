@@ -22,11 +22,14 @@
     "IDEVersion": "2023.11.0.121",
   },
   "resources": [
+    {"id":{"name":"Level_Tiles","path":"tilesets/Level_Tiles/Level_Tiles.yy",},},
     {"id":{"name":"StructExt","path":"scripts/StructExt/StructExt.yy",},},
+    {"id":{"name":"Level_TileSprite","path":"sprites/Level_TileSprite/Level_TileSprite.yy",},},
     {"id":{"name":"Plumber_Sprite","path":"sprites/Plumber_Sprite/Plumber_Sprite.yy",},},
     {"id":{"name":"Config","path":"scripts/Config/Config.yy",},},
     {"id":{"name":"JsonExt","path":"scripts/JsonExt/JsonExt.yy",},},
     {"id":{"name":"Plumber","path":"objects/Plumber/Plumber.yy",},},
+    {"id":{"name":"Level_Collision","path":"scripts/Level_Collision/Level_Collision.yy",},},
     {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
   ],
   "RoomOrderNodes": [
