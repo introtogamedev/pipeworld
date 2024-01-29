@@ -34,9 +34,13 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"spr_mario_right","path":"sprites/spr_mario_right/spr_mario_right.yy",},},
+    {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
+    {"id":{"name":"NES___Super_Mario_Bros___Mario___Luigi","path":"sprites/NES___Super_Mario_Bros___Mario___Luigi/NES___Super_Mario_Bros___Mario___Luigi.yy",},},
     {"id":{"name":"Sprite1","path":"sprites/Sprite1/Sprite1.yy",},},
     {"id":{"name":"Script1","path":"scripts/Script1/Script1.yy",},},
     {"id":{"name":"obj_plumber","path":"objects/obj_plumber/obj_plumber.yy",},},
+    {"id":{"name":"NES___Super_Mario_Bros___World_1_1","path":"sprites/NES___Super_Mario_Bros___World_1_1/NES___Super_Mario_Bros___World_1_1.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
