@@ -1,5 +1,7 @@
+// make sure the position is always pixel-aligned
+var _x = floor(px);
+
 // face in the move direction
-var _x = px;
 var _xscale = 1;
 
 // if moving left, flip the sprite
