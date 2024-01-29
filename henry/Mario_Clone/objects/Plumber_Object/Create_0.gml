@@ -1,8 +1,12 @@
+frame_index = 0;
+
 // current velocity 
 vx = 0;
+vy = 0;
 
 // current position
 px = 0;
+py = 0;
 
 //the current look direction
 look_dir = 0;

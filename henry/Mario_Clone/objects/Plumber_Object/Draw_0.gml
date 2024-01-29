@@ -32,6 +32,7 @@ else if (vx==0) {
 
 //make sure the position is always pixel-aligned
 var _x = floor(px);
+var _y = floor(py); 
 
 //face in teh move direction
 var _xscale = 1;

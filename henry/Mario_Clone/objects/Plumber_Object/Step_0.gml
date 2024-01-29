@@ -69,6 +69,9 @@ y += vy;
 
 ///*
 
+//increment frame forever
+frame_index += 1;
+
 #region constants
 
 // constants
@@ -78,8 +81,11 @@ y += vy;
 //move constants
 
 #macro MOVE_WALK_ACCEL 1.8 * FPS
-#macro MOVE_RUN_ACCEL 3.6 * FPS
+#macro MOVE_RUN_ACCEL 5 * FPS
 #macro MOVE_DECEL 1.2 * FPS
+
+//jump tuning
+#macro JUMP_GRAVITY 16 * FPS
 
 //input constants
 #macro INPUT_LEFT ord("A")
@@ -97,6 +103,12 @@ var _input_run  = keyboard_check(INPUT_RUN);
 
 // set the forces to 0 at the start of the frame
 var _ax = 0;
+var _ay = 0;
+
+_ay = JUMP_GRAVITY;
+
+//add gravity
+// to do:
 
 var _move_accel = MOVE_WALK_ACCEL
 
@@ -112,6 +124,7 @@ var _dt = delta_time / MS;
 
 //velocity: v = u + at
 vx += _ax * _dt;
+vy += _ay * _dt;
 
 //add deceleration 
 //Break down velocity into speed and direction
@@ -120,6 +133,7 @@ var _vx_dir = sign(vx);
 
 //apply deceleration if no input
 var _dv = _ax * _dt;
+
 if (_input_dir == 0) {
 	_vx_mag -= MOVE_DECEL * _dt;
 	_vx_mag = max (_vx_mag, 0);
@@ -130,20 +144,37 @@ vx = _vx_mag * _vx_dir;
 
 //position: p1 = p0 + vt
 px += vx * _dt;
+py += vy * _dt;
 
 //collision
 //stop character from moving through objects that it shouldn't
 //including level boundary
 
 //if we collide w/ lvl boundary, stop plumber
-var _px_min = 0;
-var _px_max = room_width - sprite_width;
-var _px_collision = clamp(px, _px_min, _px_max);
+var _px_collision = clamp(px, 0, room_width - sprite_width);
 
 //if we left the room, fix position and set velocity to 0
 if px != _px_collision{
 	px = _px_collision;
 	vx = 0;
+}
+
+//check for ground collision
+var _py_collision = py;
+
+//get the bottom of the character
+var _y1 = py + sprite_height;
+
+//if it is colliding with a tile
+if (level_collision(px, _y1) == TILES_BRICK) {
+	//then move the player to the top of the tile
+	_py_collision -= py % 16;
+}
+
+// if we hit the ground, move to the top of the block
+if (py != _py_collision){
+	py = _py_collision;
+	vy = 0;
 }
 
 //update state
@@ -157,6 +188,7 @@ imput_dir = _input_dir;
 
 //update actual x
 x = px;
+y = py;
 
 //*/
 
