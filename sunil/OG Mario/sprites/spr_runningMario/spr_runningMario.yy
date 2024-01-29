@@ -13,6 +13,7 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"23a9736c-2689-4681-aaa1-dfa96d6be0eb",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"4662727d-54f1-42bd-8f29-dd6610935b6f",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"328a2ae8-9645-4a91-b049-a19a25790b32",},
     {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"8fe785ca-b683-43c7-9992-5d23afbcba32",},
@@ -45,7 +46,7 @@
     "events": {"resourceType":"KeyframeStore<MessageEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "eventStubScript": null,
     "eventToFunction": {},
-    "length": 3.0,
+    "length": 4.0,
     "lockOrigin": false,
     "moments": {"resourceType":"KeyframeStore<MomentsEventKeyframe>","resourceVersion":"1.0","Keyframes":[],},
     "playback": 1,
@@ -56,9 +57,10 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"4662727d-54f1-42bd-8f29-dd6610935b6f","path":"sprites/spr_runningMario/spr_runningMario.yy",},},},"Disabled":false,"id":"02b3dbe0-9ea7-412f-8d31-a4e3fe14edd9","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"328a2ae8-9645-4a91-b049-a19a25790b32","path":"sprites/spr_runningMario/spr_runningMario.yy",},},},"Disabled":false,"id":"87743565-b1fe-447d-8772-302ac0a34f4a","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"8fe785ca-b683-43c7-9992-5d23afbcba32","path":"sprites/spr_runningMario/spr_runningMario.yy",},},},"Disabled":false,"id":"ceaf8e18-5048-4534-a59a-291bbce67324","IsCreationKey":false,"Key":2.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"23a9736c-2689-4681-aaa1-dfa96d6be0eb","path":"sprites/spr_runningMario/spr_runningMario.yy",},},},"Disabled":false,"id":"5167ea1b-6b00-4403-8581-6ee6d8e97d89","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"4662727d-54f1-42bd-8f29-dd6610935b6f","path":"sprites/spr_runningMario/spr_runningMario.yy",},},},"Disabled":false,"id":"02b3dbe0-9ea7-412f-8d31-a4e3fe14edd9","IsCreationKey":false,"Key":1.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"328a2ae8-9645-4a91-b049-a19a25790b32","path":"sprites/spr_runningMario/spr_runningMario.yy",},},},"Disabled":false,"id":"87743565-b1fe-447d-8772-302ac0a34f4a","IsCreationKey":false,"Key":2.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"8fe785ca-b683-43c7-9992-5d23afbcba32","path":"sprites/spr_runningMario/spr_runningMario.yy",},},},"Disabled":false,"id":"ceaf8e18-5048-4534-a59a-291bbce67324","IsCreationKey":false,"Key":3.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,

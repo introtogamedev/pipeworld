@@ -4,7 +4,7 @@
   "name": "Super_Mario_Bros_Tileset",
   "bbox_bottom": 447,
   "bbox_left": 0,
-  "bbox_right": 526,
+  "bbox_right": 527,
   "bbox_top": 0,
   "bboxMode": 0,
   "collisionKind": 1,

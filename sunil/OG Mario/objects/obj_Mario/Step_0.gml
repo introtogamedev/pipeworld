@@ -5,13 +5,23 @@
 //microseconds per second
 #macro MS 1000000
 
-#macro MOVE_ACCELERATION 0.1 / DT
+//vertical constants
+#macro WALK_ACCELERATION 0.1 / DT
+#macro RUN_ACCELERATION 0.2 / DT
+#macro MOVE_DECCELERATION 0.1 / DT
+
+//jump constants
+#macro GRAVITY 0.2 / DT
+
+//input keys
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
 #macro INPUT_RUN vk_shift
+#macro INPUT_JUMP vk_space
 
 /// -- movement --
 
+// check horizontal input
 var _input_dir = 0;
 if (keyboard_check(INPUT_LEFT)) {
 	_input_dir--;
@@ -22,26 +32,31 @@ if (keyboard_check(INPUT_RIGHT)) {
 }
 
 
-var _ax = MOVE_ACCELERATION * _input_dir;
-
-var _dt = delta_time / MS;
-
 //Check if running or not
 
+var _ax = 0
 if (keyboard_check(INPUT_RUN)) {
-	vx += 2 * _ax * _dt;
+	_ax = RUN_ACCELERATION * _input_dir;
 } else {
-	vx += _ax * _dt;
+	_ax = WALK_ACCELERATION * _input_dir;
 }
 
-dir_x = sign(vx);
+//Apply speed
+var _dt = delta_time / MS;
 
-vx -= sign(vx) * 0.05
+vx += _ax * _dt;
 
-if (dir_x != sign(vx)) {
-	vx = 0;
+
+//Apply friction
+var _dir_x = sign(vx);
+
+if (_input_dir == 0) { 
+	vx -= sign(vx) * MOVE_DECCELERATION * _dt;
+
+	if (_dir_x != sign(vx)) {
+		vx = 0;
+	}
 }
-
 
 
 if (keyboard_check(INPUT_RUN)) {
@@ -54,12 +69,41 @@ if (keyboard_check(INPUT_RUN)) {
 
 
 
+
+//change the x
+
 x += vx;
+
+
+//Apply Gravity
+
+if (keyboard_check_pressed(INPUT_JUMP)) {
+	vy -= 7;
+}
+
+vy += GRAVITY * _dt;
+
+if (vy > max_gravity) {
+	vy = max_gravity;
+}
+
+y += vy
+
+//Don't fall through floor
+
+if (!Level_Collision(floor(x),floor(y + sprite_height / 2))) {
+	y = y - y % 16 + sprite_height / 2;
+	vy = 0;
+}
+
+
 
 /// -- keep on screen --
 
 if (x < 0 - sprite_width / 2) {
 	x = - sprite_width / 2;
+	vx = 0;
 } else if (x > room_width - sprite_width / 2) {
 	x = room_width - sprite_width / 2;
+	vx = 0;
 }

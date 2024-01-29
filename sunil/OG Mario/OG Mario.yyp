@@ -24,6 +24,7 @@
   "resources": [
     {"id":{"name":"spr_idleMario","path":"sprites/spr_idleMario/spr_idleMario.yy",},},
     {"id":{"name":"spr_runningMario","path":"sprites/spr_runningMario/spr_runningMario.yy",},},
+    {"id":{"name":"Level_Collision","path":"scripts/Level_Collision/Level_Collision.yy",},},
     {"id":{"name":"obj_Mario","path":"objects/obj_Mario/obj_Mario.yy",},},
     {"id":{"name":"Super_Mario_Bros_Tileset","path":"sprites/Super_Mario_Bros_Tileset/Super_Mario_Bros_Tileset.yy",},},
     {"id":{"name":"ts_NesMarioTiles","path":"tilesets/ts_NesMarioTiles/ts_NesMarioTiles.yy",},},
