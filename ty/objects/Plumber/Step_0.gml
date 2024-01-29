@@ -101,12 +101,14 @@ if (px != _px_collision) {
 	vx = 0;
 }
 
-// --------------------
-// -- update outputs --
-// --------------------
+// ------------------
+// -- update state --
+// ------------------
 
-// set any outputs we need in subsequent steps, such as for drawing
-// the character. eventually, we should have nothing here!
+// update any plumber state that may have changed and that wasn't set
+// during integration
 
-// update the built-in position
-x = px;
+// if there is any move input, face that direction
+if (_input_move != 0) {
+	look_dir = _input_move;
+}
