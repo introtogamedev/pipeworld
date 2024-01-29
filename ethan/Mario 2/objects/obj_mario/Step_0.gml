@@ -8,8 +8,10 @@
 #macro MS 1000000
 
 #macro MOVE_ACCELERATION 0.1*FPS
+#macro MOVE_RUN_ACCELERATION 0.5*FPS
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
+#macro INPUT_RUN ord("R")
 
 //Movement
 //Find the input direction
@@ -27,6 +29,10 @@ if (keyboard_check(INPUT_RIGHT))
 
 //Get the move acceleration
 var ax = MOVE_ACCELERATION * input_dir;
+if (keyboard_check(INPUT_RUN))
+{
+	ax += MOVE_RUN_ACCELERATION * input_dir;
+}
 
 //get fractional delta time
 var dt = delta_time / MS;
@@ -35,19 +41,13 @@ var dt = delta_time / MS;
 vx += ax * dt;
 
 //Max speed
-if (vx < -5) vx = -5;
-if (vx > 5) vx = 5;
-
-//If hitting side of room, vx = 0
-if (x < 0)
+if (keyboard_check(INPUT_RUN))
 {
-	x = 0;
-	vx = 0;
-}
-if (x > room_width - sprite_width)
-{
-	x = room_width-sprite_width;
-	vx = 0;
+	if (vx < -5) vx = -5;
+	if (vx > 5) vx = 5;
+} else {
+	if (vx < -2) vx = -2;
+	if (vx > 2) vx = 2;
 }
 
 //Deceleration
@@ -66,6 +66,23 @@ if (vx > 0 && !keyboard_check(INPUT_RIGHT))
 
 //Integrate velocity into position
 x += vx;
+px = floor(x);
+show_debug_message("ax: " + string(ax));
+show_debug_message("vx: " + string(vx));
+
+//If hitting side of room, vx = 0
+if (x < 0)
+{
+	x = 0;
+	vx = 0;
+	ax = 0;
+}
+if (x > room_width-sprite_width)
+{
+	x = room_width-sprite_width;
+	vx = 0;
+	ax = 0;
+}
 
 //Image Speed
 if (vx < 0)

@@ -5,3 +5,4 @@ image_speed = 0;
 image_index = 0;
 
 vx = 0;
+px = x;
