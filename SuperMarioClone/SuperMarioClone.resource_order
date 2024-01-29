@@ -17,7 +17,9 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"spr_tile_brown_brick","order":2,"path":"sprites/spr_tile_brown_brick/spr_tile_brown_brick.yy",},
     {"name":"spr_mario_walk","order":1,"path":"sprites/spr_mario_walk/spr_mario_walk.yy",},
+    {"name":"levelCollision","order":2,"path":"scripts/levelCollision/levelCollision.yy",},
     {"name":"Config","order":1,"path":"scripts/Config/Config.yy",},
     {"name":"obj_mario","order":1,"path":"objects/obj_mario/obj_mario.yy",},
   ],

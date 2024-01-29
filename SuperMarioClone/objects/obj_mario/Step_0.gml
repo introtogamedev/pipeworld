@@ -34,7 +34,18 @@ velocityy+=g*dt;
 
 //velocity update
 x+=velocityx*dt;
+if(CheckTileCollisionX()){
+	x&=~15;
+	x+=(abs(sprite_width)>>1);
+	velocityx=0;
+}
 y+=velocityy*dt;
+if(CheckTileCollisionY()){
+y&=~15;
+y+=(abs(sprite_height)>>1);
+velocityy=0;
+}
+
 
 //scale
 image_xscale=velocityx>0?1:-1;
