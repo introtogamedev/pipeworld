@@ -31,10 +31,13 @@ if keyboard_check(INPUT_RIGHT) {
 	if (_input_run) {
 		_move_acceleration = MOVE_RUN_ACCELERATION
 	}
+	
 	var _ax = _move_acceleration * _input_dir;
+	
 	var _dt = delta_time / MS;
 	
 	vx += _ax * _dt;
+	//vy += _ay * _dt;
 	
 	if !_input_dir {
     var _deceleration = MOVE_DECELERATION * sign(vx);
