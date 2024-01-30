@@ -1,7 +1,7 @@
 {
   "resourceType": "GMProject",
   "resourceVersion": "1.7",
-  "name": "gmmario",
+  "name": "mario",
   "AudioGroups": [
     {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
   ],
@@ -34,8 +34,17 @@
     "IDEVersion": "2023.8.2.108",
   },
   "resources": [
-    {"id":{"name":"obj_mario","path":"objects/obj_mario/obj_mario.yy",},},
-    {"id":{"name":"spr_mario","path":"sprites/spr_mario/spr_mario.yy",},},
+    {"id":{"name":"spr_plumber_jump_r","path":"sprites/spr_plumber_jump_r/spr_plumber_jump_r.yy",},},
+    {"id":{"name":"spr_plumber_jump_l","path":"sprites/spr_plumber_jump_l/spr_plumber_jump_l.yy",},},
+    {"id":{"name":"spr_plumber_walk_r","path":"sprites/spr_plumber_walk_r/spr_plumber_walk_r.yy",},},
+    {"id":{"name":"spr_plumber_turn_r","path":"sprites/spr_plumber_turn_r/spr_plumber_turn_r.yy",},},
+    {"id":{"name":"spr_plumber_r","path":"sprites/spr_plumber_r/spr_plumber_r.yy",},},
+    {"id":{"name":"spr_plumber_walk_l","path":"sprites/spr_plumber_walk_l/spr_plumber_walk_l.yy",},},
+    {"id":{"name":"spr_plumber_turn_l","path":"sprites/spr_plumber_turn_l/spr_plumber_turn_l.yy",},},
+    {"id":{"name":"obj_plumber","path":"objects/obj_plumber/obj_plumber.yy",},},
+    {"id":{"name":"spr_floor","path":"sprites/spr_floor/spr_floor.yy",},},
+    {"id":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},},
+    {"id":{"name":"spr_plumber_l","path":"sprites/spr_plumber_l/spr_plumber_l.yy",},},
     {"id":{"name":"rm","path":"rooms/rm/rm.yy",},},
   ],
   "RoomOrderNodes": [
