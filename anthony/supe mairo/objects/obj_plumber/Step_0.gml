@@ -29,8 +29,12 @@ if (keyboard_check(INPUT_LEFT)) //left
 {
 	_input_dir -= 1;
 	
-	left = true;
-	right = false;
+	
+	if (!jump_sprite)
+	{
+		left = true;
+		right = false;	
+	}
 	move = true;
 }
 
@@ -38,8 +42,12 @@ if (keyboard_check(INPUT_RIGHT)) //right
 {
 	_input_dir += 1;
 	
-	right = true;
-	left = false;
+	
+	if (!jump_sprite)
+	{
+		left = false;
+		right = true;	
+	}
 	move = true;
 }
 
