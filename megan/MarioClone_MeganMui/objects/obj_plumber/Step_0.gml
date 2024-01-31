@@ -17,16 +17,16 @@
 #macro INPUT_DOWN ord("S")
 
 //Vertical
-#macro JUMP_INITIAL_IMPULSE 20
-#macro JUMP_ACCELERATION 15
-#macro JUMP_MAX 40
+#macro JUMP_INITIAL_IMPULSE 15
+#macro JUMP_ACCELERATION 10
+#macro JUMP_MAX 30
 #macro JUMP_DURATION 10
 #macro INPUT_UP ord ("W")
 
-#macro FALLING_GRAVITY 10
-#macro FALLING_MAX_VELOCITY 15
+#macro FALLING_GRAVITY 3
+#macro FALLING_MAX_VELOCITY 20
 
-#macro FLOOR_DURATION 2
+#macro FLOOR_DURATION 4
 
 
 ///////////////////////////////////////////////////////////
@@ -152,8 +152,9 @@ x += vx * _dt;
 //Vertical Motion
 //////////////////////////////////////////////////////////////////
 
+
 //Player falling
-if(!jumping && !on_floor && !place_meeting(x, y + 5, obj_floor))
+if(!jumping && !on_floor && !place_meeting(x, y + 3, obj_floor))
 {
 	falling = true;	
 }
@@ -167,7 +168,7 @@ if(falling)
 		vy = FALLING_MAX_VELOCITY;
 	}
 	
-	if(place_meeting(x, y, obj_floor)) //Player makes contact with floor
+	if(place_meeting(x, y + 3, obj_floor)) //Player makes contact with floor
 	{
 		vy = 0;
 		
@@ -192,7 +193,7 @@ if(on_floor)
 
 if(jumping)
 {
-	if(keyboard_check(INPUT_UP) && !place_meeting(x, y, obj_floor))
+	if(keyboard_check(INPUT_UP) && !place_meeting(x, y + 3, obj_floor))
 	{
 		vy -= JUMP_ACCELERATION;
 	}
@@ -226,19 +227,4 @@ if(!on_floor)
 
 
 y += vy * _dt;
-
-
-show_debug_message("Falling: " + string(falling) + " " + "Jumping: " + string(jumping));
-show_debug_message(jump_timer);
-
-
-
-
-
-
-
-
-
-
-
 

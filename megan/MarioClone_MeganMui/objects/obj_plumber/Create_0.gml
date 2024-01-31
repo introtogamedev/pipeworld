@@ -15,13 +15,9 @@ on_floor = false;
 falling = false;
 jumping = false;
 
-
-
-
-
-
-
-
+//tilemap
+tilemap_id = layer_tilemap_get_id("Floor");
+tilemap = tilemap_get_at_pixel(tilemap_id, x, y + 5);
 
 
 
