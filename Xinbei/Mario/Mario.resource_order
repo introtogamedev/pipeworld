@@ -1,0 +1,12 @@
+{
+  "FolderOrderSettings": [
+    {"name":"Rooms","order":1,"path":"folders/Rooms.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"TileSet1","order":7,"path":"tilesets/TileSet1/TileSet1.yy",},
+    {"name":"level_1_1_copy","order":8,"path":"sprites/level_1_1_copy/level_1_1_copy.yy",},
+    {"name":"Script1","order":2,"path":"scripts/Script1/Script1.yy",},
+    {"name":"Mario_idle","order":4,"path":"sprites/Mario_idle/Mario_idle.yy",},
+    {"name":"plumber","order":5,"path":"sprites/plumber/plumber.yy",},
+  ],
+}
