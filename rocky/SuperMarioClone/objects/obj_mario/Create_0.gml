@@ -9,14 +9,19 @@ maxSpeed=normSpeed;
 g=800;
 
 //jump
-jump_height=2.5*16
-jump_acceleration=sqrt((g*jump_height)<<1);
+jump_height_min=1<<4;
+jump_height_max=4<<4;
+jump_acceleration=sqrt((g*jump_height_min)<<1);
+max_jump_press_time=(jump_height_max-jump_height_min)/jump_acceleration;
+jump_press_time=0;
 can_jump=true;
 
 
 velocityx=0
 velocityy=0;
-viewport=room_get_viewport(Room1,0);
+camera=room_get_camera(Room1,0);
+view_width=camera_get_view_width(camera);
+view_height=camera_get_view_height(camera);
 
 offset=0;
 

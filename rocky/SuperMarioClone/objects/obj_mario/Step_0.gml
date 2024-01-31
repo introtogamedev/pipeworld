@@ -3,7 +3,6 @@
 #macro DECCELERATION 220
 
 dt=delta_time/1000000;
-
 //----------------
 //----movement----
 //----------------
@@ -36,7 +35,14 @@ if(can_jump and keyboard_check_pressed(ord("W"))){
 	velocityy=-jump_acceleration;
 	sprite_index=spr_mario_jump;
 	can_jump=false;
+	jump_press_time=0;
 }
+if(jump_press_time<max_jump_press_time&&keyboard_check(ord("W"))){
+	jump_press_time+=dt;
+	velocityy=-jump_acceleration;
+}
+if(keyboard_check_released(ord("W")))
+	jump_press_time=1000000;
 velocityy+=g*dt;
 
 //-----------------
@@ -71,11 +77,12 @@ image_xscale=velocityx>0?1:-1;
 //------------------------------
 //-cannot move outside the room-
 //------------------------------
+viewport=room_get_viewport(Room1,0);
 
-left=viewport[1]+abs(sprite_width)>>1;
-right=left+room_width-abs(sprite_width);
-up=viewport[2]+abs(sprite_height)>>1;
-down=up+room_height-abs(sprite_height);
+left=camera_get_view_x(camera)+abs(sprite_width)>>1;
+right=left+view_width-abs(sprite_width);
+up=camera_get_view_y(camera)+abs(sprite_height)>>1;
+down=up+view_height-abs(sprite_height);
 if(left>x){
 	x=left;
 	velocityx=0;
@@ -88,6 +95,14 @@ if(down<y){
 	y=down;
 	velocityy=0;
 }
+//----------------------
+//-----set viewport-----
+//----------------------
+//xdif=x-left-(view_width>>1);
+//if(xdif>0){
+	//camera_set_view_pos(camera, camera_get_view_x(camera)+xdif,camera_get_view_y(camera));
+	//camera_apply(camera);
+//}
 	
 //exists on the pixel boundaries
 /*if(velocity>0){
@@ -115,5 +130,3 @@ else{
 	sprite_index=spr_mario_walk;
 }
 }
-
-//x=floor(x);
