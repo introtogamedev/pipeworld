@@ -9,3 +9,5 @@ px = x;
 
 vy = 0;
 py = y;
+
+on_floor = false;

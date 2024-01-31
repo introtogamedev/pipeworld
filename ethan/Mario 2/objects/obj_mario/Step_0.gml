@@ -94,9 +94,13 @@ if (x > room_width-sprite_width)
 }
 
 //If hitting a block, don't go through it
-if (!Level_Collision(floor(x),floor(y)))
+if (!Level_Collision(floor(x),floor(y + sprite_height)))
 {
 	show_debug_message("On a block");
+	y = y - y % 16 //- sprite_height;
+	vy = 0;
+	py = floor(y);
+	on_floor = true;
 }
 
 //Image Speed

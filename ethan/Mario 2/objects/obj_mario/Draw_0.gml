@@ -5,7 +5,7 @@ draw_sprite_ext(
 	sprite_index,
     image_index,
     px,
-    y,
+    py,
     image_xscale,
     image_yscale,
     image_angle,
