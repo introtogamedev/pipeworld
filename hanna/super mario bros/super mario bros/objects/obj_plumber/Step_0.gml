@@ -7,6 +7,8 @@
 #macro RIGHT ord("D")
 #macro SPRINT (vk_shift)
 
+#macro JUMP ord("W")
+
 //imagex scale = 1/imagex scale = -1;
 
 
@@ -56,10 +58,6 @@ if (xVel < 0 && _input_dir = 0){
 	}
 }
 
-if(yVel > 0){
-	 
-	
-}
 
 
 //BOUNDS
@@ -77,7 +75,7 @@ if (x > room_width - 10){
 	
 
 
-show_debug_message(string(xVel));
+//show_debug_message(string(xVel));
 
 
 
@@ -101,14 +99,45 @@ if (keyboard_check(SPRINT)){
 		xVel = clamp(xVel, -1.5, 1.5);
 }
 
+//JUMP??
 
 
 
+
+
+
+yVel += grav;
+yVel = clamp(yVel, -yVel_max, yVel_max);
+
+//VERT COLLISION
+if (place_meeting(x, y, tilemap)){
+	grounded = 1;
+	
+	yVel =0;
+	
+	if ((keyboard_check(JUMP)) && grounded = 1){
+	yVel += jump;
+	
+	show_debug_message("IM JUMPING");
+
+}
+if (yVel < 0 and (!keyboard_check_pressed(JUMP))){
+	yVel = max(yVel, jump/jump_mod)
+}
+
+	
+}else{
+		grounded = 0;
+}
 
 // UPDATING X POS
 x += xVel;
 //show_debug_message(string(xVel));
 
+
+y += yVel;
+
+show_debug_message(string(yVel));
 
 
 	
