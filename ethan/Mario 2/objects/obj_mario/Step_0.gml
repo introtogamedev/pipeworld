@@ -12,12 +12,12 @@
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
 #macro INPUT_RUN ord("R")
+#macro INPUT_JUMP vk_space
 
 #macro JUMP_GRAVITY 0.2 * FPS
 
 //Gravity
-var ay = 0;
-ay = JUMP_GRAVITY;
+var ay = JUMP_GRAVITY;
 
 //Movement
 //Find the input direction
@@ -101,6 +101,43 @@ if (!Level_Collision(floor(x),floor(y + sprite_height)))
 	vy = 0;
 	py = floor(y);
 	on_floor = true;
+	jumping = false;
+	
+	jump_acceleration = 10;
+}
+
+//Jumping
+if (keyboard_check_pressed(INPUT_JUMP) && on_floor)
+{
+	jumping = true;
+	on_floor = false;
+	vy = jump_velocity;
+}
+
+if (jumping)
+{
+	ay -= jump_acceleration;
+	jump_acceleration--;
+	
+	if (jump_acceleration <= 0) jump_acceleration = 0;
+	
+	if (sprite_index = spr_marioleft)
+	{
+		sprite_index = spr_mariojump;
+		image_index = 1;
+	} 
+	if (sprite_index = spr_marioright) 
+	{
+		sprite_index = spr_mariojump;
+		image_index = 0;
+	}
+}
+
+//Reset the sprite once hitting floor after jump
+if (on_floor && sprite_index = spr_mariojump)
+{
+	if (image_index = 1) sprite_index = spr_marioleft;
+	if (image_index = 0) sprite_index = spr_marioright;
 }
 
 //Image Speed

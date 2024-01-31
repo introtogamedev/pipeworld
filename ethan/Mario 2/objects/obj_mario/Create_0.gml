@@ -11,3 +11,6 @@ vy = 0;
 py = y;
 
 on_floor = false;
+jumping = false;
+jump_velocity = -6;
+jump_acceleration = 10;
