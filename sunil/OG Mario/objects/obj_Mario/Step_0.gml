@@ -12,7 +12,7 @@
 
 //jump constants
 #macro GRAVITY 0.25 / DT
-#macro JUMP_STRENGTH 0.5 / DT
+#macro JUMP_STRENGTH 4.0 / DT
 #macro MAX_JUMP_FRAMES 15
 
 //input keys
@@ -89,7 +89,7 @@ if (keyboard_check_pressed(INPUT_JUMP) && on_floor) {
 if (jump_frames > 0) {
 	jump_frames--;
 	if (keyboard_check(INPUT_JUMP)) {
-		vy -= JUMP_STRENGTH * _dt;
+		vy -= GRAVITY * _dt;
 	} else {
 		jump_frames = 0;
 	}
@@ -124,3 +124,5 @@ if (x < 0 - sprite_width / 2) {
 	x = room_width - sprite_width / 2;
 	vx = 0;
 }
+
+show_debug_message(vy);

@@ -10,6 +10,9 @@ if (vx != 0) { //change thise
 	spr_frame = 0;
 }
 
+if (!on_floor) {
+	spr_frame = 4;
+}
 
 if (vx > 0) { //chagne this
 	image_xscale = 1;
