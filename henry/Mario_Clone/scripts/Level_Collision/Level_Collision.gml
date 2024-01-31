@@ -6,15 +6,11 @@
 
 
 function level_collision(_x, _y){
-	
 
-	
-	
-	
 	//given an x and y position what tiles is there? 
-	var current_tile = layer_tilemap_get_id(TILES_NAME);
+	var _current_tile = layer_tilemap_get_id(TILES_NAME);
 	
-	return tilemap_get_at_pixel(current_tile, _x, _y);
+	return tilemap_get_at_pixel(_current_tile, _x, _y);
 		
 	
 	

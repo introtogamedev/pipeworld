@@ -165,22 +165,25 @@ py += vy * _dt;
 //including level boundary
 
 //if we collide w/ lvl boundary, stop plumber
-var _px_collision = clamp(px, 0, room_width - sprite_width);
+var _px_rm_collision = clamp(px, 0, room_width - sprite_width);
+//var _py_rm_collision = clamp(py, room_height + 64, 0);
 
 //if we left the room, fix position and set velocity to 0
-if px != _px_collision{
-	px = _px_collision;
+if px != _px_rm_collision{
+	px = _px_rm_collision;
 	vx = 0;
 }
 
-//check for ground collision
+//check for collisions
+//set variables to current position
 var _py_collision = py;
+var _px_collision = px;
 
 //get all four sides of the character
 _y1 = py + sprite_height; //bottom
 var _y2 = py; //top
-var _x1 = px; //left
-var _x2 = px + sprite_width; //right
+var _x1 = px + 2; //left
+var _x2 = px + sprite_width -2; //right
 
 
 //if it is colliding with a tile
@@ -188,13 +191,15 @@ var _x2 = px + sprite_width; //right
 if (level_collision(px, _y1) == TILES_BRICK) {
 	//then move the player to the top of the tile
 	_py_collision -= py % 16;
+	show_debug_message(random_range(1,400))
 }
 //above
-if (level_collision(px, _y2) == TILES_BRICK) {
-	//then move the player to the top of the tile
+
+if (level_collision(_x1, _y2) == TILES_BRICK) || (level_collision(_x2, _y2) == TILES_BRICK) {
+	//then move the player to the bottom of the tile
 	_py_collision += py % 16;
+	vy = 0;
 }
-//on the right
 
 
 //if we hit the ground, move to the top of the block
@@ -202,6 +207,26 @@ if (py != _py_collision){
 	py = _py_collision;
 	vy = 0;
 }
+
+/*
+// now do the horizontal collisions
+//on the left
+if (level_collision(_x1, py) == TILES_BRICK) {
+	//then move the player to the right of the tile
+	_px_collision += (px % 16) -15;
+	show_debug_message(random_range(1,400))
+}
+//on the right
+if (level_collision(_x2, py) == TILES_BRICK) {
+	//then move the player to the left of the tile
+	_px_collision -= px % 16;
+}
+
+if (px != _px_collision){
+	px = _px_collision;
+	vx = 0;
+}
+*/
 
 
 //update state
@@ -216,8 +241,6 @@ input_dir = _input_dir;
 //update actual x
 x = px;
 y = py;
-
-show_debug_message(vy);
 
 //*/
 
