@@ -86,30 +86,35 @@ frame_index += 1;
 
 //jump tuning
 #macro JUMP_GRAVITY 16 * FPS
+#macro JUMP_ACCEL 375 * FPS
 
 //input constants
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
 #macro INPUT_RUN vk_shift
+#macro INPUT_JUMP ord ("W")
 #endregion
 
-// find the input direction
+// find all of the inputs
 var _input_dir = 0;
 
 if keyboard_check(ord("A")) {_input_dir -= 1}
 if keyboard_check(ord("D")) {_input_dir += 1}
 
 var _input_run  = keyboard_check(INPUT_RUN);
+var _input_jump = keyboard_check_pressed(INPUT_JUMP);
 
 // set the forces to 0 at the start of the frame
 var _ax = 0;
 var _ay = 0;
 
+//add gravity
 _ay = JUMP_GRAVITY;
 
-//add gravity
-// to do:
+//define where the bottom of the character is
+var _y1 = py + sprite_height;
 
+//set the accellerations 
 var _move_accel = MOVE_WALK_ACCEL
 
 if (_input_run) {
@@ -117,6 +122,13 @@ if (_input_run) {
 }
 
 _ax += _move_accel * _input_dir;
+
+if _input_jump {
+	// if we're touching a tile
+	if (level_collision(px, _y1) == TILES_BRICK) {
+		_ay -= JUMP_ACCEL;
+	}
+}
 
 
 // get fractional delta time
@@ -146,7 +158,9 @@ vx = _vx_mag * _vx_dir;
 px += vx * _dt;
 py += vy * _dt;
 
-//collision
+// - - - - - - - - -
+// - - collisions - - 
+// - - - - - - - - -
 //stop character from moving through objects that it shouldn't
 //including level boundary
 
@@ -162,20 +176,33 @@ if px != _px_collision{
 //check for ground collision
 var _py_collision = py;
 
-//get the bottom of the character
-var _y1 = py + sprite_height;
+//get all four sides of the character
+_y1 = py + sprite_height; //bottom
+var _y2 = py; //top
+var _x1 = px; //left
+var _x2 = px + sprite_width; //right
+
 
 //if it is colliding with a tile
+// underneath
 if (level_collision(px, _y1) == TILES_BRICK) {
 	//then move the player to the top of the tile
 	_py_collision -= py % 16;
 }
+//above
+if (level_collision(px, _y2) == TILES_BRICK) {
+	//then move the player to the top of the tile
+	_py_collision += py % 16;
+}
+//on the right
 
-// if we hit the ground, move to the top of the block
+
+//if we hit the ground, move to the top of the block
 if (py != _py_collision){
 	py = _py_collision;
 	vy = 0;
 }
+
 
 //update state
 //if there is move input, face that direction
@@ -184,11 +211,13 @@ if (_input_dir !=0) {
 }
 
 //capture the move state
-imput_dir = _input_dir;
+input_dir = _input_dir;
 
 //update actual x
 x = px;
 y = py;
+
+show_debug_message(vy);
 
 //*/
 
