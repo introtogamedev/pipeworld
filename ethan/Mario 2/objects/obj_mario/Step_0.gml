@@ -13,6 +13,12 @@
 #macro INPUT_RIGHT ord("D")
 #macro INPUT_RUN ord("R")
 
+#macro JUMP_GRAVITY 0.2 * FPS
+
+//Gravity
+var ay = 0;
+ay = JUMP_GRAVITY;
+
 //Movement
 //Find the input direction
 var input_dir = 0;
@@ -39,6 +45,7 @@ var dt = delta_time / MS;
 
 //Integrate acceleration into velocity
 vx += ax * dt;
+vy += ay * dt;
 
 //Max speed
 if (keyboard_check(INPUT_RUN))
@@ -67,6 +74,8 @@ if (vx > 0 && !keyboard_check(INPUT_RIGHT))
 //Integrate velocity into position
 x += vx;
 px = floor(x);
+y += vy;
+py = floor(y);
 show_debug_message("ax: " + string(ax));
 show_debug_message("vx: " + string(vx));
 
@@ -82,6 +91,12 @@ if (x > room_width-sprite_width)
 	x = room_width-sprite_width;
 	vx = 0;
 	ax = 0;
+}
+
+//If hitting a block, don't go through it
+if (!Level_Collision(floor(x),floor(y)))
+{
+	show_debug_message("On a block");
 }
 
 //Image Speed

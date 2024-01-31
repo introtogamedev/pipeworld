@@ -6,3 +6,6 @@ image_index = 0;
 
 vx = 0;
 px = x;
+
+vy = 0;
+py = y;
