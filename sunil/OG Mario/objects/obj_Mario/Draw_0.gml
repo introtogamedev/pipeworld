@@ -17,9 +17,9 @@ if (!on_floor) {
 	spr_frame = 4;
 }
 
-if (vx > 0) { //chagne this
+if (input_dir > 0) {
 	image_xscale = 1;
-} else if (vx < 0) {
+} else if (input_dir < 0) {
 	image_xscale = -1;
 } 
 

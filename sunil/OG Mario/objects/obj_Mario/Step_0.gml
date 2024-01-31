@@ -24,13 +24,13 @@
 /// -- movement --
 
 // check horizontal input
-var _input_dir = 0;
+input_dir = 0;
 if (keyboard_check(INPUT_LEFT)) {
-	_input_dir--;
+	input_dir = -1;
 }
 
 if (keyboard_check(INPUT_RIGHT)) {
-	_input_dir++;
+	input_dir = 1;
 }
 
 
@@ -38,9 +38,9 @@ if (keyboard_check(INPUT_RIGHT)) {
 
 var _ax = 0
 if (keyboard_check(INPUT_RUN)) {
-	_ax = RUN_ACCELERATION * _input_dir;
+	_ax = RUN_ACCELERATION * input_dir;
 } else {
-	_ax = WALK_ACCELERATION * _input_dir;
+	_ax = WALK_ACCELERATION * input_dir;
 }
 
 //Apply speed
@@ -52,7 +52,7 @@ vx += _ax * _dt;
 //Apply friction
 var _dir_x = sign(vx);
 
-if (_input_dir == 0) { 
+if (input_dir == 0) { 
 	vx -= sign(vx) * MOVE_DECCELERATION * _dt;
 
 	if (_dir_x != sign(vx)) {
@@ -72,7 +72,7 @@ if (keyboard_check(INPUT_RUN)) {
 
 
 
-//change the x
+//Change the x with collision
 
 if (!tile_empty(x + vx  ,y)) {
     while (!tile_empty(x+vx,y)) {
@@ -107,6 +107,8 @@ vy += GRAVITY * _dt;
 if (vy > max_gravity) {
 	vy = max_gravity;
 }
+
+//Change the y with collision
 
 if (!tile_empty(x,y+vy)) {
     while (!tile_empty(x,y+vy)) {
