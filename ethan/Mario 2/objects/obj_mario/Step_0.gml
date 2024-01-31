@@ -141,15 +141,11 @@ if (on_floor && sprite_index = spr_mariojump)
 }
 
 //Image Speed
-if (vx < 0)
+if (vx < 0 || vx > 0 && !jumping)
 {
 	image_speed = 1;
 }
-if (vx > 0)
-{
-	image_speed = 1;
-}
-if (vx = 0)
+else if (vx == 0 && !jumping)
 {
 	image_speed = 0;
 	image_index = 0;
