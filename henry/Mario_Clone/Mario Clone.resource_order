@@ -6,6 +6,7 @@
   "ResourceOrderSettings": [
     {"name":"Level_Tiles","order":2,"path":"tilesets/Level_Tiles/Level_Tiles.yy",},
     {"name":"Level_Tile_Sprite","order":1,"path":"sprites/Level_Tile_Sprite/Level_Tile_Sprite.yy",},
+    {"name":"unproblematic_mario","order":2,"path":"objects/unproblematic_mario/unproblematic_mario.yy",},
     {"name":"config","order":2,"path":"scripts/config/config.yy",},
     {"name":"Level_Collision","order":3,"path":"scripts/Level_Collision/Level_Collision.yy",},
     {"name":"Plumber_Object","order":1,"path":"objects/Plumber_Object/Plumber_Object.yy",},

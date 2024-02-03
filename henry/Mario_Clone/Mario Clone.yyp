@@ -24,6 +24,7 @@
   "resources": [
     {"id":{"name":"Level_Tiles","path":"tilesets/Level_Tiles/Level_Tiles.yy",},},
     {"id":{"name":"Level_Tile_Sprite","path":"sprites/Level_Tile_Sprite/Level_Tile_Sprite.yy",},},
+    {"id":{"name":"unproblematic_mario","path":"objects/unproblematic_mario/unproblematic_mario.yy",},},
     {"id":{"name":"Wall_Obj","path":"objects/Wall_Obj/Wall_Obj.yy",},},
     {"id":{"name":"Plumber_Sprite","path":"sprites/Plumber_Sprite/Plumber_Sprite.yy",},},
     {"id":{"name":"config","path":"scripts/config/config.yy",},},
