@@ -1,29 +1,61 @@
 var input_direction = 0;//initialize to 0;
+var deltaTime = delta_time/MS;//get fractional delta time
+
+#region input detect
 if (keyboard_check(INPUT_LEFT)){
-	input_direction -=1;
+	input_direction = (-1);
+	facing_dir = -1;
 }if (keyboard_check(INPUT_RIGHT)){
-	input_direction += 1;
+	input_direction = 1;
+	facing_dir = 1;
 }
 
-//get fractional delta time
-var deltaTime = delta_time/MS
+if (keyboard_check_pressed(INPUT_RUN)){
+	runActivate = true;
+}if(keyboard_check_released(INPUT_RUN)){
+	runActivate = false;
+}
+
+var jump = false;//initialize to false;
+if (keyboard_check(INPUT_JUMP) and onGround){
+	jump = true;
+}
+#endregion
+
+#region variable Initialization: runActivate
+//initialize the movement dependent variables based on runActivate
+var accel =  0;//initilize to 0;
+var maxSPD = 0; //initilize to 0;
+var deaccel = 0; //initiliaze to 0;
+if(runActivate == true){
+	accel = MOVE_SPRINT_ACCEL;
+	maxSPD = MAX_SPD_SPRINT;
+	deaccel = MOVE_SPRINT_DEACCEL;
+}else{
+	accel = MOVE_ACCEL;
+	maxSPD = MAX_SPD;
+	deaccel = MOVE_DEACCEL;
+}
+#endregion
 
 #region horizontal movement
+var accelx = 0;//initialize to 0
 //get the move acceleration/deacceleration
-accelx = MOVE_ACCEL * input_direction;
-if (input_direction == 0 ){
-	accelx = MOVE_DEACCEL * -sign(xvelocity);
-}
+accelx = accel * input_direction;
+
 //integrate acceleration into velocity
 xvelocity += accelx * deltaTime
-if (abs(xvelocity) <= 0.1){
-	xvelocity = 0;
-}else{
-	xvelocity = clamp(xvelocity, -MAX_SPD, MAX_SPD);
-}
+xvelocity = clamp(xvelocity, -maxSPD, maxSPD);
 
+//
+if (input_direction == 0 ){
+	var spd = abs(xvelocity);
+	spd -= deaccel*deltaTime;
+	spd = max(spd, 0);
+	xvelocity = spd * sign(xvelocity);
+}
 //integrate velocity into position
-x += xvelocity;
+x += xvelocity*deltaTime;
 
 //clamp x position
 if (x > (room_width - abs(sprite_width)/2) or x < (0 + abs(sprite_width/2))){
@@ -31,28 +63,34 @@ if (x > (room_width - abs(sprite_width)/2) or x < (0 + abs(sprite_width/2))){
 	xvelocity = 0;
 }
 
-//sprite direction
-if (sign(image_xscale) != sign(round(xvelocity)) and sign(round(xvelocity)) != 0 and abs(xvelocity) > 0){
-	image_xscale = sign(round(xvelocity));
-}
-
-
 #endregion
 
-#region sprite assignment
-//RUNNING
-if (abs(xvelocity) >= 3){
-	sprite_index = spr_marioSPEEDRUN;
-}else if (abs(xvelocity) == 0){
-	sprite_index = spr_marioIDLE;
-}else if (abs(xvelocity) < 1){
-	sprite_index = spr_marioRUN;
+#region vertical movement
+yvelocity += GRAVITY;
+
+//apply gravity and terminal velocity
+if(yvelocity >= TERMINAL_VELOCITY){
+	yvelocity = TERMINAL_VELOCITY;
 }
-
-
-#endregion
+//gravity simulation
 /*
-the plumber runs
+var tilemapLayer = layer_get_id("Tilemap_map");
+var tilemapID = layer_tilemap_get_id(tilemapLayer);
 
+for (var i = 1; i <= abs(yvelocity); i++){
+	if (tilemap_get_at_pixel(tilemapID, x, y + sign(yvelocity)) != TILE_FLOOR_ID){
+		y += sign(yvelocity) *1 *deltaTime;
+	}else{
+		yvelocity = 0;
+		onGround = true;
+		break;
+	}
+}
 
+if (jump){
+	yvelocity = JUMP_VEL;
+	onGround = false;
+}
+
+#endregion
 

@@ -22,11 +22,12 @@
     "IDEVersion": "2023.11.0.121",
   },
   "resources": [
+    {"id":{"name":"spr_tileset","path":"sprites/spr_tileset/spr_tileset.yy",},},
     {"id":{"name":"Config","path":"scripts/Config/Config.yy",},},
     {"id":{"name":"spr_marioSPEEDTURN","path":"sprites/spr_marioSPEEDTURN/spr_marioSPEEDTURN.yy",},},
     {"id":{"name":"NES___Super_Mario_Bros___Mario__Luigi","path":"sprites/NES___Super_Mario_Bros___Mario__Luigi/NES___Super_Mario_Bros___Mario__Luigi.yy",},},
-    {"id":{"name":"eed75aa54e6c6f6","path":"sprites/eed75aa54e6c6f6/eed75aa54e6c6f6.yy",},},
     {"id":{"name":"spr_marioIDLE","path":"sprites/spr_marioIDLE/spr_marioIDLE.yy",},},
+    {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
     {"id":{"name":"spr_marioDEATH","path":"sprites/spr_marioDEATH/spr_marioDEATH.yy",},},
     {"id":{"name":"obj_plumber","path":"objects/obj_plumber/obj_plumber.yy",},},
     {"id":{"name":"spr_marioSPEEDRUN","path":"sprites/spr_marioSPEEDRUN/spr_marioSPEEDRUN.yy",},},
