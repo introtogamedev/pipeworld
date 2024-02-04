@@ -22,3 +22,30 @@ for(var i = left_tile -1 ; i <= right_tile; i++)
 		}
 	}
 }
+
+//CHECK METHOD 2
+#region Collision Checks
+//collision check: floor
+if (tilemap_get_at_pixel(tilemapID, x, checkypos) == TILE_FLOOR_ID){
+	//show_debug_message("PLUMBER ON GROUND")//debug purposes
+	y -= y%tilemap_get_tile_height(tilemapID);
+	yvelocity = 0;
+	onGround = true;
+}else{
+	onGround =false;
+}	
+
+
+for (var i = 0; i < abs(yvelocity); i ++){
+	var checkypos = y + 1 * sign(yvelocity);
+	if (tilemap_get_at_pixel(tilemapID, x, checkypos) == TILE_FLOOR_ID){
+		//show_debug_message("PLUMBER ON GROUND")//debug purposes
+		y -= 1%y;
+		yvelocity = 0;
+		onGround = true;
+		break;
+	}else{
+		y++
+		onGround =false;
+	}	
+}

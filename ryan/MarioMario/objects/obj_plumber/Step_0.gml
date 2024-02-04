@@ -20,7 +20,7 @@ if (keyboard_check_pressed(INPUT_RUN)){
 }
 
 var jump = false;//initialize to false;
-if (keyboard_check(INPUT_JUMP) and onGround){
+if (keyboard_check(INPUT_JUMP)){
 	jump = true;
 }
 #endregion
@@ -38,17 +38,6 @@ if(runActivate == true){
 	accel = MOVE_ACCEL;
 	maxSPD = MAX_SPD;
 	deaccel = MOVE_DEACCEL;
-}
-#endregion
-#region variable Initialization: jump
-//initialize the y velocity based on jumping or not. 
-if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
-	yvelocity = -abs(JUMP_VEL);
-}else if (jump_height >= JUMP_HEIGHT_MAX or not jumpAllowed){
-	
-}else if (){
-	
-	
 }
 #endregion
 
@@ -79,12 +68,26 @@ if (x > (room_width - abs(sprite_width)/2) or x < (0 + abs(sprite_width/2))){
 }
 
 #endregion
-
 #region vertical movement
-//integrate gravity into y - velocity
-yvelocity += GRAVITY * deltaTime;
 
-//apply gravity and terminal velocity
+#region variable Initialization: jump
+
+//initialize the y velocity based on jumping or not. 
+if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
+	yvelocity = -abs(JUMP_VEL);
+	jump_height += abs(yvelocity) * deltaTime;
+	show_debug_message("PLUMBER JUMPING");
+}else if (jump_height >= JUMP_HEIGHT_MAX or not jumpAllowed or not jump){
+	jumpAllowed = false;//double prevention for both cases. 
+	jump_height = 0;
+	//apply gravity
+	yvelocity += GRAVITY * deltaTime;
+	show_debug_message("PLUMBER FALLING/GRAVITY");
+}
+
+#endregion
+
+//clamp terminal velocity
 if(yvelocity >= TERMINAL_VELOCITY){
 	yvelocity = TERMINAL_VELOCITY;
 }
@@ -102,11 +105,13 @@ if (tilemap_get_at_pixel(tilemapID, x, y) == TILE_FLOOR_ID){
 }else{
 	onGround =false;
 }	
+
 #endregion
 
 
 #endregion
 
 #region variable Updates
+
 if (onGround) jumpAllowed = true;
 #endregion

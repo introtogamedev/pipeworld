@@ -16,10 +16,11 @@
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Tilemap_collidable","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":15,"SerialiseWidth":16,"TileCompressedData":[
 -33,-2147483648,-2,0,-13,-2147483648,-3,0,2,-2147483648,0,-11,-2147483648,-3,0,-13,
--2147483648,-4,0,-12,-2147483648,-4,0,-12,-2147483648,-4,0,-13,-2147483648,-3,0,-12,
--2147483648,-4,0,-3,-2147483648,1,0,-8,-2147483648,-3,0,-2,-2147483648,-3,0,-8,
--2147483648,-3,0,-13,-2147483648,-4,0,-5,-2147483648,7,0,-2147483648,0,-2147483648,0,-2147483648,
--2147483648,-32,1,],"TileDataFormat":1,},"tilesetId":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+-2147483648,-4,0,-12,-2147483648,-4,0,-12,-2147483648,1,1,-4,0,-11,-2147483648,1,
+1,-4,0,-11,-2147483648,1,1,-3,0,4,1,-2147483648,-2147483648,0,-8,-2147483648,
+5,1,0,0,-2147483648,-2147483648,-3,0,-8,-2147483648,3,1,0,0,-13,-2147483648,
+1,1,-3,0,-5,-2147483648,7,0,-2147483648,0,-2147483648,0,-2147483648,-2147483648,-17,1,
+-2,0,-13,1,],"TileDataFormat":1,},"tilesetId":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4294941596,"depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
   "parent": {

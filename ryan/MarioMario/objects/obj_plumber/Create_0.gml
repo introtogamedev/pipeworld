@@ -36,9 +36,9 @@
 
 	#region vertical movement
 		#macro GRAVITY 12 * fps
-		#macro TERMINAL_VELOCITY 17 * fps
-		#macro JUMP_VEL 5 *fps 
-		#macro JUMP_HEIGHT_MAX 16 *3 * fps
+		#macro TERMINAL_VELOCITY 16 * fps
+		#macro JUMP_VEL 3  * fps
+		#macro JUMP_HEIGHT_MAX  3.5 * TILE_SIZE
 	#endregion
 #endregion
 
