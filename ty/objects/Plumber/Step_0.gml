@@ -82,9 +82,14 @@ if (!is_on_ground) {
 
 _ax += _move_acceleration * _input_move;
 
-
 // add jump acceleration
 var _event_jump = false;
+
+// check if we've held the same jump
+var _is_jump_held = is_jump_held;
+if (_input_jump != INPUT_STATE.HOLD) {
+	_is_jump_held = false;
+}
 
 // if jump was just pressed on the ground, add impulse
 if (_input_jump == INPUT_STATE.PRESS && is_on_ground) {
@@ -92,12 +97,17 @@ if (_input_jump == INPUT_STATE.PRESS && is_on_ground) {
 	_event_jump = true;
 }
 // if we're holding jump & moving upwards, add lower gravity
-else if (_input_jump = INPUT_STATE.HOLD && vy < 0) {
+else if (_is_jump_held && vy < 0) {
 	_ay += JUMP_HOLD_GRAVITY;
 }
 // otherwise, add full gravity
 else {
 	_ay += JUMP_GRAVITY;
+}
+
+// if we start a new jump, begin holding
+if (_event_jump) {
+	_is_jump_held = true;
 }
 
 // ---------------
@@ -143,15 +153,19 @@ py += vy * _dt;
 // increment frame forever
 frame_index += 1;
 
-// capture the move state
-input_move = _input_move;
+// track if we're still holding our jump
+is_jump_held = _is_jump_held;
 
 // if there is any move input, face that direction
 if (_input_move != 0 && is_on_ground) {
 	look_dir = _input_move;
 }
 
-// when the jump event fires, begin the jump animation
+// capture the input state
+input_move = _input_move;
+
+// when the jump event fires
 if (_event_jump) {
+	// and start the jump animation
 	anim_is_jumping = true;
 }

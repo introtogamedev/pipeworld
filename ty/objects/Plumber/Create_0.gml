@@ -9,6 +9,9 @@ vy = 0;
 px = x;
 py = y;
 
+// if the jump is currently held
+is_jump_held = false;
+
 // if we're colliding with the ground
 is_on_ground = false;
 
