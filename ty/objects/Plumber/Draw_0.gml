@@ -12,12 +12,11 @@
 // -------------
 
 // update the current animation state
-
 // if moving, switch to move animation
 if (input_move != 0 || vx != 0) {
 	move_frame = (move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
 	image_idx = MOVE_ANIM_START + move_frame;
-} 
+}
 // if no input, switch to standing
 else {
 	image_idx = 0;
@@ -45,13 +44,13 @@ if (sign(look_dir) < 0) {
 
 // draw the sprite
 draw_sprite_ext(
-	sprite_index, 
-	image_idx, 
+	sprite_index,
+	image_idx,
 	_x,
 	_y,
-	_xscale, 
-	image_yscale, 
-	image_angle, 
-	image_blend, 
+	_xscale,
+	image_yscale,
+	image_angle,
+	image_blend,
 	image_alpha
 );

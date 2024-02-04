@@ -13,13 +13,22 @@
 #macro MOVE_RUN_ACCELERATION  4.2 * FPS
 #macro MOVE_DECELERATION      1.2 * FPS
 
-// -- jump turning --
+// -- jump tuning --
+#macro JUMP_IMPULSE 4  * FPS * FPS
 #macro JUMP_GRAVITY 16 * FPS
 
 // -- input --
 #macro INPUT_LEFT  ord("A")
 #macro INPUT_RIGHT ord("D")
 #macro INPUT_RUN   vk_shift
+#macro INPUT_JUMP  vk_space
+
+// -- i/state
+enum INPUT_STATE {
+	NONE  = 0,
+	PRESS = 1,
+	HOLD  = 2
+}
 
 // ---------------
 // -- get input --
@@ -28,18 +37,27 @@
 // in this section, we'll read player input to use later when
 // we update the character
 
-// add input direction; add left input and right input so that 
+// add input direction; add left input and right input so that
 // if both buttons are pressed, the input direction is 0
 var _input_move = 0;
 if (keyboard_check(INPUT_LEFT)) {
-	_input_move -= 1;	
+	_input_move -= 1;
 }
 
 if (keyboard_check(INPUT_RIGHT)) {
 	_input_move += 1;
 }
 
+// get run button input
 var _input_run = keyboard_check(INPUT_RUN);
+
+// get jump buttton input
+var _input_jump = INPUT_STATE.NONE;
+if (keyboard_check_pressed(INPUT_JUMP)) {
+	_input_jump = INPUT_STATE.PRESS;
+} else if (keyboard_check(INPUT_JUMP)) {
+	_input_jump = INPUT_STATE.HOLD;
+}
 
 // ------------------
 // -- add "forces" --
@@ -62,6 +80,15 @@ _ax += _move_acceleration * _input_move;
 
 // add gravity
 _ay += JUMP_GRAVITY;
+
+// if jump just pressed on ground, apply impulse
+if ( _input_jump == INPUT_STATE.PRESS && is_on_ground) {
+	_ay -= JUMP_IMPULSE;
+}
+// if no jump input, apply gravity
+else {
+	_ay += JUMP_GRAVITY;
+}
 
 // ---------------
 // -- integrate --
@@ -103,31 +130,35 @@ py += vy * _dt;
 // stop the character from moving through objects that it shouldn't,
 // such as the level boundary
 
+var _px_collision = px;
+var _py_collision = py;
+
+// by default, we are not on the ground
+var _is_on_ground = false;
+
 // if we collide with the level boundary, stop the character
-var _px_collision = clamp(px, 0, room_width - sprite_width);
+_px_collision = clamp(_px_collision, 0, room_width - sprite_width);
+
+// check underneath us for a ground collision
+var _y1 = py + sprite_height;
+if (level_collision(px, _y1) != TILES_NONE) {
+	// then move the player to the top of the tile
+	_py_collision -= py % 16;
+
+	// and track that we're on ground
+	_is_on_ground = true;
+}
+
+// if we collided on the x-axis, stop velocity
 if (px != _px_collision) {
 	px = _px_collision;
 	vx = 0;
 }
 
-// check for ground collision
-var _py_collision = py;
-
-// get the bottom of the character
-var _y1 = py + sprite_height;
-
-// if it is colliding with a tile
-if (level_collision(px, _y1) == TILES_BRICK) {
-	// then move the player to the top of the tile
-	_py_collision -= py % 16;
-}
-
-// if we hit ground, move to the top of the block
+// if we collided on the y-axis, stop velocity
 if (py != _py_collision) {
 	py = _py_collision;
 	vy = 0;
-} else {
-	show_debug_message("falling {0}", frame_index);	
 }
 
 // ------------------
@@ -147,3 +178,6 @@ input_move = _input_move;
 if (_input_move != 0) {
 	look_dir = _input_move;
 }
+
+// update ground flag
+is_on_ground = _is_on_ground;

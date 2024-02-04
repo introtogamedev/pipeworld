@@ -8,6 +8,9 @@ vy = 0;
 px = x;
 py = y;
 
+// if we're colliding with the ground
+is_on_ground = false;
+
 // the current look direction
 look_dir = 0;
 
