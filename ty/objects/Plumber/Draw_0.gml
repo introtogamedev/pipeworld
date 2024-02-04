@@ -54,3 +54,18 @@ draw_sprite_ext(
 	image_blend,
 	image_alpha
 );
+
+// draw debug collisions
+if (is_on_ground) {
+	draw_set_color(c_red);
+} else {
+	draw_set_color(c_white);
+}
+
+draw_rectangle(
+	_x,
+	_y,
+	_x + sprite_width * _xscale,
+	_y + sprite_height,
+	true
+);

@@ -130,18 +130,27 @@ py += vy * _dt;
 // stop the character from moving through objects that it shouldn't,
 // such as the level boundary
 
+// our adjusted collision point
 var _px_collision = px;
 var _py_collision = py;
 
-// by default, we are not on the ground
+// by default, we're not on the ground
 var _is_on_ground = false;
+
+// get the bounding box
+var _x0 = px;
+var _x1 = _x0 + sprite_width;
+var _y0 = py;
+var _y1 = _y0 + sprite_height;
 
 // if we collide with the level boundary, stop the character
 _px_collision = clamp(_px_collision, 0, room_width - sprite_width);
 
-// check underneath us for a ground collision
-var _y1 = py + sprite_height;
-if (level_collision(px, _y1) != TILES_NONE) {
+// check for a ground collision at our feet
+if (
+	level_collision(_x0, _y1) > TILES_NONE ||
+	level_collision(_x1, _y1) > TILES_NONE
+) {
 	// then move the player to the top of the tile
 	_py_collision -= py % 16;
 
