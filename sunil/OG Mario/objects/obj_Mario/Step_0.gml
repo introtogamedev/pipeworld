@@ -12,7 +12,7 @@
 
 //jump constants
 #macro GRAVITY 0.25 / DT
-#macro JUMP_STRENGTH 4.0 / DT
+#macro JUMP_STRENGTH 4.0
 #macro MAX_JUMP_FRAMES 15
 
 //input keys
@@ -24,13 +24,13 @@
 /// -- movement --
 
 // check horizontal input
-var _input_dir = 0;
+input_dir = 0;
 if (keyboard_check(INPUT_LEFT)) {
-	_input_dir--;
+	input_dir = -1;
 }
 
 if (keyboard_check(INPUT_RIGHT)) {
-	_input_dir++;
+	input_dir = 1;
 }
 
 
@@ -38,9 +38,9 @@ if (keyboard_check(INPUT_RIGHT)) {
 
 var _ax = 0
 if (keyboard_check(INPUT_RUN)) {
-	_ax = RUN_ACCELERATION * _input_dir;
+	_ax = RUN_ACCELERATION * input_dir;
 } else {
-	_ax = WALK_ACCELERATION * _input_dir;
+	_ax = WALK_ACCELERATION * input_dir;
 }
 
 //Apply speed
@@ -52,7 +52,7 @@ vx += _ax * _dt;
 //Apply friction
 var _dir_x = sign(vx);
 
-if (_input_dir == 0) { 
+if (input_dir == 0) { 
 	vx -= sign(vx) * MOVE_DECCELERATION * _dt;
 
 	if (_dir_x != sign(vx)) {
@@ -72,16 +72,21 @@ if (keyboard_check(INPUT_RUN)) {
 
 
 
-//change the x
+//Change the x with collision
+
+if (!tile_empty(x + vx  ,y)) {
+    while (!tile_empty(x+vx,y)) {
+        vx -= sign(vx);
+    }
+}
 
 x += vx;
-
 
 //Jump logic
 
 
 if (keyboard_check_pressed(INPUT_JUMP) && on_floor) {
-	vy -= JUMP_STRENGTH * _dt;
+	vy -= JUMP_STRENGTH;
 	jump_frames = MAX_JUMP_FRAMES;
 	on_floor = false;
 }
@@ -103,11 +108,19 @@ if (vy > max_gravity) {
 	vy = max_gravity;
 }
 
-y += vy
+//Change the y with collision
+
+if (!tile_empty(x,y+vy)) {
+    while (!tile_empty(x,y+vy)) {
+        vy -= sign(vy);
+    }
+}
+
+y += vy;
 
 //Don't fall through floor
 
-if (!Level_Collision(floor(x),floor(y + sprite_height / 2))) {
+if (!tile_empty(floor(x),floor(y + sprite_height / 2))) {
 	y = y - y % 16 + sprite_height / 2;
 	vy = 0;
 	on_floor = true;
@@ -124,5 +137,3 @@ if (x < 0 - sprite_width / 2) {
 	x = room_width - sprite_width / 2;
 	vx = 0;
 }
-
-show_debug_message(vy);

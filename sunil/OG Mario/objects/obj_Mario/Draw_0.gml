@@ -6,6 +6,9 @@
 if (vx != 0) { //change thise
 	anim_frame = (anim_frame + ANIM_SPEED) % RUN_ANIM_LENGTH;
 	spr_frame = RUN_ANIM_START + anim_frame;
+	if (spr_frame > 3) {
+		spr_frame = 3;
+	}
 } else {
 	spr_frame = 0;
 }
@@ -14,9 +17,9 @@ if (!on_floor) {
 	spr_frame = 4;
 }
 
-if (vx > 0) { //chagne this
+if (input_dir > 0) {
 	image_xscale = 1;
-} else if (vx < 0) {
+} else if (input_dir < 0) {
 	image_xscale = -1;
 } 
 
@@ -31,3 +34,4 @@ draw_sprite_ext(
 	image_blend,
 	image_alpha
 );
+

@@ -14,3 +14,5 @@ spr_frame = 0;
 jump_frames = 10;
 
 on_floor = false;
+
+input_dir = 0;
