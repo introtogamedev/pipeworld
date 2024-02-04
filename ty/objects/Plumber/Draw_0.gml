@@ -1,25 +1,47 @@
-// the first index in the strip for the move animation
+// the first index in the strip of the move animation
 #macro MOVE_ANIM_START  1
 
 // the number of frames in the strip for the move animation
 #macro MOVE_ANIM_LENGTH 3
 
 // the frames per second in the move animation
-#macro MOVE_ANIM_SPEED 1 / 7
+#macro MOVE_ANIM_SPEED  1 / 7
+
+// the first index in the strip of the jump animation
+#macro JUMP_ANIM_START  5
+
+// -----------
+// -- state --
+// -----------
+
+// update any physical state we need to figure out which image
+// in the strip to show
+
+// once we land, end the jump animation
+if (anim_is_jumping && is_on_ground) {
+	anim_is_jumping = false;
+}
+
 
 // -------------
 // -- animate --
 // -------------
 
-// update the current animation state
+// update the current animation state to show the correct image
+// in the strip
+
+// if jumping, switch to jump
+if (anim_is_jumping) {
+	anim_image_index = JUMP_ANIM_START;
+}
 // if moving, switch to move animation
-if (input_move != 0 || vx != 0) {
-	move_frame = (move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
-	image_idx = MOVE_ANIM_START + move_frame;
+else if (is_on_ground && (input_move != 0 || vx != 0)) {
+	anim_move_frame = (anim_move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
+	anim_image_index = MOVE_ANIM_START + floor(anim_move_frame);
 }
 // if no input, switch to standing
-else {
-	image_idx = 0;
+else if (vx == 0) {
+	anim_image_index = 0;
 }
 
 
@@ -45,7 +67,7 @@ if (sign(look_dir) < 0) {
 // draw the sprite
 draw_sprite_ext(
 	sprite_index,
-	image_idx,
+	anim_image_index,
 	_x,
 	_y,
 	_xscale,

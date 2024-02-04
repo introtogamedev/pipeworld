@@ -1,3 +1,4 @@
+// the current frame
 frame_index = 0;
 
 // the current velocity
@@ -14,11 +15,22 @@ is_on_ground = false;
 // the current look direction
 look_dir = 0;
 
+// -------------
+// -- drawing --
+// -------------
+
+// if we're in the jumping animation
+anim_is_jumping = true;
+
 // the current position in the move animation
-move_frame = 0;
+anim_move_frame = 0;
 
 // the current sprite index
-image_idx = 0;
+anim_image_index = 0;
+
+// -----------
+// -- input --
+// -----------
 
 // the current input move dir
 input_move = 0;

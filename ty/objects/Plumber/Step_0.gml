@@ -10,13 +10,13 @@
 
 // -- move tuning --
 #macro MOVE_WALK_ACCELERATION 1.8 * FPS
-#macro MOVE_RUN_ACCELERATION  4.2 * FPS
-#macro MOVE_DECELERATION      1.2 * FPS
+#macro MOVE_RUN_ACCELERATION  3.4 * FPS
+#macro MOVE_DECELERATION      4.8 * FPS
 
 // -- jump tuning --
 #macro JUMP_IMPULSE      4  * FPS * FPS
 #macro JUMP_GRAVITY      16 * FPS
-#macro JUMP_HOLD_GRAVITY 8 * FPS
+#macro JUMP_HOLD_GRAVITY 8  * FPS
 
 // -- input --
 #macro INPUT_LEFT  ord("A")
@@ -38,11 +38,11 @@ enum INPUT_STATE {
 // in this section, we'll read player input to use later when
 // we update the character
 
-// add input direction; add left input and right input so that 
+// add input direction; add left input and right input so that
 // if both buttons are pressed, the input direction is 0
 var _input_move = 0;
 if (keyboard_check(INPUT_LEFT)) {
-	_input_move -= 1;	
+	_input_move -= 1;
 }
 
 if (keyboard_check(INPUT_RIGHT)) {
@@ -79,15 +79,20 @@ if (_input_run) {
 
 _ax += _move_acceleration * _input_move;
 
+
+// add jump acceleration
+var _event_jump = false;
+
 // if jump was just pressed on the ground, add impulse
 if (_input_jump == INPUT_STATE.PRESS && is_on_ground) {
 	_ay -= JUMP_IMPULSE;
+	_event_jump = true;
 }
 // if we're holding jump & moving upwards, add lower gravity
 else if (_input_jump = INPUT_STATE.HOLD && vy < 0) {
 	_ay += JUMP_HOLD_GRAVITY;
 }
-// otherwise, add full gravity 
+// otherwise, add full gravity
 else {
 	_ay += JUMP_GRAVITY;
 }
@@ -141,4 +146,9 @@ input_move = _input_move;
 // if there is any move input, face that direction
 if (_input_move != 0 && is_on_ground) {
 	look_dir = _input_move;
+}
+
+// when the jump event fires, begin the jump animation
+if (_event_jump) {
+	anim_is_jumping = true;
 }
