@@ -47,7 +47,9 @@ var accelx = 0;//initialize to 0
 accelx = accel * input_direction;
 
 //integrate acceleration into x - velocity
-xvelocity += accelx * deltaTime
+if (onGround){//apply horizontal acceleration when only on ground
+	xvelocity += accelx * deltaTime
+}
 xvelocity = clamp(xvelocity, -maxSPD, maxSPD);
 
 //resolve if no input is registered. clamps current speed to a minimum of 0

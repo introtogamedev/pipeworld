@@ -31,7 +31,6 @@
 
 		#macro SPR_SPEEDRUN_TRIGGER 3 //used for animations
 		#macro SPR_RUN_TRIGGER 3 //used for animations
-
 	#endregion
 
 	#region vertical movement
@@ -39,6 +38,7 @@
 		#macro TERMINAL_VELOCITY 16 * fps
 		#macro JUMP_VEL 3  * fps
 		#macro JUMP_HEIGHT_MAX  3.5 * TILE_SIZE
+	
 	#endregion
 #endregion
 
