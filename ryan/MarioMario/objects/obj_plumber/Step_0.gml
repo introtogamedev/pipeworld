@@ -1,6 +1,9 @@
 var input_direction = 0;//initialize to 0;
 var deltaTime = delta_time/MS;//get fractional delta time
 
+var tilemapLayer = layer_get_id(TILESET_COLLIDABLE);
+var tilemapID = layer_tilemap_get_id(tilemapLayer);
+
 #region input detect
 if (keyboard_check(INPUT_LEFT)){
 	input_direction = (-1);
@@ -37,24 +40,36 @@ if(runActivate == true){
 	deaccel = MOVE_DEACCEL;
 }
 #endregion
+#region variable Initialization: jump
+//initialize the y velocity based on jumping or not. 
+if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
+	yvelocity = -abs(JUMP_VEL);
+}else if (jump_height >= JUMP_HEIGHT_MAX or not jumpAllowed){
+	
+}else if (){
+	
+	
+}
+#endregion
 
 #region horizontal movement
 var accelx = 0;//initialize to 0
-//get the move acceleration/deacceleration
+//get the horizontal move acceleration/deacceleration
 accelx = accel * input_direction;
 
-//integrate acceleration into velocity
+//integrate acceleration into x - velocity
 xvelocity += accelx * deltaTime
 xvelocity = clamp(xvelocity, -maxSPD, maxSPD);
 
-//
+//resolve if no input is registered. clamps current speed to a minimum of 0
 if (input_direction == 0 ){
 	var spd = abs(xvelocity);
 	spd -= deaccel*deltaTime;
 	spd = max(spd, 0);
 	xvelocity = spd * sign(xvelocity);
 }
-//integrate velocity into position
+
+//integrate velocity into x - position
 x += xvelocity*deltaTime;
 
 //clamp x position
@@ -66,31 +81,32 @@ if (x > (room_width - abs(sprite_width)/2) or x < (0 + abs(sprite_width/2))){
 #endregion
 
 #region vertical movement
-yvelocity += GRAVITY;
+//integrate gravity into y - velocity
+yvelocity += GRAVITY * deltaTime;
 
 //apply gravity and terminal velocity
 if(yvelocity >= TERMINAL_VELOCITY){
 	yvelocity = TERMINAL_VELOCITY;
 }
-//gravity simulation
-/*
-var tilemapLayer = layer_get_id("Tilemap_map");
-var tilemapID = layer_tilemap_get_id(tilemapLayer);
 
-for (var i = 1; i <= abs(yvelocity); i++){
-	if (tilemap_get_at_pixel(tilemapID, x, y + sign(yvelocity)) != TILE_FLOOR_ID){
-		y += sign(yvelocity) *1 *deltaTime;
-	}else{
-		yvelocity = 0;
-		onGround = true;
-		break;
-	}
-}
+//integrate velocity into y - position 
+y += yvelocity * deltaTime;
 
-if (jump){
-	yvelocity = JUMP_VEL;
-	onGround = false;
-}
+#region Collision Checks
+//collision check: floor
+if (tilemap_get_at_pixel(tilemapID, x, y) == TILE_FLOOR_ID){
+	//show_debug_message("PLUMBER ON GROUND")//debug purposes
+	y -= y%tilemap_get_tile_height(tilemapID);
+	yvelocity = 0;
+	onGround = true;
+}else{
+	onGround =false;
+}	
+#endregion
+
 
 #endregion
 
+#region variable Updates
+if (onGround) jumpAllowed = true;
+#endregion
