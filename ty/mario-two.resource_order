@@ -7,6 +7,7 @@
   ],
   "ResourceOrderSettings": [
     {"name":"Level_Tiles","order":2,"path":"tilesets/Level_Tiles/Level_Tiles.yy",},
+    {"name":"Ring","order":2,"path":"scripts/Ring/Ring.yy",},
     {"name":"Level_TileSprite","order":1,"path":"sprites/Level_TileSprite/Level_TileSprite.yy",},
     {"name":"Config","order":12,"path":"scripts/Config/Config.yy",},
     {"name":"JsonExt","order":1,"path":"scripts/JsonExt/JsonExt.yy",},

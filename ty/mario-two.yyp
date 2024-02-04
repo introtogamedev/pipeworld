@@ -25,6 +25,7 @@
   "resources": [
     {"id":{"name":"Level_Tiles","path":"tilesets/Level_Tiles/Level_Tiles.yy",},},
     {"id":{"name":"StructExt","path":"scripts/StructExt/StructExt.yy",},},
+    {"id":{"name":"Ring","path":"scripts/Ring/Ring.yy",},},
     {"id":{"name":"Level_TileSprite","path":"sprites/Level_TileSprite/Level_TileSprite.yy",},},
     {"id":{"name":"Plumber_Sprite","path":"sprites/Plumber_Sprite/Plumber_Sprite.yy",},},
     {"id":{"name":"Config","path":"scripts/Config/Config.yy",},},
