@@ -47,9 +47,7 @@ var accelx = 0;//initialize to 0
 accelx = accel * input_direction;
 
 //integrate acceleration into x - velocity
-if (onGround){//apply horizontal acceleration when only on ground
-	xvelocity += accelx * deltaTime
-}
+xvelocity += accelx * deltaTime
 xvelocity = clamp(xvelocity, -maxSPD, maxSPD);
 
 //resolve if no input is registered. clamps current speed to a minimum of 0
@@ -80,6 +78,9 @@ if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
 	jump_height += abs(yvelocity) * deltaTime;
 	show_debug_message("PLUMBER JUMPING");
 }else if (jump_height >= JUMP_HEIGHT_MAX or not jumpAllowed or not jump){
+	//if (jumpAllowed){//triggers only once to initiate falling
+	//	yvelocity /= 2;
+	//}
 	jumpAllowed = false;//double prevention for both cases. 
 	jump_height = 0;
 	//apply gravity

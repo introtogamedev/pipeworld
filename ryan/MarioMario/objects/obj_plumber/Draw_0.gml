@@ -15,6 +15,11 @@ if (abs(xvelocity) >= SPR_SPEEDRUN_TRIGGER){
 	sprite_index = spr_marioRUN;
 }
 
+//JUMPING (overrides running sprites)
+if (onGround == false){
+	sprite_index = spr_marioJUMP;
+}
+
 #endregion
 
 draw_sprite_ext(
