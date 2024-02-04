@@ -9,14 +9,15 @@
 #macro MS 1000000
 
 // -- move tuning --
-#macro MOVE_WALK_ACCELERATION 1.8 * FPS
-#macro MOVE_RUN_ACCELERATION  3.4 * FPS
-#macro MOVE_DECELERATION      4.8 * FPS
+#macro MOVE_WALK_ACCELERATION  1.8 * FPS
+#macro MOVE_RUN_ACCELERATION   3.4 * FPS
+#macro MOVE_AIR_ACCELERATION   2.4 * FPS
+#macro MOVE_DECELERATION       4.8 * FPS
 
 // -- jump tuning --
-#macro JUMP_IMPULSE      4  * FPS * FPS
-#macro JUMP_GRAVITY      16 * FPS
-#macro JUMP_HOLD_GRAVITY 8  * FPS
+#macro JUMP_IMPULSE            4  * FPS * FPS
+#macro JUMP_GRAVITY            16 * FPS
+#macro JUMP_HOLD_GRAVITY       8  * FPS
 
 // -- input --
 #macro INPUT_LEFT  ord("A")
@@ -73,7 +74,9 @@ var _ay = 0;
 
 // add move acceleration
 var _move_acceleration = MOVE_WALK_ACCELERATION;
-if (_input_run) {
+if (!is_on_ground) {
+	_move_acceleration = MOVE_AIR_ACCELERATION;
+} else if (_input_run) {
 	_move_acceleration = MOVE_RUN_ACCELERATION;
 }
 
