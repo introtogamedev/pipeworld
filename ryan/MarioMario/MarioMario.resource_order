@@ -5,11 +5,12 @@
     {"name":"Rooms","order":10,"path":"folders/Rooms.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"spr_tileset","order":1,"path":"sprites/spr_tileset/spr_tileset.yy",},
     {"name":"Config","order":12,"path":"scripts/Config/Config.yy",},
     {"name":"spr_marioSPEEDTURN","order":2,"path":"sprites/spr_marioSPEEDTURN/spr_marioSPEEDTURN.yy",},
     {"name":"NES___Super_Mario_Bros___Mario__Luigi","order":14,"path":"sprites/NES___Super_Mario_Bros___Mario__Luigi/NES___Super_Mario_Bros___Mario__Luigi.yy",},
-    {"name":"eed75aa54e6c6f6","order":13,"path":"sprites/eed75aa54e6c6f6/eed75aa54e6c6f6.yy",},
     {"name":"spr_marioIDLE","order":4,"path":"sprites/spr_marioIDLE/spr_marioIDLE.yy",},
+    {"name":"TileSet1","order":2,"path":"tilesets/TileSet1/TileSet1.yy",},
     {"name":"spr_marioDEATH","order":5,"path":"sprites/spr_marioDEATH/spr_marioDEATH.yy",},
     {"name":"obj_plumber","order":1,"path":"objects/obj_plumber/obj_plumber.yy",},
     {"name":"spr_marioSPEEDRUN","order":6,"path":"sprites/spr_marioSPEEDRUN/spr_marioSPEEDRUN.yy",},
