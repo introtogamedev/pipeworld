@@ -12,7 +12,7 @@
 
 // quit the game on escape press
 if (keyboard_check_pressed(INPUT_QUIT)) {
-	game_end();	
+	game_end();
 }
 
 // ----------------

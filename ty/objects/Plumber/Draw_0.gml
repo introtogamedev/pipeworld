@@ -89,7 +89,7 @@ draw_sprite_ext(
 if (!state.is_on_ground) {
 	draw_set_color(c_white);
 } else if (!state.is_running) {
-	draw_set_color(abs(state.vx) >= MOVE_WALK_MAX ? c_black : c_red);
+	draw_set_color(abs(state.vx) > MOVE_WALK_MAX ? c_black : c_red);
 } else {
 	draw_set_color(c_lime);
 }

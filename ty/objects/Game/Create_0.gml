@@ -26,7 +26,7 @@ if (file_exists(SAVE_STATE_PATH)) {
 
 	// and update the save state, if any
 	struct_update(state_saved, _json);
-	
+
 	// autoload the save state
 	if (SAVE_STATE_AUTOLOAD) {
 		state = struct_copy(state_saved);
