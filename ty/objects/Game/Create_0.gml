@@ -1,3 +1,10 @@
+// ---------------
+// -- constants --
+// ---------------
+
+#macro SAVE_STATE_PATH     working_directory + "save-state.json"
+#macro SAVE_STATE_AUTOLOAD true
+
 // -----------
 // -- ivars --
 // -----------
@@ -12,12 +19,16 @@ state_saved = struct_copy(state);
 // -- save state --
 // ----------------
 
-// load the save state
-function load_state() {
-	state = struct_copy(state_saved);
-}
+// if the save file exists
+if (file_exists(SAVE_STATE_PATH)) {
+	// read it from disk
+	var _json = json_read(SAVE_STATE_PATH);
 
-// save the current state as a save state
-function save_state() {
-	state_saved = struct_copy(state);
+	// and update the save state, if any
+	struct_update(state_saved, _json);
+	
+	// autoload the save state
+	if (SAVE_STATE_AUTOLOAD) {
+		state = struct_copy(state_saved);
+	}
 }

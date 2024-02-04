@@ -2,8 +2,18 @@
 // -- constants --
 // ---------------
 
+#macro INPUT_QUIT vk_escape
 #macro INPUT_SAVE 221
 #macro INPUT_LOAD 219
+
+// -----------------
+// -- application --
+// -----------------
+
+// quit the game on escape press
+if (keyboard_check_pressed(INPUT_QUIT)) {
+	game_end();	
+}
 
 // ----------------
 // -- save state --
