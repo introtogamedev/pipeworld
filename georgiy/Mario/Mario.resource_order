@@ -17,7 +17,7 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
-    {"name":"Collision","order":1,"path":"scripts/Collision/Collision.yy",},
+    {"name":"level_collision","order":1,"path":"scripts/level_collision/level_collision.yy",},
     {"name":"TileSet1","order":2,"path":"tilesets/TileSet1/TileSet1.yy",},
     {"name":"NES___Super_Mario_Bros___Mario___Luigi","order":16,"path":"sprites/NES___Super_Mario_Bros___Mario___Luigi/NES___Super_Mario_Bros___Mario___Luigi.yy",},
     {"name":"Sprite1","order":1,"path":"sprites/Sprite1/Sprite1.yy",},
