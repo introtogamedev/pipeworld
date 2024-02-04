@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "level_collision",
+  "name": "scr_level_collision",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
