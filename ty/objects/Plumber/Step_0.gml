@@ -9,21 +9,23 @@
 #macro MS 1000000
 
 // -- move tuning --
-#macro MOVE_WALK_ACCELERATION  1.8 * FPS
-#macro MOVE_RUN_ACCELERATION   3.4 * FPS
-#macro MOVE_AIR_ACCELERATION   2.4 * FPS
-#macro MOVE_DECELERATION       4.8 * FPS
+#macro MOVE_WALK_MAX		  2.0 * FPS
+#macro MOVE_WALK_ACCELERATION 1.8 * FPS
+#macro MOVE_RUN_MAX		      3.8 * FPS
+#macro MOVE_RUN_ACCELERATION  3.4 * FPS
+#macro MOVE_AIR_ACCELERATION  2.4 * FPS
+#macro MOVE_DECELERATION      3.4 * FPS
 
 // -- jump tuning --
-#macro JUMP_IMPULSE            4  * FPS * FPS
-#macro JUMP_GRAVITY            16 * FPS
-#macro JUMP_HOLD_GRAVITY       8  * FPS
+#macro JUMP_IMPULSE           4  * FPS
+#macro JUMP_GRAVITY           16 * FPS
+#macro JUMP_HOLD_GRAVITY      8  * FPS
 
 // -- input --
-#macro INPUT_LEFT  ord("A")
-#macro INPUT_RIGHT ord("D")
-#macro INPUT_RUN   vk_shift
-#macro INPUT_JUMP  vk_space
+#macro INPUT_LEFT             ord("A")
+#macro INPUT_RIGHT            ord("D")
+#macro INPUT_RUN              vk_shift
+#macro INPUT_JUMP             vk_space
 
 // -- i/state
 enum INPUT_STATE {
@@ -71,6 +73,9 @@ if (keyboard_check_pressed(INPUT_JUMP)) {
 // start with 0 forces every frame!
 var _ax = 0;
 var _ay = 0;
+var _iy = 0;
+
+// -- move --
 
 // add move acceleration
 var _move_acceleration = MOVE_WALK_ACCELERATION;
@@ -81,6 +86,8 @@ if (!is_on_ground) {
 }
 
 _ax += _move_acceleration * _input_move;
+
+// -- jump --
 
 // add jump acceleration
 var _event_jump = false;
@@ -93,7 +100,7 @@ if (_input_jump != INPUT_STATE.HOLD) {
 
 // if jump was just pressed on the ground, add impulse
 if (_input_jump == INPUT_STATE.PRESS && is_on_ground) {
-	_ay -= JUMP_IMPULSE;
+	_iy -= JUMP_IMPULSE;
 	_event_jump = true;
 }
 // if we're holding jump & moving upwards, add lower gravity
@@ -121,21 +128,47 @@ if (_event_jump) {
 // get fractional delta time
 var _dt = delta_time / MS;
 
-// integrate acceleration into velocity
+// integrate acceleration & impulse into velocity
 // v1 = v0 + a * t
 vx += _ax * _dt;
-vy += _ay * _dt;
+vy += _ay * _dt + _iy;
+
+// --------------------
+// -- post-integrate --
+// --------------------
+
+// some behaviors are more easily implemented once we know the *next
+// value* of velocity or position, like friction and min/max speed
 
 // break down velocity into speed and direction
 var _vx_mag = abs(vx);
 var _vx_dir = sign(vx);
 
-// apply deceleration if there is no player input
+// add deceleration if there is no player input
 if (_input_move == 0) {
 	_vx_mag -= MOVE_DECELERATION * _dt;
-	_vx_mag = max(_vx_mag, 0);
 }
 
+// update running state, start when we exceed walk speed
+var _is_running = is_running;
+if (_input_run && _vx_mag >= MOVE_WALK_MAX) {
+	_is_running = true;
+}
+
+// and stop when we fall beneath it
+if (!_input_run && _vx_mag <= MOVE_WALK_MAX) {
+	_is_running = false;
+}
+
+// apply min / max speeds
+var _vx_max = 420;
+if (is_on_ground) {
+	_vx_max = _is_running ? MOVE_RUN_MAX : MOVE_WALK_MAX;
+}
+
+_vx_mag = clamp(_vx_mag, 0, _vx_max);
+
+// reconstitute velocity from magnitude and direction
 vx = _vx_mag * _vx_dir;
 
 // integrate velocity into position
@@ -153,6 +186,9 @@ py += vy * _dt;
 // increment frame forever
 frame_index += 1;
 
+// track if we're running
+is_running = _is_running;
+
 // track if we're still holding our jump
 is_jump_held = _is_jump_held;
 
@@ -161,11 +197,10 @@ if (_input_move != 0 && is_on_ground) {
 	look_dir = _input_move;
 }
 
-// capture the input state
-input_move = _input_move;
-
-// when the jump event fires
+// when the jump event fires, start the animation
 if (_event_jump) {
-	// and start the jump animation
 	anim_is_jumping = true;
 }
+
+// capture the input state
+input_move = _input_move;

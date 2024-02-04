@@ -22,7 +22,6 @@ if (anim_is_jumping && is_on_ground) {
 	anim_is_jumping = false;
 }
 
-
 // -------------
 // -- animate --
 // -------------
@@ -78,10 +77,12 @@ draw_sprite_ext(
 );
 
 // draw debug collisions
-if (is_on_ground) {
-	draw_set_color(c_red);
-} else {
+if (!is_on_ground) {
 	draw_set_color(c_white);
+} else if (!is_running) {
+	draw_set_color(abs(vx) >= MOVE_WALK_MAX ? c_black : c_red);
+} else {
+	draw_set_color(c_lime);
 }
 
 draw_rectangle(

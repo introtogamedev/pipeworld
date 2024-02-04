@@ -9,6 +9,9 @@ vy = 0;
 px = x;
 py = y;
 
+// if currently running
+is_running = false;
+
 // if the jump is currently held
 is_jump_held = false;
 
