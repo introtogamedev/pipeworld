@@ -1,3 +1,7 @@
+// ---------------
+// -- constants --
+// ---------------
+
 // the first index in the strip of the move animation
 #macro MOVE_ANIM_START  1
 
@@ -10,16 +14,16 @@
 // the first index in the strip of the jump animation
 #macro JUMP_ANIM_START  5
 
-// -----------
-// -- state --
-// -----------
+// ------------
+// -- update --
+// ------------
 
 // update any physical state we need to figure out which image
 // in the strip to show
 
 // once we land, end the jump animation
-if (anim_is_jumping && is_on_ground) {
-	anim_is_jumping = false;
+if (state.anim_is_jumping && state.is_on_ground) {
+	state.anim_is_jumping = false;
 }
 
 // -------------
@@ -29,20 +33,25 @@ if (anim_is_jumping && is_on_ground) {
 // update the current animation state to show the correct image
 // in the strip
 
+var _anim_image_index = state.anim_image_index;
+var _anim_move_frame = state.anim_move_frame;
+
 // if jumping, switch to jump
-if (anim_is_jumping) {
-	anim_image_index = JUMP_ANIM_START;
+if (state.anim_is_jumping) {
+	_anim_image_index = JUMP_ANIM_START;
 }
 // if moving, switch to move animation
-else if (is_on_ground && (input_move != 0 || vx != 0)) {
-	anim_move_frame = (anim_move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
-	anim_image_index = MOVE_ANIM_START + floor(anim_move_frame);
+else if (state.is_on_ground && (state.input_move != 0 || state.vx != 0)) {
+	_anim_move_frame = (_anim_move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
+	_anim_image_index = MOVE_ANIM_START + floor(_anim_move_frame);
 }
 // if no input, switch to standing
-else if (vx == 0) {
-	anim_image_index = 0;
+else if (state.vx == 0) {
+	_anim_image_index = 0;
 }
 
+state.anim_image_index = _anim_image_index;
+state.anim_move_frame = _anim_move_frame;
 
 // ----------
 // -- draw --
@@ -51,14 +60,14 @@ else if (vx == 0) {
 // draw the character given their current state
 
 // make sure the position is always pixel-aligned
-var _x = floor(px);
-var _y = floor(py);
+var _x = floor(state.px);
+var _y = floor(state.py);
 
 // face in the move direction
 var _xscale = 1;
 
 // if moving left, flip the sprite
-if (sign(look_dir) < 0) {
+if (sign(state.look_dir) < 0) {
 	_x += sprite_width;
 	_xscale = -1;
 }
@@ -66,7 +75,7 @@ if (sign(look_dir) < 0) {
 // draw the sprite
 draw_sprite_ext(
 	sprite_index,
-	anim_image_index,
+	state.anim_image_index,
 	_x,
 	_y,
 	_xscale,
@@ -77,10 +86,10 @@ draw_sprite_ext(
 );
 
 // draw debug collisions
-if (!is_on_ground) {
+if (!state.is_on_ground) {
 	draw_set_color(c_white);
-} else if (!is_running) {
-	draw_set_color(abs(vx) >= MOVE_WALK_MAX ? c_black : c_red);
+} else if (!state.is_running) {
+	draw_set_color(abs(state.vx) >= MOVE_WALK_MAX ? c_black : c_red);
 } else {
 	draw_set_color(c_lime);
 }

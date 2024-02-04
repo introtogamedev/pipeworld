@@ -1,6 +1,7 @@
 {
   "FolderOrderSettings": [
     {"name":"Core","order":13,"path":"folders/Core.yy",},
+    {"name":"Game","order":14,"path":"folders/Game.yy",},
     {"name":"Level","order":10,"path":"folders/Level.yy",},
     {"name":"Plumber","order":11,"path":"folders/Plumber.yy",},
   ],

@@ -27,12 +27,19 @@
 #macro INPUT_RUN              vk_shift
 #macro INPUT_JUMP             vk_space
 
-// -- i/state
+// -- input/state --
 enum INPUT_STATE {
 	NONE  = 0,
 	PRESS = 1,
 	HOLD  = 2
 }
+
+// ---------------
+// -- get state --
+// ---------------
+
+// get a reference to the current state
+state = game.state;
 
 // ---------------
 // -- get input --
@@ -79,7 +86,7 @@ var _iy = 0;
 
 // add move acceleration
 var _move_acceleration = MOVE_WALK_ACCELERATION;
-if (!is_on_ground) {
+if (!state.is_on_ground) {
 	_move_acceleration = MOVE_AIR_ACCELERATION;
 } else if (_input_run) {
 	_move_acceleration = MOVE_RUN_ACCELERATION;
@@ -93,18 +100,18 @@ _ax += _move_acceleration * _input_move;
 var _event_jump = false;
 
 // check if we've held the same jump
-var _is_jump_held = is_jump_held;
+var _is_jump_held = state.is_jump_held;
 if (_input_jump != INPUT_STATE.HOLD) {
 	_is_jump_held = false;
 }
 
 // if jump was just pressed on the ground, add impulse
-if (_input_jump == INPUT_STATE.PRESS && is_on_ground) {
+if (_input_jump == INPUT_STATE.PRESS && state.is_on_ground) {
 	_iy -= JUMP_IMPULSE;
 	_event_jump = true;
 }
 // if we're holding jump & moving upwards, add lower gravity
-else if (_is_jump_held && vy < 0) {
+else if (_is_jump_held && state.vy < 0) {
 	_ay += JUMP_HOLD_GRAVITY;
 }
 // otherwise, add full gravity
@@ -130,8 +137,8 @@ var _dt = delta_time / MS;
 
 // integrate acceleration & impulse into velocity
 // v1 = v0 + a * t
-vx += _ax * _dt;
-vy += _ay * _dt + _iy;
+state.vx += _ax * _dt;
+state.vy += _ay * _dt + _iy;
 
 // --------------------
 // -- post-integrate --
@@ -141,8 +148,8 @@ vy += _ay * _dt + _iy;
 // value* of velocity or position, like friction and min/max speed
 
 // break down velocity into speed and direction
-var _vx_mag = abs(vx);
-var _vx_dir = sign(vx);
+var _vx_mag = abs(state.vx);
+var _vx_dir = sign(state.vx);
 
 // add deceleration if there is no player input
 if (_input_move == 0) {
@@ -150,7 +157,7 @@ if (_input_move == 0) {
 }
 
 // update running state, start when we exceed walk speed
-var _is_running = is_running;
+var _is_running = state.is_running;
 if (_input_run && _vx_mag >= MOVE_WALK_MAX) {
 	_is_running = true;
 }
@@ -162,19 +169,19 @@ if (!_input_run && _vx_mag <= MOVE_WALK_MAX) {
 
 // apply min / max speeds
 var _vx_max = 420;
-if (is_on_ground) {
+if (state.is_on_ground) {
 	_vx_max = _is_running ? MOVE_RUN_MAX : MOVE_WALK_MAX;
 }
 
 _vx_mag = clamp(_vx_mag, 0, _vx_max);
 
 // reconstitute velocity from magnitude and direction
-vx = _vx_mag * _vx_dir;
+state.vx = _vx_mag * _vx_dir;
 
 // integrate velocity into position
 // p1 = p0 + v * t
-px += vx * _dt;
-py += vy * _dt;
+state.px += state.vx * _dt;
+state.py += state.vy * _dt;
 
 // ------------------
 // -- update state --
@@ -184,23 +191,23 @@ py += vy * _dt;
 // during integration
 
 // increment frame forever
-frame_index += 1;
+state.frame_index += 1;
 
 // track if we're running
-is_running = _is_running;
+state.is_running = _is_running;
 
 // track if we're still holding our jump
-is_jump_held = _is_jump_held;
+state.is_jump_held = _is_jump_held;
 
 // if there is any move input, face that direction
-if (_input_move != 0 && is_on_ground) {
-	look_dir = _input_move;
+if (_input_move != 0 && state.is_on_ground) {
+	state.look_dir = _input_move;
 }
 
 // when the jump event fires, start the animation
 if (_event_jump) {
-	anim_is_jumping = true;
+	state.anim_is_jumping = true;
 }
 
 // capture the input state
-input_move = _input_move;
+state.input_move = _input_move;
