@@ -73,20 +73,26 @@ if (x > (room_width - abs(sprite_width)/2) or x < (0 + abs(sprite_width/2))){
 #region variable Initialization: jump
 
 //initialize the y velocity based on jumping or not. 
-if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
+var _gravity = 0;//initialize to 0;
+if (jump and not jumpTriggered and jumpAllowed){
+	jumpTriggered = true;
 	yvelocity = -abs(JUMP_VEL);
-	jump_height += abs(yvelocity) * deltaTime;
-	show_debug_message("PLUMBER JUMPING");
+}else if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
+	jump_height += abs(yvelocity) * deltaTime;//stores current jump height
+	_gravity = JUMP_GRAVITY;
+	//show_debug_message("PLUMBER JUMPING");//dubuggung purposes only
+	
 }else if (jump_height >= JUMP_HEIGHT_MAX or not jumpAllowed or not jump){
 	//if (jumpAllowed){//triggers only once to initiate falling
 	//	yvelocity /= 2;
 	//}
 	jumpAllowed = false;//double prevention for both cases. 
+	jumpTriggered = false;//reset jump trigger
 	jump_height = 0;
-	//apply gravity
-	yvelocity += GRAVITY * deltaTime;
-	show_debug_message("PLUMBER FALLING/GRAVITY");
+	_gravity = FALL_GRAVITY;
+	show_debug_message("PLUMBER FALLING");//debugging purposes only
 }
+yvelocity += _gravity* deltaTime;
 
 #endregion
 

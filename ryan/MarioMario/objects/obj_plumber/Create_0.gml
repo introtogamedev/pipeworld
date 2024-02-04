@@ -21,25 +21,27 @@
 
 #region Movement Tuning
 	#region horizontal movement
-		#macro MOVE_ACCEL 5 * fps
-		#macro MOVE_DEACCEL 8 * fps
-		#macro MAX_SPD 4 * fps
+		#macro MOVE_ACCEL 15 * fps
+		#macro MOVE_DEACCEL 7 * fps
+		#macro MAX_SPD 2 * fps
 
-		#macro MOVE_SPRINT_ACCEL 8 * fps
-		#macro MOVE_SPRINT_DEACCEL 6 * fps
-		#macro MAX_SPD_SPRINT 7 *fps
+		#macro MOVE_SPRINT_ACCEL 30 * fps
+		#macro MOVE_SPRINT_DEACCEL 15 * fps
+		#macro MAX_SPD_SPRINT 4 *fps
 
 		#macro SPR_SPEEDRUN_TRIGGER 3 //used for animations
-		#macro SPR_RUN_TRIGGER 3 //used for animations
+		#macro SPR_RUN_TRIGGER 1 //used for animations
 		
 		
 	#endregion
 
 	#region vertical movement
-		#macro GRAVITY 16 * fps
-		#macro TERMINAL_VELOCITY 16 * fps
-		#macro JUMP_VEL 4  * fps
-		#macro JUMP_HEIGHT_MAX  4.5 * TILE_SIZE
+		#macro FALL_GRAVITY 17 * fps
+		#macro TERMINAL_VELOCITY 30 * fps
+		
+		#macro JUMP_GRAVITY  5 * fps
+		#macro JUMP_VEL 4  * fps 
+		#macro JUMP_HEIGHT_MAX  3.5 * TILE_SIZE
 	
 	#endregion
 #endregion
@@ -53,6 +55,7 @@
 
 	onGround = false;//initialize to false
 	
+	jumpTriggered = false;//initialize to false;
 	jumpAllowed = false;//initialize to false;
 	jump_height = 0;//initialize to 0;
 #endregion
