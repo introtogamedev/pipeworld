@@ -1,7 +1,7 @@
 {
   "resourceType": "GMProject",
   "resourceVersion": "1.7",
-  "name": "mario",
+  "name": "collision",
   "AudioGroups": [
     {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
   ],
@@ -42,7 +42,9 @@
     {"id":{"name":"spr_plumber_walk_l","path":"sprites/spr_plumber_walk_l/spr_plumber_walk_l.yy",},},
     {"id":{"name":"spr_plumber_turn_l","path":"sprites/spr_plumber_turn_l/spr_plumber_turn_l.yy",},},
     {"id":{"name":"obj_plumber","path":"objects/obj_plumber/obj_plumber.yy",},},
+    {"id":{"name":"obj_platform","path":"objects/obj_platform/obj_platform.yy",},},
     {"id":{"name":"spr_floor","path":"sprites/spr_floor/spr_floor.yy",},},
+    {"id":{"name":"spr_platform","path":"sprites/spr_platform/spr_platform.yy",},},
     {"id":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},},
     {"id":{"name":"spr_plumber_l","path":"sprites/spr_plumber_l/spr_plumber_l.yy",},},
     {"id":{"name":"rm","path":"rooms/rm/rm.yy",},},

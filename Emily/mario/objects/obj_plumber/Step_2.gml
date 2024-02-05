@@ -1,1 +1,0 @@
-y += vertical_velocity;
