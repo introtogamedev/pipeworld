@@ -71,24 +71,12 @@ if (keyboard_check(INPUT_RUN)) {
 
 
 
-
-//Change the x with collision
-
-//if (!tile_empty(x + vx  ,y)) {
-//    while (!tile_empty(x+vx,y)) {
-//        vx -= sign(vx);
-//    }
-//}
-
-x += vx;
-
 //Jump logic
 
 
-if (keyboard_check_pressed(INPUT_JUMP) && on_floor) {
+if (keyboard_check_pressed(INPUT_JUMP) && ((!tile_empty(floor(x - sprite_width/2),floor(y + sprite_height / 2))) || (!tile_empty(floor(x + sprite_width/2),floor(y + sprite_height / 2))))) {
 	vy -= JUMP_STRENGTH;
 	jump_frames = MAX_JUMP_FRAMES;
-	on_floor = false;
 }
 
 if (jump_frames > 0) {
@@ -108,22 +96,43 @@ if (vy > max_gravity) {
 	vy = max_gravity;
 }
 
-//Change the y with collision
+//Change the y with top collision
 
-//if (!tile_empty(x,y+vy + sprite_height * sign(vx) / 2)) { //foxthis
-//    while (!tile_empty(x,y+vy)) {
-//        vy -= sign(vy);
-//    }
-//}
+y += vy
 
-y += vy;
+if ((!tile_empty(x - sprite_width / 2,y - sprite_height / 2)) || (!tile_empty(x + sprite_width / 2,y - sprite_height / 2))) {
+    while ((!tile_empty(x - sprite_width / 2,y-sprite_height/2)) || (!tile_empty(x + sprite_width / 2,y-sprite_height/2))) {
+        y++;
+    }	
+	//show_debug_message("y check worked");
+	vy = 0;
+	jump_frames = 0;
+}
+
+//Change the x with both sides collision
+
+x += vx;
+
+if (!tile_empty(x + vx + sprite_width  / 2 ,y)) {
+    while (!tile_empty(x+vx +sprite_width / 2 ,y)) {
+		//show_debug_message(string(x+vx +sprite_width / 2 ) + " is subtracted by " + string(-sign(vx)) + " x is " + string(x) );
+		if (sign(vx) == 0) {
+			vx = _ax; //Stop sign(vx) from being 0 while using it
+		}
+        x -= sign(vx);
+    }
+	//show_debug_message("x check worked");
+	x = floor(x); //stops a weird stuttering
+	vx = 0;
+	//show_debug_message("x is " + string(x) + " rounded is " +string(floor(x)));
+}
+show_debug_message("step mid " +string(x));
 
 //Don't fall through floor
 
-if (!tile_empty(floor(x),floor(y + sprite_height / 2))) {
+if (((!tile_empty(floor(x - sprite_width/2),floor(y + sprite_height / 2))) || (!tile_empty(floor(x + sprite_width/2),floor(y + sprite_height / 2)))) && vy >= 0) {
 	y = y - y % 16 + sprite_height / 2;
 	vy = 0;
-	on_floor = true;
 }
 
 
@@ -137,3 +146,4 @@ if (x < 0 - sprite_width / 2) {
 	x = room_width - sprite_width / 2;
 	vx = 0;
 }
+show_debug_message("step end " +string(x));
