@@ -5,12 +5,13 @@
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Plumber",
+    "path": "folders/Plumber.yy",
   },
   "parentObjectId": null,
   "persistent": false,
@@ -29,8 +30,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_idle_right",
-    "path": "sprites/spr_idle_right/spr_idle_right.yy",
+    "name": "Plumber_Sprite",
+    "path": "sprites/Plumber_Sprite/Plumber_Sprite.yy",
   },
   "spriteMaskId": null,
   "visible": true,
