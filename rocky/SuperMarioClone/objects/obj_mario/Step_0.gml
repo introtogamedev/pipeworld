@@ -2,7 +2,10 @@
 #macro ACCELERATION_RUN 180
 #macro DECCELERATION 220
 
+//show_debug_message(string(x)+","+string(y));
+
 dt=delta_time/1000000;
+if(dt<0.05){
 //----------------
 //----movement----
 //----------------
@@ -94,6 +97,10 @@ if(down<y){
 	y=down;
 	velocityy=0;
 }
+else if(up>y){
+	y=up;
+	velocityy=0;
+}
 //----------------------
 //-----set viewport-----
 //----------------------
@@ -128,5 +135,6 @@ if(velocityx==0)
 	sprite_index=spr_mario_idle;
 else{
 	sprite_index=spr_mario_walk;
+}
 }
 }
