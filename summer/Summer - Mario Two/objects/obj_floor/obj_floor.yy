@@ -1,12 +1,8 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_plumber_sprite",
-  "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,},
-  ],
+  "name": "obj_floor",
+  "eventList": [],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
@@ -30,8 +26,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_plumber_sprite",
-    "path": "sprites/spr_plumber_sprite/spr_plumber_sprite.yy",
+    "name": "spr_floor",
+    "path": "sprites/spr_floor/spr_floor.yy",
   },
   "spriteMaskId": null,
   "visible": true,
