@@ -74,11 +74,11 @@ if (keyboard_check(INPUT_RUN)) {
 
 //Change the x with collision
 
-if (!tile_empty(x + vx  ,y)) {
-    while (!tile_empty(x+vx,y)) {
-        vx -= sign(vx);
-    }
-}
+//if (!tile_empty(x + vx  ,y)) {
+//    while (!tile_empty(x+vx,y)) {
+//        vx -= sign(vx);
+//    }
+//}
 
 x += vx;
 
@@ -110,11 +110,11 @@ if (vy > max_gravity) {
 
 //Change the y with collision
 
-if (!tile_empty(x,y+vy)) {
-    while (!tile_empty(x,y+vy)) {
-        vy -= sign(vy);
-    }
-}
+//if (!tile_empty(x,y+vy + sprite_height * sign(vx) / 2)) { //foxthis
+//    while (!tile_empty(x,y+vy)) {
+//        vy -= sign(vy);
+//    }
+//}
 
 y += vy;
 
