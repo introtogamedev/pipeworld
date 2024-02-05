@@ -8,7 +8,7 @@ function level_collision(_x, _y)
 {
 	return tilemap_get_at_pixel
 	(
-		layer_tilemap_get_id(TILES_BRICK),
+		layer_tilemap_get_id(TILES_NAME),
 		_x,
 		_y
 	)
