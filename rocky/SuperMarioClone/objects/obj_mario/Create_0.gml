@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-
+test_left=0;
 //movement
 normSpeed=80;
 sprintSpeed=160;
@@ -19,13 +19,16 @@ can_jump=true;
 
 velocityx=0
 velocityy=0;
-camera=room_get_camera(Room1,0);
+camera=view_camera[0];
 view_width=camera_get_view_width(camera);
 view_height=camera_get_view_height(camera);
 
 offset=0;
 
+tilemap=layer_tilemap_get_id("Tiles_1");
+
 function CheckTileCollisionY(){
+	return place_meeting(x,y,tilemap);
 	tile=levelCollision(x,y+(sign(velocityy)<<4));
 	if(tile<=0)
 		return false;
@@ -37,6 +40,7 @@ function CheckTileCollisionY(){
 	return ((t>=top and t<=bottom) or (b>=top and b<=bottom));
 }
 function CheckTileCollisionX(){
+	return place_meeting(x,y,tilemap);
 	tile=levelCollision(x+(sign(velocityx)<<4),y);
 	if(tile<=0)
 		return false;

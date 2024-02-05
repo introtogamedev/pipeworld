@@ -77,11 +77,10 @@ image_xscale=velocityx>0?1:-1;
 //------------------------------
 //-cannot move outside the room-
 //------------------------------
-viewport=room_get_viewport(Room1,0);
 
-left=camera_get_view_x(camera)+abs(sprite_width)>>1;
+left=camera_get_view_x(camera)+(abs(sprite_width)>>1);
 right=left+view_width-abs(sprite_width);
-up=camera_get_view_y(camera)+abs(sprite_height)>>1;
+up=camera_get_view_y(camera)+(abs(sprite_height)>>1);
 down=up+view_height-abs(sprite_height);
 if(left>x){
 	x=left;
@@ -98,11 +97,12 @@ if(down<y){
 //----------------------
 //-----set viewport-----
 //----------------------
-//xdif=x-left-(view_width>>1);
-//if(xdif>0){
-	//camera_set_view_pos(camera, camera_get_view_x(camera)+xdif,camera_get_view_y(camera));
+xdif=x-left-(view_width>>1);
+if(xdif>0){
+	//camera_get_view_x(camera)+xdif
+	camera_set_view_pos(camera, camera_get_view_x(camera)+xdif,camera_get_view_y(camera));
 	//camera_apply(camera);
-//}
+}
 	
 //exists on the pixel boundaries
 /*if(velocity>0){
