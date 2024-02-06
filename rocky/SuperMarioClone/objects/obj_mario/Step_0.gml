@@ -94,18 +94,15 @@ if(place_meeting(x,y,tilemap)){
 		y+=SPRITE_LEN_HALF;
 		velocityy=0;
 		clipping=0;
-	}///*
+	}
 	else if(velocityy<0){
-		//show_debug_message(string(levelCollision(x,y-16,tilemap))+", x&15="+string(x&15)+", offset="+string(SPRITE_LEN_HALF-COLLISION_OFFSET));
-		if(levelCollision(x,y-16,tilemap)==0){
+		if(levelCollision(x,y-16,tilemap)==0){//--------------clips through the edge----------
 			if((x&15)<SPRITE_LEN_HALF and (x&15)>(SPRITE_LEN_HALF-COLLISION_OFFSET) and velocityx<=0){//on the right
-				//show_debug_message("right");
 				clipping=1;
 			}
 			else if((x&15)>SPRITE_LEN_HALF and (x&15)<SPRITE_LEN_HALF+COLLISION_OFFSET and velocityx>=0){//on the left
 				clipping=-1;
-				//show_debug_message("left");
-			}
+			}//-------------------------------------------------------------------------------
 			else{
 				clipping=0;
 				y&=~15;
@@ -119,7 +116,7 @@ if(place_meeting(x,y,tilemap)){
 			y+=SPRITE_LEN_HALF;
 			velocityy=0;
 		}
-	}//*/
+	}
 	else{
 		y&=~15;
 		y+=SPRITE_LEN_HALF;
