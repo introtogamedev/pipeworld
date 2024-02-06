@@ -8,6 +8,7 @@
 // our adjusted collision point
 var _px_collision = state.px;
 var _py_collision = state.py;
+var _vy_collision = state.vy;
 
 // by default, we're not on the ground
 var _is_on_ground = false;
@@ -25,20 +26,52 @@ var _y1 = _y0 + sprite_height;
 // if we collide with the level boundary, stop the character
 _px_collision = clamp(_px_collision, 0, room_width - sprite_width);
 
+// ----------
+// -- head --
+// ----------
+
+// if we're moving up
+if (state.vy < 0) {
+	// check for a head collision at our head
+	if (level_collision(_x0 + 8, _y0) > TILES_NONE) {
+		// then cancel any upwards velocity
+		_vy_collision = 0;
+	}
+}
+
 // ------------
 // -- ground --
 // ------------
 
-// check for a ground collision at our feet
-if (
-	level_collision(_x0, _y1) > TILES_NONE ||
-	level_collision(_x1, _y1) > TILES_NONE
-) {
-	// then move the player to the top of the tile
-	_py_collision -= state.py % 16 - 1;
+// if we're not moving up
+if (state.vy >= 0) {
+	// check for a ground collision at our feet
+	if (
+		level_collision(_x0 + 2, _y1) > TILES_NONE ||
+		level_collision(_x1 - 2, _y1) > TILES_NONE
+	) {
+		// then move the player to the top of the tile
+		_py_collision -= state.py % 16 - 1;
 
-	// and track that we're on ground
-	_is_on_ground = true;
+		// and track that we're on ground
+		_is_on_ground = true;
+	}
+}
+
+// ----------
+// -- side --
+// ----------
+
+// check for a left-side collision
+if (level_collision(_x0, _y0 + 8) > TILES_NONE) {
+	// then move the player to the right of the tile
+	_px_collision += 16 - state.px % 16;
+}
+
+// check for a right-side collision
+if (level_collision(_x1, _y0 + 8) > TILES_NONE) {
+	// then move the player to the left of the tile
+	_px_collision -= state.px % 16;
 }
 
 // ------------------
@@ -52,6 +85,12 @@ if (
 if (state.px != _px_collision) {
 	state.px = _px_collision;
 	state.vx = 0;
+}
+
+
+// if we changed our speed on the y-axis, update it
+if (state.vy != _vy_collision) {
+	state.vy = _vy_collision;
 }
 
 // if we collided on the y-axis, stop velocity
