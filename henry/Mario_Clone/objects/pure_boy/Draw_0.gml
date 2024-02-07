@@ -1,4 +1,6 @@
+// make sure you can't change direction while jumping or falling
 
+/*
 //constants
 //the index in the strip for the run animation
 #macro MOVE_ANIM_START 1
@@ -16,19 +18,19 @@
 //updat the current animation state
 
 //if moving, switch to move animation
-if ((input_dir != 0) || vx !=0) && (vy == 0) {
+if ((state.input_dir != 0) || state.vx !=0) && (state.vy == 0) {
 
-	move_frame = (move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
-	image_idx = MOVE_ANIM_START + move_frame;
+	state.move_frame = (state.move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
+	state.image_idx = MOVE_ANIM_START + state.move_frame;
 }
 //if we're jumping, switch to the jump boi
-else if (vy < 0)
+else if (state.vy < 0)
 {
-	image_idx = JUMP_FRAME;
+	state.image_idx = JUMP_FRAME;
 }
 //if no input, switch to standing
-else if (vx == 0) && (vy == 0) {
-	image_idx = 0;
+else if (state.vx == 0) && (state.vy == 0) {
+	state.image_idx = 0;
 }
 
 
@@ -38,21 +40,21 @@ else if (vx == 0) && (vy == 0) {
 
 
 //make sure the position is always pixel-aligned
-var _x = floor(px);
-var _y = floor(py); 
+var _x = floor(state.px);
+var _y = floor(state.py); 
 
 //face in teh move direction
 var _xscale = 1;
 
 //if moving left, flip the sprite
-if (sign (look_dir < 0 )){
+if (sign (state.look_dir < 0 )){
 	_xscale = -1;
 	_x += sprite_width;
 }
 
 draw_sprite_ext(
 	sprite_index,
-	image_idx,
+	state.image_idx,
 	_x,
 	y,
 	 _xscale,
@@ -62,5 +64,19 @@ draw_sprite_ext(
 	image_alpha
 )
 
+//debug
 
+if (state.is_on_ground) {draw_set_color(c_white)}
+//else if (is_running)
+else {draw_set_color(c_lime)}
+
+	draw_rectangle(
+	_x,
+	_y,
+	_x + sprite_width*_xscale,
+	y + sprite_height,
+	true)
+
+
+//*/
 
