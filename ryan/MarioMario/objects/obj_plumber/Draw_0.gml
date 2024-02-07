@@ -31,3 +31,10 @@ draw_sprite_ext(
 	image_angle, 
 	image_blend,
 	image_alpha)
+	
+#region debugging visuals
+if (DEBUG_MODE){
+	draw_rectangle(x - sprite_width/2, y - sprite_height , x + sprite_width/2, y, true);
+
+}
+#endregion

@@ -1,15 +1,27 @@
 #region utility variables
 	#macro MS 1000000
 	#macro TILE_SIZE 16
+	
+	deltaTime = 0; //initialize to 0;
+	
+	#macro DEBUG_MODE true
+	
+	pause = false
 
 	//#macro CAMERA_INDEX 0
 #endregion
 
 #region Tilemap/sprite Indexes
+	//utility
+	tilemapLayer = layer_get_id(TILESET_COLLIDABLE);
+	tilemapID = layer_tilemap_get_id(tilemapLayer);
 	//layers
 	#macro TILESET_COLLIDABLE "Tilemap_collidable"
 	//tiles
-	#macro TILE_FLOOR_ID 1 
+	#macro TILE_FLOOR 1
+
+	
+	#macro SPRITE_X_OFFSET sprite_width/2
 #endregion
 
 #region INPUT
@@ -55,11 +67,17 @@
 
 	onGround = false;//initialize to false
 	
+	jumping = false
 	jumpTriggered = false;//initialize to false;
 	jumpAllowed = false;//initialize to false;
 	jump_height = 0;//initialize to 0;
 #endregion
 
-
-
+#region unused
+	enum tile_type{
+		FLOOR,
+		CEILING,
+		WALL,
+	}
+#endregion
 

@@ -8,6 +8,7 @@
     {"name":"spr_tileset","order":1,"path":"sprites/spr_tileset/spr_tileset.yy",},
     {"name":"Config","order":12,"path":"scripts/Config/Config.yy",},
     {"name":"spr_marioSPEEDTURN","order":2,"path":"sprites/spr_marioSPEEDTURN/spr_marioSPEEDTURN.yy",},
+    {"name":"checkTile","order":15,"path":"scripts/checkTile/checkTile.yy",},
     {"name":"NES___Super_Mario_Bros___Mario__Luigi","order":14,"path":"sprites/NES___Super_Mario_Bros___Mario__Luigi/NES___Super_Mario_Bros___Mario__Luigi.yy",},
     {"name":"spr_marioIDLE","order":4,"path":"sprites/spr_marioIDLE/spr_marioIDLE.yy",},
     {"name":"TileSet1","order":2,"path":"tilesets/TileSet1/TileSet1.yy",},
