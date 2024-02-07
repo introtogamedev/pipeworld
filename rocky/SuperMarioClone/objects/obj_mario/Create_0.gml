@@ -31,6 +31,7 @@ offset=0;
 tilemap=layer_tilemap_get_id("Tiles_1");
 
 clipping=0;
+isFalling=false;
 /*
 function CheckTileCollisionY(){
 	return place_meeting(x,y,tilemap);
@@ -56,3 +57,32 @@ function CheckTileCollisionX(){
 	//show_debug_message("tile="+string(tile)+", "+string(left)+","+string(right)+"|"+string(l)+","+string(r));
 	return ((l>=left and l<=right) or (r>=left and r<=right));
 }*/
+#region animation
+//idle, walk, jump, skid
+idle={
+	nom:"idle",
+	clip_id: spr_mario_idle
+};
+walk={
+	nom:"walk",
+	clip_id: spr_mario_walk
+};
+skid={
+	nom:"skid",
+	clip_id: spr_mario_skid
+};
+jump={
+	nom:"jump",
+	clip_id: spr_mario_jump
+};
+
+animator={
+	cur_clip:walk,
+	play:function(clip){
+		if(clip!=cur_clip){
+			cur_clip=clip;
+			obj_mario.sprite_index=cur_clip.clip_id;
+		}
+	}
+};
+#endregion

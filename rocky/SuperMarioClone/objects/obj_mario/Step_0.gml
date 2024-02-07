@@ -46,13 +46,13 @@ else if(keyboard_check_released(vk_shift)){
 //-------------
 //----jump-----
 //-------------
-if(can_jump and keyboard_check_pressed(ord("W"))){
+if(can_jump and keyboard_check_pressed(ord("W")) and velocityy<40){
 	velocityy=-jump_acceleration;
-	sprite_index=spr_mario_jump;
+	animator.play(jump);
 	can_jump=false;
 	jump_press_time=0;
 }
-if(jump_press_time<max_jump_press_time&&keyboard_check(ord("W"))){
+if(jump_press_time<max_jump_press_time&&!isFalling&&keyboard_check(ord("W"))){
 	jump_press_time+=dt;
 	velocityy=-jump_acceleration;
 }
@@ -90,6 +90,7 @@ y+=velocityy*dt;
 if(place_meeting(x,y,tilemap)){
 	if(velocityy>0){ /////////-------------on landing (from jump)---------------
 		can_jump=true;
+		isFalling=false;
 		y&=~15;
 		y+=SPRITE_LEN_HALF;
 		velocityy=0;
@@ -104,6 +105,8 @@ if(place_meeting(x,y,tilemap)){
 				clipping=-1;
 			}//-------------------------------------------------------------------------------
 			else{
+				isFalling=true;
+				jump_press_time=1000000;
 				clipping=0;
 				y&=~15;
 				y+=SPRITE_LEN_HALF;
@@ -111,6 +114,8 @@ if(place_meeting(x,y,tilemap)){
 			}
 		}
 		else{
+			isFalling=true;
+			jump_press_time=1000000;
 			clipping=0;
 			y&=~15;
 			y+=SPRITE_LEN_HALF;
@@ -118,6 +123,8 @@ if(place_meeting(x,y,tilemap)){
 		}
 	}
 	else{
+		isFalling=true;
+		jump_press_time=1000000;
 		y&=~15;
 		y+=SPRITE_LEN_HALF;
 		velocityy=0;
@@ -187,23 +194,21 @@ else if(offset<1){
 	x-=1;
 }*/
 //animation
+#region animation
+///*
 if(can_jump){
-
-if(velocityx==0){
-	if(keyboard_check(KEY_LEFT) or keyboard_check(KEY_RIGHT)){
-		if(sprite_index!=spr_mario_walk){
-			sprite_index=spr_mario_walk;
+	if(velocityx==0){
+		if(keyboard_check(KEY_LEFT) or keyboard_check(KEY_RIGHT)){
+			animator.play(walk);
+		}
+		else{
+			animator.play(idle);
 		}
 	}
-	else{
-		sprite_index=spr_mario_idle;
+	else if(accelerationx!=0 and sign(accelerationx)!=sign(velocityx)){
+		animator.play(skid);
 	}
-}
-else if(accelerationx!=0 and sign(accelerationx)!=sign(velocityx)){
-	sprite_index=spr_mario_skid;
-}
-else if(sprite_index!=spr_mario_walk){
-	sprite_index=spr_mario_walk;
-}
-}
+	animator.play(walk);
+}//*/
+#endregion
 }

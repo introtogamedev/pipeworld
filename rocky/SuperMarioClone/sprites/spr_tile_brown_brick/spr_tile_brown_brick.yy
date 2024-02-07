@@ -4,7 +4,7 @@
   "name": "spr_tile_brown_brick",
   "bbox_bottom": 15,
   "bbox_left": 16,
-  "bbox_right": 31,
+  "bbox_right": 79,
   "bbox_top": 0,
   "bboxMode": 0,
   "collisionKind": 1,
@@ -13,14 +13,14 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"ec47e5a4-8807-40b5-b8e5-86686f23c3c1",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"347484f6-da89-41be-808f-8647fe9344fd",},
   ],
   "gridX": 0,
   "gridY": 0,
-  "height": 16,
+  "height": 32,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"9a4e07dc-f856-4bbf-9b4e-0ec40ae7ea7c","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"9e0491ef-9a79-46bd-b467-c2c02f1fdfe2","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": {
     "resourceType": "GMNineSliceData",
@@ -77,7 +77,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"ec47e5a4-8807-40b5-b8e5-86686f23c3c1","path":"sprites/spr_tile_brown_brick/spr_tile_brown_brick.yy",},},},"Disabled":false,"id":"93782b45-2e1f-4163-a174-a1604cfbcd6b","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"347484f6-da89-41be-808f-8647fe9344fd","path":"sprites/spr_tile_brown_brick/spr_tile_brown_brick.yy",},},},"Disabled":false,"id":"7957c9d1-ec34-46e1-9cb4-e06a8a291b64","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,
@@ -93,5 +93,5 @@
   },
   "type": 0,
   "VTile": false,
-  "width": 32,
+  "width": 80,
 }
