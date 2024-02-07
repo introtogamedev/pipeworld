@@ -154,7 +154,8 @@ function ycheck (ymove){
 	}
 }
 for (var i = 0; i < abs(ymove); i++){
-	if (tilemap_get_at_pixel(tilemapID, x, ycheck(ymove)) != TILE_FLOOR){
+	if (tilemap_get_at_pixel(tilemapID, x - SPRITE_X_OFFSET, ycheck(ymove)) != TILE_FLOOR and 
+	tilemap_get_at_pixel(tilemapID, x + SPRITE_X_OFFSET, ycheck(ymove)) != TILE_FLOOR){
 		onGround = false;
 		y += sign(ymove);
 		ymoving = true;
