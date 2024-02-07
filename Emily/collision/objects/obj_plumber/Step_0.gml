@@ -1,16 +1,16 @@
-//constants
-#macro INPUT_L ord("A")
-#macro INPUT_R ord("D")
-#macro INPUT_UP ord("W")
-#macro INPUT_BOOST vk_shift
+////constants
+//#macro INPUT_L ord("A")
+//#macro INPUT_R ord("D")
+//#macro INPUT_UP ord("W")
+//#macro INPUT_BOOST vk_shift
 
-#macro MOVE_ACCELERATION 6
-#macro MAX_VELOCITY 10
-#macro MOVE_DRAG 0.2
-#macro MOVE_BOOST 4
+//#macro MOVE_ACCELERATION 6
+//#macro MAX_VELOCITY 10
+//#macro MOVE_DRAG 0.2
+//#macro MOVE_BOOST 4
 
-//number of microseconds in a second
-#macro MS 100000
+////number of microseconds in a second
+//#macro MS 100000
 
 
 //-------
@@ -20,7 +20,7 @@ var _input_dir = 0;
 image_speed = 1;
 
 //movement
-if (keyboard_check(INPUT_L) && !place_meeting(x,y,obj_platform))
+if (keyboard_check(INPUT_L))
 {
 	_input_dir -=1;
 	sprite_index = spr_plumber_walk_l;
@@ -46,7 +46,7 @@ if (keyboard_check(INPUT_L) && !place_meeting(x,y,obj_platform))
 
 
 
-if (keyboard_check(INPUT_R) && !place_meeting(x,y,obj_platform))
+if (keyboard_check(INPUT_R))
 {
 	_input_dir +=1;
 	sprite_index = spr_plumber_walk_r;
@@ -83,13 +83,6 @@ vx += _ax * _dt;
 //integrate velocity into position
 x += vx * _dt;
 
-
-//confines player to level
-if (x < 0 && _input_dir == -1)
-{
-    x = 0;
-    vx = 0;
-}
 
 if (x > room_width - sprite_width && _input_dir == 1)
 {
@@ -162,12 +155,15 @@ if (falling)
 		on_floor = true;
 		show_debug_message("...");
 	}
+	
+	
 	//platform
 	with (obj_platform)
 	{
 		if (obj_plumber.y + obj_plumber.sprite_height > y - _vertical_check &&
 			obj_plumber.y + obj_plumber.sprite_height < y + _vertical_check &&
-			obj_plumber.x + obj_plumber.sprite_width > x && obj_plumber.x < x + sprite_width &&
+			obj_plumber.x + obj_plumber.sprite_width > x &&
+			obj_plumber.x < x + sprite_width &&
 			obj_plumber.vy > 0)
 		{
 			obj_plumber.vy = 0;
@@ -248,14 +244,12 @@ else
 	}
 }
 
-
-
-//platform collision
+//PLATFORM COLLISION
 if (place_meeting (x,y+vy, obj_platform))
 {
 	while (abs(vy) > 0.1)
 	{
-		vy/= 2;
+		vy= 0;
 		if (!place_meeting(x,y+vy,obj_platform))
 		{
 			y+=vy;
@@ -263,16 +257,25 @@ if (place_meeting (x,y+vy, obj_platform))
 	}
 	vy = 0;
 }
-	
 if (place_meeting(x+vx,y,obj_platform))
 {
 	while (abs(vx > 0.1))
 	{
-	vx/= 2;
+	vx= 0;
 	if (!place_meeting(x+vx,y,obj_platform))
 		{
 			x+=vx;
 		}
 	}
+	vx = 0;
+}
+
+
+
+//confines player to level
+var _px_collision = clamp(x, 0, room_width - sprite_width);
+if (x != _px_collision)
+{
+	x = _px_collision;
 	vx = 0;
 }
