@@ -29,6 +29,12 @@ var _y1 = state.py + sprite_height; //bottom
 _px_collision = clamp(_px_collision, 0, room_width - sprite_width);
 //var _py_rm_collision = clamp(py, room_height + 64, 0);
 
+if (level_collision(_x0, state.py))
+{
+	_px_collision -= state.px % 16;
+}
+
+
 //check underneath us for a ground collision
 if (
 	level_collision(_x0, _y1) ||

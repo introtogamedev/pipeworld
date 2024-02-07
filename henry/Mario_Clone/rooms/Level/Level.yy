@@ -21,8 +21,9 @@
 -15,-2147483648,1,0,-15,-2147483648,1,0,-15,-2147483648,-4,0,-5,-2147483648,-3,0,
 -4,1,1,0,-15,-2147483648,1,0,-3,-2147483648,-6,0,-3,1,-3,-2147483648,
 1,0,-6,-2147483648,-3,1,-6,-2147483648,4,0,-2147483648,0,0,-3,1,-7,
-0,-2,-2147483648,1,0,-3,-2147483648,1,0,-6,-2147483648,-2,0,-3,-2147483648,1,
-0,-3,-2147483648,1,0,-11,-2147483648,-16,0,-32,1,],"TileDataFormat":1,},"tilesetId":{"name":"Level_Tiles","path":"tilesets/Level_Tiles/Level_Tiles.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+0,-2,-2147483648,1,0,-3,-2147483648,1,0,-6,-2147483648,-2,0,4,1,-2147483648,
+-2147483648,0,-3,-2147483648,1,0,-8,-2147483648,6,1,-2147483648,-2147483648,0,0,1,-10,
+0,3,1,0,0,-32,1,],"TileDataFormat":1,},"tilesetId":{"name":"Level_Tiles","path":"tilesets/Level_Tiles/Level_Tiles.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4294941596,"depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
   "parent": {

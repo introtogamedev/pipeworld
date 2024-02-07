@@ -18,7 +18,7 @@
 //updat the current animation state
 
 //if moving, switch to move animation
-if ((state.input_dir != 0) || state.vx !=0) && (state.vy == 0) {
+if ((state.input_dir != 0) || state.vx !=0) && (state.vy == 0) && !state.falling_from_collision {
 
 	state.move_frame = (state.move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
 	state.image_idx = MOVE_ANIM_START + state.move_frame;
@@ -56,7 +56,7 @@ draw_sprite_ext(
 	sprite_index,
 	state.image_idx,
 	_x,
-	y + 1,
+	y ,
 	 _xscale,
 	image_yscale,
 	image_angle,
