@@ -23,7 +23,7 @@
 	#macro TILE_FLOOR 1
 
 	
-	#macro SPRITE_X_OFFSET sprite_width/2
+	#macro SPRITE_X_OFFSET abs(sprite_width/2)
 #endregion
 
 #region INPUT

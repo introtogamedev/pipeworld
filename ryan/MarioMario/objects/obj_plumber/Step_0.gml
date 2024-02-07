@@ -76,12 +76,11 @@ if (input_direction == 0 ){
 var xmove = xvelocity * deltaTime;
 var xcollided = false;
 function xcheck (xmove){
-	return x + sign(xmove) *(SPRITE_X_OFFSET + 1)
+	return x + (sign(xmove) *(SPRITE_X_OFFSET + 1))
 }
 for (var i = 0; i < abs(xmove); i++){
 	if (tilemap_get_at_pixel(tilemapID, xcheck(xmove), y-8) != TILE_FLOOR){
 		x += sign(xmove);
-		xmoving = true;
 	}else{
 		xcollided = true;
 		xvelocity = 0;
@@ -92,7 +91,7 @@ if (xcollided){
 	if (xcheck(xmove) >= x){//right check/collide
 		clampTileXIndex = tilemap_get_cell_x_at_pixel(tilemapID, xcheck(xmove), y)-1
 	}else{
-		clampTileXIndex = tilemap_get_cell_x_at_pixel(tilemapID, xcheck(xmove), y)+1
+		clampTileXIndex = tilemap_get_cell_x_at_pixel(tilemapID, xcheck(xmove), y)+2
 	}
 	x = tilemap_get_tile_width(tilemapID)* clampTileXIndex + SPRITE_X_OFFSET*sign(xmove);	
 }else{
