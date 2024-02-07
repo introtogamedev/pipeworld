@@ -16,8 +16,8 @@
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Collision","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":15,"SerialiseWidth":16,"TileCompressedData":[
 -23,-2147483648,1,0,-14,-2147483648,-3,0,1,-2147483648,-4,0,-3,-2147483648,-8,0,
-1,-2147483648,-4,0,-3,-2147483648,-4,0,-4,-2147483648,-5,0,-39,-2147483648,-2,1,
--10,-2147483648,1,0,-3,-2147483648,-2,1,-14,-2147483648,-2,1,3,24,1,1,
+1,-2147483648,-4,0,-3,-2147483648,-4,0,-4,-2147483648,-5,0,-39,-2147483648,-2,0,
+-10,-2147483648,1,0,-3,-2147483648,-2,0,-14,-2147483648,-2,1,3,24,1,1,
 -11,-2147483648,1,0,-12,-2147483648,2,33,0,-22,-2147483648,6,9,0,0,264,
 265,0,-6,-2147483648,1,3,-3,-2147483648,6,42,0,0,297,298,0,-16,
 923,],"TileDataFormat":1,},"tilesetId":{"name":"ts_NesMarioTiles","path":"tilesets/ts_NesMarioTiles/ts_NesMarioTiles.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
