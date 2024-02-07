@@ -25,9 +25,7 @@
     {"id":{"name":"LevelCollision","path":"scripts/LevelCollision/LevelCollision.yy",},},
     {"id":{"name":"Mairo_Object","path":"objects/Mairo_Object/Mairo_Object.yy",},},
     {"id":{"name":"level_1_1_copy","path":"sprites/level_1_1_copy/level_1_1_copy.yy",},},
-    {"id":{"name":"mario_sprirt","path":"sprites/mario_sprirt/mario_sprirt.yy",},},
     {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
-    {"id":{"name":"Mario_idle","path":"sprites/Mario_idle/Mario_idle.yy",},},
     {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
   ],
   "RoomOrderNodes": [

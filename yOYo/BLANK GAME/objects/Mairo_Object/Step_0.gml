@@ -37,10 +37,16 @@ var _dt = delta_time / MS;
 var _ax = MOVE_ACEL	* _input_dir;
 var _ay = NORMAL_GRAVITY;
 
-if (_input_dir = 0 and vx != 0){
-	_ax = (-sign(vx) * MOVE_FRIC); //equavilent to ax = dirction * acel
+var _vx_mag = abs(vx);
+var _vx_dir = sign(vx);
+
+if (_input_dir = 0){
+	_vx_mag -= MOVE_FRIC * _dt;
+	_vx_mag = max(_vx_mag, 0);
 }
 
+vx = _vx_mag
+vx = _vx_mag * _vx_dir;
 
 if (abs(vx) > max_speed){
 	vx = sign(vx) * max_speed

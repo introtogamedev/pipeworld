@@ -9,7 +9,6 @@
     {"name":"Mairo_Object","order":1,"path":"objects/Mairo_Object/Mairo_Object.yy",},
     {"name":"level_1_1_copy","order":9,"path":"sprites/level_1_1_copy/level_1_1_copy.yy",},
     {"name":"TileSet1","order":7,"path":"tilesets/TileSet1/TileSet1.yy",},
-    {"name":"Mario_idle","order":2,"path":"sprites/Mario_idle/Mario_idle.yy",},
     {"name":"Level","order":1,"path":"rooms/Level/Level.yy",},
   ],
 }

@@ -13,6 +13,8 @@
 // the frames per second in the move animation
 #macro MOVE_ANIM_SPEED 1 / 7
 
+#macro DRAW_DEBUG true
+
 // -------------
 // -- animate --
 // -------------
@@ -23,9 +25,7 @@
 if (input_move != 0 || vx != 0) {
 	move_frame = (move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
 	image_idx = MOVE_ANIM_START + move_frame;
-} 
-// if no input, switch to standing
-else {
+} else {
 	image_idx = 0;
 }
 
@@ -61,3 +61,16 @@ draw_sprite_ext(
 	image_blend, 
 	image_alpha
 );
+
+//debug
+if (DRAW_DEBUG) {
+	draw_rectangle(
+	_x,
+	_y,
+	_x + sprite_width * _xscale,
+	_y + sprite_height,
+	true
+	);
+
+
+}
