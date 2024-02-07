@@ -14,6 +14,13 @@
 #macro GRAVITY 0.2
 #macro YVEL_MAX 4
 
+y_collision_top = y - sprite_height/2;
+
+y_collision_bottom = y + sprite_height/2;
+
+x_collision_right = x + sprite_width/2;
+
+x_collision_left = x - sprite_width/2;
 
 
 
@@ -58,6 +65,7 @@ if (xVel > 0 && _input_dir = 0){
 	if (xVel < 0.1){
 		xVel = 0;
 	}	
+	
 }
 
 if (xVel < 0 && _input_dir = 0){
@@ -70,15 +78,28 @@ if (xVel < 0 && _input_dir = 0){
 
 
 //BOUNDS
-if (x < 10){
+if (x < 8){
+	
+	x = 8;
+	
 	xVel = 0;
+	
+	
+	
 	_input_dir = clamp(_input_dir,0 ,4)
 	
 }
 
-if (x > room_width - 10){
+show_debug_message("Y = " + string(y));
+show_debug_message("X = " + string(x));
+
+if (x > room_width - 8){
+	x = room_width - 8;
+	
 	xVel = 0;
 	_input_dir = clamp(_input_dir,-4 ,0)
+	
+	show_debug_message("WHAT'S HAPPENING");
 	
 }
 	
@@ -96,7 +117,7 @@ yVel = clamp(yVel, -YVEL_MAX, YVEL_MAX);
 //VERT COLLISION
 
 
-/*
+/* TY'S COLLISION
 // check for ground collision
 var _py_collision = y;
 
@@ -122,21 +143,36 @@ if (y != _py_collision) {
 	vVel = 0;
 }
 
+
+192
+194
+193.20
+
+192/16 = 12
+194/16=12.125
+193.20/16 = 12.075
+191.90/16 = 11.99375
+
+
 */
 
-if(grounded = 0){
+
+if(grounded = false){
 	sprite_index = spr_plumber_jumping;
 }
 
 if (place_meeting(x, y+2, tilemap)){
 	
+	y_collision_bottom = round_pos(y_collision_bottom);
+	
+	y = (y_collision_bottom - 8);
+	
 	grounded = true;
 	yVel = 0;
 	
-	
-	if ((keyboard_check_pressed(JUMP)) && grounded = 1){
+	if ((keyboard_check_pressed(JUMP)) && grounded = true){
 		yVel += JUMP_IMPULSE;
-		
+		sprite_index = spr_plumber_jumping;
 	}
 
 
@@ -144,11 +180,31 @@ if (place_meeting(x, y+2, tilemap)){
 		grounded = false;
 }
 
-show_debug_message(string(grounded));
+show_debug_message(grounded);
 
 
 
 
+//show_debug_message(string(grounded));
+
+// HORIZONTAL COLLISION
+//right
+if (place_meeting(x+2, y, tilemap)){
+	
+
+	
+	xVel = 0;
+	_input_dir = clamp(_input_dir, -4, 0)
+
+}
+//left
+if (place_meeting(x-2, y, tilemap)){
+	
+	
+	
+	xVel = 0;
+	_input_dir = clamp(_input_dir,0 ,4)
+}
 
 
 // MOVE ACCELERATION
