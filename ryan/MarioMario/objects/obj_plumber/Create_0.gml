@@ -6,6 +6,8 @@
 	
 	#macro DEBUG_MODE true
 	
+	#macro INPUT_PAUSE (ord("N"))
+	#macro INPUT_DEBUG_NEXTFRAME vk_right
 	pause = false
 
 	//#macro CAMERA_INDEX 0

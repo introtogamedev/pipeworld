@@ -4,13 +4,13 @@ deltaTime = delta_time/MS;//get fractional delta time
 #region debugging tools START
 var tempframe = false //allows for running of one frame only
 if (DEBUG_MODE){
-	if (keyboard_check_pressed(ord("N"))){
+	if (keyboard_check_pressed(INPUT_PAUSE)){
 		pause = true
-	}if(keyboard_check_released(ord("N"))){
+	}if(keyboard_check_released(INPUT_PAUSE)){
 		pause = false
 	}
 	
-	if (keyboard_check_pressed(vk_right)){
+	if (keyboard_check_pressed(INPUT_DEBUG_NEXTFRAME)){
 		tempframe = true;
 	}
 }
@@ -73,24 +73,30 @@ if (input_direction == 0 ){
 }
 
 #region collision checks & movement: Horizontal
-//collision check: wall
-var xmove = xvelocity * deltaTime
-var xmoving = false;
-var xcheck = x + sign(xmove) *(SPRITE_X_OFFSET + 1)
+var xmove = xvelocity * deltaTime;
+var xcollided = false;
+function xcheck (xmove){
+	return x + sign(xmove) *(SPRITE_X_OFFSET + 1)
+}
 for (var i = 0; i < abs(xmove); i++){
-	if (tilemap_get_at_pixel(tilemapID, xcheck, y-8) != TILE_FLOOR){
+	if (tilemap_get_at_pixel(tilemapID, xcheck(xmove), y-8) != TILE_FLOOR){
 		x += sign(xmove);
 		xmoving = true;
 	}else{
-		xmoving = false;
+		xcollided = true;
 		xvelocity = 0;
 	}
 }
-if (xmoving){
-	x += xmove%1
+if (xcollided){
+	var clampTileXIndex = 0; //initialize to 0
+	if (xcheck(xmove) >= x){//right check/collide
+		clampTileXIndex = tilemap_get_cell_x_at_pixel(tilemapID, xcheck(xmove), y)-1
+	}else{
+		clampTileXIndex = tilemap_get_cell_x_at_pixel(tilemapID, xcheck(xmove), y)+1
+	}
+	x = tilemap_get_tile_width(tilemapID)* clampTileXIndex + SPRITE_X_OFFSET*sign(xmove);	
 }else{
-	var clampTileXIndex = tilemap_get_cell_x_at_pixel(tilemapID, xcheck, y)
-	//x = tilemap_get_tile_width(tilemapID)* clampTileXIndex + SPRITE_X_OFFSET*sign(xmove);		
+	x += xmove%1	
 }
 
 //clamp x position
@@ -156,20 +162,19 @@ for (var i = 0; i < abs(ymove); i++){
 	}else{
 		ymoving = false;
 		yvelocity = 0;
-		
 	}
 }
 if (ymoving){
-	y += ymove%1
+	y += ymove%1//add remainder
 }else{
+	clampTileYIndex = 0;//initialize to 0;
 	if (ycheck(ymove) >= y ){//bottom check/collide
-		var clampTileYIndex = tilemap_get_cell_y_at_pixel(tilemapID, x, ycheck(ymove))
-		y = tilemap_get_tile_height(tilemapID)* clampTileYIndex;
+		clampTileYIndex = tilemap_get_cell_y_at_pixel(tilemapID, x, ycheck(ymove))
 		onGround = true
 	}else{//upwards check/collide
-		var clampTileYIndex = clamp(tilemap_get_cell_y_at_pixel(tilemapID, x, ycheck(ymove)) + 2, 0, tilemap_get_height(tilemapID))
-		y = tilemap_get_tile_height(tilemapID)* clampTileYIndex;
+		clampTileYIndex = clamp(tilemap_get_cell_y_at_pixel(tilemapID, x, ycheck(ymove)) + 2, 0, tilemap_get_height(tilemapID))
 	}
+	y = tilemap_get_tile_height(tilemapID)* clampTileYIndex;
 }
 #endregion
 
@@ -180,3 +185,4 @@ if (ymoving){
 if (onGround) jumpAllowed = true;
 #endregion
 }
+
