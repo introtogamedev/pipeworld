@@ -12,5 +12,11 @@ py = y;
 
 on_floor = false;
 jumping = false;
-jump_velocity = -6;
-jump_acceleration = 10;
+jump_velocity = -5.1;
+
+
+//state = {
+//	hover: 5,
+//	shimmer: "yes",
+//	owo: true
+//}

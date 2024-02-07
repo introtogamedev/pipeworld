@@ -2,9 +2,9 @@
   "resourceType": "GMSprite",
   "resourceVersion": "1.0",
   "name": "spr_mariots",
-  "bbox_bottom": 763,
+  "bbox_bottom": 447,
   "bbox_left": 0,
-  "bbox_right": 679,
+  "bbox_right": 527,
   "bbox_top": 0,
   "bboxMode": 0,
   "collisionKind": 1,
@@ -13,14 +13,14 @@
   "edgeFiltering": false,
   "For3D": false,
   "frames": [
-    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"117a6ab0-5036-4e5b-ba7a-57b2f2c60c37",},
+    {"resourceType":"GMSpriteFrame","resourceVersion":"1.1","name":"e6bc12fd-4e8e-4d54-862d-dc63e4c9cf4c",},
   ],
   "gridX": 0,
   "gridY": 0,
-  "height": 764,
+  "height": 448,
   "HTile": false,
   "layers": [
-    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"1caff4bb-24f2-47e8-a0b6-375086081b50","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
+    {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"8d007f01-29b8-4e9a-9ac9-55ac73f8fad1","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
   "origin": 0,
@@ -54,7 +54,7 @@
     "timeUnits": 1,
     "tracks": [
       {"resourceType":"GMSpriteFramesTrack","resourceVersion":"1.0","name":"frames","builtinName":0,"events":[],"inheritsTrackColour":true,"interpolation":1,"isCreationTrack":false,"keyframes":{"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"1.0","Keyframes":[
-            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"117a6ab0-5036-4e5b-ba7a-57b2f2c60c37","path":"sprites/spr_mariots/spr_mariots.yy",},},},"Disabled":false,"id":"24ad4f6d-4389-430a-b728-89f773b3a7bf","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
+            {"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"1.0","Channels":{"0":{"resourceType":"SpriteFrameKeyframe","resourceVersion":"1.0","Id":{"name":"e6bc12fd-4e8e-4d54-862d-dc63e4c9cf4c","path":"sprites/spr_mariots/spr_mariots.yy",},},},"Disabled":false,"id":"07122c42-11ed-4f1e-a1d3-32f2a58a9f57","IsCreationKey":false,"Key":0.0,"Length":1.0,"Stretch":false,},
           ],},"modifiers":[],"spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange": null,
@@ -70,5 +70,5 @@
   },
   "type": 0,
   "VTile": false,
-  "width": 680,
+  "width": 528,
 }

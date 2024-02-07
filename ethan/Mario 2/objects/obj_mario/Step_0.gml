@@ -7,8 +7,8 @@
 //The number of microseconds in a second
 #macro MS 1000000
 
-#macro MOVE_ACCELERATION 0.1*FPS
-#macro MOVE_RUN_ACCELERATION 0.5*FPS
+#macro MOVE_ACCELERATION 0.08*FPS
+#macro MOVE_RUN_ACCELERATION 0.4*FPS
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
 #macro INPUT_RUN ord("R")
@@ -50,11 +50,11 @@ vy += ay * dt;
 //Max speed
 if (keyboard_check(INPUT_RUN))
 {
-	if (vx < -5) vx = -5;
-	if (vx > 5) vx = 5;
+	if (vx < -3) vx = -3;
+	if (vx > 3) vx = 3;
 } else {
-	if (vx < -2) vx = -2;
-	if (vx > 2) vx = 2;
+	if (vx < -1.5) vx = -1.5;
+	if (vx > 1.5) vx = 1.5;
 }
 
 //Deceleration
@@ -76,77 +76,14 @@ x += vx;
 px = floor(x);
 y += vy;
 py = floor(y);
-show_debug_message("ax: " + string(ax));
-show_debug_message("vx: " + string(vx));
+//show_debug_message("ax: " + string(ax));
+//show_debug_message("vx: " + string(vx));
+//show_debug_message("ay: " + string(ay));
+//show_debug_message("vy: " + string(vy));
 
 //If hitting side of room, vx = 0
-if (x < 0)
+var collision = clamp(px, 0, room_width-sprite_width)
+if (px != collision)
 {
-	x = 0;
-	vx = 0;
-	ax = 0;
-}
-if (x > room_width-sprite_width)
-{
-	x = room_width-sprite_width;
-	vx = 0;
-	ax = 0;
-}
-
-//If hitting a block, don't go through it
-if (!Level_Collision(floor(x),floor(y + sprite_height)))
-{
-	show_debug_message("On a block");
-	y = y - y % 16 //- sprite_height;
-	vy = 0;
-	py = floor(y);
-	on_floor = true;
-	jumping = false;
-	
-	jump_acceleration = 10;
-}
-
-//Jumping
-if (keyboard_check_pressed(INPUT_JUMP) && on_floor)
-{
-	jumping = true;
-	on_floor = false;
-	vy = jump_velocity;
-}
-
-if (jumping)
-{
-	ay -= jump_acceleration;
-	jump_acceleration--;
-	
-	if (jump_acceleration <= 0) jump_acceleration = 0;
-	
-	if (sprite_index = spr_marioleft)
-	{
-		sprite_index = spr_mariojump;
-		image_index = 1;
-	} 
-	if (sprite_index = spr_marioright) 
-	{
-		sprite_index = spr_mariojump;
-		image_index = 0;
-	}
-}
-
-//Reset the sprite once hitting floor after jump
-if (on_floor && sprite_index = spr_mariojump)
-{
-	if (image_index = 1) sprite_index = spr_marioleft;
-	if (image_index = 0) sprite_index = spr_marioright;
-}
-
-//Image Speed
-if (vx < 0 || vx > 0 && !jumping)
-{
-	image_speed = 1;
-}
-else if (vx == 0 && !jumping)
-{
-	image_speed = 0;
-	image_index = 0;
+	px = collision;
 }
