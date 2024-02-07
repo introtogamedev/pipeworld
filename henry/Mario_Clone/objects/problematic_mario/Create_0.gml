@@ -23,6 +23,7 @@ global.plumber_state = {
 	//movement state
 	is_on_ground: false,
 	is_running: false,
+	is_jumping: false,
 	is_jump_held: false,
 	falling_from_collision: false,
 

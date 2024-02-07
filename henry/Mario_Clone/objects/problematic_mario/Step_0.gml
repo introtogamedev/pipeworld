@@ -22,9 +22,9 @@ state.frame_index += 1;
 
 //move constants
 
-#macro MOVE_WALK_ACCEL 1.8 * FPS
+#macro MOVE_WALK_ACCEL 1.6 * FPS
 #macro MOVE_RUN_ACCEL 5 * FPS
-#macro MOVE_DECEL 1.2 * FPS
+#macro MOVE_DECEL 2.5 * FPS
 
 //jump tuning
 #macro JUMP_GRAVITY 16 * FPS
@@ -127,6 +127,11 @@ if (_input_dir !=0) {
 
 //capture the move state
 state.input_dir = _input_dir;
+
+if (state.vy > 0) {
+	is_jumping = true;
+}
+else {is_jumping = false;}
 
 //update actual x
 x = state.px;
