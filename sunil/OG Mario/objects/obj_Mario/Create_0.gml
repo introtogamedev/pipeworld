@@ -8,7 +8,7 @@ vx = 0;
 max_vx = 1.5;
 
 vy = 0;
-max_gravity = 10;
+max_gravity = 8;
 
 
 anim_frame = 0;

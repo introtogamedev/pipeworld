@@ -10,12 +10,25 @@ if (((!tile_empty(x - sprite_width / 2,y - sprite_height / 2)) || (!tile_empty(x
     while ((!tile_empty(x - sprite_width / 2,y-sprite_height/2)) || (!tile_empty(x + sprite_width / 2,y-sprite_height/2))) {
         y++;
 		show_debug_message(y);
+		show_debug_message(move_dir);
     }
 	//show_debug_message("y check worked");
 	vy = 0;
 	jump_frames = 0;
 }
-show_debug_message("y_check");
+//show_debug_message("y_check");
+
+show_debug_message(y);
+show_debug_message(vy);
+//Check for floor collision
+
+if (((!tile_empty(x - sprite_width/2,y + sprite_height / 2)) || (!tile_empty(x + sprite_width/2,y + sprite_height / 2))) && vy >= 0) {
+	y = y - y % 16 + sprite_height / 2;
+	vy = 0;
+}
+
+//show_debug_message("y_check2");
+
 //Change the x with both sides collision
 
 x += vx;
@@ -31,6 +44,7 @@ if (!tile_empty(x + sprite_side_width * move_dir ,y)) {
 	vx = 0;
 	//show_debug_message("x is " + string(x) + " rounded is " +string(floor(x)));
 }
+
 show_debug_message("first_check");
 if (!tile_empty(x - sprite_side_width * move_dir ,y)) {
     while (!tile_empty(x - sprite_width / 2 ,y)) {
@@ -46,13 +60,6 @@ show_debug_message("second_check");
 
 
 //show_debug_message("step mid " +string(x));
-
-//Don't fall through floor
-
-if (((!tile_empty(floor(x - sprite_width/2),floor(y + sprite_height / 2))) || (!tile_empty(floor(x + sprite_width/2),floor(y + sprite_height / 2)))) && vy >= 0) {
-	y = y - y % 16 + sprite_height / 2;
-	vy = 0;
-}
 
 
 
