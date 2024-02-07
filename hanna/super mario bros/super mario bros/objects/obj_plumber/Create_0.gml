@@ -17,6 +17,8 @@ grounded = false;
 
 running_into_wall = false;
 
+bonk = false;
+
 
 
 function round_pos(pos){

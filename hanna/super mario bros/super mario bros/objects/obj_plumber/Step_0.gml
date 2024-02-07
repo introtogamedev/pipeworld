@@ -90,8 +90,6 @@ if (x < 8){
 	
 }
 
-show_debug_message("Y = " + string(y));
-show_debug_message("X = " + string(x));
 
 if (x > room_width - 8){
 	x = room_width - 8;
@@ -99,7 +97,6 @@ if (x > room_width - 8){
 	xVel = 0;
 	_input_dir = clamp(_input_dir,-4 ,0)
 	
-	show_debug_message("WHAT'S HAPPENING");
 	
 }
 	
@@ -113,9 +110,6 @@ if (x > room_width - 8){
 
 yVel += GRAVITY;
 yVel = clamp(yVel, -YVEL_MAX, YVEL_MAX);
-
-//VERT COLLISION
-
 
 /* TY'S COLLISION
 // check for ground collision
@@ -156,9 +150,11 @@ if (y != _py_collision) {
 
 */
 
-
+//VERT COLLISION
+//BOTTOM COLLISION
 if(grounded = false){
 	sprite_index = spr_plumber_jumping;
+
 }
 
 if (place_meeting(x, y+2, tilemap)){
@@ -180,7 +176,17 @@ if (place_meeting(x, y+2, tilemap)){
 		grounded = false;
 }
 
-show_debug_message(grounded);
+//TOP COLLISION
+if (place_meeting(x, y-2, tilemap)){
+	bonk = true;
+} else{
+	bonk = false;
+}
+
+
+if (bonk = true){
+	sprite_index = spr_plumber_jumping;
+}
 
 
 
