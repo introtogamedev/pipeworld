@@ -1,3 +1,7 @@
+/// -- constansts --
+
+sprite_side_width = sprite_width / 2;
+
 /// -- variables --
 
 vx = 0;
@@ -14,3 +18,6 @@ spr_frame = 0;
 jump_frames = 10;
 
 input_dir = 0;
+
+move_dir = 0;
+
