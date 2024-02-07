@@ -11,3 +11,10 @@ function level_collision(_x, _y) {
 		_y
 	)
 }
+
+function level_collision_position(_x, _y) {
+	return {
+		_x: tilemap_get_cell_x_at_pixel(layer_tilemap_get_id(TILES_NAME),_x,_y),
+		_y: tilemap_get_cell_y_at_pixel(layer_tilemap_get_id(TILES_NAME), _x, _y)
+	}
+}

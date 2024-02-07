@@ -20,12 +20,15 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"Game","path":"objects/Game/Game.yy",},},
     {"id":{"name":"plumber","path":"sprites/plumber/plumber.yy",},},
     {"id":{"name":"config","path":"scripts/config/config.yy",},},
     {"id":{"name":"LevelCollision","path":"scripts/LevelCollision/LevelCollision.yy",},},
     {"id":{"name":"Mairo_Object","path":"objects/Mairo_Object/Mairo_Object.yy",},},
     {"id":{"name":"level_1_1_copy","path":"sprites/level_1_1_copy/level_1_1_copy.yy",},},
     {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
+    {"id":{"name":"JasonExt","path":"scripts/JasonExt/JasonExt.yy",},},
+    {"id":{"name":"Struct","path":"scripts/Struct/Struct.yy",},},
     {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
   ],
   "RoomOrderNodes": [

@@ -29,8 +29,8 @@
   "nineSlice": null,
   "origin": 0,
   "parent": {
-    "name": "BLANK GAME",
-    "path": "BLANK GAME.yyp",
+    "name": "Mario",
+    "path": "folders/Mario.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {
