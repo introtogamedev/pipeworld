@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Config",
+  "name": "config",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
