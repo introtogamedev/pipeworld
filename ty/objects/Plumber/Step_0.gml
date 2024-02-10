@@ -34,6 +34,15 @@ enum INPUT_STATE {
 	HOLD  = 2
 }
 
+// -----------
+// -- debug --
+// -----------
+
+// if we're paused, do nothing
+if (game.debug_is_paused) {
+	return	
+}
+
 // ---------------
 // -- get state --
 // ---------------

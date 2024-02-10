@@ -1,6 +1,15 @@
-// ---------------
-// -- collision --
-// ---------------
+// -----------
+// -- debug --
+// -----------
+
+// if we're paused, do nothing
+if (game.debug_is_paused) {
+	return	
+}
+
+// ~*~*~*~*~*~*~*~
+// ~* collision *~
+// ~*~*~*~*~*~*~*~
 
 // stop the character from moving through objects that it shouldn't,
 // such as the level boundary
@@ -101,3 +110,42 @@ if (state.py != _py_collision) {
 
 // update ground flag
 state.is_on_ground = _is_on_ground;
+
+// ~*~*~*~*~*~*~*~
+// ~* animation *~
+// ~*~*~*~*~*~*~*~
+
+// update any physical state we need to figure out which image
+// in the strip to show
+
+// once we land, end the jump animation
+if (state.anim_is_jumping && state.is_on_ground) {
+	state.anim_is_jumping = false;
+}
+
+// -------------
+// -- animate --
+// -------------
+
+// update the current animation state to show the correct image
+// in the strip
+
+var _anim_image_index = state.anim_image_index;
+var _anim_move_frame = state.anim_move_frame;
+
+// if jumping, switch to jump
+if (state.anim_is_jumping) {
+	_anim_image_index = JUMP_ANIM_START;
+}
+// if moving, switch to move animation
+else if (state.is_on_ground && (state.input_move != 0 || state.vx != 0)) {
+	_anim_move_frame = (_anim_move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
+	_anim_image_index = MOVE_ANIM_START + floor(_anim_move_frame);
+}
+// if no input, switch to standing
+else if (state.vx == 0) {
+	_anim_image_index = 0;
+}
+
+state.anim_image_index = _anim_image_index;
+state.anim_move_frame = _anim_move_frame;
