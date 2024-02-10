@@ -7,21 +7,34 @@
 // the frames per second in the move animation
 #macro MOVE_ANIM_SPEED 1 / 7
 
-// -------------
-// -- animate --
-// -------------
+#macro JUMP_ANIM_START  5 //Jump Animation
 
-// update the current animation state
+if (state.anim_is_jumping && state.is_on_ground) {
+	state.anim_is_jumping = false;
+} 
+
+
+var _anim_image_index = state.anim_image_index;
+var _anim_move_frame = state.anim_move_frame;
+
+//JUMPING --> START THE JUMP ANIMATION
+if (state.anim_is_jumping) {
+	_anim_image_index = JUMP_ANIM_START;
+}
 
 // if moving, switch to move animation
-if (input_move != 0 || vx != 0) {
-	move_frame = (move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
-	image_idx = MOVE_ANIM_START + move_frame;
-} 
-// if no input, switch to standing
-else {
-	image_idx = 0;
+else if (state.is_on_ground && (state.input_move != 0 || state.vx != 0)) {
+	_anim_move_frame = (_anim_move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
+	_anim_image_index = MOVE_ANIM_START + floor(_anim_move_frame);
 }
+// if no input, switch to standing
+else if (state.vx == 0) {
+	_anim_image_index = 0;
+}
+
+state.anim_image_index = _anim_image_index;
+state.anim_move_frame = _anim_move_frame;
+
 
 
 // ----------
@@ -31,14 +44,14 @@ else {
 // draw the character given their current state
 
 // make sure the position is always pixel-aligned
-var _x = floor(px);
-var _y = floor(py);
+var _x = floor(state.px);
+var _y = floor(state.py);
 
 // face in the move direction
 var _xscale = 1;
 
 // if moving left, flip the sprite
-if (sign(look_dir) < 0) {
+if (sign(state.look_dir) < 0) {
 	_x += sprite_width;
 	_xscale = -1;
 }
@@ -54,4 +67,20 @@ draw_sprite_ext(
 	image_angle, 
 	image_blend, 
 	image_alpha
+);
+
+if (!state.is_on_ground) {
+	draw_set_color(c_white);
+} else if (!state.is_running) {
+	draw_set_color(abs(state.vx) > MOVE_WALK_MAX ? c_black : c_red);
+} else {
+	draw_set_color(c_lime);
+}
+
+draw_rectangle(
+	_x,
+	_y,
+	_x + sprite_width * _xscale,
+	_y + sprite_height,
+	true
 );
