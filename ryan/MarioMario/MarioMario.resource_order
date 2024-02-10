@@ -17,5 +17,6 @@
     {"name":"spr_marioSPEEDRUN","order":6,"path":"sprites/spr_marioSPEEDRUN/spr_marioSPEEDRUN.yy",},
     {"name":"spr_marioRUN","order":1,"path":"sprites/spr_marioRUN/spr_marioRUN.yy",},
     {"name":"spr_marioJUMP","order":3,"path":"sprites/spr_marioJUMP/spr_marioJUMP.yy",},
+    {"name":"Object2","order":3,"path":"objects/Object2/Object2.yy",},
   ],
 }

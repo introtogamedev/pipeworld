@@ -1,8 +1,15 @@
+//***NOT USED CODE
+
 //---------------------
 //------FUNCTIONS------
 //---------------------
 //*note: some functions seems not able to collapse with #region
 
+ enum tile_type{
+	FLOOR,
+	CEILING,
+	WALL,
+}
 /**
  * Determins whether the tile at the position is of the specified ile type.
  * @param {real} _x x position to check

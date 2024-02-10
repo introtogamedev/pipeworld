@@ -75,11 +75,10 @@
 	jump_height = 0;//initialize to 0;
 #endregion
 
-#region unused
-	enum tile_type{
-		FLOOR,
-		CEILING,
-		WALL,
-	}
-#endregion
+#region functions
+/**
+* @description Returns the x position to check based on given x value. Use only if center of sprite is in center x position
+* @param {real} xmove the x position to check
+* @returns {real} the position to check
+**/
 

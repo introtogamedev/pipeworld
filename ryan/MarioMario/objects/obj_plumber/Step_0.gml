@@ -19,10 +19,10 @@ if (DEBUG_MODE){
 if (not pause or tempframe){
 #region input detect
 if (keyboard_check(INPUT_LEFT)){
-	input_direction = (-1);
+	input_direction += (-1);
 	facing_dir = -1;
 }if (keyboard_check(INPUT_RIGHT)){
-	input_direction = 1;
+	input_direction += 1;
 	facing_dir = 1;
 }
 
@@ -71,13 +71,18 @@ if (input_direction == 0 ){
 	spd = max(spd, 0);
 	xvelocity = spd * sign(xvelocity);
 }
-
+/**
+* @description Returns the x position to check based on given x value. Use only if center of sprite is in center x position
+* @param {real} xmove the x position to check
+* @returns {real} the position to check
+**/
+var xcheck = function (xmove){
+	return x + (sign(xmove) *(SPRITE_X_OFFSET + 1));
+}
 #region collision checks & movement: Horizontal
 var xmove = xvelocity * deltaTime;
 var xcollided = false;
-function xcheck (xmove){
-	return x + (sign(xmove) *(SPRITE_X_OFFSET + 1))
-}
+
 for (var i = 0; i < abs(xmove); i++){
 	if (tilemap_get_at_pixel(tilemapID, xcheck(xmove), y-8) != TILE_FLOOR){
 		x += sign(xmove);
@@ -88,7 +93,7 @@ for (var i = 0; i < abs(xmove); i++){
 }
 if (xcollided){
 	var clampTileXIndex = 0; //initialize to 0
-	if (xcheck(xmove) >= x){//right check/collide
+	if (xcheck(xmove) > x){//right check/collide
 		clampTileXIndex = tilemap_get_cell_x_at_pixel(tilemapID, xcheck(xmove), y)-1
 	}else{
 		clampTileXIndex = tilemap_get_cell_x_at_pixel(tilemapID, xcheck(xmove), y)+2
@@ -121,9 +126,6 @@ if (jump and not jumpTriggered and jumpAllowed){
 	//show_debug_message("PLUMBER JUMPING");//dubuggung purposes only
 	
 }else if (jump_height >= JUMP_HEIGHT_MAX or not jumpAllowed or not jump){
-	//if (jumpAllowed){//triggers only once to initiate falling
-	//	yvelocity /= 2;
-	//}
 	jumpAllowed = false;//double prevention for both cases. 
 	jumpTriggered = false;//reset jump trigger
 	jump_height = 0;
@@ -141,21 +143,25 @@ if(yvelocity >= TERMINAL_VELOCITY){
 	yvelocity = TERMINAL_VELOCITY;
 }
 
+//reinitiate jumpAllowed in onGround
+if (onGround) jumpAllowed = true;
+
 #endregion
 
 #region collision checks & movement: Vertical
 var ymove = yvelocity * deltaTime
 var ymoving = false;
-function ycheck (ymove){
+var ycheck = function (ymove){
 	if (ymove >= 0){
 		return  y + 1;
 	}else{
-		return y - sprite_height -1;
+		return y - sprite_height - 1;
 	}
 }
 for (var i = 0; i < abs(ymove); i++){
+	//NOTE: for right corner check, the check point is right corner-1 due to tile boundries, checking unintentional tile. 
 	if (tilemap_get_at_pixel(tilemapID, x - SPRITE_X_OFFSET, ycheck(ymove)) != TILE_FLOOR and 
-	tilemap_get_at_pixel(tilemapID, x + SPRITE_X_OFFSET, ycheck(ymove)) != TILE_FLOOR){
+	tilemap_get_at_pixel(tilemapID, x + SPRITE_X_OFFSET - 1, ycheck(ymove)) != TILE_FLOOR){ 
 		onGround = false;
 		y += sign(ymove);
 		ymoving = true;
@@ -167,22 +173,16 @@ for (var i = 0; i < abs(ymove); i++){
 if (ymoving){
 	y += ymove%1//add remainder
 }else{
-	clampTileYIndex = 0;//initialize to 0;
+	var clampTileYIndex = 0;//initialize to 0;
 	if (ycheck(ymove) >= y ){//bottom check/collide
 		clampTileYIndex = tilemap_get_cell_y_at_pixel(tilemapID, x, ycheck(ymove))
 		onGround = true
 	}else{//upwards check/collide
-		clampTileYIndex = clamp(tilemap_get_cell_y_at_pixel(tilemapID, x, ycheck(ymove)) + 2, 0, tilemap_get_height(tilemapID))
+		clampTileYIndex = clamp(tilemap_get_cell_y_at_pixel(tilemapID, x, ycheck(ymove)) + 2, 0, tilemap_get_height(tilemapID));
 	}
 	y = tilemap_get_tile_height(tilemapID)* clampTileYIndex;
 }
 #endregion
 
 #endregion
-
-#region variable Updates
-
-if (onGround) jumpAllowed = true;
-#endregion
 }
-
