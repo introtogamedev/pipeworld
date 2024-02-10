@@ -11,8 +11,15 @@ if (state.px != _px_collision)
 }
 else state.wall_kiss = false;
 
-//check for ground collision
-var _py_collision = state.py;
+//check for vertical collision
+var _py_coll = state.py;
+
+//check for horizontal collision
+var _px_coll = state.px;
+
+//offsets
+var _x_offset = 1;
+var _y_offset = 4;
 
 //get bounding box
 var _x0 = state.px;					//left
@@ -22,57 +29,58 @@ var _y1 = state.py + sprite_height;	//bottom
 
 //ground collision
 if (
-	scr_collision(_x0, _y1) == false ||
-	scr_collision(_x1, _y1) == false )
+	scr_collision(_x0 + _x_offset, _y1) == false ||
+	scr_collision(_x1 - _x_offset, _y1) == false )
 {
-	_py_collision = state.py - state.py % 16;	
+	_py_coll = state.py - state.py % 16;	
 	state.vy = 0;
 	
 	state.on_floor = true;
 }
 
-
-//wall collision
-if (scr_collision(state.px + sprite_width + 1, state.py) == false
-	|| scr_collision(state.px - 1, state.py) == false)
-{	
-	while (scr_collision(state.px + sprite_width + 1, state.py) == false
-	|| scr_collision(state.px - 1, _y0) == false)
-	{	
-		if (state.vx < 0) //left
-		{
-			state.px += 0.1;
-		}
-	
-		else if (state.vx > 0) //right
-		{
-			state.px -= 0.1;
-		}
-		else break;
-	}
-	state.vx = 0;
-	state.wall_kiss = true;
-}
-else state.wall_kiss = false;
-
-
 //ceiling collision
-if (scr_collision(_x0, state.py) == false
-	|| scr_collision(_x1, state.py) == false)
+else if (
+	scr_collision(_x0 + _x_offset, _y0) == false ||
+	scr_collision(_x1 - _x_offset, _y0) == false )
 {
-	while (scr_collision(_x0, state.py) == false
-	|| scr_collision(_x1, state.py) == false)
-	{
-		state.py += 1;
-	}
+	_py_coll = (state.py + sprite_height) - (state.py + sprite_height) % 16;	
 	state.vy = 0;
 	state.jumping = false;
 }
 
-
-if (state.py != _py_collision)
+//left wall
+if (
+	scr_collision(_x0, _y0 + _y_offset) == false ||
+	scr_collision(_x0, _y1 - _y_offset) == false )
 {
-	state.py = _py_collision
+	_px_coll = (state.px + sprite_width) - (state.px + sprite_width) % 16;
+	state.vx = 0;
+	
+	if (state.move) state.wall_kiss = true;
+	else state.wall_kiss = false;
+}
+
+//right wall
+else if (
+	scr_collision(_x1, _y0 + _y_offset) == false ||
+	scr_collision(_x1, _y1 - _y_offset) == false )
+{
+	_px_coll = state.px - state.px % 16;	
+	state.vx = 0;
+	
+	if (state.move) state.wall_kiss = true;
+	else state.wall_kiss = false;
+}
+
+if (state.py != _py_coll)
+{
+	state.py = _py_coll
 	state.vy = 0;
+}
+
+if (state.px != _px_coll)
+{
+	state.px = _px_coll;
+	state.vx = 0;
 }
 

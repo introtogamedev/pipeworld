@@ -8,14 +8,15 @@ if (state.turn) sprite_index = spr_turn;
 if (state.jump_sprite) sprite_index = spr_jump;
 
 
+show_debug_message(state.wall_kiss);
+
 if (state.wall_kiss) //animation speed fix when walking into walls
 {
-	//show_debug_message("wall")
-	image_speed = 1;
+	//THIS DOESNT WORK????????????	
+	image_speed = 1; 
 }
 else 
 {
-	//show_debug_message("normal")
 	image_speed = state.vx / 180; //sprite animation fps control
 }
 
