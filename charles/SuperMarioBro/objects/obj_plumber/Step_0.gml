@@ -9,11 +9,13 @@ var _run = keyboard_check(ord("Z"));
 
 var _horizontal = _rightkey - _leftkey;
 
+//saves horizontal for flipping xscale
 if(_horizontal != 0)
 {
 	last_horizontal = _horizontal;
 }
 
+//check horizontal input
 if(!_rightkey && !_leftkey)
 {
 	horizontal_input = false;
@@ -23,9 +25,26 @@ else
 	horizontal_input = true;
 }
 
-if(_jump)
+//starts falling when jump button is released
+if(!keyboard_check(ord("X")) && vy < 0)
+{
+	vy = max(vy, 0);
+}
+
+//start jumping when jump button pressed
+if(_jump && is_grounded)
 {
 	vy = jump_vel;
+}
+
+//changes gravity accordingly
+if(vy < 0)
+{
+	grav = up_grav;
+}
+else
+{
+	grav = down_grav;
 }
 
 if(horizontal_input)
@@ -33,6 +52,7 @@ if(horizontal_input)
 	var _acc_x = _move_acc  * last_horizontal;
 	vx += _acc_x * _dt;
 	
+	//change state based on inputs
 	if(_run)
 	{
 		state = "is_running";
@@ -50,6 +70,7 @@ if(horizontal_input)
 }
 else
 {
+	//decelerating according to last facing direction
 	if(last_horizontal > 0)
 	{
 		if(vx > 0)
@@ -79,15 +100,52 @@ else
 	}
 }
 
+//changes y velocity with gravity
 vy += grav * _dt;
 
 vx = clamp(vx, -vx_max, vx_max);
- 
+
+//y collision
+if(place_meeting(x, y + vy, ground_tiles))
+{
+	y = round(y);
+	vy = 0;
+}
+
+//x collision
+if(place_meeting(x + vx, y, ground_tiles))
+{
+	vx = 0;
+}
+
+//checks if it is grounded
+if(place_meeting(x, y + 1, ground_tiles))
+{
+	is_grounded = true;
+}
+else
+{
+	is_grounded = false;
+	state = "is_grounded";
+}
+
+//screen border
+if(x <= -sprite_width/2 || x >= room_width - sprite_width/2)
+{
+	vx = 0;
+}
+if(y < 0 || y >= room_height - sprite_height)
+{
+	vy = 0;
+}
+
 x += vx;
 y += vy;
 
+//flips xscale
 image_xscale = sign(last_horizontal);
 
+//character state
 switch(state)
 {
 	case "is_idle":
@@ -109,15 +167,10 @@ switch(state)
 		image_speed = 1;
 		sprite_index = spr_mario_turning;
 	break;
-}
-
-if(x <= sprite_width/2 || x >= room_width - sprite_width/2)
-{
-	vx = 0;
-}
-if(y < 0 || y >= room_height - sprite_height)
-{
-	vy = 0;
+	case "is_grounded":
+		image_speed = 1;
+		sprite_index = spr_mario_jump;
+	break;
 }
 
 x = clamp(x, sprite_width/2, room_width - sprite_width/2);
