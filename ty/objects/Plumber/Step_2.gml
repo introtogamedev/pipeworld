@@ -3,8 +3,8 @@
 // -----------
 
 // if we're paused, do nothing
-if (game.debug_is_paused) {
-	return	
+if (game.is_paused()) {
+	return;
 }
 
 // ~*~*~*~*~*~*~*~

@@ -12,7 +12,7 @@
 // -- ivars --
 // -----------
 
-// the current state
+// the visible state
 state = struct_copy(global.plumber_state);
 
 // the save state
@@ -20,6 +20,18 @@ state_saved = struct_copy(state);
 
 // if the game is paused
 debug_is_paused = false;
+
+// how steps to move, if paused
+debug_step_offset = 0;
+
+// -------------
+// -- methods --
+// -------------
+
+/// if the game is currently paused
+function is_paused() {
+	return debug_is_paused && debug_step_offset <= 0;
+}
 
 // ----------------
 // -- save state --
