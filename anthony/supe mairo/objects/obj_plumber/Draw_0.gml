@@ -2,17 +2,14 @@ var _look = 1;
 var _x = floor(state.px);
 var _y = floor(state.py);
 
-if (state.vx == 0) sprite_index = spr_stand;
+if (state.vx == 0 && !state.wall_kiss) sprite_index = spr_stand;
 if (state.move) sprite_index = spr_move;
 if (state.turn) sprite_index = spr_turn;
 if (state.jump_sprite) sprite_index = spr_jump;
 
-
-show_debug_message(state.wall_kiss);
-
 if (state.wall_kiss) //animation speed fix when walking into walls
 {
-	//THIS DOESNT WORK????????????	
+	//THIS DOESNT WORK????????????
 	image_speed = 1; 
 }
 else 

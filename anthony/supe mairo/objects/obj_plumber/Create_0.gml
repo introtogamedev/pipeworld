@@ -23,7 +23,6 @@ global.plumber_state = {
 	jumpable: true,
 	on_floor: false,
 	wall_kiss: false,
-
 	jump_timer: 0
 
 };
