@@ -63,9 +63,7 @@ global.plumber_state = {
 // other events like "step" and "draw"
 
 // the game "manager", but we don't use that word
-//game = instance_nearest(0, 0, Game);
+game = instance_nearest(0, 0, Game);
 
 // the current state; we'll get this from the game every step
-game = instance_nearest(0, 0, GameManage);
-
 state = undefined
