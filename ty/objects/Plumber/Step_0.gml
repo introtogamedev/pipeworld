@@ -34,6 +34,13 @@ enum INPUT_STATE {
 	HOLD  = 2
 }
 
+// ---------------
+// -- get state --
+// ---------------
+
+// get a reference to the current state
+state = game.state;
+
 // -----------
 // -- debug --
 // -----------
@@ -42,13 +49,6 @@ enum INPUT_STATE {
 if (game.is_paused()) {
 	return;
 }
-
-// ---------------
-// -- get state --
-// ---------------
-
-// get a reference to the current state
-state = game.state;
 
 // ---------------
 // -- get input --

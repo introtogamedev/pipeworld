@@ -8,12 +8,18 @@
 // if the save state should be loaded on game start
 #macro SAVE_STATE_AUTOLOAD true
 
+// the number of state frames to store for stepping
+#macro STATE_BUFFER_LENGTH 60
+
 // -----------
 // -- ivars --
 // -----------
 
 // the visible state
 state = struct_copy(global.plumber_state);
+
+// the state buffer
+state_buffer = ring_create(STATE_BUFFER_LENGTH);
 
 // the save state
 state_saved = struct_copy(state);
