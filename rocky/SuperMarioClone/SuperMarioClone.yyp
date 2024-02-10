@@ -36,8 +36,10 @@
   "resources": [
     {"id":{"name":"Graphics","path":"scripts/Graphics/Graphics.yy",},},
     {"id":{"name":"tiles","path":"tilesets/tiles/tiles.yy",},},
+    {"id":{"name":"savefile","path":"scripts/savefile/savefile.yy",},},
     {"id":{"name":"spr_tile_brown_brick","path":"sprites/spr_tile_brown_brick/spr_tile_brown_brick.yy",},},
     {"id":{"name":"spr_mario_skid","path":"sprites/spr_mario_skid/spr_mario_skid.yy",},},
+    {"id":{"name":"GameManager","path":"objects/GameManager/GameManager.yy",},},
     {"id":{"name":"spr_mario_idle","path":"sprites/spr_mario_idle/spr_mario_idle.yy",},},
     {"id":{"name":"spr_mario_walk","path":"sprites/spr_mario_walk/spr_mario_walk.yy",},},
     {"id":{"name":"ft_debug","path":"fonts/ft_debug/ft_debug.yy",},},
