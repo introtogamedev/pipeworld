@@ -42,10 +42,6 @@
 		#macro MOVE_SPRINT_ACCEL 30 * fps
 		#macro MOVE_SPRINT_DEACCEL 15 * fps
 		#macro MAX_SPD_SPRINT 4 *fps
-
-		#macro SPR_SPEEDRUN_TRIGGER 3 //used for animations
-		#macro SPR_RUN_TRIGGER 1 //used for animations
-		
 		
 	#endregion
 
@@ -66,13 +62,18 @@
 
 	runActivate = false;//initialize to false;
 	facing_dir = 1;//initialize to 1;
-
+	
 	onGround = false;//initialize to false
 	
-	jumping = false
 	jumpTriggered = false;//initialize to false;
 	jumpAllowed = false;//initialize to false;
 	jump_height = 0;//initialize to 0;
+	
+	//Animation variables
+	running = false;//initialize to false
+	jumping = false//initialize to false
+	xmoving = false;//initialize to false
+	ymoving = false;//initialize to false *not used yet
 #endregion
 
 #region functions

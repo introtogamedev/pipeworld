@@ -39,7 +39,9 @@ if (keyboard_check(INPUT_JUMP)){
 
 #endregion
 
-#region variable Initialization: runActivate
+#region horizontal movement
+
+#region variable Initialization: runActivate & applying acceleration to xvelovcity
 //initialize the movement dependent variables based on runActivate
 var accel =  0;//initilize to 0;
 var maxSPD = 0; //initilize to 0;
@@ -53,9 +55,7 @@ if(runActivate == true){
 	maxSPD = MAX_SPD;
 	deaccel = MOVE_DEACCEL;
 }
-#endregion
 
-#region horizontal movement
 var accelx = 0;//initialize to 0
 //get the horizontal move acceleration/deacceleration
 accelx = accel * input_direction;
@@ -71,17 +71,14 @@ if (input_direction == 0 ){
 	spd = max(spd, 0);
 	xvelocity = spd * sign(xvelocity);
 }
-/**
-* @description Returns the x position to check based on given x value. Use only if center of sprite is in center x position
-* @param {real} xmove the x position to check
-* @returns {real} the position to check
-**/
-var xcheck = function (xmove){
-	return x + (sign(xmove) *(SPRITE_X_OFFSET + 1));
-}
+#endregion
+
 #region collision checks & movement: Horizontal
 var xmove = xvelocity * deltaTime;
 var xcollided = false;
+var xcheck = function (xmove){
+	return x + (sign(xmove) *(SPRITE_X_OFFSET + 1));
+}
 
 for (var i = 0; i < abs(xmove); i++){
 	if (tilemap_get_at_pixel(tilemapID, xcheck(xmove), y-8) != TILE_FLOOR){
@@ -110,6 +107,14 @@ if (x > (room_width - abs(sprite_width)/2) or x < (0 + abs(sprite_width/2))){
 }
 #endregion
 
+#region Horizontal Animation Triggers
+	if (input_direction != 0 or  xmove != 0){
+		xmoving = true;
+	}else{
+		xmoving = false;
+	}
+#endregion
+
 #endregion
 
 #region vertical movement
@@ -120,6 +125,7 @@ var _gravity = 0;//initialize to 0;
 if (jump and not jumpTriggered and jumpAllowed){
 	jumpTriggered = true;
 	yvelocity = -abs(JUMP_VEL);
+	jumping = true;//animation state
 }else if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
 	jump_height += abs(yvelocity) * deltaTime;//stores current jump height
 	_gravity = JUMP_GRAVITY;
@@ -143,14 +149,15 @@ if(yvelocity >= TERMINAL_VELOCITY){
 	yvelocity = TERMINAL_VELOCITY;
 }
 
-//reinitiate jumpAllowed in onGround
-if (onGround) jumpAllowed = true;
+if (onGround){
+	jumpAllowed = true;//reinitiate jumpAllowed 
+}
 
 #endregion
 
 #region collision checks & movement: Vertical
 var ymove = yvelocity * deltaTime
-var ymoving = false;
+var ycollided = false;
 var ycheck = function (ymove){
 	if (ymove >= 0){
 		return  y + 1;
@@ -158,21 +165,19 @@ var ycheck = function (ymove){
 		return y - sprite_height - 1;
 	}
 }
+
 for (var i = 0; i < abs(ymove); i++){
 	//NOTE: for right corner check, the check point is right corner-1 due to tile boundries, checking unintentional tile. 
 	if (tilemap_get_at_pixel(tilemapID, x - SPRITE_X_OFFSET, ycheck(ymove)) != TILE_FLOOR and 
 	tilemap_get_at_pixel(tilemapID, x + SPRITE_X_OFFSET - 1, ycheck(ymove)) != TILE_FLOOR){ 
 		onGround = false;
 		y += sign(ymove);
-		ymoving = true;
 	}else{
-		ymoving = false;
+		ycollided = true;
 		yvelocity = 0;
 	}
 }
-if (ymoving){
-	y += ymove%1//add remainder
-}else{
+if (ycollided){
 	var clampTileYIndex = 0;//initialize to 0;
 	if (ycheck(ymove) >= y ){//bottom check/collide
 		clampTileYIndex = tilemap_get_cell_y_at_pixel(tilemapID, x, ycheck(ymove))
@@ -181,7 +186,19 @@ if (ymoving){
 		clampTileYIndex = clamp(tilemap_get_cell_y_at_pixel(tilemapID, x, ycheck(ymove)) + 2, 0, tilemap_get_height(tilemapID));
 	}
 	y = tilemap_get_tile_height(tilemapID)* clampTileYIndex;
+}else{
+
+	y += ymove%1//add remainder
 }
+#endregion
+
+#region Vertical Animation Triggers
+if (onGround){
+	//animation trigger initialized in jumping initialization
+	jumping = false;
+}
+//ymoving = !ycollided;
+
 #endregion
 
 #endregion

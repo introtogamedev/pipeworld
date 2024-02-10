@@ -1,23 +1,30 @@
 //sprite position shift
 var xdisplay = floor(x);
-
+var ydisplay = floor(y);
 //sprite direction
 image_xscale = facing_dir;
 
 #region sprite assignment
 
+
 //RUNNING
-if (abs(xvelocity) >= SPR_SPEEDRUN_TRIGGER){
-	sprite_index = spr_marioSPEEDRUN;
-}else if (abs(xvelocity) == 0){
-	sprite_index = spr_marioIDLE;
-}else if (abs(xvelocity) < SPR_RUN_TRIGGER){
+if (xmoving){
+	if (runActivate){
+		sprite_index = spr_marioSPEEDRUN
+	}else{
 	sprite_index = spr_marioRUN;
+	}
+}else{
+	sprite_index = spr_marioIDLE;
 }
 
 //JUMPING (overrides running sprites)
-if (onGround == false){
+if (jumping){
 	sprite_index = spr_marioJUMP;
+}else if (not onGround){
+	image_speed = 0;//pause animation based on current frame
+}else{
+	image_speed = 1; //resume animation 
 }
 
 #endregion
@@ -25,7 +32,7 @@ if (onGround == false){
 draw_sprite_ext(
 	sprite_index,
 	image_index,
-	xdisplay, y, 
+	xdisplay, ydisplay, 
 	image_xscale, 
 	image_yscale,
 	image_angle, 
