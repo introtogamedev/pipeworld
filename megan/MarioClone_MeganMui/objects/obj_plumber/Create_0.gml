@@ -1,35 +1,32 @@
-frame_index = 0;
+state = {
+
+frame_index: 0,
 
 // the current velocity
-vx = 0;
-vy = 0;
+vx: 0,
+vy: 0,
 
 // the current position
-px = x;
-py = y;
+px: x,
+py: y,
 
-//Jumping Variables
-jump_timer = 0;
-
-//On Floor Variables
-floor_timer = 0;
-
-//game states
-on_floor = false;
-falling = false;
-jumping = false;
+//Jumping animation
+in_air: false,
+left: false,
+right: false,
 
 // the current look direction
-look_dir = 0;
+look_dir: 0,
 // the current position in the move animation
-move_frame = 0;
+move_frame: 0,
 // the current sprite index
-image_idx = 0;
+image_idx: 0,
 // the current input move dir
-input_move = 0;
+input_move: 0,
 
+current_state: 0,
 
-
-
+current_jump_height: 0,
+};
 
 
