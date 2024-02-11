@@ -26,6 +26,7 @@ if (plumberAnimation.xmoving){
 //JUMPING (overrides running sprites)
 if (plumberAnimation.jumping){
 	sprite_index = spr_marioJUMP;
+	playsoundEff(aud_plumberJUMPeff, 10)
 }else if (not onGround){
 	image_speed = 0;//pause animation based on current frame
 }else{

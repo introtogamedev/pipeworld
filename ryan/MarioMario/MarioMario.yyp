@@ -12,6 +12,7 @@
   "defaultScriptType": 1,
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Plumber","folderPath":"folders/Plumber.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sounds","folderPath":"folders/Plumber/sounds.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprite States","folderPath":"folders/Plumber/Sprite States.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Rooms","folderPath":"folders/Rooms.yy",},
   ],
@@ -24,6 +25,7 @@
   "resources": [
     {"id":{"name":"spr_tileset","path":"sprites/spr_tileset/spr_tileset.yy",},},
     {"id":{"name":"Config","path":"scripts/Config/Config.yy",},},
+    {"id":{"name":"aud_plumberJUMPeff","path":"sounds/aud_plumberJUMPeff/aud_plumberJUMPeff.yy",},},
     {"id":{"name":"spr_marioSKID","path":"sprites/spr_marioSKID/spr_marioSKID.yy",},},
     {"id":{"name":"checkTile","path":"scripts/checkTile/checkTile.yy",},},
     {"id":{"name":"NES___Super_Mario_Bros___Mario__Luigi","path":"sprites/NES___Super_Mario_Bros___Mario__Luigi/NES___Super_Mario_Bros___Mario__Luigi.yy",},},

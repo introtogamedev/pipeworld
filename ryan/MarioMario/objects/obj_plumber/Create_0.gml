@@ -80,4 +80,10 @@
 #endregion
 
 #region functions
+
+function playsoundEff(audio, priority){
+	if (not audio_is_playing(audio)){
+		audio_play_sound(audio, priority, false)
+	}
+}
 #endregion
