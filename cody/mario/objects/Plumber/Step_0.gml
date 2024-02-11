@@ -158,3 +158,32 @@ input_move = _input_move;
 if (_input_move != 0) {
 	look_dir = _input_move;
 }
+
+
+
+
+// Check for horizontal wall collision
+var _next_px = px + vx * _dt;
+if (level_collision(_next_px, py) != noone) {
+    vx = 0; // Stop horizontal movement if there's a wall
+}
+
+// Now using your existing ground collision check to include block collision
+var _y1 = py + sprite_height + vy * _dt;
+if (level_collision(px, _y1) != noone) {
+    vy = 0; // Stop vertical movement if there's ground or a block below
+    // This is where you check for landing on a block
+    py = floor(py / 16) * 16; // Adjust for your tile size, ensuring plumber lands on the tile/block
+}
+
+// Adjust for wall collision on the sides
+var _left_wall_collision = level_collision(px - sprite_width / 2, py);
+var _right_wall_collision = level_collision(px + sprite_width / 2, py);
+if (_left_wall_collision != noone && vx < 0) {
+    vx = 0; // Stop when hitting a wall on the left
+    px = ceil(px / 16) * 16; // Adjust to be just outside the wall; adjust for your game's tile size
+}
+if (_right_wall_collision != noone && vx > 0) {
+    vx = 0; // Stop when hitting a wall on the right
+    px = floor(px / 16) * 16; // Adjust to be just outside the wall; adjust for your game's tile size
+}
