@@ -10,16 +10,20 @@
 #macro MOVE_DECELERATION	  7.2 * FPS
 
 //jump
-#macro JUMP_GRAVITY 16 * FPS 
-#macro JUMP_ACCELERATION 100
-#macro JUMP_INITIAL_IMPULSE 400
-#macro JUMP_MAX_VELOCITY 200
+#macro JUMP_GRAVITY         16 * FPS 
+#macro JUMP_ACCELERATION    1.6 * FPS //around 100
+#macro JUMP_INITIAL_IMPULSE 6.6 * FPS //around 400
+#macro JUMP_MAX_VELOCITY    3.2 * FPS //around 200
 
 //input constants
 #macro INPUT_LEFT (vk_left)
 #macro INPUT_RIGHT (vk_right)
 #macro INPUT_RUN ord("C")
 #macro INPUT_JUMP (vk_space)
+
+//get state
+state = instance_nearest(0,0,obj_game).state;
+
 
 //step stuff
 var _input_dir = 0;
@@ -30,12 +34,12 @@ if (keyboard_check(INPUT_LEFT)) //left
 	_input_dir -= 1;
 	
 	
-	if (!jump_sprite)
+	if (!state.jump_sprite)
 	{
-		left = true;
-		right = false;	
+		state.left = true;
+		state.right = false;	
 	}
-	move = true;
+	state.move = true;
 }
 
 if (keyboard_check(INPUT_RIGHT)) //right
@@ -43,117 +47,107 @@ if (keyboard_check(INPUT_RIGHT)) //right
 	_input_dir += 1;
 	
 	
-	if (!jump_sprite)
+	if (!state.jump_sprite)
 	{
-		left = false;
-		right = true;	
+		state.left = false;
+		state.right = true;	
 	}
-	move = true;
+	state.move = true;
 }
 
 //press run
 if (keyboard_check(INPUT_RUN))
 {
-	run = true;
+	state.run = true;
 }
 
 //release run
-if (keyboard_check_released(INPUT_RUN)) run = false;
-
-//reached end of screen
-var _px_min = 0;
-var _px_max = room_width - sprite_width;
-var _px_collision = clamp(px, _px_min, _px_max);
-
-if (px != _px_collision)
-{
-	px = _px_collision;
-	vx = 0;
-}
+if (keyboard_check_released(INPUT_RUN)) state.run = false;
 
 //states
 //stop moving
-if (vx == 0)
+if (!keyboard_check(INPUT_LEFT) && !keyboard_check(INPUT_RIGHT))
 {
-	move = false;
+	state.move = false;
 }
 
 //turn
-if (vx < 0)
+if (state.vx < 0)
 {
 	if (keyboard_check(INPUT_RIGHT)) 
 	{
-		turn = true;
-		vx += 5; //psuedo decelerate
+		state.turn = true;
+		state.vx += 5; //psuedo decelerate
 	}
 }
-if (vx > 0)
+if (state.vx > 0)
 {
 	if (keyboard_check(INPUT_LEFT)) 
 	{
-		turn = true;
-		vx -= 5; //psuedo decelerate
+		state.turn = true;
+		state.vx -= 5; //psuedo decelerate
 	}
 }
-if (turn)
+if (state.turn)
 {
-	if (left)
+	if (state.left)
 	{
-		if (vx <= 0) turn = false;	
+		if (state.vx <= 0) state.turn = false;	
 	}
-	if (right)
+	if (state.right)
 	{
-		if (vx >= 0) turn = false;	
+		if (state.vx >= 0) state.turn = false;	
 	}
 }
 
 //is player on the floor
-if (on_floor)
+if (state.on_floor)
 {
-	jump_sprite = false; //sprite's state
-	jump_timer = 0;
-	if (keyboard_check(INPUT_JUMP) && jumpable) //player can only jump when on the floor
+	state.jump_sprite = false; //sprite's state
+	state.jump_timer = 0;
+	if (keyboard_check(INPUT_JUMP) && state.jumpable) //player can only jump when on the floor
 	{	
-		on_floor = false;
-		jumping = true;
-		vy -= JUMP_INITIAL_IMPULSE; //jump with boost
-		jumpable = false; //no hold jumping
+		state.on_floor = false;
+		state.jumping = true;
+		state.vy -= JUMP_INITIAL_IMPULSE; //jump with boost
+		state.jumpable = false; //no hold jumping
 	}
 
 }
-if (keyboard_check_released(INPUT_JUMP)) jumpable = true; //no hold jumping
+if (keyboard_check_released(INPUT_JUMP)) state.jumpable = true; //no hold jumping
+if (state.vy > 0) state.on_floor = false; //not on floor when falling
 
 //jump
-if (jumping)
+if (state.jumping)
 {
-	jump_sprite = true; //sprite's state
+	state.jump_sprite = true; //sprite's state
 	
 	if (keyboard_check(INPUT_JUMP))
 	{	
-		vy -= JUMP_ACCELERATION;
+		state.vy -= JUMP_ACCELERATION;
 	}
 	else //if jump is not held, stop jumping
 	{
-		jumping	= false;	
+		state.jumping	= false;	
 	}	
 	
-	if (vy < -JUMP_MAX_VELOCITY) //prevent jump from being too strong
+	if (state.vy < -JUMP_MAX_VELOCITY) //prevent jump from being too strong
 	{
-		vy = -JUMP_MAX_VELOCITY;	
+		state.vy = -JUMP_MAX_VELOCITY;	
 	}
 
-	jump_timer ++;
-	if (jump_timer > 16) //when jump is over, stop jump
+	state.jump_timer ++;
+	if (state.jump_timer > 16) //when jump is over, stop jump
 	{
-		jumping = false;
-		jump_timer = 0;
+		state.jumping = false;
+		state.jump_timer = 0;
 	}
 }
 
 //acceleration
 var _ax = MOVE_WALK_ACCELERATION * _input_dir;
 
-if (run) //run
+if (state.run) //run
 {
 	_ax = MOVE_RUN_ACCELERATION * _input_dir;	
 }
@@ -170,8 +164,8 @@ var _dt = delta_time / MS;
 var _dv = _ax * _dt
 
 //break down velocity into speed and direction
-var _vx_mag = abs(vx);
-var _vx_dir = sign(vx);
+var _vx_mag = abs(state.vx);
+var _vx_dir = sign(state.vx);
 
 //apply deceleration if there is no player input
 if (_input_dir == 0)
@@ -180,49 +174,28 @@ if (_input_dir == 0)
 	_vx_mag = (max(_vx_mag,0));
 }
 
-vx = _vx_mag * _vx_dir;
+state.vx = _vx_mag * _vx_dir;
 
 //integrate acceleration into velocity
-vx += _dv
+state.vx += _dv
 
 //gravity
 var _ay = JUMP_GRAVITY;
-vy += _ay * _dt;
+state.vy += _ay * _dt;
 var _vy_max = 320;
-if (vy >= _vy_max) vy = _vy_max;
+if (state.vy >= _vy_max) state.vy = _vy_max;
 
-//move the character
-px += vx * _dt;
-py += vy * _dt; 
-
-//check for ground collision
-var _py_collision = py;
-
-//get the bottom of the character
-var _y1 = px + sprite_height;
-
-//if colliding with tile
-if (scr_collision(px,py + sprite_height) == false)
-{
-	//on ground
-	_py_collision = py - py % 16;	
-	vy = 0;
-	
-	on_floor = true;
-}
-
-if (py != _py_collision)
-{
-	py = _py_collision
-	vy = 0;
-}
 
 //increment frame forever
-frame_index += 1;
-
-x = px;
-y = py;
+state.frame_index += 1;
 
 
+//move the character
+state.px += state.vx * _dt;
+state.py += state.vy * _dt; 
 
+x = state.px;
+y = state.py;
 
+//use _input_dir in end step
+state.input_dir = _input_dir;
