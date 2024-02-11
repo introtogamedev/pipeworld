@@ -1,5 +1,7 @@
 //constants
-#macro FPS 60
+
+//this is for some reason making mario go 1000 miles per hour, gonna figure this out later
+#macro FPS 1
 //number of microseconds in a second
 #macro MS 100000
 
@@ -13,13 +15,12 @@
 #macro MOVE_BOOST 4
 
 #macro MOVE_WALK_MAX 2.0 * FPS
-#macro MOVE_WALK_ACCELERATION 1.8 * FPS
+#macro MOVE_WALK_ACCELERATION 1.5 * FPS
 #macro MOVE_RUN_MAX 3.8 * FPS
 #macro MOVE_RUN_ACCELERATION 3.4 * FPS
 #macro MOVE_AIR_ACCELERATION 2.4 * FPS
 #macro MOVE_DECELERATION 3.4 * FPS
 
-#macro JUMP_IMPULSE 4 * FPS
 #macro JUMP_GRAVITY 16 * FPS
 #macro JUMP_HOLD_GRAVITY 8 * FPS
 
@@ -39,6 +40,7 @@ state = game.state;
 var _input_dir = 0;
 image_speed = 1;
 
+
 //movement
 if (keyboard_check(INPUT_L))
 {
@@ -55,7 +57,7 @@ if (keyboard_check(INPUT_R))
 	//turn
 	if (state.vx = 0) sprite_index = spr_plumber_turn_r;
 }
-
+state.input_move = _input_dir;
 
 //other mvt stuff
 var _ax = 0;
@@ -67,12 +69,14 @@ if (!state.is_on_ground)
 {
 	_move_acceleration = MOVE_AIR_ACCELERATION;
 }
-else if (INPUT_BOOST)
+
+if (INPUT_BOOST)
 {
 	_move_acceleration = MOVE_RUN_ACCELERATION;
+	image_speed = 2;
 }
 
-_ax += _move_acceleration * state.input_move;
+_ax += _move_acceleration * _input_dir;
 
 var _dt = delta_time / MS;
 
@@ -85,7 +89,11 @@ var _vx_mag = abs(state.vx);
 var _vx_dir = sign(state.vx);
 
 // add deceleration if no player input
-if (state.input_move == 0) _vx_mag -= MOVE_DECELERATION * _dt;
+if (_input_dir == 0)
+{
+	_vx_mag -= MOVE_DECELERATION * _dt;
+	_vx_mag = max(_vx_mag, 0);
+}
 
 //update running state, start when exceed walk speed
 var _is_running = state.is_running;
@@ -98,7 +106,7 @@ if (!INPUT_BOOST && _vx_mag <= MOVE_WALK_MAX) _is_running = false;
 var _vx_max = 420;
 if (state.is_on_ground) _vx_max = _is_running ? MOVE_RUN_MAX : MOVE_WALK_MAX;
 
-_vx_mag = clamp(_vx_mag, 0, _vx_max);
+//_vx_mag = clamp(_vx_mag, 0, _vx_max);
 
 // reconstitute velocity from magnitude and direction
 state.vx = _vx_mag * _vx_dir;
@@ -133,7 +141,7 @@ if (_input_jump != INPUT_STATE.HOLD) _is_jump_held = false;
 //if jump just pressed on the ground, add impulse
 if (_input_jump == INPUT_STATE.PRESS && state.is_on_ground)
 {
-	_iy -= JUMP_IMPULSE;
+	_iy -= jump_initial_impulse;
 	_event_jump = true;
 }
 //if holding jump & moving upwards, add lower gravity
@@ -191,11 +199,12 @@ if (falling)
 //on floor state
 if (on_floor)
 {
+	state.is_on_ground = true;
 	if (keyboard_check_pressed(INPUT_UP))
 	{
 		on_floor = false;
 		jumping = true;
-		state.is_on_ground = true;
+		state.is_on_ground = false;
 		
 		state.vy -= jump_initial_impulse;
 	}
@@ -254,5 +263,49 @@ else
 	}
 }
 
-show_debug_message("!" + string(x));
-show_debug_message(state.px);
+
+
+//ROOM COLLISION
+var _px_collision = clamp(state.px, 0, room_width - sprite_width);
+if (state.px != _px_collision) 
+{
+	state.px = _px_collision;
+	state.vx = 0;
+}
+
+
+
+//PLATFORM COLLISION
+//need to update this to tilemap and fix player being able to slowly move through
+if (place_meeting (state.px, state.py + state.vy, obj_platform))
+{
+	while (abs(state.vy) > 0.1)
+	{
+		state.vy= 0;
+		if (!place_meeting(state.px, state.py + state.vy,obj_platform))
+		{
+			state.py += state.vy;
+		}
+	}
+	state.vy = 0;
+}
+if (place_meeting(state.px + state.vx, state.py,obj_platform))
+{
+	while (abs(state.vx > 0.1))
+	{
+	state.vx= 0;
+	if (!place_meeting(state.px + state.vx, state.py,obj_platform))
+		{
+			state.px += state.vx;
+		}
+	}
+	state.vx = 0;
+}
+//var _py_collision = state.py;
+//var _y1 = state.py + 8;
+//if (level_collision(state.px, _y1) == TILES_BRICK) 
+//{
+//	// then move the player to the top of the tile
+//	_py_collision -= state.py % 10;
+//	show_debug_message("!");
+//}

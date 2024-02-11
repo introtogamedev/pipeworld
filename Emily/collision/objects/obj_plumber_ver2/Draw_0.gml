@@ -11,4 +11,4 @@ draw_sprite_ext(sprite_index,image_index,_x,_y,_xscale,
 
 
 
-draw_rectangle(_x,_y,_x + sprite_width * _xscale,_y + sprite_height,true);
+//draw_rectangle(_x,_y,_x + sprite_width * _xscale,_y + sprite_height,true);

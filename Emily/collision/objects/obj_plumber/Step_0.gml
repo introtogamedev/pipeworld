@@ -4,7 +4,7 @@
 //#macro INPUT_UP ord("W")
 //#macro INPUT_BOOST vk_shift
 
-//#macro MOVE_ACCELERATION 6
+#macro MOVE_ACCELERATION 6
 //#macro MAX_VELOCITY 10
 //#macro MOVE_DRAG 0.2
 //#macro MOVE_BOOST 4
