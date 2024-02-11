@@ -8,9 +8,14 @@ image_xscale = facing_dir;
 
 
 //RUNNING
-if (xmoving){
+if (plumberAnimation.xmoving){
 	if (runActivate){
-		sprite_index = spr_marioSPEEDRUN
+		if (plumberAnimation.turning){
+			sprite_index = spr_marioSKID
+			
+		}else{
+			sprite_index = spr_marioSPEEDRUN
+		}
 	}else{
 	sprite_index = spr_marioRUN;
 	}
@@ -19,7 +24,7 @@ if (xmoving){
 }
 
 //JUMPING (overrides running sprites)
-if (jumping){
+if (plumberAnimation.jumping){
 	sprite_index = spr_marioJUMP;
 }else if (not onGround){
 	image_speed = 0;//pause animation based on current frame

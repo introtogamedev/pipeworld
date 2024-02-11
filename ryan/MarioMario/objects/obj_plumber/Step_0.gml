@@ -20,10 +20,8 @@ if (not pause or tempframe){
 #region input detect
 if (keyboard_check(INPUT_LEFT)){
 	input_direction += (-1);
-	facing_dir = -1;
 }if (keyboard_check(INPUT_RIGHT)){
 	input_direction += 1;
-	facing_dir = 1;
 }
 
 if (keyboard_check_pressed(INPUT_RUN)){
@@ -109,9 +107,18 @@ if (x > (room_width - abs(sprite_width)/2) or x < (0 + abs(sprite_width/2))){
 
 #region Horizontal Animation Triggers
 	if (input_direction != 0 or  xmove != 0){
-		xmoving = true;
+		plumberAnimation.xmoving = true;
 	}else{
-		xmoving = false;
+		plumberAnimation.xmoving = false;
+	}
+	
+	if (input_direction != 0){
+		if (input_direction!= facing_dir){
+			plumberAnimation.turning = true;
+		}else if (sign(xvelocity) == sign(input_direction)){
+			plumberAnimation.turning = false;
+		}
+		facing_dir = sign(input_direction);
 	}
 #endregion
 
@@ -125,7 +132,7 @@ var _gravity = 0;//initialize to 0;
 if (jump and not jumpTriggered and jumpAllowed){
 	jumpTriggered = true;
 	yvelocity = -abs(JUMP_VEL);
-	jumping = true;//animation state
+	plumberAnimation.jumping = true;//animation state
 }else if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
 	jump_height += abs(yvelocity) * deltaTime;//stores current jump height
 	_gravity = JUMP_GRAVITY;
@@ -134,12 +141,12 @@ if (jump and not jumpTriggered and jumpAllowed){
 }else if (jump_height >= JUMP_HEIGHT_MAX or not jumpAllowed or not jump){
 	jumpAllowed = false;//double prevention for both cases. 
 	jumpTriggered = false;//reset jump trigger
-	jump_height = 0;
+
 	_gravity = FALL_GRAVITY;
 	//show_debug_message("PLUMBER FALLING");//debugging purposes only
 }
 
-///show_debug_message(jump);
+//show_debug_message(jump_height);
 if (deltaTime <= 0.02){
 yvelocity += _gravity* deltaTime;
 } 
@@ -151,6 +158,7 @@ if(yvelocity >= TERMINAL_VELOCITY){
 
 if (onGround){
 	jumpAllowed = true;//reinitiate jumpAllowed 
+	jump_height = 0;
 }
 
 #endregion
@@ -195,7 +203,7 @@ if (ycollided){
 #region Vertical Animation Triggers
 if (onGround){
 	//animation trigger initialized in jumping initialization
-	jumping = false;
+	plumberAnimation.jumping = false;
 }
 //ymoving = !ycollided;
 

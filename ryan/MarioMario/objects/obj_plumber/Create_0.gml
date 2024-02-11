@@ -51,7 +51,7 @@
 		
 		#macro JUMP_GRAVITY  5 * fps
 		#macro JUMP_VEL 4  * fps 
-		#macro JUMP_HEIGHT_MAX  3.5 * TILE_SIZE
+		#macro JUMP_HEIGHT_MAX  1 * TILE_SIZE
 	
 	#endregion
 #endregion
@@ -70,16 +70,14 @@
 	jump_height = 0;//initialize to 0;
 	
 	//Animation variables
-	running = false;//initialize to false
-	jumping = false//initialize to false
-	xmoving = false;//initialize to false
-	ymoving = false;//initialize to false *not used yet
+	plumberAnimation = {
+	running: false,//initialize to false
+	jumping: false,//initialize to false
+	xmoving: false,//initialize to false
+	ymoving: false,//initialize to false *not used yet
+	turning: false, //initialize to false
+	}
 #endregion
 
 #region functions
-/**
-* @description Returns the x position to check based on given x value. Use only if center of sprite is in center x position
-* @param {real} xmove the x position to check
-* @returns {real} the position to check
-**/
-
+#endregion

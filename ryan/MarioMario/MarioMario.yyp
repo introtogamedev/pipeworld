@@ -24,7 +24,7 @@
   "resources": [
     {"id":{"name":"spr_tileset","path":"sprites/spr_tileset/spr_tileset.yy",},},
     {"id":{"name":"Config","path":"scripts/Config/Config.yy",},},
-    {"id":{"name":"spr_marioSPEEDTURN","path":"sprites/spr_marioSPEEDTURN/spr_marioSPEEDTURN.yy",},},
+    {"id":{"name":"spr_marioSKID","path":"sprites/spr_marioSKID/spr_marioSKID.yy",},},
     {"id":{"name":"checkTile","path":"scripts/checkTile/checkTile.yy",},},
     {"id":{"name":"NES___Super_Mario_Bros___Mario__Luigi","path":"sprites/NES___Super_Mario_Bros___Mario__Luigi/NES___Super_Mario_Bros___Mario__Luigi.yy",},},
     {"id":{"name":"spr_marioIDLE","path":"sprites/spr_marioIDLE/spr_marioIDLE.yy",},},
