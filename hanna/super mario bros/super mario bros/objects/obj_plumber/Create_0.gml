@@ -13,11 +13,27 @@ holding_right = false;
 tilemap = layer_tilemap_get_id("Stone");
 
 
-grounded = 0;
-jump = -10
-jump_mod = 2.5
-grav = 0.2;
-yVel_max = 5;
+grounded = false;
+
+running_into_wall = false;
+
+bonk = false;
+
+
+
+function round_pos(pos){
+	pos /= 16;
+	pos = round(pos);
+	pos *= 16;
+	
+	return pos;
+	
+	
+}
+
+
+
+
 
 
 
