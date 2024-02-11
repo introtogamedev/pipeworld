@@ -71,24 +71,12 @@ if (keyboard_check(INPUT_RUN)) {
 
 
 
-
-//Change the x with collision
-
-if (!tile_empty(x + vx  ,y)) {
-    while (!tile_empty(x+vx,y)) {
-        vx -= sign(vx);
-    }
-}
-
-x += vx;
-
 //Jump logic
 
 
-if (keyboard_check_pressed(INPUT_JUMP) && on_floor) {
+if (keyboard_check_pressed(INPUT_JUMP) && ((!tile_empty(floor(x - sprite_width/2),floor(y + sprite_height / 2))) || (!tile_empty(floor(x + sprite_width/2),floor(y + sprite_height / 2))))) {
 	vy -= JUMP_STRENGTH;
 	jump_frames = MAX_JUMP_FRAMES;
-	on_floor = false;
 }
 
 if (jump_frames > 0) {
@@ -108,32 +96,8 @@ if (vy > max_gravity) {
 	vy = max_gravity;
 }
 
-//Change the y with collision
 
-if (!tile_empty(x,y+vy)) {
-    while (!tile_empty(x,y+vy)) {
-        vy -= sign(vy);
-    }
-}
-
-y += vy;
-
-//Don't fall through floor
-
-if (!tile_empty(floor(x),floor(y + sprite_height / 2))) {
-	y = y - y % 16 + sprite_height / 2;
-	vy = 0;
-	on_floor = true;
-}
-
-
-
-/// -- keep on screen --
-
-if (x < 0 - sprite_width / 2) {
-	x = - sprite_width / 2;
-	vx = 0;
-} else if (x > room_width - sprite_width / 2) {
-	x = room_width - sprite_width / 2;
-	vx = 0;
+move_dir = sign(vx);
+if (sign(vx) == 0) {
+	move_dir = sign(input_dir); //Stop sign(vx) from being 0 while using it
 }

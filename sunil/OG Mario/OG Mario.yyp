@@ -22,7 +22,6 @@
     "IDEVersion": "2023.8.0.98",
   },
   "resources": [
-    {"id":{"name":"spr_idleMario","path":"sprites/spr_idleMario/spr_idleMario.yy",},},
     {"id":{"name":"spr_runningMario","path":"sprites/spr_runningMario/spr_runningMario.yy",},},
     {"id":{"name":"Level_Collision","path":"scripts/Level_Collision/Level_Collision.yy",},},
     {"id":{"name":"obj_Mario","path":"objects/obj_Mario/obj_Mario.yy",},},

@@ -3,7 +3,7 @@
 #macro ANIM_SPEED 1/7
 
 
-if (vx != 0) { //change thise
+if (input_dir != 0) { //change thise
 	anim_frame = (anim_frame + ANIM_SPEED) % RUN_ANIM_LENGTH;
 	spr_frame = RUN_ANIM_START + anim_frame;
 	if (spr_frame > 3) {
@@ -13,7 +13,7 @@ if (vx != 0) { //change thise
 	spr_frame = 0;
 }
 
-if (!on_floor) {
+if (!(((!tile_empty(floor(x - sprite_width/2),floor(y + sprite_height / 2))) || (!tile_empty(floor(x + sprite_width/2),floor(y + sprite_height / 2)))))) {
 	spr_frame = 4;
 }
 
@@ -35,3 +35,4 @@ draw_sprite_ext(
 	image_alpha
 );
 
+//show_debug_message("draw " +string(x));
