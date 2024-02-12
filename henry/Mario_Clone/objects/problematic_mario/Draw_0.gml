@@ -33,7 +33,7 @@ else if (state.vx == 0) && (state.vy == 0) && !state.falling_from_collision {
 	state.image_idx = 0;
 }
 
-var facing_for_jump = look_dir;
+//var facing_for_jump = input_dir;
 // i was trying to do something here to only switch directions when he's not jumping but i 
 //can't figure it out and it's late so
 //future henry problems
@@ -44,7 +44,7 @@ var facing_for_jump = look_dir;
 
 
 //make sure the position is always pixel-aligned
-var _x = floor(state.px);
+var _x = floor(state.px); 
 var _y = floor(state.py); 
 
 //face right
