@@ -4,6 +4,7 @@
 /// - returns: a struct representing the json data
 function json_read(_path) {
 	// TODO: implement me!
+	return {};
 }
 
 /// write the struct as json to the file at the path
