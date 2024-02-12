@@ -76,21 +76,7 @@ state.vy += (_ay * _dt) + _iy;
 state.px += state.vx;
 state.py += state.vy;
 
-
-
-/*
-	var temp = vy;
-	while (emp > 0) {
-		if (!level_collision(px,py+sign(temp)) {
-			py += sign(temp);
-			temp -= sign(temp);
-			if (abs(temp) < 1){
-				break;
-		}
-	}
-	
-*/
-//draw frame
+//frame index
 state.frame_index += 1;
 
 //Make sure mario in game
