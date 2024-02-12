@@ -33,6 +33,10 @@ else if (state.vx == 0) && (state.vy == 0) && !state.falling_from_collision {
 	state.image_idx = 0;
 }
 
+var facing_for_jump = look_dir;
+// i was trying to do something here to only switch directions when he's not jumping but i 
+//can't figure it out and it's late so
+//future henry problems
 
 //--------
 //--draw sprite
@@ -43,7 +47,7 @@ else if (state.vx == 0) && (state.vy == 0) && !state.falling_from_collision {
 var _x = floor(state.px);
 var _y = floor(state.py); 
 
-//face in teh move direction
+//face right
 var _xscale = 1;
 
 //if moving left, flip the sprite
@@ -51,6 +55,8 @@ if (sign (state.look_dir < 0 )){
 	_xscale = -1;
 	_x += sprite_width;
 }
+
+
 
 draw_sprite_ext(
 	sprite_index,

@@ -24,7 +24,7 @@ state.frame_index += 1;
 
 #macro MOVE_WALK_ACCEL 1.6 * FPS
 #macro MOVE_RUN_ACCEL 5 * FPS
-#macro MOVE_DECEL 2.5 * FPS
+#macro MOVE_DECEL 2.3 * FPS
 
 //jump tuning
 #macro JUMP_GRAVITY 16 * FPS
