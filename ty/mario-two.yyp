@@ -1,0 +1,45 @@
+{
+  "resourceType": "GMProject",
+  "resourceVersion": "1.7",
+  "name": "mario-two",
+  "AudioGroups": [
+    {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
+  ],
+  "configs": {
+    "children": [],
+    "name": "Default",
+  },
+  "defaultScriptType": 1,
+  "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Core","folderPath":"folders/Core.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Game","folderPath":"folders/Game.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Level","folderPath":"folders/Level.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Plumber","folderPath":"folders/Plumber.yy",},
+  ],
+  "IncludedFiles": [],
+  "isEcma": false,
+  "LibraryEmitters": [],
+  "MetaData": {
+    "IDEVersion": "2023.11.0.121",
+  },
+  "resources": [
+    {"id":{"name":"Level_Tiles","path":"tilesets/Level_Tiles/Level_Tiles.yy",},},
+    {"id":{"name":"StructExt","path":"scripts/StructExt/StructExt.yy",},},
+    {"id":{"name":"Ring","path":"scripts/Ring/Ring.yy",},},
+    {"id":{"name":"Level_TileSprite","path":"sprites/Level_TileSprite/Level_TileSprite.yy",},},
+    {"id":{"name":"Plumber_Sprite","path":"sprites/Plumber_Sprite/Plumber_Sprite.yy",},},
+    {"id":{"name":"Config","path":"scripts/Config/Config.yy",},},
+    {"id":{"name":"JsonExt","path":"scripts/JsonExt/JsonExt.yy",},},
+    {"id":{"name":"Plumber","path":"objects/Plumber/Plumber.yy",},},
+    {"id":{"name":"Game","path":"objects/Game/Game.yy",},},
+    {"id":{"name":"Level_Collision","path":"scripts/Level_Collision/Level_Collision.yy",},},
+    {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
+  ],
+  "RoomOrderNodes": [
+    {"roomId":{"name":"Level","path":"rooms/Level/Level.yy",},},
+  ],
+  "templateType": "game",
+  "TextureGroups": [
+    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
+  ],
+}
