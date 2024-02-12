@@ -12,6 +12,8 @@ jump_height_min=1<<4;//1 4
 jump_height_max=4<<4;
 jump_acceleration=sqrt((g*jump_height_min)<<1);
 max_jump_press_time=(jump_height_max-jump_height_min)/jump_acceleration;
+jump_press_time=0;
+can_jump=true;
 
 
 
@@ -23,6 +25,8 @@ offset=0;
 
 tilemap=layer_tilemap_get_id("Tiles_1");
 
+clipping=0;
+isFalling=false;
 
 //GLOBAL STATE
 global.state={
@@ -40,7 +44,6 @@ global.state={
 	spr_index: sprite_index,
 	img_index: image_index
 };
-ring_buffer=ring_create(40);
 /*
 function CheckTileCollisionY(){
 	return place_meeting(x,y,tilemap);
