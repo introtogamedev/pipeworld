@@ -3,10 +3,9 @@ var xdisplay = floor(x);
 var ydisplay = floor(y);
 //sprite direction
 image_xscale = facing_dir;
-
+//sprite animating
+var sprite_playing = true;
 #region sprite assignment
-
-
 //RUNNING
 if (plumberAnimation.xmoving){
 	if (runActivate){
@@ -29,10 +28,25 @@ if (plumberAnimation.jumping){
 	playsoundEff(aud_plumberJUMPeff, 10)
 }else if (not onGround){
 	image_speed = 0;//pause animation based on current frame
+	sprite_playing = false;
 }else{
 	image_speed = 1; //resume animation 
+	sprite_playing = true
 }
 
+#endregion
+
+#region DEBUGGING OVERRIDE
+if (DEBUG_MODE){
+	if (pause){
+		image_speed = 0;
+		if (tempframe and sprite_playing){
+			image_index ++;
+		}
+	}else{
+		image_speed = 1;
+	}
+}
 #endregion
 
 draw_sprite_ext(

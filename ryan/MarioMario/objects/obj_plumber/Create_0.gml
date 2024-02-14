@@ -9,6 +9,7 @@
 	#macro INPUT_PAUSE (ord("N"))
 	#macro INPUT_DEBUG_NEXTFRAME vk_right
 	pause = false
+	tempframe = false //allows for running of one frame only
 
 	//#macro CAMERA_INDEX 0
 #endregion
@@ -24,6 +25,7 @@
 
 	
 	#macro SPRITE_X_OFFSET abs(sprite_width/2)
+	#macro  SPRITE_FOOT_OFFSET abs(sprite_width/4)
 #endregion
 
 #region INPUT

@@ -2,7 +2,7 @@ var input_direction = 0;//initialize to 0;
 deltaTime = delta_time/MS;//get fractional delta time
 
 #region debugging tools START
-var tempframe = false //allows for running of one frame only
+tempframe = false;
 if (DEBUG_MODE){
 	if (keyboard_check_pressed(INPUT_PAUSE)){
 		pause = true
@@ -173,11 +173,23 @@ var ycheck = function (ymove){
 		return y - sprite_height - 1;
 	}
 }
+var ycheck_block_collided = function(_ycheck, blockid){
+	if (_ycheck > y ){//check bottom
+		if (tilemap_get_at_pixel(tilemapID, x - SPRITE_FOOT_OFFSET, _ycheck) == blockid or 
+		tilemap_get_at_pixel(tilemapID, x + SPRITE_FOOT_OFFSET - 1, _ycheck) == blockid){
+			return true;
+		}
+	}else{
+		if (tilemap_get_at_pixel(tilemapID, x, _ycheck) == blockid){
+			return true;
+		}
+	}
+	return false
+}
 
 for (var i = 0; i < abs(ymove); i++){
 	//NOTE: for right corner check, the check point is right corner-1 due to tile boundries, checking unintentional tile. 
-	if (tilemap_get_at_pixel(tilemapID, x - SPRITE_X_OFFSET, ycheck(ymove)) != TILE_FLOOR and 
-	tilemap_get_at_pixel(tilemapID, x + SPRITE_X_OFFSET - 1, ycheck(ymove)) != TILE_FLOOR){ 
+	if (ycheck_block_collided(ycheck(ymove), TILE_FLOOR) == false){ 
 		onGround = false;
 		y += sign(ymove);
 	}else{
