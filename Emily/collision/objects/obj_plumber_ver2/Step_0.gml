@@ -273,28 +273,28 @@ if (state.px != _px_collision)
 	state.vx = 0;
 }
 
-//PLATFORM COLLISION
-if (place_meeting (state.px,state.py+state.vy, obj_platform))
-{
-	while (abs(state.vy) > 0.1)
-	{
-		state.vy= 0;
-		if (!place_meeting(state.px,state.py+state.vy,obj_platform))
-		{
-			state.py+=state.vy;
-		}
-	}
-	state.vy = 0;
-}
-if (place_meeting(state.px+state.vx,state.py,obj_platform))
-{
-	while (abs(state.vx > 0.1))
-	{
-	state.vx= 0;
-	if (!place_meeting(state.px+state.vx,state.py,obj_platform))
-		{
-			state.px+=state.vx;
-		}
-	}
-	state.vx = 0;
-}
+////PLATFORM COLLISION
+//if (place_meeting (state.px,state.py+state.vy, obj_platform))
+//{
+//	while (abs(state.vy) > 0.1)
+//	{
+//		state.vy= 0;
+//		if (!place_meeting(state.px,state.py+state.vy,obj_platform))
+//		{
+//			state.py+=state.vy;
+//		}
+//	}
+//	state.vy = 0;
+//}
+//if (place_meeting(state.px+state.vx,state.py,obj_platform))
+//{
+//	while (abs(state.vx > 0.1))
+//	{
+//	state.vx= 0;
+//	if (!place_meeting(state.px+state.vx,state.py,obj_platform))
+//		{
+//			state.px+=state.vx;
+//		}
+//	}
+//	state.vx = 0;
+//}
