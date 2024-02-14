@@ -7,17 +7,17 @@
 //The number of microseconds in a second
 #macro MS 1000000
 
-#macro MOVE_ACCELERATION 0.1*FPS
-#macro MOVE_RUN_ACCELERATION 0.5*FPS
+#macro MOVE_ACCELERATION 0.08*FPS
+#macro MOVE_RUN_ACCELERATION 0.4*FPS
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
-#macro INPUT_RUN ord("R")
+#macro INPUT_RUN vk_shift
+#macro INPUT_JUMP vk_space
 
 #macro JUMP_GRAVITY 0.2 * FPS
 
 //Gravity
-var ay = 0;
-ay = JUMP_GRAVITY;
+var ay = JUMP_GRAVITY;
 
 //Movement
 //Find the input direction
@@ -50,11 +50,11 @@ vy += ay * dt;
 //Max speed
 if (keyboard_check(INPUT_RUN))
 {
-	if (vx < -5) vx = -5;
-	if (vx > 5) vx = 5;
+	if (vx < -3) vx = -3;
+	if (vx > 3) vx = 3;
 } else {
-	if (vx < -2) vx = -2;
-	if (vx > 2) vx = 2;
+	if (vx < -1.5) vx = -1.5;
+	if (vx > 1.5) vx = 1.5;
 }
 
 //Deceleration
@@ -76,40 +76,14 @@ x += vx;
 px = floor(x);
 y += vy;
 py = floor(y);
-show_debug_message("ax: " + string(ax));
-show_debug_message("vx: " + string(vx));
+//show_debug_message("ax: " + string(ax));
+//show_debug_message("vx: " + string(vx));
+//show_debug_message("ay: " + string(ay));
+//show_debug_message("vy: " + string(vy));
 
 //If hitting side of room, vx = 0
-if (x < 0)
+var collision = clamp(px, 0, room_width-sprite_width)
+if (px != collision)
 {
-	x = 0;
-	vx = 0;
-	ax = 0;
-}
-if (x > room_width-sprite_width)
-{
-	x = room_width-sprite_width;
-	vx = 0;
-	ax = 0;
-}
-
-//If hitting a block, don't go through it
-if (!Level_Collision(floor(x),floor(y)))
-{
-	show_debug_message("On a block");
-}
-
-//Image Speed
-if (vx < 0)
-{
-	image_speed = 1;
-}
-if (vx > 0)
-{
-	image_speed = 1;
-}
-if (vx = 0)
-{
-	image_speed = 0;
-	image_index = 0;
+	px = collision;
 }

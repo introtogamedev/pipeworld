@@ -9,3 +9,15 @@ px = x;
 
 vy = 0;
 py = y;
+
+on_floor = false;
+jumping = false;
+jump_velocity = -4;
+jump_time = 8;
+
+
+//state = {
+//	hover: 5,
+//	shimmer: "yes",
+//	owo: true
+//}
