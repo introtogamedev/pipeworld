@@ -28,6 +28,3 @@ if (file_exists(SAVE_STATE_PATH)) {
 		state = struct_copy(state_saved);
 	}
 }
-
-
-
