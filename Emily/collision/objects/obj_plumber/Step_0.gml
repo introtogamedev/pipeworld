@@ -1,23 +1,25 @@
-//constants
-#macro INPUT_L ord("A")
-#macro INPUT_R ord("D")
-#macro INPUT_UP ord("W")
-#macro INPUT_BOOST vk_shift
+////constants
+//#macro INPUT_L ord("A")
+//#macro INPUT_R ord("D")
+//#macro INPUT_UP ord("W")
+//#macro INPUT_BOOST vk_shift
 
 #macro MOVE_ACCELERATION 6
-#macro MAX_VELOCITY 10
-#macro MOVE_DRAG 1
-#macro MOVE_BOOST 4
+//#macro MAX_VELOCITY 10
+//#macro MOVE_DRAG 0.2
+//#macro MOVE_BOOST 4
 
-//number of microseconds in a second
-#macro MS 100000
+////number of microseconds in a second
+//#macro MS 100000
 
 
-
-//step
+//-------
+//STEP
+//-------
 var _input_dir = 0;
 image_speed = 1;
 
+//movement
 if (keyboard_check(INPUT_L))
 {
 	_input_dir -=1;
@@ -82,15 +84,9 @@ vx += _ax * _dt;
 x += vx * _dt;
 
 
-if (x < 0 && _input_dir == -1)
+if (x > room_width - sprite_width && _input_dir == 1)
 {
-    x = 0;
-    vx = 0;
-}
-
-if (x > 256 - sprite_width && _input_dir == 1)
-{
-    x = 256 - sprite_width;
+    x = room_width - sprite_width;
     vx = 0;
 }
 
@@ -99,18 +95,24 @@ if (x > 256 - sprite_width && _input_dir == 1)
 if (_input_dir == 0 && vx > 0)
 {
 	vx -= MOVE_DRAG;
-	if (vx < 0.1) vx = 0;
+	if (vx < 0.1)
+	{
+		vx = 0;
+	}
 }
 
 if (_input_dir == 0 && vx < 0)
 {
 	vx += MOVE_DRAG;
-	if (vx > 0.1) vx = 0;
+	if (vx > 0.1)
+	{
+		vx = 0;
+	}
 }
 
 
 
-//idle
+//IDLE
 if (vx = 0 && sprite_index = spr_plumber_walk_l)
 {
 	sprite_index = spr_plumber_l;
@@ -123,9 +125,11 @@ if (vx = 0 && sprite_index = spr_plumber_walk_r)
 
 
 
-
+//-------
 //JUMPING
-if (!jumping && !place_meeting(x,y+10,obj_floor))
+//-------
+
+if (!jumping && !place_meeting(x,y+2,obj_floor))
 {
 	falling = true;
 }
@@ -133,24 +137,44 @@ if (!jumping && !place_meeting(x,y+10,obj_floor))
 //falling state
 if (falling)
 {
-	vertical_velocity += falling_gravity;
-	if (vertical_velocity > falling_max_velocity)
+	vy += falling_gravity;
+	if (vy > falling_max_velocity)
 	{
-		vertical_velocity = falling_max_velocity;
+		vy = falling_max_velocity;
 	}
 	
-	var vertical_check = 10;
-	if (place_meeting(x,y+vertical_check,obj_floor))
+	var _vertical_check = 2;
+	//floor
+	if (place_meeting(x,y+_vertical_check,obj_floor))
 	{
-		vertical_velocity = 0;
-		
-		var floor_instance = instance_place(x,y+vertical_check,obj_floor);
-		y = floor_instance.y - sprite_height;
+		vy = 0;
+		var _floor_instance = instance_place(x,y+_vertical_check,obj_floor);
+		y = _floor_instance.y - sprite_height;
 
 		falling = false;
 		on_floor = true;
+		show_debug_message("...");
+	}
+	
+	
+	//platform
+	with (obj_platform)
+	{
+		if (obj_plumber.y + obj_plumber.sprite_height > y - _vertical_check &&
+			obj_plumber.y + obj_plumber.sprite_height < y + _vertical_check &&
+			obj_plumber.x + obj_plumber.sprite_width > x &&
+			obj_plumber.x < x + sprite_width &&
+			obj_plumber.vy > 0)
+		{
+			obj_plumber.vy = 0;
+			obj_plumber.y = y - obj_plumber.sprite_height;
+
+			obj_plumber.falling = false;
+			obj_plumber.on_floor = true;
+		}
 	}
 }
+
 
 //on floor state
 if (on_floor)
@@ -160,7 +184,7 @@ if (on_floor)
 		on_floor = false;
 		jumping = true;
 		
-		vertical_velocity -= jump_initial_impulse;
+		vy -= jump_initial_impulse;
 	}
 }
 
@@ -169,13 +193,13 @@ if (jumping)
 {
 	if (keyboard_check(INPUT_UP))
 	{
-		vertical_velocity -= jump_acceleration;
+		vy -= jump_acceleration;
 	}
 	else jumping = false;
 	
-	if (vertical_velocity < -jump_max_velocity)
+	if (vy < -jump_max_velocity)
 	{
-		vertical_velocity = -jump_max_velocity;
+		vy = -jump_max_velocity;
 	}
 	
 	jump_timer ++;
@@ -220,5 +244,38 @@ else
 	}
 }
 
-//pixel dimension stuff
-//var_x = floor(px);
+//PLATFORM COLLISION
+if (place_meeting (x,y+vy, obj_platform))
+{
+	while (abs(vy) > 0.1)
+	{
+		vy= 0;
+		if (!place_meeting(x,y+vy,obj_platform))
+		{
+			y+=vy;
+		}
+	}
+	vy = 0;
+}
+if (place_meeting(x+vx,y,obj_platform))
+{
+	while (abs(vx > 0.1))
+	{
+	vx= 0;
+	if (!place_meeting(x+vx,y,obj_platform))
+		{
+			x+=vx;
+		}
+	}
+	vx = 0;
+}
+
+
+
+//confines player to level
+var _px_collision = clamp(x, 0, room_width - sprite_width);
+if (x != _px_collision)
+{
+	x = _px_collision;
+	vx = 0;
+}
