@@ -51,6 +51,7 @@ if(global.state.can_jump and keyboard_check_pressed(ord("W")) and global.state.v
 	animator.play(jump);
 	global.state.can_jump=false;
 	global.state.jump_press_time=0;
+	audio_play_sound(snd_jump,1,false);
 }
 if(global.state.jump_press_time<max_jump_press_time&&!global.state.isFalling&&keyboard_check(ord("W"))){
 	global.state.jump_press_time+=dt;
@@ -74,7 +75,8 @@ if(place_meeting(global.state.x,global.state.y,tilemap)){
 	if(global.state.clipping!=0){
 		//show_debug_message("1");
 		global.state.x-=global.state.vx*dt;
-		global.state.x+=global.state.clipping*((global.state.x&15)+global.state.clipping*8)*(dt*7);
+		//global.state.x+=global.state.clipping*((global.state.x&15)+global.state.clipping*8)*(dt*7);
+		global.state.x+=global.state.clipping*((global.state.x&15))*(dt*7);
 		
 		global.state.vx=0;
 		global.state.ax=0;

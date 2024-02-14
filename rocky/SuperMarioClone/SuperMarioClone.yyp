@@ -38,6 +38,7 @@
     {"id":{"name":"tiles","path":"tilesets/tiles/tiles.yy",},},
     {"id":{"name":"savefile","path":"scripts/savefile/savefile.yy",},},
     {"id":{"name":"spr_tile_brown_brick","path":"sprites/spr_tile_brown_brick/spr_tile_brown_brick.yy",},},
+    {"id":{"name":"snd_jump","path":"sounds/snd_jump/snd_jump.yy",},},
     {"id":{"name":"spr_mario_skid","path":"sprites/spr_mario_skid/spr_mario_skid.yy",},},
     {"id":{"name":"GameManager","path":"objects/GameManager/GameManager.yy",},},
     {"id":{"name":"RingBuffer","path":"scripts/RingBuffer/RingBuffer.yy",},},
