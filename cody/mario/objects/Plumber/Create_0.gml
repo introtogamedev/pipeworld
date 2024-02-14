@@ -1,21 +1,60 @@
-frame_index = 0;
+// -----------
+// -- state --
+// -----------
+global.plumber_state = {
+	// the current frame
+	frame_index: 0,
 
-// the current velocity
-vx = 0;
-vy = 0;
+	// -------------
+	// -- physics --
+	// -------------
 
-// the current position
-px = x;
-py = y;
+	// the current velocity
+	vx: 0,
+	vy: 0,
 
-// the current look direction
-look_dir = 0;
+	// the current position
+	px: x,
+	py: y,
 
-// the current position in the move animation
-move_frame = 0;
+	// if currently running
+	is_running: false,
 
-// the current sprite index
-image_idx = 0;
+	// if the jump is currently held
+	is_jump_held: false,
 
-// the current input move dir
-input_move = 0;
+	// if we're colliding with the ground
+	is_on_ground: false,
+
+	// the current look direction
+	look_dir: 0,
+
+	// -------------
+	// -- drawing --
+	// -------------
+
+	// if we're in the jumping animation
+	anim_is_jumping: true,
+
+	// the current position in the move animation
+	anim_move_frame: 0,
+
+	// the current sprite index
+	anim_image_index: 0,
+
+	// -----------
+	// -- input --
+	// -----------
+
+	// the current input move dir
+	input_move: 0,
+}
+
+// -----------
+// -- ivars --
+// -----------
+// the game "manager", but we don't use that word
+game = instance_nearest(0, 0, Game);
+
+// the current state; we'll get this from the game every step
+state = undefined
