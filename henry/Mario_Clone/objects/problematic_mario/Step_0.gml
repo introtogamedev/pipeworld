@@ -29,7 +29,7 @@ state.frame_index += 1;
 //jump tuning
 #macro JUMP_GRAVITY 16 * FPS
 #macro JUMP_HOLD_GRAVITY 8 *FPS
-#macro JUMP_IMPULSE 6.2 * FPS
+#macro JUMP_IMPULSE 4 * FPS
 
 //input constants
 #macro INPUT_LEFT ord("A")
@@ -44,17 +44,36 @@ enum INPUT_STATE {
 	HOLD = 2,
 }
 
+// - - - - - - - - - 
+// - - get state - - 
+// - - - - - - - - - 
+state = God.state;
 
 #endregion
 
-// find all of the inputs
+
+// - - - - - - - - - 
+// - - get inputs - - 
+// - - - - - - - - - 
 var _input_dir = 0;
 
+//if they're pressing a direction then say hey the input's goin that way
 if keyboard_check(ord("A")) {_input_dir -= 1}
 if keyboard_check(ord("D")) {_input_dir += 1}
 
+//are we runnin?
 var _input_run  = keyboard_check(INPUT_RUN);
-var _input_jump = keyboard_check_pressed(INPUT_JUMP);
+
+//are we jumpin? how high?
+var _input_jump = INPUT_STATE.NONE;
+
+if keyboard_check_pressed(INPUT_JUMP) {
+	_input_jump = INPUT_STATE.PRESS;
+}
+
+else if keyboard_check(INPUT_JUMP) {
+	_input_jump = INPUT_STATE.HOLD;
+}
 
 // set the forces to 0 at the start of the frame
 var _ax = 0;
@@ -73,23 +92,42 @@ if (_input_run) {
 
 _ax += _move_accel * _input_dir;
 
-// if jump pressed and on the ground, jump
-var _is_jump_held = false;
+// add jump accelleration
+var _event_jump = false;
 
-if _input_jump && (state.is_on_ground) {
-	_iy -= JUMP_IMPULSE;
+//if we're not holding jump then let state know jump isn't being held
+var _is_jump_held = state.is_jump_held;
+
+if (_input_jump == INPUT_STATE.HOLD) {
 	_is_jump_held = true;
 }
-else if (_input_jump == INPUT_STATE.HOLD){
-	_ay += JUMP_HOLD_GRAVITY
+else {
 	_is_jump_held = false;
-
 }
+
+//if the clicked jump and we're on the ground
+if (_input_jump == INPUT_STATE.PRESS) && (state.is_on_ground) {
+	_iy -= JUMP_IMPULSE;
+	_event_jump = true;
+}
+
+//if they're holding jump then lower the gravity
+else if (_is_jump_held) && (state.vy < 0) {
+	_ay += JUMP_HOLD_GRAVITY;
+}
+
+//if there's no jump input, let the plumber be affected by gravity
 else
 {
-	_ay = JUMP_GRAVITY;
+	_ay += JUMP_GRAVITY;
 }
 
+//show_debug_message(_input_jump);
+
+//if we  start a new jump, track that it's held
+if (_event_jump){
+	_is_jump_held = true;
+}
 
 // get fractional delta time
 var _dt = delta_time / MS;
@@ -118,8 +156,10 @@ state.vx = _vx_mag * _vx_dir;
 state.px += state.vx * _dt;
 state.py += state.vy * _dt;
 
+// - - - - - -- 
+//update state!!
+// - - - - - - 
 
-//update state
 //if there is move input, face that direction
 if (_input_dir !=0) {
 	state.look_dir = _input_dir;
@@ -127,6 +167,7 @@ if (_input_dir !=0) {
 
 //capture the move state
 state.input_dir = _input_dir;
+state._is_jump_held = _is_jump_held;
 
 if (state.vy > 0) {
 	is_jumping = true;
@@ -139,6 +180,8 @@ y = state.py;
 
 
 #endregion
+
+show_debug_message(state.input_dir)
 
 
 

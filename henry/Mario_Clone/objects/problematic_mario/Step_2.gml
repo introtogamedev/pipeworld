@@ -44,6 +44,7 @@ if state.vy < 0
 {
 	if level_collision (_x0 + HEAD_OFFSET_X, _y0) > TILES_NONE {
 		_vy_collision = 0;
+		_falling_from_collision = true;
 	}
 }
 
