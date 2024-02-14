@@ -1,3 +1,10 @@
+//Change the x with both sides collision
+
+x += vx;
+
+
+//show_debug_message(move_dir);
+
 /// -- keep on screen --
 
 if (x < 0 - sprite_width / 2) {
@@ -12,12 +19,6 @@ if (x < 0 - sprite_width / 2) {
 
 /// -- collision --
 
-
-
-//Change the x with both sides collision
-
-x += vx;
-//show_debug_message(move_dir);
 
 if (!tile_empty(x + sprite_side_width * move_dir ,y)) {
     while (!tile_empty(x +sprite_width / 2 ,y)) {
