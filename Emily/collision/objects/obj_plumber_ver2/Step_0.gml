@@ -273,39 +273,28 @@ if (state.px != _px_collision)
 	state.vx = 0;
 }
 
-
-
 //PLATFORM COLLISION
-//need to update this to tilemap and fix player being able to slowly move through
-if (place_meeting (state.px, state.py + state.vy, obj_platform))
+if (place_meeting (state.px,state.py+state.vy, obj_platform))
 {
 	while (abs(state.vy) > 0.1)
 	{
 		state.vy= 0;
-		if (!place_meeting(state.px, state.py + state.vy,obj_platform))
+		if (!place_meeting(state.px,state.py+state.vy,obj_platform))
 		{
-			state.py += state.vy;
+			state.py+=state.vy;
 		}
 	}
 	state.vy = 0;
 }
-if (place_meeting(state.px + state.vx, state.py,obj_platform))
+if (place_meeting(state.px+state.vx,state.py,obj_platform))
 {
 	while (abs(state.vx > 0.1))
 	{
 	state.vx= 0;
-	if (!place_meeting(state.px + state.vx, state.py,obj_platform))
+	if (!place_meeting(state.px+state.vx,state.py,obj_platform))
 		{
-			state.px += state.vx;
+			state.px+=state.vx;
 		}
 	}
 	state.vx = 0;
 }
-//var _py_collision = state.py;
-//var _y1 = state.py + 8;
-//if (level_collision(state.px, _y1) == TILES_BRICK) 
-//{
-//	// then move the player to the top of the tile
-//	_py_collision -= state.py % 10;
-//	show_debug_message("!");
-//}
