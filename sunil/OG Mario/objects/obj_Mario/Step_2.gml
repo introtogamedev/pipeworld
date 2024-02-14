@@ -21,7 +21,7 @@ if (x < sprite_side_width) {
 
 
 if (!tile_empty(x + sprite_side_width * move_dir ,y)) {
-    while (!tile_empty(x +sprite_width / 2 ,y)) {
+    while (!tile_empty(x + sprite_side_width * move_dir,y)) {
 		//show_debug_message(string(x+vx +sprite_width / 2 ) + " is subtracted by " + string(-sign(vx)) + " x is " + string(x) );
         x -= move_dir;
     }
@@ -33,7 +33,7 @@ if (!tile_empty(x + sprite_side_width * move_dir ,y)) {
 
 show_debug_message("first_check");
 if (!tile_empty(x - sprite_side_width * move_dir ,y)) {
-    while (!tile_empty(x - sprite_width / 2 ,y)) {
+    while (!tile_empty(x - sprite_side_width * move_dir,y)) {
 		//show_debug_message(string(x+vx +sprite_width / 2 ) + " is subtracted by " + string(-sign(vx)) + " x is " + string(x) );
         x += move_dir;
     }

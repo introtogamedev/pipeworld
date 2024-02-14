@@ -6,8 +6,8 @@
 #macro MS 1000000
 
 //vertical constants
-#macro WALK_ACCELERATION 0.1 / DT
-#macro RUN_ACCELERATION 0.2 / DT
+#macro WALK_ACCELERATION 0.05 / DT
+#macro RUN_ACCELERATION 0.075 / DT
 #macro MOVE_DECCELERATION 0.1 / DT
 
 //jump constants
@@ -62,8 +62,8 @@ if (input_dir == 0) {
 
 
 if (keyboard_check(INPUT_RUN)) {
-	if (abs(vx) > max_vx * 2) {
-		vx = sign(vx) * max_vx * 2;
+	if (abs(vx) > max_vx * 1.5) {
+		vx = sign(vx) * max_vx * 1.5;
 	}
 } else if (abs(vx) > max_vx) {
 	vx = sign(vx) * max_vx;
@@ -74,7 +74,7 @@ if (keyboard_check(INPUT_RUN)) {
 //Jump logic
 
 
-if (keyboard_check_pressed(INPUT_JUMP) && ((!tile_empty(floor(x - sprite_width/2),floor(y + sprite_height / 2))) || (!tile_empty(floor(x + sprite_width/2),floor(y + sprite_height / 2))))) {
+if (keyboard_check_pressed(INPUT_JUMP) && on_ground) {
 	vy -= JUMP_STRENGTH;
 	jump_frames = MAX_JUMP_FRAMES;
 	spr_frame = 4;
