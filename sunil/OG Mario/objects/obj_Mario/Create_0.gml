@@ -15,9 +15,12 @@ anim_frame = 0;
 
 spr_frame = 0;
 
-jump_frames = 10;
+jump_frames = 0;
 
 input_dir = 0;
 
 move_dir = 0;
 
+img_xscale = 1;
+
+on_ground = false;

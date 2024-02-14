@@ -7,11 +7,11 @@ x += vx;
 
 /// -- keep on screen --
 
-if (x < 0 - sprite_width / 2) {
-	x = - sprite_width / 2;
+if (x < sprite_side_width) {
+	x = sprite_side_width;
 	vx = 0;
-} else if (x > room_width - sprite_width / 2) {
-	x = room_width - sprite_width / 2;
+} else if (x > room_width - sprite_side_width) {
+	x = room_width - sprite_side_width;
 	vx = 0;
 }
 
@@ -64,11 +64,16 @@ if (((!tile_empty(x - sprite_width / 2,y - sprite_height / 2)) || (!tile_empty(x
 
 show_debug_message(y);
 show_debug_message(vy);
+
+
 //Check for floor collision
 
 if (((!tile_empty(x - sprite_width/2,y + sprite_height / 2)) || (!tile_empty(x + sprite_width/2,y + sprite_height / 2))) && vy >= 0) {
 	y = y - y % 16 + sprite_height / 2;
 	vy = 0;
+	on_ground = true;
+} else {
+	on_ground = false;
 }
 
 //show_debug_message("y_check2");

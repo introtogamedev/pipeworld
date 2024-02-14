@@ -13,7 +13,7 @@
 //jump constants
 #macro GRAVITY 0.25 / DT
 #macro JUMP_STRENGTH 4.0
-#macro MAX_JUMP_FRAMES 15
+#macro MAX_JUMP_FRAMES 0.25
 
 //input keys
 #macro INPUT_LEFT ord("A")
@@ -77,10 +77,12 @@ if (keyboard_check(INPUT_RUN)) {
 if (keyboard_check_pressed(INPUT_JUMP) && ((!tile_empty(floor(x - sprite_width/2),floor(y + sprite_height / 2))) || (!tile_empty(floor(x + sprite_width/2),floor(y + sprite_height / 2))))) {
 	vy -= JUMP_STRENGTH;
 	jump_frames = MAX_JUMP_FRAMES;
+	spr_frame = 4;
+	anim_frame = 0;
 }
 
 if (jump_frames > 0) {
-	jump_frames--;
+	jump_frames -= _dt;
 	if (keyboard_check(INPUT_JUMP)) {
 		vy -= GRAVITY * _dt;
 	} else {
