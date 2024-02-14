@@ -1,7 +1,5 @@
 #macro SIDE_OFFSET_Y 8
 
-var _py_collision = state.py;
-var _px_collision = state.px;
 
 var _x0 = state.px;
 var _x1 = _x0 + sprite_width;
@@ -12,7 +10,7 @@ var _y1 = _y0 + sprite_height;
 var _is_on_ground = false;
 
 //level boundary
-_px_collision = clamp(_px_collision, 0, room_width - sprite_width);
+
 
 //head
 if (state.vy < 0) 
@@ -35,7 +33,6 @@ if (state.vy > 0)
 	(level_collision(_x0+14, _y1) = TILES_BRICK))//right foot
 	{	
 		
-		//_py_collision -= state.py % 16;
 		state.py -= 1;
 		state.vy = 0;
 	// and track that we're on ground
@@ -63,7 +60,7 @@ if (level_collision(state.px, state.py+SIDE_OFFSET_Y) = TILES_BRICK){
 		show_debug_message("left");
 }
 
-
+//right
 if (level_collision(state.px+16, state.py+SIDE_OFFSET_Y) = TILES_BRICK){
 		//_py_collision_head += ((py % 16)+2);
 		state.px -= 1;

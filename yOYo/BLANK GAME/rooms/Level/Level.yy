@@ -14,7 +14,7 @@
   "layers": [
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Tiles_1","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":15,"SerialiseWidth":16,"TileCompressedData":[
 -15,-2147483648,1,1,-15,-2147483648,1,1,-9,-2147483648,1,0,-5,-2147483648,1,1,
--9,-2147483648,1,0,-5,-2147483648,1,1,-9,-2147483648,1,0,-5,-2147483648,1,1,
+-9,-2147483648,1,0,-5,-2147483648,1,0,-9,-2147483648,1,0,-5,-2147483648,1,0,
 -9,-2147483648,1,0,-5,-2147483648,1,1,-9,-2147483648,1,0,-5,-2147483648,1,1,
 -9,-2147483648,1,0,-5,-2147483648,1,1,-9,-2147483648,1,0,-5,-2147483648,1,1,
 -5,-2147483648,1,1,-3,-2147483648,7,0,-2147483648,0,0,-2147483648,-2147483648,1,-3,-2147483648,
