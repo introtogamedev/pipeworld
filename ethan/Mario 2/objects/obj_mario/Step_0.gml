@@ -11,7 +11,7 @@
 #macro MOVE_RUN_ACCELERATION 0.4*FPS
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
-#macro INPUT_RUN ord("R")
+#macro INPUT_RUN vk_shift
 #macro INPUT_JUMP vk_space
 
 #macro JUMP_GRAVITY 0.2 * FPS

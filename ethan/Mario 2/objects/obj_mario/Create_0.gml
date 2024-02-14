@@ -12,7 +12,8 @@ py = y;
 
 on_floor = false;
 jumping = false;
-jump_velocity = -5.1;
+jump_velocity = -4;
+jump_time = 8;
 
 
 //state = {

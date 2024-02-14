@@ -40,16 +40,30 @@ if (!Level_Collision(floor(x+3),floor(y2)) || !Level_Collision(floor(x2-4), floo
 	py = floor(y);
 	on_floor = true;
 	jumping = false;
+	jump_time = 8;
 } else {
 	on_floor = false;
 }
 
 //Jumping
-if (keyboard_check_pressed(INPUT_JUMP) && on_floor)
+if (keyboard_check(INPUT_JUMP))
 {
-	jumping = true;
-	on_floor = false;
-	vy = jump_velocity;
+	//Player allowed to determine jump height
+	if (jump_time > 0)
+	{
+		vy = jump_velocity;
+		jump_time--;
+	}
+	
+	if (on_floor) 
+	{
+		on_floor = false;
+		jumping = true;
+	}
+}
+if (keyboard_check_released(INPUT_JUMP))
+{
+	jump_time = 0;
 }
 
 if (jumping)
