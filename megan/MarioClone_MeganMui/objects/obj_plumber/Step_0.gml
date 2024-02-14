@@ -5,15 +5,15 @@
 // the number of microseconds in a second
 #macro MS 1000000
 // -- move tuning --
-#macro MOVE_WALK_ACCELERATION 1.2 * FPS
+#macro MOVE_WALK_ACCELERATION .75 * FPS
 #macro MOVE_RUN_ACCELERATION  2.5 * FPS
-#macro MOVE_DECELERATION      3.5 * FPS
+#macro MOVE_DECELERATION      65 * FPS
 
 // -- jump turning --
 #macro JUMP_GRAVITY .5 * FPS
 
 #macro JUMP_INITIAL_IMPULSE 5 * FPS
-#macro JUMP_ACCELERATION .18 * FPS
+#macro JUMP_ACCELERATION .19 * FPS
 #macro JUMP_HEIGHT 4 * 16 * FPS
 
 
