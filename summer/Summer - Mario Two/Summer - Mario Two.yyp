@@ -34,11 +34,13 @@
     "IDEVersion": "2023.11.0.121",
   },
   "resources": [
-    {"id":{"name":"spr_plumber_sprite","path":"sprites/spr_plumber_sprite/spr_plumber_sprite.yy",},},
-    {"id":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},},
-    {"id":{"name":"obj_plumber_sprite","path":"objects/obj_plumber_sprite/obj_plumber_sprite.yy",},},
+    {"id":{"name":"spr_plumber_jump","path":"sprites/spr_plumber_jump/spr_plumber_jump.yy",},},
+    {"id":{"name":"snd_mario_jump","path":"sounds/snd_mario_jump/snd_mario_jump.yy",},},
+    {"id":{"name":"obj_plumber_mario","path":"objects/obj_plumber_mario/obj_plumber_mario.yy",},},
     {"id":{"name":"config","path":"scripts/config/config.yy",},},
-    {"id":{"name":"spr_floor","path":"sprites/spr_floor/spr_floor.yy",},},
+    {"id":{"name":"spr_plumber_sprite","path":"sprites/spr_plumber_sprite/spr_plumber_sprite.yy",},},
+    {"id":{"name":"tiles","path":"sprites/tiles/tiles.yy",},},
+    {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
     {"id":{"name":"rm_level_1","path":"rooms/rm_level_1/rm_level_1.yy",},},
   ],
   "RoomOrderNodes": [
