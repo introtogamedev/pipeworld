@@ -1,12 +1,14 @@
 // thus number of microsecond in a second
 #macro MS 1000000
 #macro JUMP_FROCE -3
-#macro NORMAL_GRAVITY 5
-#macro JUMP_GRAVITY 2
+#macro NORMAL_GRAVITY 9
+#macro JUMP_GRAVITY 3
 
 //aceleration constant
 #macro MOVE_ACEL 6
 #macro MOVE_FRIC 4
+#macro MARIOJUMP maro_jump_sound_effect_1
+#macro VINEBOOM vine_boom
 
 state.max_speed = 3;
 
@@ -35,6 +37,7 @@ var _iy = 0;
 if (keyboard_check_pressed(vk_space) and state.on_ground){
 	state.jumping = true;
 	_iy = JUMP_FROCE;
+	audio_play_sound(VINEBOOM, 1, false);
 	show_debug_message("JUMP");
 	
 	
@@ -76,21 +79,7 @@ state.vy += (_ay * _dt) + _iy;
 state.px += state.vx;
 state.py += state.vy;
 
-
-
-/*
-	var temp = vy;
-	while (emp > 0) {
-		if (!level_collision(px,py+sign(temp)) {
-			py += sign(temp);
-			temp -= sign(temp);
-			if (abs(temp) < 1){
-				break;
-		}
-	}
-	
-*/
-//draw frame
+//frame index
 state.frame_index += 1;
 
 //Make sure mario in game

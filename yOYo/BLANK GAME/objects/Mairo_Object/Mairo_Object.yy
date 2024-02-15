@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "plumber",
-    "path": "sprites/plumber/plumber.yy",
+    "name": "Plumber_Sprite",
+    "path": "sprites/Plumber_Sprite/Plumber_Sprite.yy",
   },
   "spriteMaskId": null,
   "visible": true,

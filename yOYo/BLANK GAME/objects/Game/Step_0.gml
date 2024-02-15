@@ -8,7 +8,7 @@
 if (keyboard_check_pressed(vk_lcontrol))
 {
 	show_debug_message("json Write Attempt");
-	json_write(SAVE_STATE_PATH, global.plumberstate);
+	//json_write(SAVE_STATE_PATH, global.plumberstate);
 	
 }
 
