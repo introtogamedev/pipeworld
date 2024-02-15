@@ -32,7 +32,9 @@ global.plumber_state = {
 
 	// the current look direction
 	look_dir: 0,
-
+	
+	is_skidding : false,
+	
 	// -------------
 	// -- drawing --
 	// -------------
@@ -42,6 +44,7 @@ global.plumber_state = {
 
 	// the current position in the move animation
 	anim_move_frame: 0,
+	
 
 	// the current sprite index
 	anim_image_index: 0,
