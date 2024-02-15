@@ -1,4 +1,3 @@
-
 //constants
 //the number of seconds in a normal frame
 
@@ -23,8 +22,8 @@ if (x + sprite_width /2 > room_width) {
 	x = room_width - sprite_width / 2;
 }
 
-if (x < 0 + sprite_width) {
-	x = 0 + sprite_width;
+if (x < sprite_width/2) {
+	x = 0 + sprite_width / 2;
 }
 
 //step
@@ -32,7 +31,7 @@ var _input_dir = 0;
 var press_left = false;
 var press_right = false;
 var press_up = false;
-var avx = vx;
+var _avx = vx;
 
 
 if (keyboard_check(INPUT_LEFT) && x > 0 + sprite_width / 2){
@@ -58,16 +57,16 @@ if (keyboard_check(INPUT_RIGHT) && x + sprite_width / 2 < room_width){
 //friction: stop
 if (press_left == false && press_right == false && press_up == false) {
 	if (vx < 0) { 
-	    avx *= -1;
-		avx -= Stop_acceleration;
-		if (avx < 0) avx = 0;
-		vx = avx * -1;
+	    _avx *= -1;
+		_avx -= Stop_acceleration;
+		if (_avx < 0) _avx = 0;
+		vx = _avx * -1;
 	} else {	
-		avx -= Stop_acceleration;
-		if (avx < 0){
-			avx = 0;
+		_avx -= Stop_acceleration;
+		if (_avx < 0){
+			_avx = 0;
 		}
-		vx = avx;		
+		vx = _avx;		
 	}	
 }
 	
@@ -78,16 +77,38 @@ var _ax = MOVE_ACCELERATION * _input_dir;
 //get fractoional deltatime
 var _dt = delta_time / MS;
 
-//vx速度integrate acceleration into velocity
+//vx(speed)integrate acceleration into velocity
 vx += _ax * _dt;
 
-//integrate velocity into position
-x += vx;
 
+
+var TILES_BRICK = layer_tilemap_get_id("Tiles_1")
+
+//vertical collision
+if (place_meeting (x, y+vertical_velocity, TILES_BRICK)){
+	while (abs(vertical_velocity)>0.1){
+		vertical_velocity/=2;
+		if (!place_meeting (x, y+vertical_velocity, TILES_BRICK)){
+			y+=vertical_velocity;
+		}
+	}
+	vertical_velocity = 0;
+}
+
+// horizontal collision
+if (place_meeting(x + vx, y, TILES_BRICK)){
+    while (abs(vx) > 0.1){
+        vx /= 2;
+        if (!place_meeting(x + vx, y, TILES_BRICK)){
+            x += vx;
+        }
+    }
+    vx = 0;
+}
 
 //jump
 
-if (!jumping && !place_meeting (x, y + sprite_height / 2, obj_floor)) falling = true;
+if (!jumping && !place_meeting (x, y + sprite_height / 2, TILES_BRICK)) falling = true;
 
 if (falling)
 {
@@ -97,15 +118,11 @@ if (falling)
 		vertical_velocity = falling_max_velocity;
 	}
 	
-	var vertical_check = 10;
-	if (place_meeting (x, y + vertical_check, obj_floor))
+	//var vertical_check = 10;
+	if (place_meeting (x, y+3, TILES_BRICK))
 	{
 		vertical_velocity = 0;
-		
-		var floor_instance = instance_place (x, y + vertical_check, obj_floor);
-		
-		y = floor_instance.y - sprite_height / 2;
-		
+		//var floor_instance = instance_place (x, y + vertical_check, TILES_BRICK);
 		falling = false;
 		on_floor = true;
 	}
@@ -146,7 +163,44 @@ if (jumping)
 	}
 }
 
-if (place_meeting (x, y-8, obj_floor))
+
+//sound effects
+if keyboard_check_pressed(INPUT_UP)
 {
-	y = y+16;
+	audio_play_sound(snd_mario_jump, 10, false);
 }
+
+
+// Animation
+	//jump animation
+if (jumping == true)
+{
+	image_speed = 2;
+	sprite_index = spr_plumber_jump;
+}
+
+if (on_floor == true)
+{
+	sprite_index = spr_plumber_sprite;
+}
+	
+//Moving
+    if (vx != 0) {
+        image_speed = 4;
+    } else {
+        // Standing still
+        image_speed = 0;
+		if (_input_dir < 0 && jumping = false)
+		{
+			image_speed = 0;
+			image_xscale = -1;
+		}
+		if (_input_dir > 0 && jumping = false)
+		{
+			image_speed = 0;
+			image_xscale = 1;
+			}
+	image_index = 0;
+	}
+	
+
