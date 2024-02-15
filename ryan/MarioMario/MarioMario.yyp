@@ -12,6 +12,7 @@
   "defaultScriptType": 1,
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Plumber","folderPath":"folders/Plumber.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"sounds","folderPath":"folders/Plumber/sounds.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprite States","folderPath":"folders/Plumber/Sprite States.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Rooms","folderPath":"folders/Rooms.yy",},
   ],
@@ -19,12 +20,14 @@
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
-    "IDEVersion": "2023.11.1.129",
+    "IDEVersion": "2023.11.0.121",
   },
   "resources": [
     {"id":{"name":"spr_tileset","path":"sprites/spr_tileset/spr_tileset.yy",},},
     {"id":{"name":"Config","path":"scripts/Config/Config.yy",},},
-    {"id":{"name":"spr_marioSPEEDTURN","path":"sprites/spr_marioSPEEDTURN/spr_marioSPEEDTURN.yy",},},
+    {"id":{"name":"aud_plumberJUMPeff","path":"sounds/aud_plumberJUMPeff/aud_plumberJUMPeff.yy",},},
+    {"id":{"name":"spr_marioSKID","path":"sprites/spr_marioSKID/spr_marioSKID.yy",},},
+    {"id":{"name":"checkTile","path":"scripts/checkTile/checkTile.yy",},},
     {"id":{"name":"NES___Super_Mario_Bros___Mario__Luigi","path":"sprites/NES___Super_Mario_Bros___Mario__Luigi/NES___Super_Mario_Bros___Mario__Luigi.yy",},},
     {"id":{"name":"spr_marioIDLE","path":"sprites/spr_marioIDLE/spr_marioIDLE.yy",},},
     {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
@@ -33,6 +36,7 @@
     {"id":{"name":"spr_marioSPEEDRUN","path":"sprites/spr_marioSPEEDRUN/spr_marioSPEEDRUN.yy",},},
     {"id":{"name":"spr_marioRUN","path":"sprites/spr_marioRUN/spr_marioRUN.yy",},},
     {"id":{"name":"spr_marioJUMP","path":"sprites/spr_marioJUMP/spr_marioJUMP.yy",},},
+    {"id":{"name":"Object2","path":"objects/Object2/Object2.yy",},},
     {"id":{"name":"rm_level","path":"rooms/rm_level/rm_level.yy",},},
   ],
   "RoomOrderNodes": [
