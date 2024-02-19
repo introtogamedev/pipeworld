@@ -54,6 +54,7 @@
     {"id":{"name":"StructExt","path":"scripts/StructExt/StructExt.yy",},},
     {"id":{"name":"spr_platform","path":"sprites/spr_platform/spr_platform.yy",},},
     {"id":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},},
+    {"id":{"name":"snd_jump_small","path":"sounds/snd_jump_small/snd_jump_small.yy",},},
     {"id":{"name":"spr_plumber_l","path":"sprites/spr_plumber_l/spr_plumber_l.yy",},},
     {"id":{"name":"obj_plumber","path":"objects/obj_plumber/obj_plumber.yy",},},
     {"id":{"name":"rm","path":"rooms/rm/rm.yy",},},
