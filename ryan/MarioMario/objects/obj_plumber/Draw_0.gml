@@ -3,8 +3,13 @@ var xdisplay = floor(x);
 var ydisplay = floor(y);
 //sprite direction
 image_xscale = facing_dir;
+
 //sprite animating
 var sprite_playing = true;
+
+image_xscale = facing_dir;
+image_xscale = facing_dir;
+
 #region sprite assignment
 //RUNNING
 if (plumberAnimation.xmoving){
@@ -25,7 +30,6 @@ if (plumberAnimation.xmoving){
 //JUMPING (overrides running sprites)
 if (plumberAnimation.jumping){
 	sprite_index = spr_marioJUMP;
-	playsoundEff(aud_plumberJUMPeff, 10)
 }else if (not onGround){
 	image_speed = 0;//pause animation based on current frame
 	sprite_playing = false;
@@ -62,6 +66,5 @@ draw_sprite_ext(
 #region debugging visuals
 if (DEBUG_MODE){
 	draw_rectangle(x - sprite_width/2, y - sprite_height , x + sprite_width/2, y, true);
-
 }
 #endregion

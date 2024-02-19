@@ -16,8 +16,8 @@
 
 #region Tilemap/sprite Indexes
 	//utility
-	tilemapLayer = layer_get_id(TILESET_COLLIDABLE);
-	tilemapID = layer_tilemap_get_id(tilemapLayer);
+	#macro tilemapLayer  layer_get_id(TILESET_COLLIDABLE)
+	#macro tilemapID  layer_tilemap_get_id(tilemapLayer)
 	//layers
 	#macro TILESET_COLLIDABLE "Tilemap_collidable"
 	//tiles
@@ -83,9 +83,42 @@
 
 #region functions
 
-function playsoundEff(audio, priority){
-	if (not audio_is_playing(audio)){
-		audio_play_sound(audio, priority, false)
+function playsoundEff(audio, priority, override){
+	if (not audio_is_playing(audio) or override){
+		audio_play_sound(audio, priority, false);
 	}
 }
+
+function saveStateToStruct(){
+	var struct = {
+		x, 
+		y,
+		xvelocity,
+		yvelocity,
+		facing_dir,
+		
+		jumpTriggered,
+		jumpAllowed,
+		jump_height,
+		
+		plumberAnimation,
+	}
+	global.currentState = struct;
+}
+
+function loadState(){
+	var struct  = global.currentState;
+	x = struct.x;
+	y = struct.y;
+	//xvelocity = struct.xvelocity;
+	//yvelocity = struct.yvelocity;
+	facing_dir = struct.facing_dir;
+	
+	jumpTriggered = struct.jumpTriggered;
+	jumpAllowed = struct.jumpAllowed;
+	jump_height = struct.jump_height;
+	
+	plumberAnimation = struct.plumberAnimation;
+}
+loadState();
 #endregion

@@ -133,6 +133,7 @@ if (jump and not jumpTriggered and jumpAllowed){
 	jumpTriggered = true;
 	yvelocity = -abs(JUMP_VEL);
 	plumberAnimation.jumping = true;//animation state
+	playsoundEff(aud_plumberJUMPeff, 10, true);
 }else if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
 	jump_height += abs(yvelocity) * deltaTime;//stores current jump height
 	_gravity = JUMP_GRAVITY;
