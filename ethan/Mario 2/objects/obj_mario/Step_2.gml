@@ -97,3 +97,20 @@ else if (vx == 0 && !jumping)
 	image_speed = 0;
 	image_index = 0;
 }
+
+//Skidding
+if (vx > 0 && ax < 0 || vx < 0 && ax > 0)
+{
+	image_speed = 0;
+	
+	if (vx > 0)
+	{
+		sprite_index = spr_marioskid;
+		image_index = 0;
+	}
+	if (vx < 0)
+	{
+		sprite_index = spr_marioskid;
+		image_index = 1;
+	}
+}

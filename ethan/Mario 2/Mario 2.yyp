@@ -40,6 +40,7 @@
     {"id":{"name":"spr_marioright","path":"sprites/spr_marioright/spr_marioright.yy",},},
     {"id":{"name":"Script1","path":"scripts/Script1/Script1.yy",},},
     {"id":{"name":"ts_mariots","path":"tilesets/ts_mariots/ts_mariots.yy",},},
+    {"id":{"name":"spr_marioskid","path":"sprites/spr_marioskid/spr_marioskid.yy",},},
     {"id":{"name":"spr_marioleft","path":"sprites/spr_marioleft/spr_marioleft.yy",},},
     {"id":{"name":"spr_mariojump","path":"sprites/spr_mariojump/spr_mariojump.yy",},},
     {"id":{"name":"rm_level","path":"rooms/rm_level/rm_level.yy",},},
