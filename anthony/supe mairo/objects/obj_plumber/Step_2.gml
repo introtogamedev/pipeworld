@@ -1,5 +1,5 @@
 //reached end of screen
-var _px_min = 1;
+var _px_min = obj_camera.x;
 var _px_max = room_width - sprite_width - 1;
 var _px_collision = clamp(state.px, _px_min, _px_max);
 
@@ -18,7 +18,7 @@ var _py_coll = state.py;
 var _px_coll = state.px;
 
 //offsets
-var _x_offset = 1;
+var _x_offset = 2;
 var _y_offset = 4;
 
 //get bounding box
