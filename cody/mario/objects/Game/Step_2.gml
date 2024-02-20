@@ -5,6 +5,7 @@
 #macro INPUT_QUIT vk_escape
 #macro INPUT_SAVE 221
 #macro INPUT_LOAD 219
+#macro INPUT_ADVANCE ord("0")
 
 // -----------------
 // -- application --
