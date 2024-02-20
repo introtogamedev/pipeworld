@@ -103,3 +103,9 @@ move_dir = sign(vx);
 if (sign(vx) == 0) {
 	move_dir = sign(input_dir); //Stop sign(vx) from being 0 while using it
 }
+
+if (sign(_ax) != sign (vx)) {
+	turning = true;
+} else {
+	turning = false;
+}

@@ -24,3 +24,5 @@ move_dir = 0;
 img_xscale = 1;
 
 on_ground = false;
+
+turning = false;

@@ -31,8 +31,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_runningMario",
-    "path": "sprites/spr_runningMario/spr_runningMario.yy",
+    "name": "spr_Mario",
+    "path": "sprites/spr_Mario/spr_Mario.yy",
   },
   "spriteMaskId": null,
   "visible": true,
