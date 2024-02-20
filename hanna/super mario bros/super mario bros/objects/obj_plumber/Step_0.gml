@@ -152,12 +152,9 @@ if (y != _py_collision) {
 
 //VERT COLLISION
 //BOTTOM COLLISION
-if(grounded = false){
-	sprite_index = spr_plumber_jumping;
 
-}
 
-if (place_meeting(x, y+2, tilemap)){
+if (place_meeting(x, y+4, tilemap)){
 	
 	y_collision_bottom = round_pos(y_collision_bottom);
 	
@@ -167,17 +164,23 @@ if (place_meeting(x, y+2, tilemap)){
 	yVel = 0;
 	
 	if ((keyboard_check_pressed(JUMP)) && grounded = true){
+		audio_play_sound(snd_jump, 0, false);
 		yVel += JUMP_IMPULSE;
 		sprite_index = spr_plumber_jumping;
 	}
 
 
 }else{
-		grounded = false;
+	grounded = false;
+
+}
+if(grounded = false){
+	sprite_index = spr_plumber_jumping;
+
 }
 
 //TOP COLLISION
-if (place_meeting(x, y-2, tilemap)){
+if (place_meeting(x, y-4, tilemap)){
 	bonk = true;
 } else{
 	bonk = false;
@@ -232,6 +235,8 @@ if (keyboard_check(SPRINT)){
 }else{
 		xVel = clamp(xVel, -1.5, 1.5);
 }
+
+
 
 
 
