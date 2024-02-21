@@ -6,13 +6,14 @@ vy = 0;
 spd = 3;
 walking_spd = 2;
 running_spd = 4;
+turning_spd = 1.5;
 
 //gravity
 grav = 0;
 
 //different gravity variables
 up_grav = 7;
-down_grav = 17;
+down_grav = 20;
 
 //jump velocity
 jump_vel = -4;
@@ -20,7 +21,7 @@ jump_vel = -4;
 //maximum velocity
 vx_max = 0;
 
-//saves horizontal as a constant
+//saves horizontal input as a constant
 last_horizontal = 1;
 
 //checks if it has horizontal input
@@ -35,4 +36,4 @@ ground_tiles = layer_tilemap_get_id("GroundTile");
 //grounded variable
 is_grounded = false;
 
-
+frame = 0;
