@@ -34,6 +34,7 @@ global.state={
 	can_jump: true,
 	ax: 0,
 	ay: 0,
+	look_direction: 1,
 	clipping: 0,
 	isFalling: false,
 	xscale: image_xscale,

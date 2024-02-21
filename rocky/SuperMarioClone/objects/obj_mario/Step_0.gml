@@ -1,6 +1,6 @@
 #macro ACCELERATION 180
 #macro ACCELERATION_RUN 240
-#macro ACCELERATION_SKID 830
+#macro ACCELERATION_SKID 800
 #macro DECCELERATION 220
 #macro KEY_LEFT ord("A")
 #macro KEY_RIGHT ord("D")
@@ -23,14 +23,14 @@ if(keyboard_check(KEY_LEFT) and global.state.vx>-maxSpeed){
 		global.state.ax-=ACCELERATION_SKID;
 	else
 		global.state.ax-=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION);
-	//global.state.vx-=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION)*dt;
+	global.state.look_direction=1;
 }
 else if(keyboard_check(KEY_RIGHT) and global.state.vx<maxSpeed){
 	if(global.state.vx<0)
 		global.state.ax+=ACCELERATION_SKID;
 	else
 		global.state.ax+=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION);
-	//global.state.vx+=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION)*dt;
+	global.state.look_direction=-1;
 }
 else{
 	acc=sign(global.state.vx)*DECCELERATION*dt;
@@ -145,6 +145,13 @@ if(place_meeting(global.state.x,global.state.y,tilemap)){
 //-----------------
 //-----scaling-----
 //-----------------
+if(global.state.vx>0)
+	global.state.xscale=-1;
+else if(global.state.vx<0)
+	global.state.xscale=1;
+else
+	global.state.xscale=global.state.look_direction;
+/*
 if(global.state.vx==0){
 	if(global.state.ax==0)
 		global.state.xscale=keyboard_check(KEY_LEFT)?-1:1;
@@ -153,7 +160,7 @@ if(global.state.vx==0){
 }
 else
 	global.state.xscale=global.state.vx>=0?1:-1;
-
+*/
 //------------------------------
 //-cannot move outside the room-
 //------------------------------
