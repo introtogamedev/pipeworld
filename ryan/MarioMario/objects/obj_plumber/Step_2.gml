@@ -1,5 +1,7 @@
 ///@description Collision checks
-if (not pause or tempframe){
+if (pause and not tempframe){
+	return;
+}
 #region Collision Checks 
 
 #region collision checks & movement: Horizontal
@@ -86,4 +88,4 @@ if (ycollided){
 #endregion
 
 #endregion
-}
+

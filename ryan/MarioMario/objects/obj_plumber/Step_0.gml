@@ -14,9 +14,11 @@ if (DEBUG_MODE){
 		tempframe = true;
 	}
 }
+if (pause and not tempframe){
+	return;
+}
 #endregion
 
-if (not pause or tempframe){
 #region input detect
 if (keyboard_check(INPUT_LEFT)){
 	input_direction += (-1);
@@ -97,22 +99,20 @@ if (input_direction == 0 ){
 #region variable Initialization: jump & applying gravity to yvelocity
 //initialize the y velocity based on jumping or not. 
 var _gravity = 0;//initialize to 0;
-if (jump and not jumpTriggered and jumpAllowed){
+if (jump and not jumpTriggered and onGround){
 	jumpTriggered = true;
 	yvelocity = -abs(JUMP_VEL);
 	plumberAnimation.jumping = true;//animation state
 	playsoundEff(aud_plumberJUMPeff, 10, true);
-}else if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
-	jump_height += abs(yvelocity) * deltaTime;//stores current jump height
+}else if (jump and yvelocity < 0){//going up
 	_gravity = JUMP_GRAVITY;
 	//show_debug_message("PLUMBER JUMPING");//dubuggung purposes only
-	
-}else if (jump_height >= JUMP_HEIGHT_MAX or not jumpAllowed or not jump){
-	jumpAllowed = false;//double prevention for both cases. 
-	jumpTriggered = false;//reset jump trigger
-
+}else if (yvelocity >= 0 or not jump){//going down
 	_gravity = FALL_GRAVITY;
 	//show_debug_message("PLUMBER FALLING");//debugging purposes only
+}
+if (not jump){
+	jumpTriggered = false;//reset jump trigger	
 }
 
 //show_debug_message(jump_height);
@@ -123,11 +123,6 @@ yvelocity += _gravity* deltaTime;
 //clamp terminal velocity
 if(yvelocity >= TERMINAL_VELOCITY){
 	yvelocity = TERMINAL_VELOCITY;
-}
-
-if (onGround){
-	jumpAllowed = true;//reinitiate jumpAllowed 
-	jump_height = 0;
 }
 
 #endregion
@@ -142,4 +137,3 @@ if (onGround){
 #endregion
 
 #endregion
-}

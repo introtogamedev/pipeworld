@@ -1,6 +1,6 @@
-global.currentState = {};
+global.saveState = {};
 function saveToJSON(_file_name = "save.json"){
-	var json_str = json_stringify(global.currentState, true);
+	var json_str = json_stringify(global.saveState, true);
 	var file = file_text_open_write(_file_name);
 	
 	file_text_write_string(file, json_str);
@@ -27,7 +27,7 @@ function loadJSON(_file_name = "save.json"){
 show_debug_message("Loading game files....")
 
 //loading in JSON files
-global.currentState = loadJSON();
+global.saveState = loadJSON();
 
 show_debug_message("JSON FILES SUCESSFULLY LOADED");
 

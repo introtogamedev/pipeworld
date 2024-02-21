@@ -48,12 +48,11 @@
 	#endregion
 
 	#region vertical movement
-		#macro FALL_GRAVITY 17 * fps
+		#macro FALL_GRAVITY 20 * fps
 		#macro TERMINAL_VELOCITY 30 * fps
 		
-		#macro JUMP_GRAVITY  5 * fps
+		#macro JUMP_GRAVITY  10 * fps
 		#macro JUMP_VEL 4  * fps 
-		#macro JUMP_HEIGHT_MAX  1 * TILE_SIZE
 	
 	#endregion
 #endregion
@@ -68,8 +67,6 @@
 	onGround = false;//initialize to false
 	
 	jumpTriggered = false;//initialize to false;
-	jumpAllowed = false;//initialize to false;
-	jump_height = 0;//initialize to 0;
 	
 	//Animation variables
 	plumberAnimation = {
@@ -98,16 +95,14 @@ function saveStateToStruct(){
 		facing_dir,
 		
 		jumpTriggered,
-		jumpAllowed,
-		jump_height,
 		
 		plumberAnimation,
 	}
-	global.currentState = struct;
+	global.saveState = struct;
 }
 
 function loadState(){
-	var struct  = global.currentState;
+	var struct  = global.saveState;
 	x = struct.x;
 	y = struct.y;
 	//xvelocity = struct.xvelocity;
@@ -115,12 +110,10 @@ function loadState(){
 	facing_dir = struct.facing_dir;
 	
 	jumpTriggered = struct.jumpTriggered;
-	jumpAllowed = struct.jumpAllowed;
-	jump_height = struct.jump_height;
 	
 	plumberAnimation = struct.plumberAnimation;
 }
-if (global.currentState != undefined){
+if (global.saveState != undefined){
 	loadState();
 }
 #endregion

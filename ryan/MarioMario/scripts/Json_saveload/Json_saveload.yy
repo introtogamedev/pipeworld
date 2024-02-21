@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "Script3",
+  "name": "Json_saveload",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

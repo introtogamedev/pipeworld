@@ -29,7 +29,7 @@
     {"id":{"name":"spr_marioSKID","path":"sprites/spr_marioSKID/spr_marioSKID.yy",},},
     {"id":{"name":"checkTile","path":"scripts/checkTile/checkTile.yy",},},
     {"id":{"name":"NES___Super_Mario_Bros___Mario__Luigi","path":"sprites/NES___Super_Mario_Bros___Mario__Luigi/NES___Super_Mario_Bros___Mario__Luigi.yy",},},
-    {"id":{"name":"Script3","path":"scripts/Script3/Script3.yy",},},
+    {"id":{"name":"Json_saveload","path":"scripts/Json_saveload/Json_saveload.yy",},},
     {"id":{"name":"spr_marioIDLE","path":"sprites/spr_marioIDLE/spr_marioIDLE.yy",},},
     {"id":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},},
     {"id":{"name":"spr_marioDEATH","path":"sprites/spr_marioDEATH/spr_marioDEATH.yy",},},
