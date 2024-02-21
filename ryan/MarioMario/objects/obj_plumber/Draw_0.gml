@@ -1,4 +1,4 @@
-//sprite position shift
+ //sprite position shift
 var xdisplay = floor(x);
 var ydisplay = floor(y);
 //sprite direction
@@ -14,17 +14,16 @@ image_xscale = facing_dir;
 //RUNNING
 if (plumberAnimation.xmoving){
 	if (runActivate){
-		if (plumberAnimation.turning){
-			sprite_index = spr_marioSKID
-			
-		}else{
 			sprite_index = spr_marioSPEEDRUN
-		}
 	}else{
 	sprite_index = spr_marioRUN;
 	}
 }else{
 	sprite_index = spr_marioIDLE;
+}
+
+if (plumberAnimation.turning){
+	sprite_index = spr_marioSKID
 }
 
 //JUMPING (overrides running sprites)

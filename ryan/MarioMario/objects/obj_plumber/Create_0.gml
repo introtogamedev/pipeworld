@@ -73,11 +73,11 @@
 	
 	//Animation variables
 	plumberAnimation = {
-	running: false,//initialize to false
-	jumping: false,//initialize to false
-	xmoving: false,//initialize to false
-	ymoving: false,//initialize to false *not used yet
-	turning: false, //initialize to false
+		running: false,//initialize to false
+		jumping: false,//initialize to false
+		xmoving: false,//initialize to false
+		ymoving: false,//initialize to false *not used yet
+		turning: false, //initialize to false
 	}
 #endregion
 
@@ -120,5 +120,7 @@ function loadState(){
 	
 	plumberAnimation = struct.plumberAnimation;
 }
-loadState();
+if (global.currentState != undefined){
+	loadState();
+}
 #endregion
