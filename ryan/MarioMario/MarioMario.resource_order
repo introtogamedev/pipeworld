@@ -19,5 +19,6 @@
     {"name":"obj_plumber","order":4,"path":"objects/obj_plumber/obj_plumber.yy",},
     {"name":"spr_marioJUMP","order":2,"path":"sprites/spr_marioJUMP/spr_marioJUMP.yy",},
     {"name":"Testobject","order":2,"path":"objects/Testobject/Testobject.yy",},
+    {"name":"SaveCycle","order":17,"path":"scripts/SaveCycle/SaveCycle.yy",},
   ],
 }

@@ -38,6 +38,7 @@
     {"id":{"name":"spr_marioRUN","path":"sprites/spr_marioRUN/spr_marioRUN.yy",},},
     {"id":{"name":"spr_marioJUMP","path":"sprites/spr_marioJUMP/spr_marioJUMP.yy",},},
     {"id":{"name":"Testobject","path":"objects/Testobject/Testobject.yy",},},
+    {"id":{"name":"SaveCycle","path":"scripts/SaveCycle/SaveCycle.yy",},},
     {"id":{"name":"rm_level","path":"rooms/rm_level/rm_level.yy",},},
   ],
   "RoomOrderNodes": [
