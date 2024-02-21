@@ -1,5 +1,6 @@
-#macro ACCELERATION 125
-#macro ACCELERATION_RUN 180
+#macro ACCELERATION 180
+#macro ACCELERATION_RUN 240
+#macro ACCELERATION_SKID 830
 #macro DECCELERATION 220
 #macro KEY_LEFT ord("A")
 #macro KEY_RIGHT ord("D")
@@ -18,11 +19,17 @@ global.state.ax=0;
 global.state.ay=0;
 //	horizontal
 if(keyboard_check(KEY_LEFT) and global.state.vx>-maxSpeed){
-	global.state.ax-=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION);
+	if(global.state.vx>0)
+		global.state.ax-=ACCELERATION_SKID;
+	else
+		global.state.ax-=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION);
 	//global.state.vx-=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION)*dt;
 }
 else if(keyboard_check(KEY_RIGHT) and global.state.vx<maxSpeed){
-	global.state.ax+=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION);
+	if(global.state.vx<0)
+		global.state.ax+=ACCELERATION_SKID;
+	else
+		global.state.ax+=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION);
 	//global.state.vx+=(keyboard_check(vk_shift)?ACCELERATION_RUN:ACCELERATION)*dt;
 }
 else{

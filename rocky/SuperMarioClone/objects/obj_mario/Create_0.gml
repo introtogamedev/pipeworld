@@ -1,15 +1,15 @@
 /// @description Insert description here
 // You can write your code in this editor
 //movement
-normSpeed=80;
+normSpeed=109;
 sprintSpeed=160;
 maxSpeed=normSpeed;
 
-g=800;
+g=1450;
 
 //jump
-jump_height_min=1<<4;//1 4
-jump_height_max=4<<4;
+jump_height_min=18;
+jump_height_max=77;// 4: 64 , 5: 80
 jump_acceleration=sqrt((g*jump_height_min)<<1);
 max_jump_press_time=(jump_height_max-jump_height_min)/jump_acceleration;
 
