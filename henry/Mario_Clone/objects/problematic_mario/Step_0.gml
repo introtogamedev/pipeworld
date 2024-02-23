@@ -25,6 +25,7 @@ state.frame_index += 1;
 #macro MOVE_WALK_ACCEL 1.6 * FPS
 #macro MOVE_RUN_ACCEL 5 * FPS
 #macro MOVE_DECEL 2.3 * FPS
+#macro SKID_DECEL 4 * FPS
 
 //jump tuning
 #macro JUMP_GRAVITY 16 * FPS
@@ -146,6 +147,11 @@ var _dv = _ax * _dt;
 
 if (_input_dir == 0) {
 	_vx_mag -= MOVE_DECEL * _dt;
+	_vx_mag = max (_vx_mag, 0);
+}
+//make skidding decel faster
+else if (sign (_input_dir) + sign(state.vx) == 0) {
+	_vx_mag -= SKID_DECEL * _dt;
 	_vx_mag = max (_vx_mag, 0);
 }
 

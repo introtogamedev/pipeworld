@@ -27,6 +27,7 @@ if ((state.input_dir != 0) || state.vx !=0) && (state.vy == 0) && !state.falling
 
 	state.move_frame = (state.move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
 	state.image_idx = MOVE_ANIM_START + state.move_frame;
+	//if skidding, switch to that animation
 	if (sign(state.input_dir) + sign(state.vx) == 0) && (state.input_dir != 0) {
 		show_debug_message("SCREECH");
 		state.image_idx = SKID_FRAME;
@@ -45,8 +46,6 @@ else if (state.vx == 0) && (state.vy == 0) && !state.falling_from_collision {
 }
 
 
-
-//maybe the skid thing??
 
 
 //var facing_for_jump = input_dir;
