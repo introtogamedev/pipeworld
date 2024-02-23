@@ -46,18 +46,26 @@ if (keyboard_check(INPUT_L))
 {
 	_input_dir -=1;
 	sprite_index = spr_plumber_walk_l;
-	//turn
-	if (state.vx = 0) sprite_index = spr_plumber_turn_l;
 }
 
 if (keyboard_check(INPUT_R))
 {
 	_input_dir +=1;
 	sprite_index = spr_plumber_walk_r;
-	//turn
-	if (state.vx = 0) sprite_index = spr_plumber_turn_r;
 }
 state.input_move = _input_dir;
+
+//turn
+if (_input_dir > 0 && state.vx < 0 && falling = false)
+{
+	sprite_index = spr_plumber_turn_r;
+}
+if (_input_dir < 0 && state.vx > 0 && falling = false)
+{
+	sprite_index = spr_plumber_turn_l;
+}
+
+
 
 //other mvt stuff
 var _ax = 0;
@@ -70,7 +78,7 @@ if (!state.is_on_ground)
 	_move_acceleration = MOVE_AIR_ACCELERATION;
 }
 
-if (INPUT_BOOST)
+if (keyboard_check(INPUT_BOOST))
 {
 	_move_acceleration = MOVE_RUN_ACCELERATION;
 	image_speed = 2;
@@ -176,7 +184,6 @@ if (falling)
 		state.py = _floor_instance.y - sprite_height;
 		falling = false;
 		on_floor = true;
-		show_debug_message("...");
 		state.is_on_ground = true;
 	}
 	//platform
@@ -184,8 +191,9 @@ if (falling)
 	{
 		if (obj_plumber_ver2.state.py + obj_plumber_ver2.sprite_height > y - _vertical_check &&
 			obj_plumber_ver2.state.py + obj_plumber_ver2.sprite_height < y + _vertical_check &&
-			obj_plumber_ver2.state.px + obj_plumber_ver2.sprite_width > x &&
-			obj_plumber_ver2.state.px < x + sprite_width && obj_plumber_ver2.state.vy > 0)
+			obj_plumber_ver2.state.px + obj_plumber_ver2.sprite_width > x + 1 &&
+			obj_plumber_ver2.state.px < x + sprite_width - 1 &&
+			obj_plumber_ver2.state.vy > 0)
 		{
 			obj_plumber_ver2.state.vy = 0;
 			obj_plumber_ver2.state.py = y - obj_plumber_ver2.sprite_height;
@@ -207,6 +215,7 @@ if (on_floor)
 		state.is_on_ground = false;
 		
 		state.vy -= jump_initial_impulse;
+		audio_play_sound(snd_jump_small, 10, false);
 	}
 }
 
@@ -216,7 +225,7 @@ if (jumping)
 	if (keyboard_check(INPUT_UP))
 	{
 		state.vy -= jump_acceleration;
-		state.is_on_ground = false;
+		state.is_on_ground = false;		
 	}
 	else jumping = false;
 	
@@ -262,39 +271,3 @@ else
 		}
 	}
 }
-
-
-
-//ROOM COLLISION
-var _px_collision = clamp(state.px, 0, room_width - sprite_width);
-if (state.px != _px_collision) 
-{
-	state.px = _px_collision;
-	state.vx = 0;
-}
-
-////PLATFORM COLLISION
-//if (place_meeting (state.px,state.py+state.vy, obj_platform))
-//{
-//	while (abs(state.vy) > 0.1)
-//	{
-//		state.vy= 0;
-//		if (!place_meeting(state.px,state.py+state.vy,obj_platform))
-//		{
-//			state.py+=state.vy;
-//		}
-//	}
-//	state.vy = 0;
-//}
-//if (place_meeting(state.px+state.vx,state.py,obj_platform))
-//{
-//	while (abs(state.vx > 0.1))
-//	{
-//	state.vx= 0;
-//	if (!place_meeting(state.px+state.vx,state.py,obj_platform))
-//		{
-//			state.px+=state.vx;
-//		}
-//	}
-//	state.vx = 0;
-//}

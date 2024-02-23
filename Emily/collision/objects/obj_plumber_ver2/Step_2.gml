@@ -17,49 +17,30 @@ _px_collision = clamp(_px_collision, 0, room_width - sprite_width);
 //head
 if (state.vy < 0)
 {
-	// check for head collision
-	if (level_collision(_x0 + 8, _y0) > TILES_NONE)
+	//kinda pushes it out of block
+	if (level_collision(_x0 + 4, _y0) > TILES_NONE)
+	{
+		_vy_collision = 0;
+	}
+	if (level_collision(_x0 + 12, _y0) > TILES_NONE)
 	{
 		_vy_collision = 0;
 	}
 }
 
-
-////ground
-//if (level_collision(_x0, _y1) > TILES_NONE ||
-//	level_collision(_x1, _y1) > TILES_NONE)
-//{
-//	//move player to top of tile
-//	_py_collision -= state.py % 16 - 1;
-
-//	if (state.vy >= 0)
-//	{
-//		//check for ground collision
-//		if (level_collision(_x0 + 2, _y1) > TILES_NONE ||
-//			level_collision(_x1 - 2, _y1) > TILES_NONE)
-//		{
-//			//move player to top of tile
-//			_py_collision -= state.py % 16 - 1;
-
-//			on_floor = true;
-//			falling = false;
-//			jumping = true;
-//		}
-//	}
-//}
-
-
 //right collision
 if (level_collision(_x0, _y0 + 8) > TILES_NONE)
 {
-	_px_collision += 16 - state.px % 16;
+	_px_collision += 15 - state.px % 16;
 }
 
 //left collision
 if (level_collision(_x1, _y0 + 8) > TILES_NONE)
 {
-	_px_collision -= state.px % 16;
+	_px_collision -= state.px % 16 - 3;
 }
+
+
 
 //collide on x-axis
 if (state.px != _px_collision)
