@@ -10,11 +10,6 @@ vy: 0,
 px: x,
 py: y,
 
-//Jumping animation
-in_air: false,
-left: false,
-right: false,
-
 // the current look direction
 look_dir: 0,
 // the current position in the move animation

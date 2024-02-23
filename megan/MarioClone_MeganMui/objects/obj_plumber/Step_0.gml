@@ -5,15 +5,15 @@
 // the number of microseconds in a second
 #macro MS 1000000
 // -- move tuning --
-#macro MOVE_WALK_ACCELERATION 1.2 * FPS
-#macro MOVE_RUN_ACCELERATION  2.5 * FPS
-#macro MOVE_DECELERATION      3.5 * FPS
+#macro MOVE_WALK_ACCELERATION 3.5 * FPS
+#macro MOVE_RUN_ACCELERATION  5.0 * FPS
+#macro MOVE_DECELERATION      75 * FPS
 
 // -- jump turning --
 #macro JUMP_GRAVITY .5 * FPS
 
 #macro JUMP_INITIAL_IMPULSE 5 * FPS
-#macro JUMP_ACCELERATION .18 * FPS
+#macro JUMP_ACCELERATION .19 * FPS
 #macro JUMP_HEIGHT 4 * 16 * FPS
 
 
@@ -122,11 +122,15 @@ if (level_collision(state.px, _y1) == TILES_FLOOR)
 {
 	//Moves player to the top of the block
 	_py_collision -= state.py % 8;
+	
+	sprite_index = spr_plumber;
 }
 if (level_collision(state.px, _y1) == TILES_BRICK) 
 {
 	//Moves player to the top of the block
 	_py_collision -= state.py % 8;
+	
+	sprite_index = spr_plumber;
 }
 
 //Upon ground collision, move to the top of the block
@@ -140,16 +144,19 @@ if (state.py != _py_collision)
 
 switch(state.current_state){
 	case JUMP_STATE.FALLING:
+	
+		sprite_index = spr_plumber_jump;
 		
-		state.in_air = true;
 		state.vy += JUMP_GRAVITY;
 
 		if(state.py = _py_collision && level_collision(state.px, _y1) == TILES_FLOOR) //Player makes contact with floor
 		{
+			sprite_index = spr_plumber;
 			state.current_state = JUMP_STATE.ON_FLOOR;
 		}
 		else if(state.py = _py_collision && level_collision(state.px, _y1) == TILES_BRICK) //Player makes contact with floor
 		{
+			sprite_index = spr_plumber;
 			state.current_state = JUMP_STATE.ON_FLOOR;
 		}
 	
@@ -157,15 +164,13 @@ switch(state.current_state){
 	
 	case JUMP_STATE.ON_FLOOR:
 	
-		state.in_air = false;
+		sprite_index = spr_plumber;
 		
 		state.jump_timer = 0;
 		state.current_jump_height = 0;
 		state.vy = 0;
-		
-		sprite_index = spr_plumber;
 	
-		if(keyboard_check_pressed(INPUT_JUMP)) //Can Jump
+		if(keyboard_check(INPUT_JUMP)) //Can Jump
 		{
 			state.current_state = JUMP_STATE.JUMPING;
 			audio_play_sound(sfx_jump, 1, false);
@@ -183,7 +188,7 @@ switch(state.current_state){
 	
 	case JUMP_STATE.JUMPING:
 		
-		state.in_air = true;
+		sprite_index = spr_plumber_jump;
 		
 		state.vy += JUMP_ACCELERATION;
 		state.current_jump_height += state.vy;
@@ -218,15 +223,12 @@ if (_input_move != 0)
 }
 
 //animatons
-if(state.in_air)
-{
-	sprite_index = spr_plumber_jump;	
-}
-else if(keyboard_check(INPUT_LEFT) && state.vx > 0 || keyboard_check(INPUT_RIGHT) && state.vx < 0)
+if(keyboard_check(INPUT_LEFT) && state.vx > 0 || keyboard_check(INPUT_RIGHT) && state.vx < 0)
 {
 	sprite_index = spr_plumber_turn;
 }
-else
+
+if(state.current_state == JUMP_STATE.ON_FLOOR && keyboard_check(INPUT_JUMP))
 {
 	sprite_index = spr_plumber;
 }
