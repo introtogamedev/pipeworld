@@ -8,12 +8,15 @@
 #macro MOVE_WALK_ACCELERATION 1.8 * FPS
 #macro MOVE_RUN_ACCELERATION  3.6 * FPS
 #macro MOVE_DECELERATION	  7.2 * FPS
+#macro WALK_MAX_VELOCITY	  2.0 * FPS
+#macro RUN_MAX_VELOCITY		  4.0 * FPS
 
 //jump
 #macro JUMP_GRAVITY         16 * FPS 
 #macro JUMP_ACCELERATION    1.6 * FPS //around 100
 #macro JUMP_INITIAL_IMPULSE 6.6 * FPS //around 400
 #macro JUMP_MAX_VELOCITY    3.2 * FPS //around 200
+#macro FALL_MAX_VELOCITY	4.0 * FPS
 
 //input constants
 #macro INPUT_LEFT (vk_left)
@@ -45,7 +48,6 @@ if (keyboard_check(INPUT_LEFT)) //left
 if (keyboard_check(INPUT_RIGHT)) //right
 {
 	_input_dir += 1;
-	
 	
 	if (!state.jump_sprite)
 	{
@@ -100,21 +102,22 @@ if (state.turn)
 	}
 }
 
+
 //is player on the floor
 if (state.on_floor)
 {
+	state.jumpable = true; //no hold jumping
 	state.jump_sprite = false; //sprite's state
 	state.jump_timer = 0;
-	if (keyboard_check(INPUT_JUMP) && state.jumpable) //player can only jump when on the floor
+	if (keyboard_check_pressed(INPUT_JUMP)) audio_play_sound(snd_jump,0,0); //jump sound 
+	if (keyboard_check_pressed(INPUT_JUMP) && state.jumpable) //player can only jump when on the floor
 	{	
 		state.on_floor = false;
 		state.jumping = true;
 		state.vy -= JUMP_INITIAL_IMPULSE; //jump with boost
 		state.jumpable = false; //no hold jumping
 	}
-
 }
-if (keyboard_check_released(INPUT_JUMP)) state.jumpable = true; //no hold jumping
 if (state.vy > 0) state.on_floor = false; //not on floor when falling
 
 //jump
@@ -178,12 +181,13 @@ state.vx = _vx_mag * _vx_dir;
 
 //integrate acceleration into velocity
 state.vx += _dv
+if (state.vx >= WALK_MAX_VELOCITY && !state.run) state.vx = WALK_MAX_VELOCITY;
+else if (state.vx >= RUN_MAX_VELOCITY && state.run) state.vx = RUN_MAX_VELOCITY;
 
 //gravity
 var _ay = JUMP_GRAVITY;
 state.vy += _ay * _dt;
-var _vy_max = 320;
-if (state.vy >= _vy_max) state.vy = _vy_max;
+if (state.vy >= FALL_MAX_VELOCITY) state.vy = FALL_MAX_VELOCITY;
 
 
 //increment frame forever
@@ -199,3 +203,11 @@ y = state.py;
 
 //use _input_dir in end step
 state.input_dir = _input_dir;
+
+
+//camera control??
+if (state.px > obj_camera.x + (5 * sprite_width))
+{
+	obj_camera.x = state.px - (5 * sprite_width);
+}	
+

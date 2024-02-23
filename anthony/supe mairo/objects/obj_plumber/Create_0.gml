@@ -1,3 +1,7 @@
+x = sprite_width * 2.5;
+y = y - sprite_height - 8;
+start_x = x;
+
 //state template
 global.plumber_state = {
 	frame_index: 0,
