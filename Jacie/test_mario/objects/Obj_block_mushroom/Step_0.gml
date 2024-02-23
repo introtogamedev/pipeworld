@@ -10,6 +10,7 @@ if (sprite_index == Spr_block_hit) && (y == initial_y)
 if (place_meeting(x,y+1,Obj_player))
 	{
 		bouncing = true;
+		audio_play_sound(snd_powerup_spawn, 10, false);
 		sprite_index = Spr_block_hit;
 		instance_create_layer(x,y-16,"Powerups", Obj_mushroom);
 	}

@@ -12,7 +12,7 @@ jump_spd = 6.5;
 
 //animation
 state = "IDLE";
-animation_spd = 0.2;
+animation_spd = 0.5;
 last_state = "IDLE";
 
 

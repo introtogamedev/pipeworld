@@ -10,6 +10,7 @@ if (sprite_index == Spr_block_hit) && (y == initial_y)
 if (place_meeting(x,y+1,Obj_player)&& place_meeting(x,y+1,Obj_follower))
 	{
 		bouncing = true;
+		audio_play_sound(snd_coin, 10, false);
 		if (coins == 0) sprite_index = Spr_block_hit;
 		//makes sure 1 per push
 		if (y == initial_y) coins -= 1;

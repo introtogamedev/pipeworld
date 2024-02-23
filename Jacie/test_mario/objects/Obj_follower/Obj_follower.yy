@@ -32,5 +32,5 @@
     "path": "sprites/Spr_follower/Spr_follower.yy",
   },
   "spriteMaskId": null,
-  "visible": false,
+  "visible": true,
 }

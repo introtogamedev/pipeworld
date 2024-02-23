@@ -36,6 +36,7 @@ switch(state)
 				image_speed = (abs(hsp)/max_spd)*animation_spd;
 				
 				//check for inputs
+				if (input.b) max_spd = 3; else max_spd = 2;
 				if (input.a) && (vsp == 0) state = "JUMPING_IN";
 				if (input.left) state = "LEFT";
 				//means not moving
@@ -58,6 +59,7 @@ switch(state)
 				image_speed = (abs(hsp)/max_spd)*animation_spd;
 			
 				//check for inputs
+				if (input.b) max_spd = 3; else max_spd = 2;
 				//if push jump and not jumping
 				if (input.a) && (vsp == 0) state = "JUMPING_IN";
 				if (input.right) state = "RIGHT";
@@ -74,7 +76,7 @@ switch(state)
 				sprite_index = Spr_jump;
 				
 				image_speed = 0;
-				
+				audio_play_sound(snd_small_jmp, 10, false);
 				vsp = -jump_spd;
 				
 				state = "JUMPING";
@@ -86,12 +88,13 @@ switch(state)
 		case("JUMPING"):
 			{
 //---jumping
-			
+				
 				
 				allow_player_move()
 			//DIFF HEIGHTS
 				if ((vsp < 0) && (!input.a_held)) 
 					{
+						
 						vsp = max(vsp, -jump_spd/2);
 					}
 				
@@ -99,12 +102,14 @@ switch(state)
 					{
 						if (place_meeting(x,y+1,par_solid))
 							{
+								
 								state = last_state;
+								
 							}
 					}
 				else 
 				{
-					if (place_meeting(x,y+vsp,par_solid)) state = last_state;
+					if (place_meeting(x,y+vsp,par_solid)) state = last_state; 
 				}
 				
 				break;
@@ -112,7 +117,7 @@ switch(state)
 			
 	}
 //------gravity
-if (vsp < 5) vsp += grav; 
+if (vsp < 4) vsp += grav; 
 
 
 
