@@ -14,6 +14,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Level","folderPath":"folders/Level.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Plumber","folderPath":"folders/Plumber.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tiles","folderPath":"folders/Tiles.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sound","folderPath":"folders/Sound.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
@@ -22,6 +23,7 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"snd_jump","path":"sounds/snd_jump/snd_jump.yy",},},
     {"id":{"name":"spr_plumber_jumping","path":"sprites/spr_plumber_jumping/spr_plumber_jumping.yy",},},
     {"id":{"name":"tile_stone","path":"tilesets/tile_stone/tile_stone.yy",},},
     {"id":{"name":"obj_plumber","path":"objects/obj_plumber/obj_plumber.yy",},},
