@@ -1,17 +1,19 @@
 /// @description Insert description here
 // You can write your code in this editor
 //movement
-normSpeed=109;
+normSpeed=80;
 sprintSpeed=160;
 maxSpeed=normSpeed;
 
-g=1450;
+g=800;
 
 //jump
-jump_height_min=18;
-jump_height_max=77;// 4: 64 , 5: 80
+jump_height_min=1<<4;//1 4
+jump_height_max=4<<4;
 jump_acceleration=sqrt((g*jump_height_min)<<1);
 max_jump_press_time=(jump_height_max-jump_height_min)/jump_acceleration;
+jump_press_time=0;
+can_jump=true;
 
 
 
@@ -23,6 +25,8 @@ offset=0;
 
 tilemap=layer_tilemap_get_id("Tiles_1");
 
+clipping=0;
+isFalling=false;
 
 //GLOBAL STATE
 global.state={
@@ -34,14 +38,12 @@ global.state={
 	can_jump: true,
 	ax: 0,
 	ay: 0,
-	look_direction: 1,
 	clipping: 0,
 	isFalling: false,
 	xscale: image_xscale,
 	spr_index: sprite_index,
 	img_index: image_index
 };
-ring_buffer=ring_create(40);
 /*
 function CheckTileCollisionY(){
 	return place_meeting(x,y,tilemap);

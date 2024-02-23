@@ -21,6 +21,7 @@
     {"name":"spr_tile_brown_brick","order":2,"path":"sprites/spr_tile_brown_brick/spr_tile_brown_brick.yy",},
     {"name":"spr_mario_skid","order":4,"path":"sprites/spr_mario_skid/spr_mario_skid.yy",},
     {"name":"GameManager","order":2,"path":"objects/GameManager/GameManager.yy",},
+    {"name":"RingBuffer","order":4,"path":"scripts/RingBuffer/RingBuffer.yy",},
     {"name":"spr_mario_walk","order":1,"path":"sprites/spr_mario_walk/spr_mario_walk.yy",},
     {"name":"levelCollision","order":2,"path":"scripts/levelCollision/levelCollision.yy",},
     {"name":"Config","order":1,"path":"scripts/Config/Config.yy",},
