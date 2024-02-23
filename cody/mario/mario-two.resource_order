@@ -4,7 +4,7 @@
     {"name":"Game","order":14,"path":"folders/Game.yy",},
     {"name":"Level","order":10,"path":"folders/Level.yy",},
     {"name":"Plumber","order":11,"path":"folders/Plumber.yy",},
-    {"name":"Sounds","order":15,"path":"folders/Sounds.yy",},
+    {"name":"Sound","order":15,"path":"folders/Sound.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"Level_Tiles","order":2,"path":"tilesets/Level_Tiles/Level_Tiles.yy",},
