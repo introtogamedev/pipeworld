@@ -14,9 +14,10 @@
 #macro MAX_RUN_LEEWAY 10
 
 //jump constants
-#macro GRAVITY 0.25 / DT
-#macro JUMP_STRENGTH 4.0
+#macro GRAVITY 0.4 / DT
+#macro JUMP_IMPULSE 4
 #macro MAX_JUMP_FRAMES 0.25
+#macro MAX_GRAVITY 2 / 7 * 16
 
 //input keys
 #macro INPUT_LEFT ord("A")
@@ -94,7 +95,7 @@ if (keyboard_check(INPUT_RUN)) {
 	vx += _ax * _dt;
 }
 
-show_debug_message(vx);
+//show_debug_message(vx);
 
 //Apply friction
 var _dir_x = sign(vx);
@@ -111,8 +112,8 @@ if (input_dir == 0) {
 //Jump logic
 
 
-if (keyboard_check_pressed(INPUT_JUMP) && on_ground) {
-	vy -= JUMP_STRENGTH;
+if (keyboard_check_pressed(INPUT_JUMP) && on_ground) { //change this to just check when using frame stepper
+	vy -= JUMP_IMPULSE;
 	jump_frames = MAX_JUMP_FRAMES;
 	spr_frame = 4;
 	anim_frame = 0;
@@ -131,10 +132,10 @@ if (jump_frames > 0) {
 
 vy += GRAVITY * _dt;
 
-if (vy > max_gravity) {
-	vy = max_gravity;
+if (vy > MAX_GRAVITY) {
+	vy = MAX_GRAVITY;
 }
-
+show_debug_message(vy);
 
 move_dir = sign(vx);
 if (sign(vx) == 0) {
