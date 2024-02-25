@@ -25,4 +25,8 @@ img_xscale = 1;
 
 on_ground = false;
 
-turning = false;
+turning = false; //prob rename to skidding
+
+paused = false;
+
+frame_skip = 0;

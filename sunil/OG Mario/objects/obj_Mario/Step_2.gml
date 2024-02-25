@@ -1,3 +1,12 @@
+/// -- pause check --
+
+if (paused) {
+	if (frame_skip != 1) {
+		return;
+	}
+}
+
+
 //Change the x with both sides collision
 
 x += vx;

@@ -20,6 +20,29 @@
 #macro INPUT_RIGHT ord("D")
 #macro INPUT_RUN vk_shift
 #macro INPUT_JUMP vk_space
+#macro INPUT_PAUSE ord("P")
+#macro INPUT_FRAME_FORWARD ord("O")
+#macro INPUT_FRAME_BACKWARD ord("I")
+
+
+/// -- pause check --
+
+if (keyboard_check_pressed(INPUT_PAUSE)) {
+	paused = !paused;
+}
+
+if (paused) {
+	frame_skip = 0;
+	if (keyboard_check_pressed(INPUT_FRAME_FORWARD)) {
+		frame_skip++;
+	} else if (keyboard_check_pressed(INPUT_FRAME_BACKWARD)) {
+		frame_skip--;
+	}
+	if (frame_skip != 1) {
+		return;
+	}
+}
+
 
 /// -- movement --
 
