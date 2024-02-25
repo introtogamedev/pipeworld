@@ -37,12 +37,13 @@
 
 #region Movement Tuning
 	#region horizontal movement
-		#macro MOVE_ACCEL 15 * fps
-		#macro MOVE_DEACCEL 7 * fps
+
+		#macro MOVE_ACCEL 7 * fps
+		#macro MOVE_DEACCEL 3.5 * fps
 		#macro MAX_SPD 2 * fps
 
-		#macro MOVE_SPRINT_ACCEL 30 * fps
-		#macro MOVE_SPRINT_DEACCEL 15 * fps
+		#macro MOVE_SPRINT_ACCEL 15 * fps
+		#macro MOVE_SPRINT_DEACCEL 7 * fps
 		#macro MAX_SPD_SPRINT 4 *fps
 		
 	#endregion

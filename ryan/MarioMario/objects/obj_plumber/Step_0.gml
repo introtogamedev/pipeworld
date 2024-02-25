@@ -1,3 +1,4 @@
+///@description Main 
 var input_direction = 0;//initialize to 0;
 deltaTime = delta_time/MS;//get fractional delta time
 
@@ -13,9 +14,9 @@ if (keyboard_check(INPUT_LEFT)){
 	input_direction += 1;
 }
 
-if (keyboard_check_pressed(INPUT_RUN)){
+if (keyboard_check(INPUT_RUN)){
 	runActivate = true;
-}if(keyboard_check_released(INPUT_RUN)){
+}else{
 	runActivate = false;
 }
 
@@ -30,17 +31,14 @@ if (keyboard_check(INPUT_JUMP)){
 
 #region variable Initialization: runActivate & applying acceleration to xvelovcity
 //initialize the movement dependent variables based on runActivate
-var accel =  0;//initilize to 0;
-var maxSPD = 0; //initilize to 0;
-var deaccel = 0; //initiliaze to 0;
+var accel =  MOVE_ACCEL; //initiliaze to moving state;
+var maxSPD = MAX_SPD; //initiliaze to moving state;
+var deaccel = MOVE_DEACCEL; //initiliaze to moving state;
+
 if(runActivate == true){
 	accel = MOVE_SPRINT_ACCEL;
 	maxSPD = MAX_SPD_SPRINT;
 	deaccel = MOVE_SPRINT_DEACCEL;
-}else{
-	accel = MOVE_ACCEL;
-	maxSPD = MAX_SPD;
-	deaccel = MOVE_DEACCEL;
 }
 
 var accelx = 0;//initialize to 0
@@ -50,6 +48,7 @@ accelx = accel * input_direction;
 //integrate acceleration into x - velocity
 xvelocity += accelx * deltaTime
 xvelocity = clamp(xvelocity, -maxSPD, maxSPD);
+
 
 //resolve if no input is registered. clamps current speed to a minimum of 0
 if (input_direction == 0 ){
