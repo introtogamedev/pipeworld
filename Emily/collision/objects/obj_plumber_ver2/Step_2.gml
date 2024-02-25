@@ -14,7 +14,7 @@ var _y1 = _y0 + sprite_height;
 //ROOM BOUNDS
 _px_collision = clamp(_px_collision, 0, room_width - sprite_width);
 
-//head
+//top collision
 if (state.vy < 0)
 {
 	//kinda pushes it out of block
@@ -38,6 +38,19 @@ if (level_collision(_x0, _y0 + 8) > TILES_NONE)
 if (level_collision(_x1, _y0 + 8) > TILES_NONE)
 {
 	_px_collision -= state.px % 16 - 3;
+}
+
+//bottom collision
+if (state.vy >= 0)
+{
+	if (level_collision(_x0 + 2, _y1) > TILES_NONE ||
+		level_collision(_x1 - 2, _y1) > TILES_NONE)
+	{
+		_py_collision -= state.py % 16 - 1;
+		state.is_on_ground = true;
+		falling = false;
+		on_floor = true;
+	}
 }
 
 

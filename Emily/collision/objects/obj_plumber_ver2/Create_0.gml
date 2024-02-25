@@ -2,17 +2,15 @@ on_floor = false;
 falling = false;
 jumping = false;
 
-falling_gravity = 0.3;
-falling_max_velocity = 8;
-
-jump_acceleration = 1.5;
-jump_initial_impulse = 2;
-jump_max_velocity = 10;
 jump_timer = 0;
-jump_duration = 16;
+jump_duration = 20;
+
+run_timer = 0;
+run_duration = 10;
 
 //state
-global.state = {
+global.state =
+{
 	// current frame
 	frame_index: 0,
 
@@ -36,6 +34,9 @@ global.state = {
 	// the current input move dir
 	input_move: 0,
 }
+
+
+
 
 
 //ivars
