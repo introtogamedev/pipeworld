@@ -22,6 +22,8 @@ input_move: 0,
 current_state: 0,
 
 current_jump_height: 0,
+
+move_drag: 4.5,
 };
 
-
+game =instance_nearest(0,0,obj_gm);
