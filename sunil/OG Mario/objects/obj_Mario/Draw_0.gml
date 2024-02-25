@@ -3,7 +3,7 @@
 #macro ANIM_SPEED 1/7
 
 
-if (on_ground) {
+if (on_ground && (!paused || frame_skip == 1)) {
 	if (turning) {
 		spr_frame = 5;
 		anim_frame = 0;

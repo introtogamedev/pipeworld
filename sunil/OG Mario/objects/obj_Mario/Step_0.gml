@@ -9,6 +9,9 @@
 #macro WALK_ACCELERATION 0.05 / DT
 #macro RUN_ACCELERATION 0.075 / DT
 #macro MOVE_DECCELERATION 0.1 / DT
+#macro MAX_WALK_SPEED 1.5
+#macro MAX_RUN_SPEED 2.25
+#macro MAX_RUN_LEEWAY 10
 
 //jump constants
 #macro GRAVITY 0.25 / DT
@@ -46,7 +49,11 @@ if (paused) {
 
 /// -- movement --
 
-// check horizontal input
+//calculate dt
+var _dt = delta_time / MS;
+
+
+//Check horizontal input
 input_dir = 0;
 if (keyboard_check(INPUT_LEFT)) {
 	input_dir = -1;
@@ -57,20 +64,37 @@ if (keyboard_check(INPUT_RIGHT)) {
 }
 
 
-//Check if running or not
+//Set acceleration value and change run leeway
 
 var _ax = 0
 if (keyboard_check(INPUT_RUN)) {
 	_ax = RUN_ACCELERATION * input_dir;
+	run_leeway = 10;
 } else {
 	_ax = WALK_ACCELERATION * input_dir;
+	if (run_leeway > 0) {
+		run_leeway--;
+		//show_debug_message("leeway");
+	}
 }
 
-//Apply speed
-var _dt = delta_time / MS;
+//Apply speed with cap
 
-vx += _ax * _dt;
+if (keyboard_check(INPUT_RUN)) {
+	if (abs(vx + _ax * _dt) > MAX_RUN_SPEED) {
+		vx = sign(vx) * MAX_RUN_SPEED;
+	} else {
+		vx += _ax * _dt;
+	}
+} else if (abs(vx + _ax * _dt) > MAX_WALK_SPEED) {
+	if (run_leeway <= 0 || abs(vx) < MAX_WALK_SPEED) {
+		vx = sign(vx) * MAX_WALK_SPEED;
+	}
+} else {
+	vx += _ax * _dt;
+}
 
+show_debug_message(vx);
 
 //Apply friction
 var _dir_x = sign(vx);
@@ -82,16 +106,6 @@ if (input_dir == 0) {
 		vx = 0;
 	}
 }
-
-
-if (keyboard_check(INPUT_RUN)) {
-	if (abs(vx) > max_vx * 1.5) {
-		vx = sign(vx) * max_vx * 1.5;
-	}
-} else if (abs(vx) > max_vx) {
-	vx = sign(vx) * max_vx;
-}
-
 
 
 //Jump logic

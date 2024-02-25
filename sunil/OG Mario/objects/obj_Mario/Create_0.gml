@@ -5,7 +5,6 @@ sprite_side_width = sprite_width / 2;
 /// -- variables --
 
 vx = 0;
-max_vx = 1.5;
 
 vy = 0;
 max_gravity = 8;
@@ -30,3 +29,5 @@ turning = false; //prob rename to skidding
 paused = false;
 
 frame_skip = 0;
+
+run_leeway = 0;

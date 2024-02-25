@@ -40,7 +40,7 @@ if (!tile_empty(x + sprite_side_width * move_dir ,y)) {
 	//show_debug_message("x is " + string(x) + " rounded is " +string(floor(x)));
 }
 
-show_debug_message("first_check");
+//show_debug_message("first_check");
 if (!tile_empty(x - sprite_side_width * move_dir ,y)) {
     while (!tile_empty(x - sprite_side_width * move_dir,y)) {
 		//show_debug_message(string(x+vx +sprite_width / 2 ) + " is subtracted by " + string(-sign(vx)) + " x is " + string(x) );
@@ -51,7 +51,7 @@ if (!tile_empty(x - sprite_side_width * move_dir ,y)) {
 	vx = 0;
 	//show_debug_message("x is " + string(x) + " rounded is " +string(floor(x)));
 }
-show_debug_message("second_check");
+//show_debug_message("second_check");
 
 
 //Change the y with top collision
@@ -71,8 +71,8 @@ if (((!tile_empty(x - sprite_width / 2,y - sprite_height / 2)) || (!tile_empty(x
 }
 //show_debug_message("y_check");
 
-show_debug_message(y);
-show_debug_message(vy);
+//show_debug_message(y);
+//show_debug_message(vy);
 
 
 //Check for floor collision
