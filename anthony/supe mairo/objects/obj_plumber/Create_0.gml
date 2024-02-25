@@ -31,6 +31,11 @@ global.plumber_state = {
 
 };
 
+frame = 0;
+
+//game manager
+game = obj_game;
+
 //ivars
 state = undefined;
 //global.plumber_state;

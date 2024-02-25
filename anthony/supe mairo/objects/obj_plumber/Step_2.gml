@@ -1,3 +1,9 @@
+//if paused, do nothing
+if (game.debug_is_paused)
+{
+	return 
+}
+
 //reached end of screen
 var _px_min = obj_camera.x;
 var _px_max = room_width - sprite_width - 1;
