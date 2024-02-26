@@ -11,9 +11,15 @@
 #macro VINEBOOM vine_boom
 
 state.max_speed = 3;
+state = Game.state;
 
 
-state = instance_nearest(0,0, Game).state;
+//debug Lab
+if (Game.paused())
+{
+	return;
+}
+
 
 var _input_dir = 0;
 if(keyboard_check(ord("A"))){
@@ -36,6 +42,7 @@ if (keyboard_check(vk_shift)){
 var _iy = 0;
 if (keyboard_check_pressed(vk_space) and state.on_ground){
 	state.jumping = true;
+	state.on_ground = false;
 	_iy = JUMP_FROCE;
 	audio_play_sound(VINEBOOM, 1, false);
 	show_debug_message("JUMP");

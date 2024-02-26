@@ -29,4 +29,8 @@ image_idx : 0,
 input_move : 0,
 }
 
+
+
+prev_x_scale = 1;
+
 state = global.plumberstate;

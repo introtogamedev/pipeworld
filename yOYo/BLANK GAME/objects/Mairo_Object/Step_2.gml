@@ -1,5 +1,9 @@
 #macro SIDE_OFFSET_Y 8
 
+if (Game.paused())
+{
+	return;
+}
 
 var _x0 = state.px;
 var _x1 = _x0 + sprite_width;

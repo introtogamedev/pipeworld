@@ -12,11 +12,24 @@
 // -- ivars --
 // -----------
 
+is_paused = false;
+
 // the current state
 state = struct_copy(global.plumberstate);
 
 // the save state
 state_saved = struct_copy(state);
+
+
+//paused
+is_paused = false;
+step_offstep = 0;
+
+function paused()
+{
+	return is_paused && step_offstep <= 0;
+}
+
 
 // ----------------
 // -- save state --
