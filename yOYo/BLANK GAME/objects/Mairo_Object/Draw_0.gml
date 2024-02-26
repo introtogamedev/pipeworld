@@ -44,20 +44,44 @@ var _y = floor(state.py);
 var _xscale = 1;
 
 // if moving left, flip the sprite
+
 if (sign(state.look_dir) < 0) {
-	_x += sprite_width;
-	_xscale = -1;
+		_x += sprite_width;
+		_xscale = -1;
 }
 
 
+/*
+if (state.jumping) 
+{
+	if (sign(state.look_dir) < 0) 
+		{
+		_xscale = prev_x_scale;
+		}
+
+}else 
+{
+	if (sign(state.look_dir) < 0) 
+		{
+		_x += sprite_width;
+		_xscale = -1;
+		}
+
+}
+
+*/
 
 if ((state.input_move != sign(state.vx)) and state.input_move != 0) {
 	state.image_idx = 4;
 }
 
+
 if (state.jumping = true) {
 	state.image_idx = 5;
 }
+
+prev_x_scale =_xscale;
+
 
 // draw the sprite
 draw_sprite_ext(
