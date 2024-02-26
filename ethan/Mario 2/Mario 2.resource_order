@@ -21,6 +21,7 @@
     {"name":"obj_mario","order":1,"path":"objects/obj_mario/obj_mario.yy",},
     {"name":"spr_mariots","order":1,"path":"sprites/spr_mariots/spr_mariots.yy",},
     {"name":"spr_marioright","order":3,"path":"sprites/spr_marioright/spr_marioright.yy",},
+    {"name":"spr_marioskid","order":6,"path":"sprites/spr_marioskid/spr_marioskid.yy",},
     {"name":"spr_marioleft","order":4,"path":"sprites/spr_marioleft/spr_marioleft.yy",},
     {"name":"spr_mariojump","order":5,"path":"sprites/spr_mariojump/spr_mariojump.yy",},
   ],

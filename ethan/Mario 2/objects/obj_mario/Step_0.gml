@@ -34,7 +34,7 @@ if (keyboard_check(INPUT_RIGHT))
 }
 
 //Get the move acceleration
-var ax = MOVE_ACCELERATION * input_dir;
+ax = MOVE_ACCELERATION * input_dir;
 if (keyboard_check(INPUT_RUN))
 {
 	ax += MOVE_RUN_ACCELERATION * input_dir;
