@@ -4,9 +4,6 @@ var ydisplay = floor(y);
 //sprite direction
 image_xscale = facing_dir;
 
-//sprite animating
-var sprite_playing = true;
-
 image_xscale = facing_dir;
 image_xscale = facing_dir;
 
@@ -31,10 +28,8 @@ if (plumberAnimation.jumping){
 	sprite_index = spr_marioJUMP;
 }else if (not onGround){
 	image_speed = 0;//pause animation based on current frame
-	sprite_playing = false;
 }else{
 	image_speed = 1; //resume animation 
-	sprite_playing = true
 }
 
 #endregion
@@ -43,7 +38,7 @@ if (plumberAnimation.jumping){
 if (DEBUG_MODE){
 	if (pause){
 		image_speed = 0;
-		if (tempframe and sprite_playing){
+		if (tempframe){
 			image_index ++;
 		}
 	}else{

@@ -6,7 +6,6 @@ if (pause and not tempframe){
 	return;
 }
 
-
 #region input detect
 if (keyboard_check(INPUT_LEFT)){
 	input_direction += (-1);
@@ -31,14 +30,13 @@ if (keyboard_check(INPUT_JUMP)){
 
 #region variable Initialization: runActivate & applying acceleration to xvelovcity
 //initialize the movement dependent variables based on runActivate
-var accel =  MOVE_ACCEL; //initiliaze to moving state;
-var maxSPD = MAX_SPD; //initiliaze to moving state;
-var deaccel = MOVE_DEACCEL; //initiliaze to moving state;
+var accel =  WALK_ACCEL; //initiliaze to moving state;
+var maxSPD = WALK_SPEED_MAX; //initiliaze to moving state;
+var deaccel = RELEASE_DEACCEL; //initiliaze to moving state;
 
 if(runActivate == true){
-	accel = MOVE_SPRINT_ACCEL;
-	maxSPD = MAX_SPD_SPRINT;
-	deaccel = MOVE_SPRINT_DEACCEL;
+	accel = RUN_ACCEL;
+	maxSPD = RUN_SPEED_MAX;
 }
 
 var accelx = 0;//initialize to 0
@@ -102,9 +100,9 @@ if (not jump){
 }
 
 //show_debug_message(jump_height);
-if (deltaTime <= 0.02){
+//if (deltaTime <= 0.02){
 yvelocity += _gravity* deltaTime;
-} 
+//} 
 
 //clamp terminal velocity
 if(yvelocity >= TERMINAL_VELOCITY){

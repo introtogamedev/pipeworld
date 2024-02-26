@@ -1,5 +1,5 @@
 #region utility variables
-	#macro MS 1000000
+	#macro MS 100000
 	#macro TILE_SIZE 16
 	
 	deltaTime = 0; //initialize to 0;
@@ -37,23 +37,27 @@
 
 #region Movement Tuning
 	#region horizontal movement
-
-		#macro MOVE_ACCEL 7 * fps
-		#macro MOVE_DEACCEL 3.5 * fps
-		#macro MAX_SPD 2 * fps
-
-		#macro MOVE_SPRINT_ACCEL 15 * fps
-		#macro MOVE_SPRINT_DEACCEL 7 * fps
-		#macro MAX_SPD_SPRINT 4 *fps
+		#macro RELEASE_DEACCEL 0.05078125 * fps //000D0 in HEX
+		
+		#macro SKIDDING_DEACCEL 0.1015625 * fps //001A0 in HEX
+		#macro SKID_TURNAROUND 0.5625 * fps //00900 in HEX
+		
+		#macro MIN_WALK_SPD  0.07421875 * fps //00130 in HEX
+		
+		#macro WALK_ACCEL 0.037109375 * fps //00098 in HEX
+		#macro WALK_SPEED_MAX 1.5625 * fps //01900 in HEX
+		
+		#macro RUN_ACCEL 0.0556640625 * fps //000E4 in HEX
+		#macro RUN_SPEED_MAX 2.5625 * fps //02900 in HEX
 		
 	#endregion
 
 	#region vertical movement
-		#macro FALL_GRAVITY 20 * fps
-		#macro TERMINAL_VELOCITY 30 * fps
+		#macro FALL_GRAVITY 2 * fps
+		#macro TERMINAL_VELOCITY 3 * fps
 		
-		#macro JUMP_GRAVITY  10 * fps
-		#macro JUMP_VEL 4  * fps 
+		#macro JUMP_GRAVITY  1 * fps
+		#macro JUMP_VEL 0.  * fps 
 	
 	#endregion
 #endregion
