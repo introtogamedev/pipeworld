@@ -1,0 +1,41 @@
+{
+  "resourceType": "GMProject",
+  "resourceVersion": "1.7",
+  "name": "OG Mario",
+  "AudioGroups": [
+    {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
+  ],
+  "configs": {
+    "children": [],
+    "name": "Default",
+  },
+  "defaultScriptType": 1,
+  "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Levels","folderPath":"folders/Levels.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Mario","folderPath":"folders/Mario.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy",},
+  ],
+  "IncludedFiles": [],
+  "isEcma": false,
+  "LibraryEmitters": [],
+  "MetaData": {
+    "IDEVersion": "2023.8.0.98",
+  },
+  "resources": [
+    {"id":{"name":"spr_runningMario","path":"sprites/spr_runningMario/spr_runningMario.yy",},},
+    {"id":{"name":"Level_Collision","path":"scripts/Level_Collision/Level_Collision.yy",},},
+    {"id":{"name":"obj_Mario","path":"objects/obj_Mario/obj_Mario.yy",},},
+    {"id":{"name":"Super_Mario_Bros_Tileset","path":"sprites/Super_Mario_Bros_Tileset/Super_Mario_Bros_Tileset.yy",},},
+    {"id":{"name":"ts_NesMarioTiles","path":"tilesets/ts_NesMarioTiles/ts_NesMarioTiles.yy",},},
+    {"id":{"name":"Sprite3","path":"sprites/Sprite3/Sprite3.yy",},},
+    {"id":{"name":"NesMarioSpriteSheet","path":"sprites/NesMarioSpriteSheet/NesMarioSpriteSheet.yy",},},
+    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+  ],
+  "RoomOrderNodes": [
+    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+  ],
+  "templateType": "game",
+  "TextureGroups": [
+    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
+  ],
+}

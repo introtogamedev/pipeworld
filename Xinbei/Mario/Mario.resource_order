@@ -1,0 +1,18 @@
+{
+  "FolderOrderSettings": [
+    {"name":"Rooms","order":1,"path":"folders/Rooms.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"mario_sprirt","order":11,"path":"sprites/mario_sprirt/mario_sprirt.yy",},
+    {"name":"Game","order":4,"path":"objects/Game/Game.yy",},
+    {"name":"plumber","order":12,"path":"sprites/plumber/plumber.yy",},
+    {"name":"TileSet1","order":8,"path":"tilesets/TileSet1/TileSet1.yy",},
+    {"name":"Level","order":4,"path":"rooms/Level/Level.yy",},
+    {"name":"Script1","order":2,"path":"scripts/Script1/Script1.yy",},
+    {"name":"config","order":3,"path":"scripts/config/config.yy",},
+    {"name":"level_1_1_copy","order":5,"path":"sprites/level_1_1_copy/level_1_1_copy.yy",},
+    {"name":"LevelCollision","order":6,"path":"scripts/LevelCollision/LevelCollision.yy",},
+    {"name":"maro_jump_sound_effect_1","order":13,"path":"sounds/maro_jump_sound_effect_1/maro_jump_sound_effect_1.yy",},
+    {"name":"Struct","order":9,"path":"scripts/Struct/Struct.yy",},
+  ],
+}

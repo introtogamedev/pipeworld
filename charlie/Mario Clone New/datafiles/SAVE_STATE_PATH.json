@@ -1,0 +1,23 @@
+{
+	"frame_index" : 0,
+
+	"velocity_x": 0,
+	"velocity_y": 0,
+
+	"position_x": 0,
+	"position_y": 0,
+	
+	"running": false,
+	"jump_held": false,
+	"on_ground": false,
+	"orientation": 0,
+
+
+	"jumping_animation": true,
+
+	"movement_frame": 0,
+
+    "animation_index": 0,
+
+	"input_move": 0
+}

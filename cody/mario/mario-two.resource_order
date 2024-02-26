@@ -1,0 +1,18 @@
+{
+  "FolderOrderSettings": [
+    {"name":"Core","order":13,"path":"folders/Core.yy",},
+    {"name":"Game","order":14,"path":"folders/Game.yy",},
+    {"name":"Level","order":10,"path":"folders/Level.yy",},
+    {"name":"Plumber","order":11,"path":"folders/Plumber.yy",},
+    {"name":"Sounds","order":15,"path":"folders/Sounds.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"Level_Tiles","order":2,"path":"tilesets/Level_Tiles/Level_Tiles.yy",},
+    {"name":"Ring","order":2,"path":"scripts/Ring/Ring.yy",},
+    {"name":"Level_TileSprite","order":1,"path":"sprites/Level_TileSprite/Level_TileSprite.yy",},
+    {"name":"Config","order":12,"path":"scripts/Config/Config.yy",},
+    {"name":"JsonExt","order":1,"path":"scripts/JsonExt/JsonExt.yy",},
+    {"name":"Plumber","order":1,"path":"objects/Plumber/Plumber.yy",},
+    {"name":"Level_Collision","order":3,"path":"scripts/Level_Collision/Level_Collision.yy",},
+  ],
+}

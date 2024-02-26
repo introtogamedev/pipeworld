@@ -1,0 +1,46 @@
+{
+  "resourceType": "GMProject",
+  "resourceVersion": "1.7",
+  "name": "Mario Clone New",
+  "AudioGroups": [
+    {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
+  ],
+  "configs": {
+    "children": [],
+    "name": "Default",
+  },
+  "defaultScriptType": 1,
+  "Folders": [
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Core","folderPath":"folders/Core.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Level","folderPath":"folders/Level.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"objects","folderPath":"folders/objects.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Plumber","folderPath":"folders/Plumber.yy",},
+  ],
+  "IncludedFiles": [
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"SAVE_STATE_PATH.json","CopyToMask":-1,"filePath":"datafiles",},
+  ],
+  "isEcma": false,
+  "LibraryEmitters": [],
+  "MetaData": {
+    "IDEVersion": "2023.8.0.98",
+  },
+  "resources": [
+    {"id":{"name":"hm","path":"sounds/hm/hm.yy",},},
+    {"id":{"name":"plumber","path":"sprites/plumber/plumber.yy",},},
+    {"id":{"name":"sctructCopy","path":"scripts/sctructCopy/sctructCopy.yy",},},
+    {"id":{"name":"config","path":"scripts/config/config.yy",},},
+    {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
+    {"id":{"name":"level_1_1_copy","path":"sprites/level_1_1_copy/level_1_1_copy.yy",},},
+    {"id":{"name":"tileset_1","path":"tilesets/tileset_1/tileset_1.yy",},},
+    {"id":{"name":"game_manager","path":"objects/game_manager/game_manager.yy",},},
+    {"id":{"name":"LevelCollision","path":"scripts/LevelCollision/LevelCollision.yy",},},
+    {"id":{"name":"mario","path":"objects/mario/mario.yy",},},
+  ],
+  "RoomOrderNodes": [
+    {"roomId":{"name":"Level","path":"rooms/Level/Level.yy",},},
+  ],
+  "templateType": "game",
+  "TextureGroups": [
+    {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
+  ],
+}

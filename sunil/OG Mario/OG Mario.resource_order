@@ -1,0 +1,14 @@
+{
+  "FolderOrderSettings": [
+    {"name":"Levels","order":2,"path":"folders/Levels.yy",},
+    {"name":"Tile Sets","order":1,"path":"folders/Tile Sets.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"spr_runningMario","order":2,"path":"sprites/spr_runningMario/spr_runningMario.yy",},
+    {"name":"Level_Collision","order":4,"path":"scripts/Level_Collision/Level_Collision.yy",},
+    {"name":"obj_Mario","order":2,"path":"objects/obj_Mario/obj_Mario.yy",},
+    {"name":"Super_Mario_Bros_Tileset","order":1,"path":"sprites/Super_Mario_Bros_Tileset/Super_Mario_Bros_Tileset.yy",},
+    {"name":"Sprite3","order":3,"path":"sprites/Sprite3/Sprite3.yy",},
+    {"name":"NesMarioSpriteSheet","order":1,"path":"sprites/NesMarioSpriteSheet/NesMarioSpriteSheet.yy",},
+  ],
+}
