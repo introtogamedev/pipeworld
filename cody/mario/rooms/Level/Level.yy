@@ -16,8 +16,9 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_6DDABA4E","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"Game","path":"objects/Game/Game.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":0.0,},
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2DEB0EF0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"Plumber","path":"objects/Plumber/Plumber.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":160.0,"y":128.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
-    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Tiles","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":15,"SerialiseWidth":16,"TileCompressedData":[
--149,-2147483648,-6,1,-53,-2147483648,-32,1,],"TileDataFormat":1,},"tilesetId":{"name":"Level_Tiles","path":"tilesets/Level_Tiles/Level_Tiles.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+    {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Tiles","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":15,"SerialiseWidth":64,"TileCompressedData":[
+-198,-2147483648,-3,0,-52,-2147483648,-3,1,-5,-2147483648,-4,1,-121,-2147483648,-3,0,-21,-2147483648,-6,1,-34,-2147483648,-4,1,-50,-2147483648,-6,1,-12,-2147483648,1,0,-34,-2147483648,1,1,-23,-2147483648,-6,0,-2,-2147483648,1,0,-31,-2147483648,1,1,-23,-2147483648,-6,1,-2,-2147483648,1,1,-8,-2147483648,-3,1,-5,-2147483648,-7,1,
+-8,-2147483648,1,1,-4,-2147483648,-5,1,-22,-2147483648,1,1,-28,-2147483648,4,1,-2147483648,-2147483648,1,-31,-2147483648,1,1,-28,-2147483648,4,1,-2147483648,-2147483648,1,-18,-2147483648,-13,0,3,1,0,0,-26,-2147483648,4,1,-2147483648,-2147483648,1,-18,-2147483648,-64,1,],"TileDataFormat":1,},"tilesetId":{"name":"Level_Tiles","path":"tilesets/Level_Tiles/Level_Tiles.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4294941596,"depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
   "parent": {
@@ -36,7 +37,7 @@
     "Height": 240,
     "inheritRoomSettings": false,
     "persistent": false,
-    "Width": 256,
+    "Width": 1024,
   },
   "sequenceId": null,
   "views": [
