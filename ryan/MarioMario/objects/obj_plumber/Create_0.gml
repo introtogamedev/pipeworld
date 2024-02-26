@@ -16,8 +16,8 @@
 
 #region Tilemap/sprite Indexes
 	//utility
-	tilemapLayer = layer_get_id(TILESET_COLLIDABLE);
-	tilemapID = layer_tilemap_get_id(tilemapLayer);
+	#macro tilemapLayer  layer_get_id(TILESET_COLLIDABLE)
+	#macro tilemapID  layer_tilemap_get_id(tilemapLayer)
 	//layers
 	#macro TILESET_COLLIDABLE "Tilemap_collidable"
 	//tiles
@@ -37,23 +37,23 @@
 
 #region Movement Tuning
 	#region horizontal movement
-		#macro MOVE_ACCEL 15 * fps
-		#macro MOVE_DEACCEL 7 * fps
+
+		#macro MOVE_ACCEL 7 * fps
+		#macro MOVE_DEACCEL 3.5 * fps
 		#macro MAX_SPD 2 * fps
 
-		#macro MOVE_SPRINT_ACCEL 30 * fps
-		#macro MOVE_SPRINT_DEACCEL 15 * fps
+		#macro MOVE_SPRINT_ACCEL 15 * fps
+		#macro MOVE_SPRINT_DEACCEL 7 * fps
 		#macro MAX_SPD_SPRINT 4 *fps
 		
 	#endregion
 
 	#region vertical movement
-		#macro FALL_GRAVITY 17 * fps
+		#macro FALL_GRAVITY 20 * fps
 		#macro TERMINAL_VELOCITY 30 * fps
 		
-		#macro JUMP_GRAVITY  5 * fps
+		#macro JUMP_GRAVITY  10 * fps
 		#macro JUMP_VEL 4  * fps 
-		#macro JUMP_HEIGHT_MAX  1 * TILE_SIZE
 	
 	#endregion
 #endregion
@@ -68,24 +68,53 @@
 	onGround = false;//initialize to false
 	
 	jumpTriggered = false;//initialize to false;
-	jumpAllowed = false;//initialize to false;
-	jump_height = 0;//initialize to 0;
 	
 	//Animation variables
 	plumberAnimation = {
-	running: false,//initialize to false
-	jumping: false,//initialize to false
-	xmoving: false,//initialize to false
-	ymoving: false,//initialize to false *not used yet
-	turning: false, //initialize to false
+		running: false,//initialize to false
+		jumping: false,//initialize to false
+		xmoving: false,//initialize to false
+		ymoving: false,//initialize to false *not used yet
+		turning: false, //initialize to false
 	}
 #endregion
 
 #region functions
 
-function playsoundEff(audio, priority){
-	if (not audio_is_playing(audio)){
-		audio_play_sound(audio, priority, false)
+function playsoundEff(audio, priority, override){
+	if (not audio_is_playing(audio) or override){
+		audio_play_sound(audio, priority, false);
 	}
+}
+
+function saveStateToStruct(){
+	var struct = {
+		x, 
+		y,
+		xvelocity,
+		yvelocity,
+		facing_dir,
+		
+		jumpTriggered,
+		
+		plumberAnimation,
+	}
+	global.saveState = struct;
+}
+
+function loadState(){
+	var struct  = global.saveState;
+	x = struct.x;
+	y = struct.y;
+	//xvelocity = struct.xvelocity;
+	//yvelocity = struct.yvelocity;
+	facing_dir = struct.facing_dir;
+	
+	jumpTriggered = struct.jumpTriggered;
+	
+	plumberAnimation = struct.plumberAnimation;
+}
+if (global.saveState != undefined){
+	loadState();
 }
 #endregion
