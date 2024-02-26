@@ -20,7 +20,6 @@
     {"name":"spr_plumber_jump_r","order":1,"path":"sprites/spr_plumber_jump_r/spr_plumber_jump_r.yy",},
     {"name":"Game","order":3,"path":"objects/Game/Game.yy",},
     {"name":"spr_plumber_jump_l","order":8,"path":"sprites/spr_plumber_jump_l/spr_plumber_jump_l.yy",},
-    {"name":"Script4","order":3,"path":"scripts/Script4/Script4.yy",},
     {"name":"spr_plumber_walk_r","order":2,"path":"sprites/spr_plumber_walk_r/spr_plumber_walk_r.yy",},
     {"name":"spr_plumber_turn_r","order":5,"path":"sprites/spr_plumber_turn_r/spr_plumber_turn_r.yy",},
     {"name":"Ring","order":2,"path":"scripts/Ring/Ring.yy",},

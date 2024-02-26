@@ -14,9 +14,9 @@
 #macro MOVE_DRAG 0.2
 #macro MOVE_BOOST 4
 
-#macro MOVE_WALK_MAX 1.5 * FPS
+#macro MOVE_WALK_MAX 12 * FPS
 #macro MOVE_WALK_ACCELERATION 1.5 * FPS
-#macro MOVE_RUN_MAX 3.8 * FPS
+#macro MOVE_RUN_MAX 20 * FPS
 #macro MOVE_RUN_ACCELERATION 3.4 * FPS
 #macro MOVE_AIR_ACCELERATION 1 * FPS
 #macro MOVE_DECELERATION 1.5 * FPS
@@ -25,21 +25,23 @@
 #macro JUMP_GRAVITY 16 * FPS
 #macro JUMP_HOLD_GRAVITY 8 * FPS
 
-#macro FALLING_GRAVITY 1.5 * FPS
-#macro FALLING_MAX_VELOCITY 20 * FPS
+#macro FALLING_GRAVITY 2 * FPS
+#macro FALLING_MAX_VELOCITY 25 * FPS
 #macro JUMP_ACCELERATION 1.5 * FPS
 #macro JUMP_INITIAL_IMPULSE 10 * FPS
 #macro JUMP_MAX_VELOCITY 16 * FPS
 
 enum INPUT_STATE
 {
-	NONE  = 0,
-	PRESS = 1,
-	HOLD  = 2
+	NONE  = 0, PRESS = 1, HOLD  = 2
 }
 
 state = game.state;
 
+if (game.debug_is_paused)
+{
+	return;
+}
 
 //-------
 //STEP
@@ -80,6 +82,8 @@ var _ay = 0;
 var _iy = 0;
 
 var _move_acceleration = MOVE_WALK_ACCELERATION;
+
+
 if (!state.is_on_ground)
 {
 	_move_acceleration = MOVE_AIR_ACCELERATION;
@@ -92,8 +96,31 @@ if (keyboard_check(INPUT_BOOST))
 	{
 		_move_acceleration = MOVE_RUN_ACCELERATION;
 		image_speed = 2;
+		
+		if (state.vx > MOVE_RUN_MAX)
+		{
+			state.vx = MOVE_RUN_MAX;
+		}
+			if (state.vx < -MOVE_RUN_MAX)
+		{
+			state.vx = -MOVE_RUN_MAX;
+		}
 	}
 }
+else
+{
+	run_timer = 0;
+	if (state.vx > MOVE_WALK_MAX)
+	{
+		state.vx = MOVE_WALK_MAX;
+	}
+	if (state.vx < -MOVE_WALK_MAX)
+	{
+		state.vx = -MOVE_WALK_MAX;
+	}
+}
+
+
 
 _ax += _move_acceleration * _input_dir;
 

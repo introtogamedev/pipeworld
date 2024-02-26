@@ -2,34 +2,27 @@
 #macro SAVE_STATE_AUTOLOAD true
 #macro STATE_BUFFER_LENGTH 60
 
+state = global.state;
 
-//current state
-state = struct_copy(global.state);
-
-//save state
-state_saved = struct_copy(state);
-
-//state buffer
 state_buffer = ring_create(STATE_BUFFER_LENGTH);
 
-//save state
-state_saved = struct_copy(state);
+//current saved state
+saved_state = global.state;
 
+//if game is paused
 debug_is_paused = false;
+
 debug_step_offset = 0;
 
-// if save file exists
+
 if (file_exists(SAVE_STATE_PATH))
 {
-	//read from disk
 	var _json = json_read(SAVE_STATE_PATH);
 
-	//update save state
-	struct_update(state_saved, _json);
+	struct_update(saved_state, _json);
 
-	//autoload save state
 	if (SAVE_STATE_AUTOLOAD)
 	{
-		state = struct_copy(state_saved);
+		state = struct_copy(saved_state);
 	}
 }
