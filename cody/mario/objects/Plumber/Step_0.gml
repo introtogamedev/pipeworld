@@ -1,21 +1,21 @@
-// ---------------
-// -- constants --
-// ---------------
+// constants
 #macro FPS 60
 #macro MS 1000000
 
 // -- move tuning --
-#macro MOVE_WALK_MAX		  2.0 * FPS
-#macro MOVE_WALK_ACCELERATION 1.8 * FPS
-#macro MOVE_RUN_MAX		      3.8 * FPS
-#macro MOVE_RUN_ACCELERATION  3.4 * FPS
-#macro MOVE_AIR_ACCELERATION  2.4 * FPS
-#macro MOVE_DECELERATION      3.4 * FPS
+#macro MOVE_WALK_MAX		  1.5625 * FPS // 1900 -> 1*1 + 9*1/16
+#macro MOVE_WALK_MIN		  0.07421875 *FPS // 0130 -> 1 * 1/16 + 3 * 1/256
+#macro MOVE_WALK_ACCELERATION 2.2265625 * FPS // 0098 -> 9*1/256 + 8*1/4096 = 0.037109375*60
+#macro MOVE_RUN_MAX		      2.5625 * FPS // 2900 -> 2*1 + 9*1/16 = 2.5625
+#macro MOVE_RUN_ACCELERATION  3.33984375 * FPS // 00E4 -> 14*1/256 + 4*1/4096 = 0.0556640625 * 60 = 3.33984375
+#macro MOVE_AIR_ACCELERATION  3.33984375 * FPS // 000E4 -> 14*1/256 + 4*1/4096 = 0.0556640625*60 = 
+#macro MOVE_SKID_DECELERATION      1.1990625 * FPS // skiding deceleration: 01A0 -> 1*1.16 + 10*1/256 = 1.1990625
+#macro MOVE_RELEASE_DECELERATION  3.046875 * FPS // 00D0 -> 13*1/256 = 0.05078125*60 = 3.046875
 
 // -- jump tuning --
-#macro JUMP_IMPULSE           4  * FPS
-#macro JUMP_GRAVITY           16 * FPS
-#macro JUMP_HOLD_GRAVITY      8  * FPS
+#macro JUMP_IMPULSE           4  * FPS // 01000 to 024ff: 4000
+#macro JUMP_GRAVITY           33.75 * FPS // 0900 -> 9*1/16 = 0.5625*60 = 33.75
+#macro JUMP_HOLD_GRAVITY      8  * FPS // For Level Entry 0280 -> 2*1/16 + 8*1/256 = 0.15625*60 = 9.375
 
 // -- input --
 #macro INPUT_LEFT             ord("A")
@@ -30,21 +30,15 @@ enum INPUT_STATE {
 	HOLD  = 2
 }
 
-// ---------------
-// -- get state --
-// ---------------
+// get state
 state = game.state;
 
-// -----------
-// -- debug --
-// -----------
+// debug
 if (game.is_paused()) {
 	return;
 }
 
-// ---------------
-// -- get input --
-// ---------------
+// get input
 var _input_move = 0;
 if (keyboard_check(INPUT_LEFT)) {
 	_input_move -= 1;
@@ -63,9 +57,7 @@ if (keyboard_check_pressed(INPUT_JUMP)) {
 	_input_jump = INPUT_STATE.HOLD;
 }
 
-// ------------------
-// -- add "forces" --
-// -----------------
+// add "forces"
 var _ax = 0;
 var _ay = 0;
 var _iy = 0;
@@ -110,6 +102,9 @@ if (_event_jump) {
 // -- integrate --
 // ---------------
 var _dt = delta_time / MS;
+if (_dt > 0.03){
+	show_debug_message(_dt);
+}
 
 // v1 = v0 + a * t
 state.vx += _ax * _dt;
@@ -122,7 +117,7 @@ var _vx_mag = abs(state.vx);
 var _vx_dir = sign(state.vx);
 
 if (_input_move == 0) {
-	_vx_mag -= MOVE_DECELERATION * _dt;
+	_vx_mag -= MOVE_RELEASE_DECELERATION * _dt;
 }
 
 var _is_running = state.is_running;
@@ -167,12 +162,11 @@ if (_event_jump) {
 state.input_move = _input_move;
 
 // UPDATE 2/25
-var _skid_deceleration = MOVE_DECELERATION;
+var _skid_deceleration = MOVE_SKID_DECELERATION;
 if (_input_move != 0 && sign(_input_move) != _vx_dir && state.is_on_ground) {
-    _skid_deceleration = MOVE_DECELERATION * 1.5; // Increase this for more pronounced skid
+    _skid_deceleration = MOVE_SKID_DECELERATION * 1.5;
 }
 
-// Use _skid_deceleration instead of MOVE_DECELERATION in the existing deceleration logic
-if (_input_move == 0 || _skid_deceleration != MOVE_DECELERATION) {
+if (_input_move == 0 || _skid_deceleration != MOVE_SKID_DECELERATION) {
     _vx_mag -= _skid_deceleration * _dt;
 }

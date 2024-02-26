@@ -50,7 +50,7 @@ if (state.vy >= 0) {
 /*
 var _center_ground_check = level_collision(state.px + sprite_width / 2, _y1) > TILES_NONE;
 if (!_center_ground_check && (_is_on_ground || state.vy >= 0)) {
-    _is_on_ground = false; // Ensure plumber begins to fall
+    _is_on_ground = false;
 }
 */
 
@@ -68,12 +68,12 @@ if (level_collision(_x1, _y0 + 8) > TILES_NONE) {
 /*
 var _vx_dir = sign(state.vx);
 if (level_collision(_px_collision, _py_collision) > TILES_NONE) {
-    // Adjust by an additional buffer to ensure pushing out of the collision
+    // TODO: an additional buffer needed
     if (_vx_dir != 0) {
-        _px_collision += _vx_dir * 1; // Adjust based on direction
+        _px_collision += _vx_dir * 1;
     }
     if (_vy_collision > 0) {
-        _py_collision -= 1; // Adjust upwards if needed
+        _py_collision -= 1;
     }
 }
 */
