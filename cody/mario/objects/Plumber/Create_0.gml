@@ -1,3 +1,7 @@
+#macro GRAVITY 81.52
+#macro INITIAL_IMPULSE 13.59
+#macro HOLD_GRAVITY 34.24
+
 global.plumber_state = {
 	// the current frame
 	frame_index: 0,

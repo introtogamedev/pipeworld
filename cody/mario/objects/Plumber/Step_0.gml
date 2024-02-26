@@ -2,7 +2,6 @@
 // -- constants --
 // ---------------
 #macro FPS 60
-
 #macro MS 1000000
 
 // -- move tuning --
@@ -166,3 +165,14 @@ if (_event_jump) {
 }
 
 state.input_move = _input_move;
+
+// UPDATE 2/25
+var _skid_deceleration = MOVE_DECELERATION;
+if (_input_move != 0 && sign(_input_move) != _vx_dir && state.is_on_ground) {
+    _skid_deceleration = MOVE_DECELERATION * 1.5; // Increase this for more pronounced skid
+}
+
+// Use _skid_deceleration instead of MOVE_DECELERATION in the existing deceleration logic
+if (_input_move == 0 || _skid_deceleration != MOVE_DECELERATION) {
+    _vx_mag -= _skid_deceleration * _dt;
+}

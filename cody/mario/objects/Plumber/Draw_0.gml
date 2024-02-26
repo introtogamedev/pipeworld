@@ -2,11 +2,8 @@
 // -- constants --
 // ---------------
 #macro MOVE_ANIM_START  1
-
 #macro MOVE_ANIM_LENGTH 3
-
 #macro MOVE_ANIM_SPEED  1 / 7
-
 #macro JUMP_ANIM_START  5
 
 // ----------
@@ -34,6 +31,7 @@ draw_sprite_ext(
 	image_alpha
 );
 
+/*
 if (!state.is_on_ground) {
 	draw_set_color(c_white);
 } else if (!state.is_running) {
@@ -49,3 +47,4 @@ draw_rectangle(
 	_y + sprite_height,
 	true
 );
+*/
