@@ -1,3 +1,6 @@
+frame = 0;
+
+
 //-------
 //state template
 //-------
@@ -26,6 +29,7 @@ global.plumber_state = {
 	is_jumping: false,
 	is_jump_held: false,
 	falling_from_collision: false,
+	is_sprinting: false,
 
 	//visual state
 	anim_is_jumping: false,
@@ -41,10 +45,15 @@ global.plumber_state = {
 
 }
 
+//var _a = global.plumber_state;
+//var _b = struct_copy(_a);
+
 //------
 //--ivars--
 //-------
 state = undefined;
+
+game = instance_nearest(0, 0, God);
 
 // cd Documents/School/GameDev/pipeworld/henry
 

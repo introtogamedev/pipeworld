@@ -5,6 +5,12 @@
 #macro FOOT_RIGHT_OFFSET_X 2
 #macro SIDE_OFFSET 1
 
+
+// if we're paused, do nothing
+if (game.debug_is_paused) {
+	return
+}
+
 // - - - - - - - - -
 // - - collisions - - 
 // - - - - - - - - -

@@ -8,8 +8,9 @@ if keyboard_check_pressed(vk_escape) {game_end()}
 
 ////get state
 //////////
+frame += 1;
 
-state = instance_nearest(0, 0, God).state;
+state = game.state;
 
 //increment frame forever
 state.frame_index += 1;
@@ -22,15 +23,15 @@ state.frame_index += 1;
 
 //move constants
 
-#macro MOVE_WALK_ACCEL 1.6 * FPS
+#macro MOVE_WALK_ACCEL 2 * FPS
 #macro MOVE_RUN_ACCEL 5 * FPS
-#macro MOVE_DECEL 2.3 * FPS
-#macro SKID_DECEL 4 * FPS
+#macro MOVE_DECEL 4 * FPS
+#macro SKID_DECEL 7 * FPS
 
 //jump tuning
-#macro JUMP_GRAVITY 16 * FPS
-#macro JUMP_HOLD_GRAVITY 8 *FPS
-#macro JUMP_IMPULSE 4 * FPS
+#macro JUMP_GRAVITY 19 * FPS
+#macro JUMP_HOLD_GRAVITY /*3.8*/ 8 * FPS
+#macro JUMP_IMPULSE /*2.9*/ 4.1 * FPS
 
 //input constants
 #macro INPUT_LEFT ord("A")
@@ -51,6 +52,11 @@ enum INPUT_STATE {
 state = God.state;
 
 #endregion
+
+// if we're paused, do nothing
+if (game.debug_is_paused) {
+	return;
+}
 
 
 // - - - - - - - - - 
@@ -86,9 +92,11 @@ var _y1 = state.py + sprite_height;
 
 //set the accellerations 
 var _move_accel = MOVE_WALK_ACCEL
+var _is_sprinting = false;
 
 if (_input_run) {
 	_move_accel = MOVE_RUN_ACCEL;
+	_is_sprinting = true;
 }
 
 _ax += _move_accel * _input_dir;
@@ -110,6 +118,7 @@ else {
 if (_input_jump == INPUT_STATE.PRESS) && (state.is_on_ground) {
 	_iy -= JUMP_IMPULSE;
 	_event_jump = true;
+	show_debug_message("frame: {0} - jump", frame);
 }
 
 //if they're holding jump then lower the gravity
@@ -133,9 +142,17 @@ if (_event_jump){
 // get fractional delta time
 var _dt = delta_time / MS;
 
+//this'll help debug
+var _previous_vy = state.vy;
+
 //velocity: v = u + at
 state.vx += _ax * _dt;
 state.vy += _ay * _dt + _iy;
+
+//show the frame where we go from rising to falling
+if (_previous_vy < 0 && state.vy >= 0) {
+	show_debug_message("frame: {0} - fall", frame);
+}
 
 //add deceleration 
 //Break down velocity into speed and direction
@@ -174,6 +191,7 @@ if (_input_dir !=0) {
 //capture the move state
 state.input_dir = _input_dir;
 state._is_jump_held = _is_jump_held;
+state.is_sprinting = _is_sprinting;
 
 if (state.vy > 0) {
 	is_jumping = true;
@@ -186,8 +204,6 @@ y = state.py;
 
 
 #endregion
-
-show_debug_message(state.input_dir)
 
 
 

@@ -15,6 +15,7 @@
 #macro MOVE_ANIM_LENGTH 3
 
 #macro MOVE_ANIM_SPEED 1/7
+#macro SPRINT_ANIM_SPEED 1/3
 
 //------
 //--animate
@@ -22,31 +23,39 @@
 
 //updat the current animation state
 
-//if moving, switch to move animation
-if ((state.input_dir != 0) || state.vx !=0) && (state.vy == 0) && !state.falling_from_collision {
+if (!game.debug_is_paused){
 
-	state.move_frame = (state.move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
-	state.image_idx = MOVE_ANIM_START + state.move_frame;
-	//if skidding, switch to that animation
-	if (sign(state.input_dir) + sign(state.vx) == 0) && (state.input_dir != 0) {
-		show_debug_message("SCREECH");
-		state.image_idx = SKID_FRAME;
+	//if moving, switch to move animation
+	if ((state.input_dir != 0) || state.vx !=0) && (state.vy == 0) && !state.falling_from_collision {
+
+		if state.is_sprinting {
+			state.move_frame = (state.move_frame + SPRINT_ANIM_SPEED) % MOVE_ANIM_LENGTH;
+		}
+		else {
+			state.move_frame = (state.move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
+		}
+		
+		
+		state.image_idx = MOVE_ANIM_START + state.move_frame;
+		//if skidding, switch to that animation
+		if (sign(state.input_dir) + sign(state.vx) == 0) && (state.input_dir != 0) {
+			state.image_idx = SKID_FRAME;
+		}
 	}
+
+
+	//if we're jumping, switch to the jump boi
+	else if ((state.vy < 0) || state.falling_from_collision)
+	{
+		state.image_idx = JUMP_FRAME;
+	}
+	//if no input, switch to standing
+	else if (state.vx == 0) && (state.vy == 0) && !state.falling_from_collision {
+		state.image_idx = STANDING_FRAME;
+	}
+
+
 }
-
-
-//if we're jumping, switch to the jump boi
-else if ((state.vy < 0) || state.falling_from_collision)
-{
-	state.image_idx = JUMP_FRAME;
-}
-//if no input, switch to standing
-else if (state.vx == 0) && (state.vy == 0) && !state.falling_from_collision {
-	state.image_idx = STANDING_FRAME;
-}
-
-
-
 
 //var facing_for_jump = input_dir;
 // i was trying to do something here to only switch directions when he's not jumping but i 
