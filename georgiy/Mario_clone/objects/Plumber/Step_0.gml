@@ -2,11 +2,11 @@
 #macro FPS 60
 #macro MS 1000000
 #macro MOVE_WALK_MAX		  2.0 * FPS
-#macro MOVE_WALK_ACCELERATION 1.8 * FPS
+#macro MOVE_WALK_ACCELERATION 1.9 * FPS
 #macro MOVE_RUN_MAX		      3.8 * FPS
-#macro MOVE_RUN_ACCELERATION  3.4 * FPS
+#macro MOVE_RUN_ACCELERATION  3.6 * FPS
 #macro MOVE_AIR_ACCELERATION  2.4 * FPS
-#macro MOVE_DECELERATION      3.4 * FPS
+#macro MOVE_DECELERATION      2.3 * FPS
 #macro JUMP_IMPULSE           4  * FPS
 #macro JUMP_GRAVITY           16 * FPS
 #macro JUMP_HOLD_GRAVITY      8  * FPS
