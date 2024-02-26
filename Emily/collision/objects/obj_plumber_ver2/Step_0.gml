@@ -14,15 +14,22 @@
 #macro MOVE_DRAG 0.2
 #macro MOVE_BOOST 4
 
-#macro MOVE_WALK_MAX 2.0 * FPS
+#macro MOVE_WALK_MAX 1.5 * FPS
 #macro MOVE_WALK_ACCELERATION 1.5 * FPS
 #macro MOVE_RUN_MAX 3.8 * FPS
 #macro MOVE_RUN_ACCELERATION 3.4 * FPS
-#macro MOVE_AIR_ACCELERATION 2.4 * FPS
-#macro MOVE_DECELERATION 3.4 * FPS
+#macro MOVE_AIR_ACCELERATION 1 * FPS
+#macro MOVE_DECELERATION 1.5 * FPS
+
 
 #macro JUMP_GRAVITY 16 * FPS
 #macro JUMP_HOLD_GRAVITY 8 * FPS
+
+#macro FALLING_GRAVITY 1.5 * FPS
+#macro FALLING_MAX_VELOCITY 20 * FPS
+#macro JUMP_ACCELERATION 1.5 * FPS
+#macro JUMP_INITIAL_IMPULSE 10 * FPS
+#macro JUMP_MAX_VELOCITY 16 * FPS
 
 enum INPUT_STATE
 {
@@ -80,33 +87,40 @@ if (!state.is_on_ground)
 
 if (keyboard_check(INPUT_BOOST))
 {
-	_move_acceleration = MOVE_RUN_ACCELERATION;
-	image_speed = 2;
+	run_timer ++;
+	if (run_timer > run_duration)
+	{
+		_move_acceleration = MOVE_RUN_ACCELERATION;
+		image_speed = 2;
+	}
 }
 
 _ax += _move_acceleration * _input_dir;
 
 var _dt = delta_time / MS;
 
-// integrate acceleration & impulse into velocity
+//integrate acceleration & impulse into velocity
 state.vx += _ax * _dt;
 state.vy += _ay * _dt + _iy;
 
-// break down velocity into speed and direction
+
+//break down velocity into speed and direction
 var _vx_mag = abs(state.vx);
 var _vx_dir = sign(state.vx);
 
-// add deceleration if no player input
+//add deceleration if no player input
 if (_input_dir == 0)
 {
 	_vx_mag -= MOVE_DECELERATION * _dt;
 	_vx_mag = max(_vx_mag, 0);
 }
 
-//update running state, start when exceed walk speed
+//reconstitute velocity from magnitude and direction
+state.vx = _vx_mag * _vx_dir;
+
+//update running state, start when exceeding walk speed
 var _is_running = state.is_running;
 if (INPUT_BOOST && _vx_mag >= MOVE_WALK_MAX) _is_running = true;
-
 //stop when we fall beneath
 if (!INPUT_BOOST && _vx_mag <= MOVE_WALK_MAX) _is_running = false;
 
@@ -114,14 +128,18 @@ if (!INPUT_BOOST && _vx_mag <= MOVE_WALK_MAX) _is_running = false;
 var _vx_max = 420;
 if (state.is_on_ground) _vx_max = _is_running ? MOVE_RUN_MAX : MOVE_WALK_MAX;
 
-//_vx_mag = clamp(_vx_mag, 0, _vx_max);
+_vx_mag = clamp(_vx_mag, 0, _vx_max);
+
 
 // reconstitute velocity from magnitude and direction
-state.vx = _vx_mag * _vx_dir;
+//state.vx = _vx_mag * _vx_dir;
 
 // integrate velocity into position
 state.px += state.vx * _dt;
 state.py += state.vy * _dt
+
+
+
 
 //IDLE
 if (state.vx = 0 && sprite_index = spr_plumber_walk_l) sprite_index = spr_plumber_l;
@@ -149,7 +167,7 @@ if (_input_jump != INPUT_STATE.HOLD) _is_jump_held = false;
 //if jump just pressed on the ground, add impulse
 if (_input_jump == INPUT_STATE.PRESS && state.is_on_ground)
 {
-	_iy -= jump_initial_impulse;
+	_iy -= JUMP_INITIAL_IMPULSE;
 	_event_jump = true;
 }
 //if holding jump & moving upwards, add lower gravity
@@ -171,8 +189,8 @@ if (_event_jump) _is_jump_held = true;
 //falling state
 if (falling)
 {
-	state.vy += falling_gravity;
-	if (state.vy > falling_max_velocity) state.vy = falling_max_velocity;
+	state.vy += FALLING_GRAVITY;
+	if (state.vy > FALLING_MAX_VELOCITY) state.vy = FALLING_MAX_VELOCITY;
 	var _vertical_check = 2;
 	state.is_on_ground = false;
 	
@@ -214,7 +232,7 @@ if (on_floor)
 		jumping = true;
 		state.is_on_ground = false;
 		
-		state.vy -= jump_initial_impulse;
+		state.vy -= JUMP_INITIAL_IMPULSE;
 		audio_play_sound(snd_jump_small, 10, false);
 	}
 }
@@ -224,12 +242,12 @@ if (jumping)
 {
 	if (keyboard_check(INPUT_UP))
 	{
-		state.vy -= jump_acceleration;
+		state.vy -= JUMP_ACCELERATION;
 		state.is_on_ground = false;		
 	}
 	else jumping = false;
 	
-	if (state.vy < -jump_max_velocity) state.vy = -jump_max_velocity;
+	if (state.vy < -JUMP_MAX_VELOCITY) state.vy = -JUMP_MAX_VELOCITY;
 	
 	jump_timer ++;
 	if (jump_timer > jump_duration)
