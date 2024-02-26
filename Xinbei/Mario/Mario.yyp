@@ -32,6 +32,7 @@
     {"id":{"name":"config","path":"scripts/config/config.yy",},},
     {"id":{"name":"level_1_1_copy","path":"sprites/level_1_1_copy/level_1_1_copy.yy",},},
     {"id":{"name":"LevelCollision","path":"scripts/LevelCollision/LevelCollision.yy",},},
+    {"id":{"name":"Ring","path":"scripts/Ring/Ring.yy",},},
     {"id":{"name":"maro_jump_sound_effect_1","path":"sounds/maro_jump_sound_effect_1/maro_jump_sound_effect_1.yy",},},
     {"id":{"name":"Plumber","path":"objects/Plumber/Plumber.yy",},},
     {"id":{"name":"Struct","path":"scripts/Struct/Struct.yy",},},

@@ -3,7 +3,9 @@
 #macro RIHGT_FOOT_OFFSET 2
 
 
-
+if (game.is_paused()) {
+	return;
+}
 
 // our adjusted collision point
 var _px_collision = state.px;
