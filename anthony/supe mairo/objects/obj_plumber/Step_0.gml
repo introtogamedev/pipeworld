@@ -8,14 +8,14 @@
 #macro MOVE_WALK_ACCELERATION 1.8 * FPS
 #macro MOVE_RUN_ACCELERATION  3.6 * FPS
 #macro MOVE_DECELERATION	  7.2 * FPS
-#macro WALK_MAX_VELOCITY	  2.0 * FPS
-#macro RUN_MAX_VELOCITY		  4.0 * FPS
+#macro WALK_MAX_VELOCITY	  1.6 * FPS
+#macro RUN_MAX_VELOCITY		  3.2 * FPS
 
 //jump
-#macro JUMP_GRAVITY         16 * FPS 
-#macro JUMP_ACCELERATION    1.6 * FPS //around 100
-#macro JUMP_INITIAL_IMPULSE 6.6 * FPS //around 400
-#macro JUMP_MAX_VELOCITY    3.2 * FPS //around 200
+#macro JUMP_GRAVITY         16  * FPS 
+#macro JUMP_ACCELERATION    1.6 * FPS 
+#macro JUMP_INITIAL_IMPULSE 6.6 * FPS 
+#macro JUMP_MAX_VELOCITY    3.2 * FPS 
 #macro FALL_MAX_VELOCITY	4.0 * FPS
 
 //input constants
@@ -24,9 +24,14 @@
 #macro INPUT_RUN ord("C")
 #macro INPUT_JUMP (vk_space)
 
+//if paused, do nothing
+if (game.debug_is_paused)
+{
+	return 
+}
+
 //get state
 state = instance_nearest(0,0,obj_game).state;
-
 
 //step stuff
 var _input_dir = 0;
