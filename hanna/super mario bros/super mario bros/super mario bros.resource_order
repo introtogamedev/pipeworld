@@ -1,8 +1,9 @@
 {
   "FolderOrderSettings": [
     {"name":"Plumber","order":1,"path":"folders/Plumber.yy",},
-    {"name":"Tiles","order":2,"path":"folders/Tiles.yy",},
     {"name":"Sound","order":4,"path":"folders/Sound.yy",},
+    {"name":"Tiles","order":2,"path":"folders/Tiles.yy",},
+    {"name":"Goomba","order":5,"path":"folders/Goomba.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"spr_plumber_jumping","order":3,"path":"sprites/spr_plumber_jumping/spr_plumber_jumping.yy",},
@@ -11,5 +12,6 @@
     {"name":"spr_stone","order":2,"path":"sprites/spr_stone/spr_stone.yy",},
     {"name":"spr_plumber_running","order":2,"path":"sprites/spr_plumber_running/spr_plumber_running.yy",},
     {"name":"spr_plumber_turning","order":4,"path":"sprites/spr_plumber_turning/spr_plumber_turning.yy",},
+    {"name":"obj_goomba","order":1,"path":"objects/obj_goomba/obj_goomba.yy",},
   ],
 }

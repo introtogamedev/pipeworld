@@ -13,8 +13,9 @@
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Level","folderPath":"folders/Level.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Plumber","folderPath":"folders/Plumber.yy",},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tiles","folderPath":"folders/Tiles.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sound","folderPath":"folders/Sound.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tiles","folderPath":"folders/Tiles.yy",},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Goomba","folderPath":"folders/Goomba.yy",},
   ],
   "IncludedFiles": [],
   "isEcma": false,
@@ -27,10 +28,12 @@
     {"id":{"name":"spr_plumber_jumping","path":"sprites/spr_plumber_jumping/spr_plumber_jumping.yy",},},
     {"id":{"name":"tile_stone","path":"tilesets/tile_stone/tile_stone.yy",},},
     {"id":{"name":"obj_plumber","path":"objects/obj_plumber/obj_plumber.yy",},},
+    {"id":{"name":"spr_goomba_running","path":"sprites/spr_goomba_running/spr_goomba_running.yy",},},
     {"id":{"name":"spr_stone","path":"sprites/spr_stone/spr_stone.yy",},},
     {"id":{"name":"spr_plumber_idle","path":"sprites/spr_plumber_idle/spr_plumber_idle.yy",},},
     {"id":{"name":"spr_plumber_running","path":"sprites/spr_plumber_running/spr_plumber_running.yy",},},
     {"id":{"name":"spr_plumber_turning","path":"sprites/spr_plumber_turning/spr_plumber_turning.yy",},},
+    {"id":{"name":"obj_goomba","path":"objects/obj_goomba/obj_goomba.yy",},},
     {"id":{"name":"Level","path":"rooms/Level/Level.yy",},},
   ],
   "RoomOrderNodes": [
