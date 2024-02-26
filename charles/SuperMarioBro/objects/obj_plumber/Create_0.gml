@@ -4,8 +4,8 @@ vy = 0;
 
 //speed variables
 spd = 3;
-walking_spd = 2;
-running_spd = 4;
+walking_spd = 1.5;
+running_spd = 2.5;
 turning_spd = 1.5;
 
 //gravity

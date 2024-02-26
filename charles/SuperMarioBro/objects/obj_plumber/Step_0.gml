@@ -1,6 +1,6 @@
 var _dt = delta_time/1000000;
 var _move_acc = 0.1 * fps;
-var _decc = 0.002 * fps;
+var _decc = 0.0015 * fps;
 
 var _rightkey = keyboard_check(vk_right);
 var _leftkey = keyboard_check(vk_left);
@@ -9,6 +9,11 @@ var _jump_hold = keyboard_check(ord("X"));
 var _run = keyboard_check(ord("Z"));
 
 var _horizontal = _rightkey - _leftkey;
+
+if(obj_game_manager.is_paused)
+{
+	return;
+}
 
 //saves horizontal for flipping xscale
 if(_horizontal != 0 && state != "is_jumping")
@@ -21,7 +26,7 @@ if(!_rightkey && !_leftkey)
 {
 	horizontal_input = false;
 }
-else if(_horizontal != 0)
+else
 {
 	horizontal_input = true;
 }
@@ -109,6 +114,11 @@ else
 	{
 		state = "is_idle";
 	}
+	
+	if(abs(vx) != 0)
+	{
+		state = "is_walking";
+	}
 }
 
 //changes y velocity with gravity
@@ -116,17 +126,17 @@ vy += grav * _dt;
 
 vx = clamp(vx, -vx_max, vx_max);
 
+//x collision
+if(place_meeting(x + vx, y, ground_tiles))
+{
+	vx = 0;
+}
+
 //y collision
 if(place_meeting(x, y + vy, ground_tiles))
 {
 	y = floor(y);
 	vy = 0;
-}
-
-//x collision
-if(place_meeting(x + vx, y, ground_tiles))
-{
-	vx = 0;
 }
 
 //checks if it is grounded
@@ -185,11 +195,3 @@ y += vy;
 
 x = clamp(x, sprite_width/2, room_width + sprite_width/2);
 y = clamp(y, 0, room_height + sprite_height/2);
-
-if(vy < 0)
-{
-	frame++;
-}
-
-show_debug_message(frame);
-
