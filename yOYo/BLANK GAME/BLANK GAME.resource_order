@@ -8,6 +8,7 @@
     {"name":"plumber","order":1,"path":"sprites/plumber/plumber.yy",},
     {"name":"config","order":5,"path":"scripts/config/config.yy",},
     {"name":"LevelCollision","order":10,"path":"scripts/LevelCollision/LevelCollision.yy",},
+    {"name":"Ring","order":17,"path":"scripts/Ring/Ring.yy",},
     {"name":"maro_jump_sound_effect_1","order":14,"path":"sounds/maro_jump_sound_effect_1/maro_jump_sound_effect_1.yy",},
     {"name":"level_1_1_copy","order":9,"path":"sprites/level_1_1_copy/level_1_1_copy.yy",},
     {"name":"vine_boom","order":15,"path":"sounds/vine_boom/vine_boom.yy",},

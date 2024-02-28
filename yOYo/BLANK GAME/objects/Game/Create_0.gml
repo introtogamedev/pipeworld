@@ -5,6 +5,7 @@
 // -- constants --
 // ---------------
 
+//#macro SAVE_STATE_PATH     "/Users/yoyo/Desktop/GameDev/pipeworldGit/pipeworld/yOYo/BLANK GAME/datafiles/save-state.json"
 #macro SAVE_STATE_PATH     working_directory + "save-state.json"
 #macro SAVE_STATE_AUTOLOAD true
 
@@ -17,6 +18,7 @@ is_paused = false;
 // the current state
 state = struct_copy(global.plumberstate);
 
+state_buffer = ring_create(60);
 // the save state
 state_saved = struct_copy(state);
 
@@ -33,7 +35,20 @@ function paused()
 
 // ----------------
 // -- save state --
+
 // ----------------
+
+function save_mario_json()
+{
+	json_write(SAVE_STATE_PATH, state)
+	
+}
+
+function load_mario_json()
+{
+	state = struct_copy(json_read(SAVE_STATE_PATH))	
+}
+
 
 // if the save file exists
 if (file_exists(SAVE_STATE_PATH)) {

@@ -14,7 +14,10 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Mario","folderPath":"folders/Mario.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Plumber","folderPath":"folders/Plumber.yy",},
   ],
-  "IncludedFiles": [],
+  "IncludedFiles": [
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Ring.gml.txt","CopyToMask":-1,"filePath":"datafiles",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"save-state.json","CopyToMask":-1,"filePath":"datafiles",},
+  ],
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
@@ -25,6 +28,7 @@
     {"id":{"name":"plumber","path":"sprites/plumber/plumber.yy",},},
     {"id":{"name":"config","path":"scripts/config/config.yy",},},
     {"id":{"name":"LevelCollision","path":"scripts/LevelCollision/LevelCollision.yy",},},
+    {"id":{"name":"Ring","path":"scripts/Ring/Ring.yy",},},
     {"id":{"name":"Mairo_Object","path":"objects/Mairo_Object/Mairo_Object.yy",},},
     {"id":{"name":"maro_jump_sound_effect_1","path":"sounds/maro_jump_sound_effect_1/maro_jump_sound_effect_1.yy",},},
     {"id":{"name":"level_1_1_copy","path":"sprites/level_1_1_copy/level_1_1_copy.yy",},},
