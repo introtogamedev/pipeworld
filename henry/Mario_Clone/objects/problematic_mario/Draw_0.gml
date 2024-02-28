@@ -17,13 +17,17 @@
 #macro MOVE_ANIM_SPEED 1/7
 #macro SPRINT_ANIM_SPEED 1/3
 
+//ugh the facing direction is harder than it should be >:(
+#macro FACING_RIGHT 1
+#macro FACING_LEFT -1
+
 //------
 //--animate
 //--------
 
 //updat the current animation state
 
-if (!game.debug_is_paused){
+if (!game.is_paused()){
 
 	//if moving, switch to move animation
 	if ((state.input_dir != 0) || state.vx !=0) && (state.vy == 0) && !state.falling_from_collision {
@@ -71,14 +75,39 @@ if (!game.debug_is_paused){
 var _x = floor(state.px); 
 var _y = floor(state.py); 
 
-//face right
+//face in teh move direction
 var _xscale = 1;
+
 
 //if moving left, flip the sprite
 if (sign (state.look_dir < 0 )){
 	_xscale = -1;
 	_x += sprite_width;
 }
+
+//if look =/= prev then update it
+
+////face the current direction
+//var _look_dir = state.prev_look_dir;
+//var _xscale = state.prev_look_dir;
+
+////if moving left, flip the sprite
+//if (sign (state.look_dir < 0 )){
+//	_look_dir = FACING_LEFT;
+//}
+//else {
+//	_look_dir = FACING_RIGHT;
+//}
+	
+	
+//if (!state.is_jumping) {
+//	var _xscale = _look_dir;
+//}
+	
+
+//if _look_dir = FACING_LEFT {
+//	_x += sprite_width;
+//}
 
 
 
@@ -92,7 +121,9 @@ draw_sprite_ext(
 	image_angle,
 	image_blend,
 	image_alpha
-)
+);
+
+state.prev_look_dir = state.look_dir;
 
 //debug
 /*

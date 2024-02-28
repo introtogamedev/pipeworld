@@ -54,7 +54,7 @@ state = God.state;
 #endregion
 
 // if we're paused, do nothing
-if (game.debug_is_paused) {
+if (game.is_paused()) {
 	return;
 }
 
@@ -183,25 +183,28 @@ state.py += state.vy * _dt;
 //update state!!
 // - - - - - - 
 
-//if there is move input, face that direction
-if (_input_dir !=0) {
-	state.look_dir = _input_dir;
-}
 
 //capture the move state
 state.input_dir = _input_dir;
 state._is_jump_held = _is_jump_held;
 state.is_sprinting = _is_sprinting;
 
-if (state.vy > 0) {
-	is_jumping = true;
+if level_collision(x, y+sprite_height) == TILES_NONE {
+	state.is_jumping = true;
 }
-else {is_jumping = false;}
+else {state.is_jumping = false;}
+
+//if there is move input, face that direction
+if (_input_dir !=0) && (!state.is_jumping) {
+	state.look_dir = _input_dir;
+}
+
 
 //update actual x
 x = state.px;
 y = state.py;
 
+show_debug_message(state.is_jumping);
 
 #endregion
 

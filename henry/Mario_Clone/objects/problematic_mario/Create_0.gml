@@ -18,6 +18,7 @@ global.plumber_state = {
 
 	//the current look direction
 	look_dir: 0,
+	prev_look_dir: 1,
 
 
 	//the current imput direction

@@ -18,7 +18,7 @@
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Tiles","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":15,"SerialiseWidth":16,"TileCompressedData":[
 1,0,-15,-2147483648,4,0,-2147483648,-2147483648,1,-7,0,1,1,-4,-2147483648,1,
-0,-15,-2147483648,2,0,-2147483648,-6,1,-8,-2147483648,1,0,-6,-2147483648,1,1,
+0,-15,-2147483648,2,0,-2147483648,-6,1,-8,-2147483648,1,0,-6,-2147483648,1,0,
 -7,-2147483648,-5,0,-4,-2147483648,-5,1,5,0,1,0,0,1,-10,-2147483648,
 -3,0,2,-2147483648,0,-3,-2147483648,-9,0,-3,-2147483648,1,0,-6,-2147483648,-4,
 0,-5,-2147483648,-3,1,-4,0,1,1,-3,0,-5,1,1,0,-3,

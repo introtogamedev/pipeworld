@@ -7,7 +7,7 @@
 
 
 // if we're paused, do nothing
-if (game.debug_is_paused) {
+if (game.is_paused()) {
 	return
 }
 

@@ -18,5 +18,6 @@ function is_paused(){
 	return debug_is_paused && debug_step_offset <= 0;
 }
 
-
+//the state buffer
+//state_buffer = ring_create(STATE_BUFFER_LENGTH)
 
