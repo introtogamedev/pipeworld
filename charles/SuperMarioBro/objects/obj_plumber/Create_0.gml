@@ -37,3 +37,19 @@ ground_tiles = layer_tilemap_get_id("GroundTile");
 is_grounded = false;
 
 frame = 0;
+
+jump_timer = 0;
+
+jump_min_height = 16;
+
+jump_max_height = 64;
+
+jump_height = jump_min_height;
+
+hold_time = 0;
+
+height_delta_per_frame = 2;
+
+max_hold_time = 0.2;
+
+can_jump = true;

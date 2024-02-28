@@ -31,24 +31,67 @@ else
 	horizontal_input = true;
 }
 
-//starts falling when jump button is released
-if(!_jump_hold && vy < 0)
+//jump time based on hold
+if(_jump_hold)
 {
-	vy = max(vy, 0);
+	if(can_jump)
+	{
+		hold_time += delta_time/1000000;
+	
+		if(jump_height < jump_max_height)
+		{
+			jump_height += height_delta_per_frame;
+		}
+	
+		if(hold_time < max_hold_time)
+		{
+			vy = -sqrt(2 * up_grav * jump_height)/up_grav;
+		}
+	}
+}
+else
+{
+	if(state == "is_jumping")
+	{
+		hold_time = max_hold_time	
+	}
+	else
+	{
+		hold_time = 0;
+	}
+	jump_height = jump_min_height;
 }
 
 //start jumping when jump button pressed
-if(_jump && is_grounded)
+if(_jump && can_jump)
 {
-	vy = jump_vel;
-	obj_sound_manager.play_one_shot(snd_mario_jump);
-	state = "is_jumping";
+	if(is_grounded)
+	{
+		obj_sound_manager.play_one_shot(snd_mario_jump);
+		state = "is_jumping";
+	}
 }
 else if(vy > 0 && is_grounded)
 {
 	state = "is_idle";
 }
 
+if(is_grounded)
+{
+	can_jump = true;
+}
+else
+{
+	if(hold_time >= max_hold_time)
+	{
+		can_jump = false;
+	}
+	else
+	{
+		can_jump = true;
+	}
+	
+}
 //changes gravity accordingly
 if(vy < 0)
 {
@@ -115,7 +158,7 @@ else
 		state = "is_idle";
 	}
 	
-	if(abs(vx) != 0)
+	if(abs(vx) != 0 && state != "is_jumping")
 	{
 		state = "is_walking";
 	}
@@ -195,3 +238,5 @@ y += vy;
 
 x = clamp(x, sprite_width/2, room_width + sprite_width/2);
 y = clamp(y, 0, room_height + sprite_height/2);
+
+show_debug_message(can_jump);

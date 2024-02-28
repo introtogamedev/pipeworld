@@ -22,7 +22,7 @@
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"GroundTile","depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":15,"SerialiseWidth":16,"TileCompressedData":[
 -136,-2147483648,1,0,-13,-2147483648,-3,1,-22,-2147483648,1,0,-15,-2147483648,1,0,
--15,-2147483648,1,0,-32,1,],"TileDataFormat":1,},"tilesetId":{"name":"GroundTile","path":"tilesets/GroundTile/GroundTile.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+-4,-2147483648,1,0,-10,-2147483648,1,0,-32,1,],"TileDataFormat":1,},"tilesetId":{"name":"GroundTile","path":"tilesets/GroundTile/GroundTile.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4294941596,"depth":300,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
   "parent": {
