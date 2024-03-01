@@ -6,13 +6,14 @@
 #macro MS 1000000
 
 //vertical constants
-#macro WALK_ACCELERATION 0.05 / DT
-#macro RUN_ACCELERATION 0.075 / DT
-#macro MOVE_DECCELERATION 0.1 / DT
-#macro MAX_WALK_SPEED 1.5
-#macro MAX_RUN_SPEED 2.25
+#macro WALK_ACCELERATION 152/16/16/16 / DT
+#macro RUN_ACCELERATION 0.075 / DT // fix
+#macro MOVE_DECCELERATION 13/16/16 / DT
+#macro MAX_WALK_SPEED (1 + 9 / 16)
+#macro MAX_RUN_SPEED 2.25 // fix
 #macro MAX_RUN_LEEWAY 10
 #macro SKID_MULTIPLIER 416 / 152
+#macro MIN_WALK_SPEED 19 / 16 /16
 
 //jump constants
 #macro GRAVITY 0.4 / DT
@@ -93,7 +94,15 @@ if (keyboard_check(INPUT_RUN)) {
 		vx = sign(vx) * MAX_WALK_SPEED;
 	}
 } else {
-	vx += _ax * _dt;
+	if (abs(vx) < MIN_WALK_SPEED) {
+		if ((sign(_ax) != -1 * sign(vx)) && (_ax != 0)) {
+			vx = sign(_ax) * MIN_WALK_SPEED;
+		} else {
+			vx += _ax * _dt;
+		}
+	} else {
+		vx += _ax * _dt;
+	}
 }
 
 //show_debug_message(vx);
@@ -145,17 +154,15 @@ if (sign(vx) == 0) {
 
 //Skid calcs
 
-if (sign(_ax) != sign (vx)) {
-	if (input_dir == 0) { 
-		vx -= sign(vx) * WALK_ACCELERATION * (SKID_MULTIPLIER - 1) * _dt;
-		if (_dir_x != sign(vx)) {
-			vx = 0;
-			turning = false;
-		} else {
-			turning = true;
-		}
+if ((sign(_ax) != sign (vx)) && (_ax != 0)) {
+	vx -= sign(vx) * WALK_ACCELERATION * (SKID_MULTIPLIER - 1) * _dt;
+	if (_dir_x != sign(vx)) {
+		vx = 0;
+		turning = false;
+	} else {
+		turning = true;
 	}
 } else {
 	turning = false;
 }
-show_debug_message(turning);
+show_debug_message(vx);
