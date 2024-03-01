@@ -12,6 +12,7 @@
 #macro MAX_WALK_SPEED 1.5
 #macro MAX_RUN_SPEED 2.25
 #macro MAX_RUN_LEEWAY 10
+#macro SKID_MULTIPLIER 416 / 152
 
 //jump constants
 #macro GRAVITY 0.4 / DT
@@ -135,15 +136,26 @@ vy += GRAVITY * _dt;
 if (vy > MAX_GRAVITY) {
 	vy = MAX_GRAVITY;
 }
-show_debug_message(vy);
+//show_debug_message(vy);
 
 move_dir = sign(vx);
 if (sign(vx) == 0) {
 	move_dir = sign(input_dir); //Stop sign(vx) from being 0 while using it
 }
 
+//Skid calcs
+
 if (sign(_ax) != sign (vx)) {
-	turning = true;
+	if (input_dir == 0) { 
+		vx -= sign(vx) * WALK_ACCELERATION * (SKID_MULTIPLIER - 1) * _dt;
+		if (_dir_x != sign(vx)) {
+			vx = 0;
+			turning = false;
+		} else {
+			turning = true;
+		}
+	}
 } else {
 	turning = false;
 }
+show_debug_message(turning);
