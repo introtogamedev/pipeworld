@@ -7,10 +7,10 @@
 
 //vertical constants
 #macro WALK_ACCELERATION 152/16/16/16 / DT
-#macro RUN_ACCELERATION 0.075 / DT // fix
+#macro RUN_ACCELERATION 228/16/16/16 / DT
 #macro MOVE_DECCELERATION 13/16/16 / DT
 #macro MAX_WALK_SPEED (1 + 9 / 16)
-#macro MAX_RUN_SPEED 2.25 // fix
+#macro MAX_RUN_SPEED (2 + 9 / 16)
 #macro MAX_RUN_LEEWAY 10
 #macro SKID_MULTIPLIER 416 / 152
 #macro MIN_WALK_SPEED 19 / 16 /16
@@ -122,7 +122,7 @@ if (input_dir == 0) {
 //Jump logic
 
 
-if (keyboard_check_pressed(INPUT_JUMP) && on_ground) { //change this to just check when using frame stepper
+if (keyboard_check(INPUT_JUMP) && on_ground) { //change this to just check when using frame stepper
 	vy -= JUMP_IMPULSE;
 	jump_frames = MAX_JUMP_FRAMES;
 	spr_frame = 4;
@@ -165,4 +165,3 @@ if ((sign(_ax) != sign (vx)) && (_ax != 0)) {
 } else {
 	turning = false;
 }
-show_debug_message(vx);

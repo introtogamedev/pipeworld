@@ -52,18 +52,18 @@ if (!tile_empty(x - (sprite_side_width-1) * move_dir ,y)) {
 	//show_debug_message("x is " + string(x) + " rounded is " +string(floor(x)));
 }
 //show_debug_message("second_check");
-
+show_debug_message(vx);
 
 //Change the y with top collision
 
 y += vy
 
 if (((!tile_empty(x +1 - sprite_width / 2,y - sprite_height / 2)) || (!tile_empty(x -1 + sprite_width / 2,y - sprite_height / 2))) && vy < 0) {
-	show_debug_message("y start");
+	//show_debug_message("y start");
     while ((!tile_empty(x +1 - sprite_width / 2,y-sprite_height/2)) || (!tile_empty(x -1 + sprite_width / 2,y-sprite_height/2))) {
         y++;
-		show_debug_message(y);
-		show_debug_message(move_dir);
+		//show_debug_message(y);
+		//show_debug_message(move_dir);
     }
 	//show_debug_message("y check worked");
 	vy = 0;
