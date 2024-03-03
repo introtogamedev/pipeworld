@@ -34,8 +34,6 @@ state.frame_index += 1;
 //max speeds
 #macro MAX_WALK_SPD 170
 #macro MAX_RUN_SPD 500
-#macro MAX_AIR_SPD 100
-#macro MAX_AIR_RUN_SPD 400
 #macro MAX_SLOW_ANIM_SPD 50
 
 
@@ -185,23 +183,12 @@ state.vy += _ay * _dt + _iy;
 var _curr_vx = state.vx;
 var _max_vx = state.vx;
 
-if !state.is_jumping {
-	if (abs(_curr_vx) > MAX_WALK_SPD) && !(_is_sprinting) {
-		_max_vx = MAX_WALK_SPD;
-	}
-
-	if (abs(_curr_vx) > MAX_RUN_SPD) && !(_is_sprinting) {
-		_max_vx = MAX_RUN_SPD;
-	}
+if (abs(_curr_vx) > MAX_WALK_SPD) && !(_is_sprinting) {
+	_max_vx = MAX_WALK_SPD;
 }
-else if state.is_jumping {
-	if (abs(_curr_vx) > MAX_AIR_SPD) && !(_is_sprinting) {
-		_max_vx = MAX_AIR_SPD;
-	}
 
-	if (abs(_curr_vx) > MAX_AIR_RUN_SPD) && !(_is_sprinting) {
-		_max_vx = MAX_AIR_RUN_SPD;
-	}
+if (abs(_curr_vx) > MAX_RUN_SPD) && !(_is_sprinting) {
+	_max_vx = MAX_RUN_SPD;
 }
 
 //if any of these triggered, update the speed accordingly
