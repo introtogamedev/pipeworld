@@ -53,11 +53,30 @@
 	#endregion
 
 	#region vertical movement
-		#macro FALL_GRAVITY 2 * fps
-		#macro TERMINAL_VELOCITY 3 * fps
+		#macro JUMP_VEL_TRIG_SLOW 1 * fps //TRIGGER: 01000 in HEX
+		#macro JUMP_VEL_TRIG_FAST 2.3125 * fps //TRIGGER: 02500 in HEX
 		
-		#macro JUMP_GRAVITY  1 * fps
-		#macro JUMP_VEL 0.  * fps 
+		#macro JUMP_VEL_SLOW 4 * fps //04000 in HEX : initial x speed < 01000 in HEX
+		#macro JUMP_VEL_MED 4 * fps //04000 in HEX: initial x speed < 02500 in HEX
+		#macro JUMP_VEL_FAST 5 * fps //05000 in HEX: initial x speed >= 02500 in HEX
+		
+		#macro JUMP_HOLD_GRAV_SLOW 0.125 * fps //00200 in HEX
+		#macro JUMP_HOLD_GRAV_MED 0.1171875 * fps //001E0 in HEX
+		#macro JUMP_HOLD_GRAV_FAST 0.15625 * fps //00280 in HEX
+		
+		#macro FALL_GRAV_SLOW 0.4375 * fps // 00700 in HEX
+		#macro FALL_GRAV_MED 0.375 * fps //00600 in HEX
+		#macro Fall_GRAV_FAST 0.5625 * fps //00900 in HEX
+		
+		#macro AIR_TRIG 1.5625 * fps //01900 in HEX
+		#macro AIR_TRIG_JUMP 1.8125 * fps // 01D00 in HEX
+		
+		#macro AIR_FOR_SLOW 0.037109375 * fps //00098 in HEX: current x speed < 01900 in HEX
+		#macro AIR_FOR_FAST 0.0556640625 * fps //000E4 in HEX: current x speed >= 01900 in HEX
+		
+		#macro AIR_BACK_FAST  0.0556640625 * fps //000E4 in HEX: current x speed >= 01900 in HEX
+		#macro AIR_BACK_SLOW_JUMP_FAST 0.05078125 * fps // 000D0 in HEX: Current x speed < 01900, started jump at >= 01D00 in HEX
+		#macro AIR_BACK_SLOW_JUMP_SLOW 0.037109375* fps // 000D0 in HEX: Current x speed < 01900, started jump at < 01D00 in HEX
 	
 	#endregion
 #endregion
