@@ -36,6 +36,7 @@ state.frame_index += 1;
 #macro MAX_RUN_SPD 500
 #macro MAX_AIR_SPD 100
 #macro MAX_AIR_RUN_SPD 400
+#macro MAX_SLOW_ANIM_SPD 50
 
 
 //jump tuning

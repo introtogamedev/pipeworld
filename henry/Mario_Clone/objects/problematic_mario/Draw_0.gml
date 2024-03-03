@@ -16,6 +16,7 @@
 
 #macro MOVE_ANIM_SPEED 1/6
 #macro SPRINT_ANIM_SPEED 1/3
+#macro SLOW_ANIM_SPEED 1/8
 
 //ugh the facing direction is harder than it should be >:(
 #macro FACING_RIGHT 1
@@ -32,17 +33,20 @@ if (!game.is_paused()){
 	//if moving, switch to move animation
 	if ((state.input_dir != 0) || state.vx !=0) && (state.vy == 0) && !state.falling_from_collision {
 
-		if state.is_sprinting {
+		if abs(state.vx) > MAX_WALK_SPD  {
 			state.move_frame = (state.move_frame + SPRINT_ANIM_SPEED) % MOVE_ANIM_LENGTH;
 		}
-		else {
+		else if abs(state.vx) > MAX_SLOW_ANIM_SPD {
 			state.move_frame = (state.move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
 		}
-		
+		else {
+			state.move_frame = (state.move_frame + SLOW_ANIM_SPEED) % MOVE_ANIM_LENGTH;
+		}
 		
 		state.image_idx = MOVE_ANIM_START + state.move_frame;
-		//if skidding, switch to that animation
-		if (sign(state.input_dir) + sign(state.vx) == 0) && (state.input_dir != 0) {
+	
+	//if skidding, switch to that animation
+		if (sign(state.look_dir) + sign(state.vx) == 0) && (state.input_dir != 0) {
 			state.image_idx = SKID_FRAME;
 		}
 	}
