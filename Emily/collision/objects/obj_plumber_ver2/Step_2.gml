@@ -35,15 +35,15 @@ if (state.vy < 0)
 }
 
 //right collision
-if (level_collision(_x0, _y0 + 8) > TILES_NONE)
+if (level_collision(_x0 + 1, _y0 + 8) > TILES_NONE)
 {
-	_px_collision += 14 - state.px % 16;
+	_px_collision += 16 - state.px % 16;
 }
 
 //left collision
-if (level_collision(_x1, _y0 + 8) > TILES_NONE)
+if (level_collision(_x1 - 3, _y0 + 8) > TILES_NONE)
 {
-	_px_collision -= state.px % 16 - 1;
+	_px_collision -= state.px % 16 - 2;
 }
 
 //bottom collision

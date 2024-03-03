@@ -3,8 +3,8 @@
   "resourceVersion": "1.0",
   "name": "spr_plumber_r",
   "bbox_bottom": 15,
-  "bbox_left": 1,
-  "bbox_right": 13,
+  "bbox_left": 0,
+  "bbox_right": 12,
   "bbox_top": 0,
   "bboxMode": 0,
   "collisionKind": 1,
@@ -70,5 +70,5 @@
   },
   "type": 0,
   "VTile": false,
-  "width": 15,
+  "width": 13,
 }

@@ -23,8 +23,6 @@ if (keyboard_check_pressed(KEY_REWIND))
 	{
 		_step_offset = -1;
 	}
-	
-	
 }
 else
 if (keyboard_check_pressed(KEY_ADVANCE))

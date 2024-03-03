@@ -110,6 +110,22 @@ if (keyboard_check(INPUT_BOOST))
 else
 {
 	run_timer = 0;
+	
+	if (state.vx > 0 || state.vx < 0)
+	{
+		image_speed = 0.6;
+		walk_timer++;
+		if (walk_timer > run_duration)
+		{
+			image_speed = 1;
+		}
+	}
+	else
+	{
+	walk_timer = 0;
+	}
+	
+	
 	if (state.vx > MOVE_WALK_MAX)
 	{
 		state.vx = MOVE_WALK_MAX;
@@ -275,7 +291,7 @@ if (jumping)
 	else jumping = false;
 	
 	if (state.vy < -JUMP_MAX_VELOCITY) state.vy = -JUMP_MAX_VELOCITY;
-	
+
 	jump_timer ++;
 	if (jump_timer > jump_duration)
 	{
