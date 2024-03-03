@@ -122,26 +122,32 @@ if(place_meeting(global.state.x,global.state.y,tilemap)){
 				global.state.isFalling=true;
 				global.state.jump_press_time=1000000;
 				//global.state.clipping=0;
-				global.state.y&=~15;
-				global.state.y+=SPRITE_LEN_HALF;
-				global.state.vy=0;
+				if(global.state.clipping==0){
+					global.state.y&=~15;
+					global.state.y+=SPRITE_LEN_HALF;
+					global.state.vy=0;
+				}
 			}
 		}
 		else{
 			global.state.isFalling=true;
 			global.state.jump_press_time=1000000;
 			//global.state.clipping=0;
-			global.state.y&=~15;
-			global.state.y+=SPRITE_LEN_HALF;
-			global.state.vy=0;
+			if(global.state.clipping==0){
+				global.state.y&=~15;
+				global.state.y+=SPRITE_LEN_HALF;
+				global.state.vy=0;
+			}
 		}
 	}
 	else{
 		global.state.isFalling=true;
 		global.state.jump_press_time=1000000;
-		global.state.y&=~15;
-		global.state.y+=SPRITE_LEN_HALF;
-		global.state.vy=0;
+		if(global.state.clipping==0){
+			global.state.y&=~15;
+			global.state.y+=SPRITE_LEN_HALF;
+			global.state.vy=0;
+		}
 		//global.state.clipping=0;
 	}
 }
