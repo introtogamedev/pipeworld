@@ -82,8 +82,9 @@ if(!global.state.can_jump)
 	dx=global.state.vx*dt*0.6;
 else
 	dx=global.state.vx*dt;
-global.state.x+=dx
+global.state.x+=dx;
 if(place_meeting(global.state.x,global.state.y,tilemap)){
+	show_debug_message("collide xx");
 	if(global.state.clipping!=0){
 		//show_debug_message("1");
 		global.state.x-=dx;
@@ -94,12 +95,14 @@ if(place_meeting(global.state.x,global.state.y,tilemap)){
 		global.state.ax=0;
 	}
 	else{
+		//global.state.x-=dx;
 		global.state.x&=~15;
 		global.state.x+=SPRITE_LEN_HALF;
 		global.state.vx=0;
 		global.state.ax=0;
 	}
 }
+
 global.state.y+=global.state.vy*dt;
 if(place_meeting(global.state.x,global.state.y,tilemap)){
 	if(global.state.vy>0){ /////////-------------on landing (from jump)---------------
