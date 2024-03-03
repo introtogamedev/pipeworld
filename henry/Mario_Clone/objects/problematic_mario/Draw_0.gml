@@ -14,7 +14,7 @@
 //number of frames in strip in run animation 
 #macro MOVE_ANIM_LENGTH 3
 
-#macro MOVE_ANIM_SPEED 1/7
+#macro MOVE_ANIM_SPEED 1/6
 #macro SPRINT_ANIM_SPEED 1/3
 
 //ugh the facing direction is harder than it should be >:(
