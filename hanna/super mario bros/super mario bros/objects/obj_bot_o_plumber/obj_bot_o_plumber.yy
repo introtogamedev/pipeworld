@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_goomba",
+  "name": "obj_bot_o_plumber",
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
@@ -9,8 +9,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Goomba",
-    "path": "folders/Goomba.yy",
+    "name": "Plumber",
+    "path": "folders/Plumber.yy",
   },
   "parentObjectId": null,
   "persistent": false,
@@ -26,13 +26,11 @@
   "physicsShape": 1,
   "physicsShapePoints": [],
   "physicsStartAwake": true,
-  "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"starting_vel","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"-1","varType":0,},
-  ],
+  "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_goomba_running",
-    "path": "sprites/spr_goomba_running/spr_goomba_running.yy",
+    "name": "spr_bot_o_plumber",
+    "path": "sprites/spr_bot_o_plumber/spr_bot_o_plumber.yy",
   },
   "spriteMaskId": null,
   "visible": true,

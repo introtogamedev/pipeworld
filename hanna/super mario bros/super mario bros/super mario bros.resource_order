@@ -1,16 +1,22 @@
 {
   "FolderOrderSettings": [
+    {"name":"Goomba","order":5,"path":"folders/Goomba.yy",},
     {"name":"Plumber","order":1,"path":"folders/Plumber.yy",},
     {"name":"Sound","order":4,"path":"folders/Sound.yy",},
     {"name":"Tiles","order":2,"path":"folders/Tiles.yy",},
-    {"name":"Goomba","order":5,"path":"folders/Goomba.yy",},
+    {"name":"Lucky Blocks","order":6,"path":"folders/Lucky Blocks.yy",},
   ],
   "ResourceOrderSettings": [
+    {"name":"obj_bot_o_plumber","order":5,"path":"objects/obj_bot_o_plumber/obj_bot_o_plumber.yy",},
     {"name":"spr_plumber_jumping","order":3,"path":"sprites/spr_plumber_jumping/spr_plumber_jumping.yy",},
     {"name":"tile_stone","order":1,"path":"tilesets/tile_stone/tile_stone.yy",},
+    {"name":"spr_goomba_stomped","order":2,"path":"sprites/spr_goomba_stomped/spr_goomba_stomped.yy",},
     {"name":"obj_plumber","order":1,"path":"objects/obj_plumber/obj_plumber.yy",},
+    {"name":"spr_lucky_block_idle","order":1,"path":"sprites/spr_lucky_block_idle/spr_lucky_block_idle.yy",},
+    {"name":"spr_bot_o_plumber","order":6,"path":"sprites/spr_bot_o_plumber/spr_bot_o_plumber.yy",},
     {"name":"spr_stone","order":2,"path":"sprites/spr_stone/spr_stone.yy",},
     {"name":"spr_plumber_running","order":2,"path":"sprites/spr_plumber_running/spr_plumber_running.yy",},
+    {"name":"spr_lucky_block_dead","order":2,"path":"sprites/spr_lucky_block_dead/spr_lucky_block_dead.yy",},
     {"name":"spr_plumber_turning","order":4,"path":"sprites/spr_plumber_turning/spr_plumber_turning.yy",},
     {"name":"obj_goomba","order":1,"path":"objects/obj_goomba/obj_goomba.yy",},
   ],

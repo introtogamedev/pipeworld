@@ -1,8 +1,12 @@
-xVel = -1;
+xVel = starting_vel;
 
 yVel = 0;
 
 grounded = false;
+
+alive = true;
+
+
 
 tilemap = layer_tilemap_get_id("Stone");
 
@@ -14,3 +18,5 @@ function round_pos(pos){
 	return pos;
 
 }
+
+timer = 30;

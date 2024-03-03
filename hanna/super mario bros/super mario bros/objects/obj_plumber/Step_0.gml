@@ -2,7 +2,7 @@
 // microseconds in a second
 #macro MS 100000
 
-#macro MOVE_ACCELERATION 0.2
+#macro MOVE_ACCELERATION 0.3
 #macro LEFT ord("A")
 #macro RIGHT ord("D")
 #macro SPRINT (vk_shift)
@@ -10,6 +10,7 @@
 #macro JUMP ord("W")
 
 #macro JUMP_IMPULSE -10
+#macro JUMP_IMPULSE_SMALL -2
 #macro JUMP_ACCELERATION 0.2
 #macro GRAVITY 0.2
 #macro YVEL_MAX 4
@@ -33,7 +34,7 @@ var _input_dir = 0;
 
 
 if (keyboard_check(LEFT)){
-	_input_dir -= 4;
+	_input_dir -= 2;
 	sprite_index = spr_plumber_running;
 	image_xscale = -1;
 	if(xVel > 0){
@@ -43,7 +44,7 @@ if (keyboard_check(LEFT)){
 
 }
 if (keyboard_check(RIGHT)){
-	_input_dir += 4;
+	_input_dir += 2;
 	sprite_index = spr_plumber_running;
 	image_xscale = 1;
 	if(xVel < 0){
@@ -108,64 +109,32 @@ if (x > room_width - 8){
 
 //JUMP??
 
-yVel += GRAVITY;
-yVel = clamp(yVel, -YVEL_MAX, YVEL_MAX);
-
-/* TY'S COLLISION
-// check for ground collision
-var _py_collision = y;
-
-// get the bottom of the character
-var _y1 = y + sprite_height/2;
-
-// if it is colliding with a tile
-if (place_meeting(x, _y1, tilemap)) {
-	// then move the player to the top of the tile
-	grounded = true;
-	_py_collision -= y % 16;
-	if ((keyboard_check_pressed(JUMP)) && grounded = 1){
-		yVel += JUMP_IMPULSE;
-		
-	}
-}else{
-	grounded = false;
-}
-
-// if we hit ground, move to the top of the block
-if (y != _py_collision) {
-	y = _py_collision;
-	vVel = 0;
-}
+global.yVel += GRAVITY;
+global.yVel = clamp(global.yVel, -YVEL_MAX, YVEL_MAX);
 
 
-192
-194
-193.20
-
-192/16 = 12
-194/16=12.125
-193.20/16 = 12.075
-191.90/16 = 11.99375
-
-
-*/
 
 //VERT COLLISION
+
+//GOOMBA'ING
+
+
 //BOTTOM COLLISION
 
 
-if (place_meeting(x, y+4, tilemap)){
+if (place_meeting(x, y+4, [tilemap, obj_lucky_block])){
+	
 	
 	y_collision_bottom = round_pos(y_collision_bottom);
 	
 	y = (y_collision_bottom - 8);
 	
 	grounded = true;
-	yVel = 0;
+	global.yVel = 0;
 	
 	if ((keyboard_check_pressed(JUMP)) && grounded = true){
 		audio_play_sound(snd_jump, 0, false);
-		yVel += JUMP_IMPULSE;
+		global.yVel += JUMP_IMPULSE;
 		sprite_index = spr_plumber_jumping;
 	}
 
@@ -179,17 +148,9 @@ if(grounded = false){
 
 }
 
+
 //TOP COLLISION
-if (place_meeting(x, y-4, tilemap)){
-	bonk = true;
-} else{
-	bonk = false;
-}
 
-
-if (bonk = true){
-	sprite_index = spr_plumber_jumping;
-}
 
 
 
@@ -245,7 +206,7 @@ x += xVel;
 //show_debug_message(string(xVel));
 
 // UPDATING Y POS
-y += yVel;
+y += global.yVel;
 
 //show_debug_message(string(grounded));
 
