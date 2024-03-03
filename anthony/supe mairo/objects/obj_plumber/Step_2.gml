@@ -1,5 +1,5 @@
 //if paused, do nothing
-if (game.debug_is_paused)
+if (game.debug_is_paused && !keyboard_check_pressed(KEY_FRAME))
 {
 	return 
 }
@@ -24,8 +24,8 @@ var _py_coll = state.py;
 var _px_coll = state.px;
 
 //offsets
-var _x_offset = 2;
-var _y_offset = 4;
+var _x_offset = 4;
+var _y_offset = 8;
 
 //get bounding box
 var _x0 = state.px;					//left
@@ -44,10 +44,10 @@ if (
 	state.on_floor = true;
 }
 
+
 //ceiling collision
 else if (
-	scr_collision(_x0 + _x_offset, _y0) == false ||
-	scr_collision(_x1 - _x_offset, _y0) == false )
+	scr_collision(_x0 + (sprite_width/2), _y0) == false)
 {
 	_py_coll = (state.py + sprite_height) - (state.py + sprite_height) % 16;	
 	state.vy = 0;

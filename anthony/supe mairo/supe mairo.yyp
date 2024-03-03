@@ -43,7 +43,7 @@
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
     {"id":{"name":"spr_placeholder","path":"sprites/spr_placeholder/spr_placeholder.yy",},},
     {"id":{"name":"spr_jump","path":"sprites/spr_jump/spr_jump.yy",},},
-    {"id":{"name":"scr_config","path":"scripts/scr_config/scr_config.yy",},},
+    {"id":{"name":"scr_wait","path":"scripts/scr_wait/scr_wait.yy",},},
     {"id":{"name":"snd_jump","path":"sounds/snd_jump/snd_jump.yy",},},
     {"id":{"name":"spr_stand","path":"sprites/spr_stand/spr_stand.yy",},},
     {"id":{"name":"spr_turn","path":"sprites/spr_turn/spr_turn.yy",},},

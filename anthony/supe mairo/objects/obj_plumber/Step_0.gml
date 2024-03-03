@@ -5,16 +5,16 @@
 #macro MS 1000000
 
 //move constants
-#macro MOVE_WALK_ACCELERATION 1.8 * FPS
+#macro MOVE_WALK_ACCELERATION 2.0 * FPS
 #macro MOVE_RUN_ACCELERATION  3.6 * FPS
-#macro MOVE_DECELERATION	  7.2 * FPS
+#macro MOVE_DECELERATION	  1.2 * FPS
 #macro WALK_MAX_VELOCITY	  1.6 * FPS
-#macro RUN_MAX_VELOCITY		  3.2 * FPS
+#macro RUN_MAX_VELOCITY		  2.8 * FPS
 
 //jump
 #macro JUMP_GRAVITY         16  * FPS 
 #macro JUMP_ACCELERATION    1.6 * FPS 
-#macro JUMP_INITIAL_IMPULSE 6.6 * FPS 
+#macro JUMP_INITIAL_IMPULSE 8.0 * FPS 
 #macro JUMP_MAX_VELOCITY    3.2 * FPS 
 #macro FALL_MAX_VELOCITY	4.0 * FPS
 
@@ -25,7 +25,7 @@
 #macro INPUT_JUMP (vk_space)
 
 //if paused, do nothing
-if (game.debug_is_paused)
+if (game.debug_is_paused && !keyboard_check_pressed(KEY_FRAME))
 {
 	return 
 }
@@ -107,12 +107,12 @@ if (state.turn)
 	}
 }
 
-
 //is player on the floor
 if (state.on_floor)
 {
-	state.jumpable = true; //no hold jumping
 	state.jump_sprite = false; //sprite's state
+	
+	state.jumpable = true; //no hold jumping
 	state.jump_timer = 0;
 	if (keyboard_check_pressed(INPUT_JUMP)) audio_play_sound(snd_jump,0,0); //jump sound 
 	if (keyboard_check_pressed(INPUT_JUMP) && state.jumpable) //player can only jump when on the floor
@@ -121,6 +121,9 @@ if (state.on_floor)
 		state.jumping = true;
 		state.vy -= JUMP_INITIAL_IMPULSE; //jump with boost
 		state.jumpable = false; //no hold jumping
+		
+		state.keep_momentum = state.vx //save momentum
+		
 	}
 }
 if (state.vy > 0) state.on_floor = false; //not on floor when falling
@@ -128,15 +131,16 @@ if (state.vy > 0) state.on_floor = false; //not on floor when falling
 //jump
 if (state.jumping)
 {
-	state.jump_sprite = true; //sprite's state
+	state.vx = state.keep_momentum; //keep momentum during jump
 	
+	state.jump_sprite = true; //sprite's state
 	if (keyboard_check(INPUT_JUMP))
-	{	
+	{		
 		state.vy -= JUMP_ACCELERATION;
 	}
 	else //if jump is not held, stop jumping
 	{
-		state.jumping	= false;	
+		state.jumping = false;	
 	}	
 	
 	if (state.vy < -JUMP_MAX_VELOCITY) //prevent jump from being too strong
@@ -176,7 +180,7 @@ var _vx_mag = abs(state.vx);
 var _vx_dir = sign(state.vx);
 
 //apply deceleration if there is no player input
-if (_input_dir == 0)
+if (_input_dir == 0 && !state.jumping)
 {
 	_vx_mag -= MOVE_DECELERATION * _dt;	
 	_vx_mag = (max(_vx_mag,0));

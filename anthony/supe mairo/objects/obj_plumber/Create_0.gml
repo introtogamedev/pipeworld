@@ -27,11 +27,12 @@ global.plumber_state = {
 	jumpable: true,
 	on_floor: false,
 	wall_kiss: false,
-	jump_timer: 0
+	jump_timer: 0,
+	
+	//keeping momentum during jump
+	keep_momentum: 0
 
 };
-
-frame = 0;
 
 //game manager
 game = obj_game;
