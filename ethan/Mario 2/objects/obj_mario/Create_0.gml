@@ -13,9 +13,10 @@ py = y;
 
 on_floor = false;
 jumping = false;
-jump_velocity = -4;
-jump_time = 8;
+jump_velocity = -3.2;
+jump_time = 15;
 
+game_paused = false;
 
 //state = {
 //	hover: 5,
