@@ -7,9 +7,10 @@ g=1450;
 
 //jump
 jump_height_min=18;
-jump_height_max=77;// 4: 64 , 5: 80
+jump_height_max=77;// 4: 64 , 5: 80   // 18 77
 jump_acceleration=sqrt((g*jump_height_min)<<1);
 max_jump_press_time=(jump_height_max-jump_height_min)/jump_acceleration;
+max_jump_press_time=jump_height_max/jump_acceleration-jump_acceleration/(2*g);
 
 
 

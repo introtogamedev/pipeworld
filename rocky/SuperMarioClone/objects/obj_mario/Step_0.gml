@@ -77,11 +77,16 @@ global.state.ay+=g;
 //-----------------
 global.state.vx+=global.state.ax*dt;
 global.state.vy+=global.state.ay*dt;
-global.state.x+=global.state.vx*dt;
+var dx=0;
+if(!global.state.can_jump)
+	dx=global.state.vx*dt*0.6;
+else
+	dx=global.state.vx*dt;
+global.state.x+=dx
 if(place_meeting(global.state.x,global.state.y,tilemap)){
 	if(global.state.clipping!=0){
 		//show_debug_message("1");
-		global.state.x-=global.state.vx*dt;
+		global.state.x-=dx;
 		//global.state.x+=global.state.clipping*((global.state.x&15)+global.state.clipping*8)*(dt*7);
 		global.state.x+=global.state.clipping*((global.state.x&15))*(dt*7);
 		
@@ -116,7 +121,7 @@ if(place_meeting(global.state.x,global.state.y,tilemap)){
 			else{
 				global.state.isFalling=true;
 				global.state.jump_press_time=1000000;
-				global.state.clipping=0;
+				//global.state.clipping=0;
 				global.state.y&=~15;
 				global.state.y+=SPRITE_LEN_HALF;
 				global.state.vy=0;
@@ -125,7 +130,7 @@ if(place_meeting(global.state.x,global.state.y,tilemap)){
 		else{
 			global.state.isFalling=true;
 			global.state.jump_press_time=1000000;
-			global.state.clipping=0;
+			//global.state.clipping=0;
 			global.state.y&=~15;
 			global.state.y+=SPRITE_LEN_HALF;
 			global.state.vy=0;
@@ -137,7 +142,7 @@ if(place_meeting(global.state.x,global.state.y,tilemap)){
 		global.state.y&=~15;
 		global.state.y+=SPRITE_LEN_HALF;
 		global.state.vy=0;
-		global.state.clipping=0;
+		//global.state.clipping=0;
 	}
 }
 
