@@ -10,11 +10,11 @@
 #macro MOVE_DECELERATION 2 * FPS
 
 // -- jump turning --
-#macro JUMP_GRAVITY .6 * FPS
-#macro JUMP_FALL_GRAVITY .2 * FPS
+#macro JUMP_GRAVITY .45 * FPS
+#macro JUMP_FALL_GRAVITY .4 * FPS
 
-#macro JUMP_INITIAL_IMPULSE 4 * FPS
-#macro JUMP_ACCELERATION .10 * FPS
+#macro JUMP_INITIAL_IMPULSE 4.4 * FPS
+#macro JUMP_ACCELERATION .13 * FPS
 #macro JUMP_HEIGHT 4 * 16 * FPS
 
 #endregion
@@ -257,6 +257,18 @@ switch(state.current_state){
 }
 
 #endregion
+
+//Animations
+// if moving, switch to move animation
+if (state.input_move != 0 || state.vx != 0) 
+{
+	state.move_frame = (state.move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
+	state.image_idx = MOVE_ANIM_START + state.move_frame;
+} 
+else 
+{
+	state.image_idx = 0;
+}
 
 #region update
 //Update

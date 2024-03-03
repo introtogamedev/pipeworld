@@ -7,22 +7,6 @@
 #macro MOVE_ANIM_SPEED 1 / 7
 
 
-// -------------
-// -- animate --
-// -------------
-// update the current animation state
-
-// if moving, switch to move animation
-if (state.input_move != 0 || state.vx != 0) {
-	state.move_frame = (state.move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
-	state.image_idx = MOVE_ANIM_START + state.move_frame;
-} 
-else 
-{
-	state.image_idx = 0;
-}
-
-
 // make sure the position is always pixel-aligned
 var _x = floor(state.px);
 var _y = floor(state.py);

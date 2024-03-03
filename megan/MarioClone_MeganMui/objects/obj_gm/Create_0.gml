@@ -1,3 +1,4 @@
+
 // where to store the save file
 #macro SAVE_STATE_PATH working_directory + "save-state.json"
 // if the save state should be loaded on game start
@@ -19,17 +20,16 @@ state_saved = struct_copy(state);
 debug_is_paused = false;
 // how steps to move, if paused
 debug_step_offset = 0;
-
-
+// -------------
+// -- methods --
+// -------------
 /// if the game is currently paused
-function is_paused() 
-{
+function is_paused() {
 	return debug_is_paused && debug_step_offset <= 0;
 }
 
 // if the save file exists
-if (file_exists(SAVE_STATE_PATH)) 
-{
+if (file_exists(SAVE_STATE_PATH)) {
 	// read it from disk
 	var _json = json_read(SAVE_STATE_PATH);
 	// and update the save state, if any

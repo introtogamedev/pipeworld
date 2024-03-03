@@ -1,10 +1,11 @@
+// ---------------
+// -- constants --
+// ---------------
+
 #macro I_KEY_PAUSE   ord("I")
 #macro I_KEY_REWIND  ord("O")
 #macro I_KEY_ADVANCE ord("P")
 
-// -------------
-// -- stepper --
-// -------------
 
 // check input to determine if we're paused and move the stepper
 // into the correct position
@@ -38,6 +39,10 @@ else if (keyboard_check_pressed(I_KEY_ADVANCE)) {
 debug_is_paused = _is_paused;
 debug_step_offset = _step_offset;
 
+
+// update the state buffer, rewinding if necessary or adding a
+// copy of the next state to the buffer if simulating
+
 // if rewinding, remove the most recent frame from the buffer
 if (debug_step_offset < 0) {
 	ring_pop(state_buffer);
@@ -49,24 +54,3 @@ else if (!debug_is_paused || debug_step_offset > 0) {
 
 // and always show the most recent state
 state = ring_head(state_buffer);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
