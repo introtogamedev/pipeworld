@@ -5,23 +5,23 @@
 #macro MOVE_ANIM_LENGTH 3
 // the frames per second in the move animation
 #macro MOVE_ANIM_SPEED 1 / 7
+
+
 // -------------
 // -- animate --
 // -------------
 // update the current animation state
+
 // if moving, switch to move animation
 if (state.input_move != 0 || state.vx != 0) {
 	state.move_frame = (state.move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
 	state.image_idx = MOVE_ANIM_START + state.move_frame;
 } 
-// if no input, switch to standing
-else {
+else 
+{
 	state.image_idx = 0;
 }
-// ----------
-// -- draw --
-// ----------
-// draw the character given their current state
+
 
 // make sure the position is always pixel-aligned
 var _x = floor(state.px);
@@ -48,8 +48,6 @@ draw_sprite_ext(
 	image_blend, 
 	image_alpha
 );
-
-
 
 
 

@@ -34,6 +34,8 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"ring","path":"scripts/ring/ring.yy",},},
+    {"id":{"name":"jsonExt","path":"scripts/jsonExt/jsonExt.yy",},},
     {"id":{"name":"spr_brick","path":"sprites/spr_brick/spr_brick.yy",},},
     {"id":{"name":"obj_floor","path":"objects/obj_floor/obj_floor.yy",},},
     {"id":{"name":"spr_bg","path":"sprites/spr_bg/spr_bg.yy",},},
@@ -47,6 +49,7 @@
     {"id":{"name":"spr_plumber_jump","path":"sprites/spr_plumber_jump/spr_plumber_jump.yy",},},
     {"id":{"name":"spr_plumber_turn","path":"sprites/spr_plumber_turn/spr_plumber_turn.yy",},},
     {"id":{"name":"obj_old_code","path":"objects/obj_old_code/obj_old_code.yy",},},
+    {"id":{"name":"struct_ext","path":"scripts/struct_ext/struct_ext.yy",},},
     {"id":{"name":"spr_plumber","path":"sprites/spr_plumber/spr_plumber.yy",},},
     {"id":{"name":"obj_gm","path":"objects/obj_gm/obj_gm.yy",},},
     {"id":{"name":"config","path":"scripts/config/config.yy",},},
