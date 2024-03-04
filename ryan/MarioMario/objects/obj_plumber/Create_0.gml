@@ -40,15 +40,18 @@
 		#macro RELEASE_DEACCEL 0.05078125 * fps //000D0 in HEX
 		
 		#macro SKIDDING_DEACCEL 0.1015625 * fps //001A0 in HEX
-		#macro SKID_TURNAROUND 0.5625 * fps //00900 in HEX
+		
+		#macro SKID_TURNAROUND 0.5625 //00900 in HEX
 		
 		#macro MIN_WALK_SPD  0.07421875 * fps //00130 in HEX
 		
 		#macro WALK_ACCEL 0.037109375 * fps //00098 in HEX
-		#macro WALK_SPEED_MAX 1.5625 * fps //01900 in HEX
+		#macro WALK_SPEED_MAX 1.5625 * 10//01900 in HEX
 		
 		#macro RUN_ACCEL 0.0556640625 * fps //000E4 in HEX
-		#macro RUN_SPEED_MAX 2.5625 * fps //02900 in HEX
+		#macro RUN_SPEED_MAX 2.5625 * 10 //02900 in HEX
+		
+		#macro MAX_SPEED_GRAD
 		
 	#endregion
 
@@ -56,9 +59,9 @@
 		#macro JUMP_VEL_TRIG_SLOW 1//TRIGGER: 01000 in HEX
 		#macro JUMP_VEL_TRIG_FAST 2.3125 //TRIGGER: 02500 in HEX
 		
-		#macro JUMP_VEL_SLOW 4 //04000 in HEX : initial x speed < 01000 in HEX
-		#macro JUMP_VEL_MED 4  //04000 in HEX: initial x speed < 02500 in HEX
-		#macro JUMP_VEL_FAST 5 //05000 in HEX: initial x speed >= 02500 in HEX
+		#macro JUMP_VEL_SLOW 4 * 6.5  //04000 in HEX : initial x speed < 01000 in HEX
+		#macro JUMP_VEL_MED 4  * 6.5//04000 in HEX: initial x speed < 02500 in HEX
+		#macro JUMP_VEL_FAST 5 * 6.5//05000 in HEX: initial x speed >= 02500 in HEX
 		
 		#macro JUMP_HOLD_GRAV_SLOW 0.125 * fps //00200 in HEX
 		#macro JUMP_HOLD_GRAV_MED 0.1171875 * fps //001E0 in HEX
@@ -87,6 +90,7 @@
 
 	runActivate = false;//initialize to false;
 	skidding = false;//initialize to false;
+	
 	facing_dir = 1;//initialize to 1;
 	
 	onGround = false;//initialize to false
@@ -101,6 +105,8 @@
 		ymoving: false,//initialize to false *not used yet
 		turning: false, //initialize to false
 	}
+	
+	jump_initial_xvelocity = 0;
 #endregion
 
 #region functions

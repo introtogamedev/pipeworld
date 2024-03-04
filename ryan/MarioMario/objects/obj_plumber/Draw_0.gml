@@ -22,6 +22,9 @@ if (plumberAnimation.xmoving){
 if (plumberAnimation.turning){
 	sprite_index = spr_marioSKID
 }
+if (skidding){
+	sprite_index = spr_marioSKID
+}
 
 //JUMPING (overrides running sprites)
 if (plumberAnimation.jumping){
