@@ -1,21 +1,22 @@
+///@description Main 
 var input_direction = 0;//initialize to 0;
-var deltaTime = delta_time/MS;//get fractional delta time
+deltaTime = delta_time/MS;//get fractional delta time
 
-var tilemapLayer = layer_get_id(TILESET_COLLIDABLE);
-var tilemapID = layer_tilemap_get_id(tilemapLayer);
+if (pause and not tempframe){
+	return;
+}
+
 
 #region input detect
 if (keyboard_check(INPUT_LEFT)){
-	input_direction = (-1);
-	facing_dir = -1;
+	input_direction += (-1);
 }if (keyboard_check(INPUT_RIGHT)){
-	input_direction = 1;
-	facing_dir = 1;
+	input_direction += 1;
 }
 
-if (keyboard_check_pressed(INPUT_RUN)){
+if (keyboard_check(INPUT_RUN)){
 	runActivate = true;
-}if(keyboard_check_released(INPUT_RUN)){
+}else{
 	runActivate = false;
 }
 
@@ -23,25 +24,23 @@ var jump = false;//initialize to false;
 if (keyboard_check(INPUT_JUMP)){
 	jump = true;
 }
+
 #endregion
 
-#region variable Initialization: runActivate
+#region horizontal movement
+
+#region variable Initialization: runActivate & applying acceleration to xvelovcity
 //initialize the movement dependent variables based on runActivate
-var accel =  0;//initilize to 0;
-var maxSPD = 0; //initilize to 0;
-var deaccel = 0; //initiliaze to 0;
+var accel =  MOVE_ACCEL; //initiliaze to moving state;
+var maxSPD = MAX_SPD; //initiliaze to moving state;
+var deaccel = MOVE_DEACCEL; //initiliaze to moving state;
+
 if(runActivate == true){
 	accel = MOVE_SPRINT_ACCEL;
 	maxSPD = MAX_SPD_SPRINT;
 	deaccel = MOVE_SPRINT_DEACCEL;
-}else{
-	accel = MOVE_ACCEL;
-	maxSPD = MAX_SPD;
-	deaccel = MOVE_DEACCEL;
 }
-#endregion
 
-#region horizontal movement
 var accelx = 0;//initialize to 0
 //get the horizontal move acceleration/deacceleration
 accelx = accel * input_direction;
@@ -50,6 +49,7 @@ accelx = accel * input_direction;
 xvelocity += accelx * deltaTime
 xvelocity = clamp(xvelocity, -maxSPD, maxSPD);
 
+
 //resolve if no input is registered. clamps current speed to a minimum of 0
 if (input_direction == 0 ){
 	var spd = abs(xvelocity);
@@ -57,70 +57,69 @@ if (input_direction == 0 ){
 	spd = max(spd, 0);
 	xvelocity = spd * sign(xvelocity);
 }
+#endregion
 
-//integrate velocity into x - position
-x += xvelocity*deltaTime;
-
-//clamp x position
-if (x > (room_width - abs(sprite_width)/2) or x < (0 + abs(sprite_width/2))){
-	x = clamp(x, 0 + abs(sprite_width/2), room_width - abs(sprite_width/2));
-	xvelocity = 0;
-}
+#region Horizontal Animation Triggers
+	//intending to move or not
+	if (input_direction != 0 or  xvelocity != 0){
+		plumberAnimation.xmoving = true;
+	}else{
+		plumberAnimation.xmoving = false;
+	}
+	
+	//turning & facing direction
+	if (input_direction != 0){
+		if (input_direction!= facing_dir){
+			plumberAnimation.turning = true;
+		}else if (sign(xvelocity) == sign(input_direction)){
+			plumberAnimation.turning = false;
+		}
+		facing_dir = sign(input_direction);
+	}
+#endregion
 
 #endregion
+
 #region vertical movement
 
-#region variable Initialization: jump
-
+#region variable Initialization: jump & applying gravity to yvelocity
 //initialize the y velocity based on jumping or not. 
 var _gravity = 0;//initialize to 0;
-if (jump and not jumpTriggered and jumpAllowed){
+if (jump and not jumpTriggered and onGround){
 	jumpTriggered = true;
 	yvelocity = -abs(JUMP_VEL);
-}else if (jump and jumpAllowed and jump_height < JUMP_HEIGHT_MAX){
-	jump_height += abs(yvelocity) * deltaTime;//stores current jump height
+	plumberAnimation.jumping = true;//animation state
+	playsoundEff(aud_plumberJUMPeff, 10, true);
+}else if (jump and yvelocity < 0){//going up
 	_gravity = JUMP_GRAVITY;
 	//show_debug_message("PLUMBER JUMPING");//dubuggung purposes only
-	
-}else if (jump_height >= JUMP_HEIGHT_MAX or not jumpAllowed or not jump){
-	//if (jumpAllowed){//triggers only once to initiate falling
-	//	yvelocity /= 2;
-	//}
-	jumpAllowed = false;//double prevention for both cases. 
-	jumpTriggered = false;//reset jump trigger
-	jump_height = 0;
+}else if (yvelocity >= 0 or not jump){//going down
 	_gravity = FALL_GRAVITY;
-	show_debug_message("PLUMBER FALLING");//debugging purposes only
+	//show_debug_message("PLUMBER FALLING");//debugging purposes only
 }
-yvelocity += _gravity* deltaTime;
+if (not jump){
+	jumpTriggered = false;//reset jump trigger	
+}
 
-#endregion
+//show_debug_message(jump_height);
+if (deltaTime <= 0.02){
+yvelocity += _gravity* deltaTime;
+} 
 
 //clamp terminal velocity
 if(yvelocity >= TERMINAL_VELOCITY){
 	yvelocity = TERMINAL_VELOCITY;
 }
 
-//integrate velocity into y - position 
-y += yvelocity * deltaTime;
+#endregion
 
-#region Collision Checks
-//collision check: floor
-if (tilemap_get_at_pixel(tilemapID, x, y) == TILE_FLOOR_ID){
-	//show_debug_message("PLUMBER ON GROUND")//debug purposes
-	y -= y%tilemap_get_tile_height(tilemapID);
-	yvelocity = 0;
-	onGround = true;
-}else{
-	onGround =false;
-}	
+#region Vertical Animation Triggers
+if (onGround){
+	//animation trigger initialized in jumping initialization
+	plumberAnimation.jumping = false;
+}
+//ymoving = !ycollided;
 
 #endregion
 
-
-#endregion
-
-#region variable Updates
-
-if (onGround) jumpAllowed = true;
 #endregion

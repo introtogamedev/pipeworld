@@ -4,7 +4,7 @@
   "name": "spr_brick",
   "bbox_bottom": 15,
   "bbox_left": 16,
-  "bbox_right": 31,
+  "bbox_right": 47,
   "bbox_top": 0,
   "bboxMode": 0,
   "collisionKind": 1,
@@ -70,5 +70,5 @@
   },
   "type": 0,
   "VTile": false,
-  "width": 32,
+  "width": 48,
 }

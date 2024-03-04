@@ -1,3 +1,3 @@
-# pipeworld/rocky
+# pipeworld
 
 welcome to pipeworld

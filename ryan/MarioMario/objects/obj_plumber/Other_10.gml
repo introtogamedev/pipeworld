@@ -49,3 +49,23 @@ for (var i = 0; i < abs(yvelocity); i ++){
 		onGround =false;
 	}	
 }
+
+place_meeting(x, y, tileMapLayer)
+
+
+//horizontal acceleration and collision
+for (var i = 0; i <= abs(x_velocity); i++){
+	if ( not place_meeting(x + sign(x_velocity), y, obj_wall)){
+		x += sign(x_velocity) *1;
+		if ( place_meeting(x, y, obj_collidable)){
+			var collidable = instance_place(x, y, obj_collidable){
+				with (collidable){
+					execute_collidable(2);
+				}
+			}
+		}
+	}else{
+		x_velocity = 0; 
+	}
+}
+x += x_velocity%1

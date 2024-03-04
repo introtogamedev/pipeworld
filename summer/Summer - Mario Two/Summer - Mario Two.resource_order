@@ -17,8 +17,9 @@
     {"name":"Timelines","order":8,"path":"folders/Timelines.yy",},
   ],
   "ResourceOrderSettings": [
-    {"name":"obj_floor","order":1,"path":"objects/obj_floor/obj_floor.yy",},
-    {"name":"spr_floor","order":1,"path":"sprites/spr_floor/spr_floor.yy",},
+    {"name":"spr_plumber_sprite","order":2,"path":"sprites/spr_plumber_sprite/spr_plumber_sprite.yy",},
+    {"name":"tiles","order":3,"path":"sprites/tiles/tiles.yy",},
+    {"name":"TileSet1","order":16,"path":"tilesets/TileSet1/TileSet1.yy",},
     {"name":"rm_level_1","order":1,"path":"rooms/rm_level_1/rm_level_1.yy",},
   ],
 }

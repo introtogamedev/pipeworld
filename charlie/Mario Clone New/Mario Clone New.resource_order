@@ -1,0 +1,16 @@
+{
+  "FolderOrderSettings": [
+    {"name":"objects","order":1,"path":"folders/objects.yy",},
+  ],
+  "ResourceOrderSettings": [
+    {"name":"hm","order":9,"path":"sounds/hm/hm.yy",},
+    {"name":"plumber","order":6,"path":"sprites/plumber/plumber.yy",},
+    {"name":"sctructCopy","order":8,"path":"scripts/sctructCopy/sctructCopy.yy",},
+    {"name":"config","order":2,"path":"scripts/config/config.yy",},
+    {"name":"Level","order":3,"path":"rooms/Level/Level.yy",},
+    {"name":"level_1_1_copy","order":4,"path":"sprites/level_1_1_copy/level_1_1_copy.yy",},
+    {"name":"tileset_1","order":7,"path":"tilesets/tileset_1/tileset_1.yy",},
+    {"name":"game_manager","order":1,"path":"objects/game_manager/game_manager.yy",},
+    {"name":"LevelCollision","order":5,"path":"scripts/LevelCollision/LevelCollision.yy",},
+  ],
+}
