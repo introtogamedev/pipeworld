@@ -7,7 +7,7 @@
 	#macro DEBUG_MODE true
 	
 	#macro INPUT_PAUSE (ord("N"))
-	#macro INPUT_DEBUG_NEXTFRAME vk_right
+	#macro INPUT_DEBUG_NEXTFRAME ord("K")
 	pause = false
 	tempframe = false //allows for running of one frame only
 
@@ -53,12 +53,12 @@
 	#endregion
 
 	#region vertical movement
-		#macro JUMP_VEL_TRIG_SLOW 1 * fps //TRIGGER: 01000 in HEX
-		#macro JUMP_VEL_TRIG_FAST 2.3125 * fps //TRIGGER: 02500 in HEX
+		#macro JUMP_VEL_TRIG_SLOW 1//TRIGGER: 01000 in HEX
+		#macro JUMP_VEL_TRIG_FAST 2.3125 //TRIGGER: 02500 in HEX
 		
-		#macro JUMP_VEL_SLOW 4 * fps //04000 in HEX : initial x speed < 01000 in HEX
-		#macro JUMP_VEL_MED 4 * fps //04000 in HEX: initial x speed < 02500 in HEX
-		#macro JUMP_VEL_FAST 5 * fps //05000 in HEX: initial x speed >= 02500 in HEX
+		#macro JUMP_VEL_SLOW 4 //04000 in HEX : initial x speed < 01000 in HEX
+		#macro JUMP_VEL_MED 4  //04000 in HEX: initial x speed < 02500 in HEX
+		#macro JUMP_VEL_FAST 5 //05000 in HEX: initial x speed >= 02500 in HEX
 		
 		#macro JUMP_HOLD_GRAV_SLOW 0.125 * fps //00200 in HEX
 		#macro JUMP_HOLD_GRAV_MED 0.1171875 * fps //001E0 in HEX
@@ -68,8 +68,8 @@
 		#macro FALL_GRAV_MED 0.375 * fps //00600 in HEX
 		#macro Fall_GRAV_FAST 0.5625 * fps //00900 in HEX
 		
-		#macro AIR_TRIG 1.5625 * fps //01900 in HEX
-		#macro AIR_TRIG_JUMP 1.8125 * fps // 01D00 in HEX
+		#macro AIR_TRIG 1.562//01900 in HEX
+		#macro AIR_TRIG_JUMP 1.8125// 01D00 in HEX
 		
 		#macro AIR_FOR_SLOW 0.037109375 * fps //00098 in HEX: current x speed < 01900 in HEX
 		#macro AIR_FOR_FAST 0.0556640625 * fps //000E4 in HEX: current x speed >= 01900 in HEX
@@ -86,6 +86,7 @@
 	yvelocity = 0;//initialize to 0;
 
 	runActivate = false;//initialize to false;
+	skidding = false;//initialize to false;
 	facing_dir = 1;//initialize to 1;
 	
 	onGround = false;//initialize to false
