@@ -170,3 +170,16 @@ if (_input_move != 0 && sign(_input_move) != _vx_dir && state.is_on_ground) {
 if (_input_move == 0 || _skid_deceleration != MOVE_SKID_DECELERATION) {
     _vx_mag -= _skid_deceleration * _dt;
 }
+
+
+
+var enemy_collision = instance_place(x, y, Enemy1);
+if (enemy_collision != noone) {
+    if (vy > 0) { // Plumber is falling down on the enemy
+        enemy_collision.destroy(); // Remove the enemy
+        vy = -JUMP_IMPULSE; // Bounce back up
+    } else {
+        // Plumber is hit by an enemy
+        loseLife(); // Custom function to handle life loss
+    }
+}
