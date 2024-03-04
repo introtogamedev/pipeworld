@@ -16,6 +16,9 @@
   ],
   "ResourceOrderSettings": [
     {"name":"spr_block","order":1,"path":"sprites/spr_block/spr_block.yy",},
+    {"name":"spr_mario","order":4,"path":"sprites/spr_mario/spr_mario.yy",},
     {"name":"obj_wall","order":3,"path":"objects/obj_wall/obj_wall.yy",},
+    {"name":"spr_mario_run","order":2,"path":"sprites/spr_mario_run/spr_mario_run.yy",},
+    {"name":"spr_mario_jump","order":3,"path":"sprites/spr_mario_jump/spr_mario_jump.yy",},
   ],
 }
