@@ -4,7 +4,8 @@ var _y = floor(state.py);
 
 if (state.vx == 0 && !state.wall_kiss) sprite_index = spr_stand;
 else if (state.move || !state.jump_sprite) sprite_index = spr_move;
-else if (state.turn) sprite_index = spr_turn;
+
+if (state.turn) sprite_index = spr_turn;
 
 if (state.jump_sprite) sprite_index = spr_jump;
 

@@ -191,7 +191,10 @@ state.vx = _vx_mag * _vx_dir;
 //integrate acceleration into velocity
 state.vx += _dv
 if (state.vx >= WALK_MAX_VELOCITY && !state.run) state.vx = WALK_MAX_VELOCITY;
+else if (state.vx <= -WALK_MAX_VELOCITY && !state.run) state.vx = -WALK_MAX_VELOCITY;
+
 else if (state.vx >= RUN_MAX_VELOCITY && state.run) state.vx = RUN_MAX_VELOCITY;
+else if (state.vx <= -RUN_MAX_VELOCITY && state.run) state.vx = -RUN_MAX_VELOCITY;
 
 //gravity
 var _ay = JUMP_GRAVITY;
