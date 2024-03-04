@@ -17,8 +17,9 @@
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_2DEB0EF0","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"Plumber","path":"objects/Plumber/Plumber.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":160.0,"y":128.0,},
       ],"layers":[],"properties":[],"userdefinedDepth":false,"visible":true,},
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Tiles","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":15,"SerialiseWidth":16,"TileCompressedData":[
--149,-2147483648,-6,1,-8,-2147483648,-2,1,-6,-2147483648,-2,1,-26,-2147483648,-2,1,
--7,-2147483648,-32,1,],"TileDataFormat":1,},"tilesetId":{"name":"Level_Tiles","path":"tilesets/Level_Tiles/Level_Tiles.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
+-117,-2147483648,-5,1,1,0,-9,-2147483648,-2,0,-12,-2147483648,-12,0,-5,-2147483648,
+-9,1,1,0,-9,-2147483648,-3,0,-14,-2147483648,-2,0,-7,-2147483648,-32,1,
+],"TileDataFormat":1,},"tilesetId":{"name":"Level_Tiles","path":"tilesets/Level_Tiles/Level_Tiles.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRBackgroundLayer","resourceVersion":"1.0","name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4294941596,"depth":200,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],
   "parent": {
