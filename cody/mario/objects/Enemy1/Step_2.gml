@@ -47,12 +47,6 @@ if (state.vy >= 0) {
 		_is_on_ground = true;
 	}
 }
-/*
-var _center_ground_check = level_collision(state.px + sprite_width / 2, _y1) > TILES_NONE;
-if (!_center_ground_check && (_is_on_ground || state.vy >= 0)) {
-    _is_on_ground = false;
-}
-*/
 
 // ----------
 // -- side --
@@ -65,18 +59,6 @@ if (level_collision(_x1, _y0 + 8) > TILES_NONE) {
 	_px_collision -= state.px % 16;
 }
 
-/*
-var _vx_dir = sign(state.vx);
-if (level_collision(_px_collision, _py_collision) > TILES_NONE) {
-    // TODO: an additional buffer needed
-    if (_vx_dir != 0) {
-        _px_collision += _vx_dir * 1;
-    }
-    if (_vy_collision > 0) {
-        _py_collision -= 1;
-    }
-}
-*/
 
 // ------------------
 // -- update state --
@@ -96,30 +78,3 @@ if (state.py != _py_collision) {
 }
 
 state.is_on_ground = _is_on_ground;
-
-// ~*~*~*~*~*~*~*~
-// ~* animation *~
-// ~*~*~*~*~*~*~*~
-if (state.anim_is_jumping && state.is_on_ground) {
-	state.anim_is_jumping = false;
-}
-
-// -------------
-// -- animate --
-// -------------
-var _anim_image_index = state.anim_image_index;
-var _anim_move_frame = state.anim_move_frame;
-
-if (state.anim_is_jumping) {
-	_anim_image_index = JUMP_ANIM_START;
-}
-else if (state.is_on_ground && (state.input_move != 0 || state.vx != 0)) {
-	_anim_move_frame = (_anim_move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
-	_anim_image_index = MOVE_ANIM_START + floor(_anim_move_frame);
-}
-else if (state.vx == 0) {
-	_anim_image_index = 0;
-}
-
-state.anim_image_index = _anim_image_index;
-state.anim_move_frame = _anim_move_frame;
