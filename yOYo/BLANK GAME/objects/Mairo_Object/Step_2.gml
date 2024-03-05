@@ -36,20 +36,32 @@ if (state.vy > 0)
 	if ((level_collision(_x0+2, _y1) = TILES_BRICK) or //left foot
 	(level_collision(_x0+14, _y1) = TILES_BRICK))//right foot
 	{	
+		if (_y1 - level_collision_position(_x0+2, _y1)._y < 4) 
+		{
+			//this does not work... never enters this state
+			state.py -= state.py % 16 - 1;
+			state.vy = 0;
+			show_debug_message("GCSnap");
+		}else
+		{
+			state.py -= 1;
+			state.vy = 0;
+			//show_debug_message("GCPush");
+		}
 		
-		state.py -= 1;
-		state.vy = 0;
 	// and track that we're on ground
-		show_debug_message("GroundCollision");
+		
 	}
+	
+	
 }
 
-//check ground this happens if you are falling or not
+//check 1 pixel below the chrarcter see if on ground
 if ((level_collision(_x0+2, _y1+1) = TILES_BRICK) or //left foot
 	(level_collision(_x0+14, _y1+1) = TILES_BRICK))//right foot
 	{	
 		_is_on_ground = true;
-		show_debug_message("Ground");
+		//show_debug_message("Ground");
 	}
 
 
