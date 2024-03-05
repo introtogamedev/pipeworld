@@ -1,4 +1,4 @@
-state = {
+global.plumber_state = {
 
 frame_index: 0,
 
@@ -21,9 +21,10 @@ input_move: 0,
 
 current_state: 0,
 
+jump_timer: 0,
 current_jump_height: 0,
 
 move_drag: 4.5,
 };
 
-game =instance_nearest(0,0,obj_gm);
+state = global.plumber_state;

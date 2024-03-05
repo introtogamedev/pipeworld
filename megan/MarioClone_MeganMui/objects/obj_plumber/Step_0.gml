@@ -1,4 +1,4 @@
-#region checked
+#region Variables
 //Constants
 // the number of frames per second
 #macro FPS 60
@@ -10,13 +10,16 @@
 #macro MOVE_DECELERATION 2 * FPS
 
 // -- jump turning --
-#macro JUMP_GRAVITY .5 * FPS
-#macro JUMP_FALL_GRAVITY .3 * FPS
+#macro JUMP_GRAVITY .45 * FPS
+#macro JUMP_FALL_GRAVITY .4 * FPS
 
-#macro JUMP_INITIAL_IMPULSE 4 * FPS
-#macro JUMP_ACCELERATION .10 * FPS
+#macro JUMP_INITIAL_IMPULSE 4.4 * FPS
+#macro JUMP_ACCELERATION .13 * FPS
 #macro JUMP_HEIGHT 4 * 16 * FPS
 
+#endregion
+
+#region Inputs
 
 //Inputs
 #macro INPUT_LEFT  ord("A")
@@ -24,7 +27,6 @@
 #macro INPUT_RUN   vk_shift
 #macro INPUT_JUMP ord("W")
 #macro INPUT_DOWN ord("S")
-
 
 // Input checks
 var _input_move = 0;
@@ -35,6 +37,20 @@ if (keyboard_check(INPUT_RIGHT) && !keyboard_check((INPUT_DOWN))) {
 	_input_move += 1;
 }
 var _input_run = keyboard_check(INPUT_RUN);
+
+#endregion
+
+
+// get a reference to the current state
+state = obj_gm.state;
+
+// if we're paused, do nothing
+if (obj_gm.is_paused())
+{
+	return;
+}
+
+#region Forces
 
 //Adding Forces
 
@@ -85,6 +101,10 @@ state.vx = _vx_mag * _vx_dir;
 // Turns velocity into position
 state.px += state.vx * _dt;
 state.py += state.vy * _dt;
+
+#endregion
+
+#region collisions
 
 //Collisions
 
@@ -143,11 +163,12 @@ if (state.py != _py_collision)
 	state.vy = 0;
 }
 
-#region falling
+#endregion
+
+#region states
 
 switch(state.current_state){
 	case JUMP_STATE.FALLING:
-
 		
 		state.vy += JUMP_FALL_GRAVITY;
 
@@ -168,16 +189,25 @@ switch(state.current_state){
 	
 		sprite_index = spr_plumber;
 		
-		state.jump_timer = 0;
+		state.jump_timer++ ;
 		state.current_jump_height = 0;
-		state.vy = 0;
+		if (state.px != _px_collision)
+		{
+			state.px = _px_collision;
+			state.vx = 0;
+		}		
 	
-		if(keyboard_check(INPUT_JUMP)) //Can Jump
+		if(keyboard_check(INPUT_JUMP) && state.jump_timer > 10) //Can Jump
 		{
 			state.current_state = JUMP_STATE.JUMPING;
 			audio_play_sound(sfx_jump, 1, false);
 		
 			state.vy -= JUMP_INITIAL_IMPULSE;
+		}
+		else
+		{
+			state.current_state = JUMP_STATE.ON_FLOOR;
+			sprite_index = spr_plumber;
 		}
 		
 		if(level_collision(state.px, _y1) != TILES_FLOOR &&
@@ -193,14 +223,30 @@ switch(state.current_state){
 		
 		sprite_index = spr_plumber_jump;
 		
+		
+		state.jump_timer = 0;
+		
 		state.vy += JUMP_ACCELERATION;
 		state.current_jump_height += state.vy;
 		show_debug_message(state.current_jump_height)
 
-		if(state.current_jump_height > JUMP_HEIGHT || !keyboard_check(INPUT_JUMP)) //Player makes contact with floor
+		if(state.current_jump_height > JUMP_HEIGHT) //Player makes contact with floor
 		{
 			state.current_state = JUMP_STATE.FALLING;
 		}	
+		else if (!keyboard_check(INPUT_JUMP))
+		{
+			state.current_state = JUMP_STATE.FALLING;		
+		}
+		
+		if(keyboard_check(INPUT_JUMP) && level_collision(state.px, _y1) = TILES_FLOOR)
+		{
+			state.current_state = JUMP_STATE.ON_FLOOR;				
+		}
+		if(keyboard_check(INPUT_JUMP) && level_collision(state.px, _y1) = TILES_BRICK)
+		{
+			state.current_state = JUMP_STATE.ON_FLOOR;				
+		}
 		if(level_collision(state.px, _y2) == TILES_BRICK)
 		{
 			state.vy = 0;
@@ -210,6 +256,21 @@ switch(state.current_state){
 	break;
 }
 
+#endregion
+
+//Animations
+// if moving, switch to move animation
+if (state.input_move != 0 || state.vx != 0) 
+{
+	state.move_frame = (state.move_frame + MOVE_ANIM_SPEED) % MOVE_ANIM_LENGTH;
+	state.image_idx = MOVE_ANIM_START + state.move_frame;
+} 
+else 
+{
+	state.image_idx = 0;
+}
+
+#region update
 //Update
 
 // increment frame forever
@@ -223,6 +284,10 @@ if (_input_move != 0)
 {
 	state.look_dir = _input_move;
 }
+
+#endregion
+
+#region sprite animations
 
 //animatons
 if(keyboard_check(INPUT_LEFT) && state.vx > 0)
@@ -247,6 +312,7 @@ if(keyboard_check(INPUT_DOWN) && JUMP_STATE.ON_FLOOR)
 	sprite_index = spr_plumber_crouch;
 }
 
+#endregion
+
 show_debug_message(TILES_BRICK);
 show_debug_message(_ax);
-
