@@ -10,7 +10,7 @@
 
 // -- move tuning --
 #macro MOVE_WALK_MAX		  2.0 * FPS
-#macro MOVE_WALK_ACCELERATION 1.8 * FPS
+#macro MOVE_WALK_ACCELERATION 1.5 * FPS
 #macro MOVE_RUN_MAX		      3.8 * FPS
 #macro MOVE_RUN_ACCELERATION  2 * FPS
 #macro MOVE_AIR_ACCELERATION  2.4 * FPS
@@ -183,6 +183,18 @@ if (state.is_on_ground) {
 
 _vx_mag = clamp(_vx_mag, 0, _vx_max);
 
+var _is_skidding = state.is_skidding
+if (_input_move != 0 && _input_move != _vx_dir){
+	_is_skidding = true;
+	_vx_mag -=  MOVE_DECELERATION * _dt;
+	
+	show_debug_message("enter skid");
+} else {
+	_is_skidding = false;
+}
+
+state.is_skidding = _is_skidding;
+
 // reconstitute velocity from magnitude and direction
 state.vx = _vx_mag * _vx_dir;
 
@@ -191,15 +203,7 @@ state.vx = _vx_mag * _vx_dir;
 state.px += state.vx * _dt;
 state.py += state.vy * _dt;
 
-var _is_skidding = state.is_skidding
-if (_input_move != 0 && _input_move != _vx_dir){
-	_is_skidding = true;
-	show_debug_message("enter skid");
-} else {
-	_is_skidding = false;
-}
 
-state.is_skidding = _is_skidding;
 // ------------------
 // -- update state --
 // ------------------

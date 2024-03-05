@@ -16,13 +16,13 @@
 // -----------
 
 // the visible state
-state = struct_copy(global.plumber_state);
+state = global.plumber_state;
 
 // the state buffer
 state_buffer = ring_create(STATE_BUFFER_LENGTH);
 
 // the save state
-state_saved = struct_copy(state);
+state_saved = state;
 
 // if the game is paused
 debug_is_paused = false;

@@ -13,9 +13,9 @@
   "isDnd": false,
   "layers": [
     {"resourceType":"GMRTileLayer","resourceVersion":"1.1","name":"Tiles_1","depth":0,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"properties":[],"tiles":{"SerialiseHeight":15,"SerialiseWidth":16,"TileCompressedData":[
--107,-2147483648,1,1,-15,-2147483648,1,1,-15,-2147483648,1,1,-4,-2147483648,-4,0,
--6,1,2,-2147483648,1,-6,-2147483648,1,1,-8,-2147483648,1,1,-6,-2147483648,1,
-1,-8,-2147483648,1,1,-6,-2147483648,2,1,-2147483648,-4,1,-3,-2147483648,1,1,
+-107,-2147483648,1,0,-15,-2147483648,1,0,-15,-2147483648,1,0,-4,-2147483648,-4,0,
+-6,1,2,-2147483648,0,-6,-2147483648,1,1,-8,-2147483648,1,0,-6,-2147483648,1,
+1,-8,-2147483648,1,0,-6,-2147483648,2,1,-2147483648,-4,1,-3,-2147483648,1,0,
 -4,-2147483648,-32,1,],"TileDataFormat":1,},"tilesetId":{"name":"TileSet1","path":"tilesets/TileSet1/TileSet1.yy",},"userdefinedDepth":false,"visible":true,"x":0,"y":0,},
     {"resourceType":"GMRInstanceLayer","resourceVersion":"1.0","name":"Instances","depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"instances":[
         {"resourceType":"GMRInstance","resourceVersion":"1.0","name":"inst_4B0FEFC9","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"objectId":{"name":"Plumber","path":"objects/Plumber/Plumber.yy",},"properties":[],"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":0.0,"y":192.0,},
