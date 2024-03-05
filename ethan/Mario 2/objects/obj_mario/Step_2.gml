@@ -1,6 +1,25 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+
+//Pausing/Debugging
+if (keyboard_check_pressed(ord("P")))
+{
+	game_paused = true;
+}
+if (keyboard_check_pressed(ord("I")))
+{
+	game_paused = false;
+}
+if (game_paused)
+{
+	if (!keyboard_check_pressed(ord("O")))
+	{
+		return;
+	}
+}
+
+
 //Bottom right
 var x2 = x + sprite_width;
 var y2 = y + sprite_height;
@@ -20,6 +39,7 @@ if (!Level_Collision(floor(x2-2),floor(y+3)) || !Level_Collision(floor(x2-2), fl
 {
 	show_debug_message("Hit a block from the left");
 	x = x - vx;
+	if (vx > 0) vx = 0;
 	px = floor(x);
 }
 
@@ -28,6 +48,7 @@ if (!Level_Collision(floor(x+1),floor(y+3)) || !Level_Collision(floor(x+1), floo
 {
 	show_debug_message("Hit a block from the right");
 	x = x - vx;
+	if (vx < 0) vx = 0;
 	px = floor(x);
 }
 
@@ -40,7 +61,7 @@ if (!Level_Collision(floor(x+3),floor(y2)) || !Level_Collision(floor(x2-4), floo
 	py = floor(y);
 	on_floor = true;
 	jumping = false;
-	jump_time = 8;
+	jump_time = 15;
 } else {
 	on_floor = false;
 }
@@ -49,17 +70,17 @@ if (!Level_Collision(floor(x+3),floor(y2)) || !Level_Collision(floor(x2-4), floo
 if (keyboard_check(INPUT_JUMP))
 {
 	//Player allowed to determine jump height
-	if (jump_time > 0)
+	if (jump_time > 0 && !on_floor && jumping)
 	{
 		vy = jump_velocity;
 		jump_time--;
 	}
-	
-	if (on_floor) 
-	{
-		on_floor = false;
-		jumping = true;
-	}
+}
+if (keyboard_check_pressed(INPUT_JUMP) && on_floor) 
+{
+	on_floor = false;
+	jumping = true;
+	vy = jump_velocity;
 }
 if (keyboard_check_released(INPUT_JUMP))
 {
@@ -99,7 +120,7 @@ else if (vx == 0 && !jumping)
 }
 
 //Skidding
-if (vx > 0 && ax < 0 || vx < 0 && ax > 0)
+if ((vx > 0 && ax < 0 || vx < 0 && ax > 0) && !jumping)
 {
 	image_speed = 0;
 	

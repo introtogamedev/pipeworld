@@ -8,16 +8,36 @@
 #macro MS 1000000
 
 #macro MOVE_ACCELERATION 0.08*FPS
-#macro MOVE_RUN_ACCELERATION 0.4*FPS
+#macro MOVE_RUN_ACCELERATION 0.1*FPS
 #macro INPUT_LEFT ord("A")
 #macro INPUT_RIGHT ord("D")
 #macro INPUT_RUN vk_shift
 #macro INPUT_JUMP vk_space
 
-#macro JUMP_GRAVITY 0.2 * FPS
+#macro GRAVITY 0.3 * FPS
+#macro JUMP_GRAVITY 0.15 * FPS
+
+//Pausing/Debugging
+if (keyboard_check_pressed(ord("P")))
+{
+	game_paused = true;
+}
+if (keyboard_check_pressed(ord("I")))
+{
+	game_paused = false;
+}
+if (game_paused)
+{
+	if (!keyboard_check_pressed(ord("O")))
+	{
+		return;
+	}
+}
+
 
 //Gravity
-var ay = JUMP_GRAVITY;
+var ay = GRAVITY;
+if (INPUT_JUMP && jump_time > 0) ay = JUMP_GRAVITY;
 
 //Movement
 //Find the input direction
@@ -25,19 +45,19 @@ var input_dir = 0;
 if (keyboard_check(INPUT_LEFT))
 {
 	input_dir -= 1;
-	sprite_index = spr_marioleft;
+	if (!jumping) sprite_index = spr_marioleft;
 }
 if (keyboard_check(INPUT_RIGHT))
 {
 	input_dir += 1;
-	sprite_index = spr_marioright;
+	if (!jumping) sprite_index = spr_marioright;
 }
 
 //Get the move acceleration
 ax = MOVE_ACCELERATION * input_dir;
 if (keyboard_check(INPUT_RUN))
 {
-	ax += MOVE_RUN_ACCELERATION * input_dir;
+	ax = MOVE_RUN_ACCELERATION * input_dir;
 }
 
 //get fractional delta time
@@ -60,13 +80,13 @@ if (keyboard_check(INPUT_RUN))
 //Deceleration
 if (vx < 0 && !keyboard_check(INPUT_LEFT))
 {
-	vx += 0.1;
+	vx += 0.05;
 	
 	if (vx > 0) vx = 0;
 }
 if (vx > 0 && !keyboard_check(INPUT_RIGHT))
 {
-	vx -= 0.1;
+	vx -= 0.05;
 	
 	if (vx < 0) vx = 0;
 }
