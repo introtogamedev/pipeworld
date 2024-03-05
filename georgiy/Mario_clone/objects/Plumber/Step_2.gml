@@ -12,6 +12,7 @@ var _y0 = state.py;
 var _y1 = _y0 + sprite_height;
 
 _px_collision = clamp(_px_collision, 0, room_width - sprite_width);
+/*
 if (
 	level_collision(_x0, _y1) > TILES_NONE ||
 	level_collision(_x1, _y1) > TILES_NONE
@@ -27,6 +28,17 @@ if (
 ) {
 	_py_collision += state.py % 16 + 1;
 }
+*/
+if (level_collision(_x0, _y1) > TILES_NONE || level_collision(_x1, _y1) > TILES_NONE) {
+    _py_collision = (_y1 div 16) * 16 - sprite_height;
+    state.vy = 0;
+    _is_on_ground = true;
+}
+
+if (level_collision(_x0, _y0) > TILES_NONE || level_collision(_x1, _y0) > TILES_NONE) {
+    _py_collision = (_y0 div 16 + 1) * 16;
+    state.vy = 0;
+}
 
 if (
     level_collision(_x1, _y0) > TILES_NONE &&
@@ -41,6 +53,7 @@ if (
 ) {
 	_px_collision += state.px % 16 - 1;
 }
+
 
 
 if (state.px != _px_collision) {
