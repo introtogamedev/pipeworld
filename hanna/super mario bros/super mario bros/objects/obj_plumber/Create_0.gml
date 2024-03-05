@@ -1,7 +1,7 @@
 
 
 xVel = 0;
-yVel = 0;
+global.yVel = 0;
 
 
 
@@ -16,9 +16,6 @@ tilemap = layer_tilemap_get_id("Stone");
 grounded = false;
 
 running_into_wall = false;
-
-bonk = false;
-
 
 
 function round_pos(pos){

@@ -1,16 +1,16 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_goomba",
+  "name": "obj_lucky_block",
   "eventList": [
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,},
   ],
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "Goomba",
-    "path": "folders/Goomba.yy",
+    "name": "Lucky Blocks",
+    "path": "folders/Lucky Blocks.yy",
   },
   "parentObjectId": null,
   "persistent": false,
@@ -27,12 +27,13 @@
   "physicsShapePoints": [],
   "physicsStartAwake": true,
   "properties": [
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"starting_vel","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"-1","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"starting_X","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"152","varType":0,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"starting_Y","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"104","varType":0,},
   ],
   "solid": false,
   "spriteId": {
-    "name": "spr_goomba_running",
-    "path": "sprites/spr_goomba_running/spr_goomba_running.yy",
+    "name": "spr_lucky_block_idle",
+    "path": "sprites/spr_lucky_block_idle/spr_lucky_block_idle.yy",
   },
   "spriteMaskId": null,
   "visible": true,
