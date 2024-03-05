@@ -1,14 +1,19 @@
 #macro RUN_ANIM_START 1
 #macro RUN_ANIM_LENGTH 3
-#macro ANIM_SPEED 1/7
+#macro ANIM_CONSTANT 1/4
+#macro MIN_ANIM_SPEED 1/7
 
 
 if (on_ground && (!paused || frame_skip == 1)) {
 	if (turning) {
 		spr_frame = 5;
 		anim_frame = 0;
-	} else if (input_dir != 0) { //change thise
-		anim_frame = (anim_frame + ANIM_SPEED) % RUN_ANIM_LENGTH;
+	} else if (input_dir != 0) {
+		if ((ANIM_CONSTANT * abs(vx) / MAX_WALK_SPEED) > MIN_ANIM_SPEED) {
+			anim_frame = (anim_frame + (ANIM_CONSTANT * abs(vx) / MAX_WALK_SPEED)) % RUN_ANIM_LENGTH;
+		} else {
+			anim_frame = (anim_frame + (1/7)) % RUN_ANIM_LENGTH;
+		}
 		spr_frame = RUN_ANIM_START + anim_frame;
 		if (spr_frame > 3) {
 			spr_frame = 3;
