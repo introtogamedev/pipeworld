@@ -32,9 +32,13 @@
     "IDEVersion": "2023.11.1.129",
   },
   "resources": [
+    {"id":{"name":"mario_jump_sound","path":"sounds/mario_jump_sound/mario_jump_sound.yy",},},
     {"id":{"name":"spr_block","path":"sprites/spr_block/spr_block.yy",},},
+    {"id":{"name":"spr_mario_idle","path":"sprites/spr_mario_idle/spr_mario_idle.yy",},},
     {"id":{"name":"spr_mario","path":"sprites/spr_mario/spr_mario.yy",},},
     {"id":{"name":"obj_wall","path":"objects/obj_wall/obj_wall.yy",},},
+    {"id":{"name":"spr_mario_run","path":"sprites/spr_mario_run/spr_mario_run.yy",},},
+    {"id":{"name":"spr_mario_jump","path":"sprites/spr_mario_jump/spr_mario_jump.yy",},},
     {"id":{"name":"obj_mario","path":"objects/obj_mario/obj_mario.yy",},},
     {"id":{"name":"rm_main","path":"rooms/rm_main/rm_main.yy",},},
   ],

@@ -4,6 +4,22 @@ key_left = keyboard_check(ord("A"));
 key_right = keyboard_check(ord("D"));
 
 move = key_right - key_left;
+
+//Animation
+
+if (vsp != 0)
+{
+	sprite_index = spr_mario_jump;
+}
+else if (hsp == 0)
+{
+	sprite_index = spr_mario_idle;
+}
+else if (abs(hsp) > 0)
+{
+	sprite_index = spr_mario_run;
+}
+
 //Move Right
 if (move == 1)
 {
@@ -12,6 +28,7 @@ if (move == 1)
 	{
 		hsp = maxSpeed;
 	}
+	image_xscale = 1;
 }
 else if (hsp > 0)
 {
@@ -20,6 +37,7 @@ else if (hsp > 0)
 	{
 		hsp = 0;
 	}
+	image_xscale = 1;
 }
 
 
@@ -31,6 +49,7 @@ if (move == -1)
 	{
 		hsp = -maxSpeed;
 	}
+	image_xscale = -1;
 }
 else if (hsp < 0)
 {
@@ -39,12 +58,14 @@ else if (hsp < 0)
 	{
 		hsp = 0;
 	}
+	image_xscale = -1;
 }
 
 // Jumping
 if (place_meeting(x, y + 1, obj_wall) && keyboard_check_pressed(ord("W")))
 {
     vsp = -jumpSpeed;
+	audio_play_sound(mario_jump_sound,0,false);
 }
 
 // Gravity
