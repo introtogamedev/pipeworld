@@ -1,3 +1,9 @@
+if (game.debug_is_paused)
+{
+	return;
+}
+
+
 y += state.vy;
 x += state.vx;
 
@@ -29,15 +35,15 @@ if (state.vy < 0)
 }
 
 //right collision
-if (level_collision(_x0, _y0 + 8) > TILES_NONE)
+if (level_collision(_x0 + 1, _y0 + 8) > TILES_NONE)
 {
-	_px_collision += 15 - state.px % 16;
+	_px_collision += 16 - state.px % 16;
 }
 
 //left collision
-if (level_collision(_x1, _y0 + 8) > TILES_NONE)
+if (level_collision(_x1 - 3, _y0 + 8) > TILES_NONE)
 {
-	_px_collision -= state.px % 16 - 3;
+	_px_collision -= state.px % 16 - 2;
 }
 
 //bottom collision
@@ -50,6 +56,7 @@ if (state.vy >= 0)
 		state.is_on_ground = true;
 		falling = false;
 		on_floor = true;
+		//jumping = true;
 	}
 }
 

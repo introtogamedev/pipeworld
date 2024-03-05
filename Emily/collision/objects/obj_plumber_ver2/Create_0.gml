@@ -6,7 +6,8 @@ jump_timer = 0;
 jump_duration = 20;
 
 run_timer = 0;
-run_duration = 10;
+walk_timer = 0;
+run_duration = 20;
 
 //state
 global.state =
@@ -36,7 +37,7 @@ global.state =
 }
 
 
-
+frame = 0;
 
 
 //ivars
