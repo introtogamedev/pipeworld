@@ -12,6 +12,8 @@ if(_temp_frame){
 if(keyboard_check_pressed(ord("R"))){
 	global.state.x=32;
 	global.state.y=128;
+	x=32;
+	y=128;
 	camera_set_view_pos(obj_mario.camera,0,0);
 }
 
