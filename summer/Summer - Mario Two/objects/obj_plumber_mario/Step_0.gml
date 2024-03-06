@@ -3,8 +3,8 @@
 
 #macro FPS 60
 #macro MS 1000000
-#macro MOVE_ACCELERATION 6
-#macro Stop_acceleration 6
+#macro MOVE_ACCELERATION 3
+#macro Stop_acceleration 0.12
 
 //run
 #macro MOVE_WALK_ACCELERATION 1.8 * FPS
@@ -16,15 +16,8 @@
 #macro INPUT_UP ord ("W")
 #macro INPUT_LEFT ord ("A")
 #macro INPUT_RIGHT ord ("D")
+#macro INPUT_ESC vk_escape
 
-//room boundary
-if (x + sprite_width /2 > room_width) {
-	x = room_width - sprite_width / 2;
-}
-
-if (x < sprite_width/2) {
-	x = 0 + sprite_width / 2;
-}
 
 //step
 var _input_dir = 0;
@@ -32,6 +25,26 @@ var press_left = false;
 var press_right = false;
 var press_up = false;
 var _avx = vx;
+
+//pause game
+if (keyboard_check_pressed(INPUT_ESC) && pause_game = false)
+{
+	show_debug_message("pauuuuuse presssssssss");
+	image_speed = 0;
+	pause_game = true;
+}
+else if (keyboard_check_pressed(INPUT_ESC) && pause_game = true) {
+
+	pause_game = false;
+}	
+	
+	
+if (pause_game == true)
+{
+	show_debug_message("pauuuuuse");
+	return;
+	
+}
 
 
 if (keyboard_check(INPUT_LEFT) && x > 0 + sprite_width / 2){
@@ -203,4 +216,3 @@ if (on_floor == true)
 	image_index = 0;
 	}
 	
-
