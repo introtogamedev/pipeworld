@@ -15,6 +15,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Rooms","folderPath":"folders/Rooms.yy",},
   ],
   "IncludedFiles": [
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Plumber_status.txt","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"plumber.webp","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "isEcma": false,
@@ -36,6 +37,7 @@
     {"id":{"name":"maro_jump_sound_effect_1","path":"sounds/maro_jump_sound_effect_1/maro_jump_sound_effect_1.yy",},},
     {"id":{"name":"Plumber","path":"objects/Plumber/Plumber.yy",},},
     {"id":{"name":"Struct","path":"scripts/Struct/Struct.yy",},},
+    {"id":{"name":"Json","path":"scripts/Json/Json.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
